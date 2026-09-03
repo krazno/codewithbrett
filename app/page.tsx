@@ -216,10 +216,6 @@ export default function HomePage() {
             <SoftLink href={PLACEHOLDER}>Schedule a meeting</SoftLink>
             <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
           </div>
-          <p className="mt-2 text-xs text-stone-500">
-            Live help → Google Meet later · Schedule → calendar booking later ·
-            Feedback → anonymous survey later
-          </p>
         </div>
       </section>
 
