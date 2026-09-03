@@ -5,38 +5,38 @@ import { COURSES } from "@/app/lib/courses";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Welcome · Classes with Mr. Hannan · Ursuline Academy Dedham",
+    absolute: "Code with Brett · Ursuline Academy Dedham",
   },
   description:
-    "Class home for Calculus, AP CSP, and Study Hall at Ursuline Academy Dedham.",
+    "Code with Brett at Ursuline Academy Dedham — class hubs, AI literacy, and ways to get help. Built for Ursuline Bears.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "Classes with Mr. Hannan · Ursuline Academy Dedham",
-    title: "Welcome · Classes with Mr. Hannan",
+    siteName: "Code with Brett · Ursuline Academy Dedham",
+    title: "Code with Brett · Ursuline Academy Dedham",
     description:
-      "Class home for Calculus, AP CSP, and Study Hall at Ursuline Academy Dedham.",
+      "AI literacy and computer science class home for Ursuline Academy in Dedham, MA.",
     url: "/",
     images: [
       {
         url: "/media/branded/ua-seal.png",
-        alt: "Ursuline Academy Dedham",
+        alt: "Ursuline Academy · Code with Brett",
       },
     ],
   },
 };
 
-const PLACEHOLDER = "#";
+const PLACEHOLDER = "#"; // swap for Google Form / Meet / Calendar later
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebSite",
-      name: "Classes with Mr. Hannan · Ursuline Academy Dedham",
+      name: "Code with Brett · Ursuline Academy Dedham",
       url: "https://www.codewithbrett.com/",
       description:
-        "Class home for computer science and calculus at Ursuline Academy in Dedham, Massachusetts.",
+        "Computer science and AI literacy for Ursuline Academy in Dedham, Massachusetts.",
       publisher: {
         "@type": "Person",
         name: "Brett Hannan",
@@ -108,30 +108,114 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="mb-8 text-center">
-        <Image
-          src="/media/branded/ua-seal.png"
-          alt="Ursuline Academy Dedham"
-          width={64}
-          height={64}
-          className="mx-auto h-[64px] w-[64px] object-contain"
-          priority
-        />
-        <p className="mt-3 text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-          Ursuline Academy · Dedham
-        </p>
-        <h1 className="mt-2 font-serif text-4xl text-stone-900 sm:text-5xl">
-          Welcome
-        </h1>
-        <p className="mx-auto mt-2 max-w-md text-base leading-relaxed text-stone-700">
-          Pick your class below. You will need the passcode from class to open
-          the page.
-        </p>
-      </header>
+      <section className="ua-card ua-shadow-soft relative overflow-hidden rounded-[22px]">
+        <div className="pointer-events-none absolute inset-0">
+          <Image
+            src="/media/branded/campus-entrance.png"
+            alt=""
+            fill
+            className="object-cover opacity-[0.18]"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(247,244,236,0.75)] via-[rgba(255,255,255,0.88)] to-[rgba(238,246,241,0.95)]" />
+        </div>
 
-      <section>
-        <h2 className="sr-only">Classes</h2>
-        <div className="grid gap-4">
+        <header className="relative z-10 px-5 py-8 text-center sm:px-8 sm:py-10">
+          <Image
+            src="/media/branded/ua-seal.png"
+            alt="Ursuline Academy Dedham"
+            width={72}
+            height={72}
+            className="mx-auto h-[72px] w-[72px] object-contain"
+            priority
+          />
+          <p className="mt-3 text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+            Faith · Courage · Joy · Ursuline Bears
+          </p>
+          <h1 className="mt-2 font-serif text-4xl text-stone-900 sm:text-5xl">
+            Code with Brett
+          </h1>
+          <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-stone-700">
+            Your class hub for CS, calc, and AI — made for Ursuline girls who
+            want help that actually makes sense.
+          </p>
+          <div className="mt-6 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
+            <Link
+              href="/ursuline-ai/"
+              className="rounded-full bg-[var(--ua-evergreen)] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33]"
+            >
+              Start the AI lesson
+            </Link>
+            <Link
+              href="/sample-lesson/"
+              className="rounded-full border border-[rgba(32,37,34,0.18)] bg-white/80 px-6 py-3 text-sm font-semibold text-[var(--ua-evergreen)] hover:bg-white"
+            >
+              Sample lesson
+            </Link>
+          </div>
+        </header>
+      </section>
+
+      <section className="ua-card ua-shadow-soft mt-8 flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:p-6">
+        <div className="mx-auto h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)] sm:mx-0">
+          <Image
+            src="/media/branded/brett-hannan.png"
+            alt="Brett Hannan"
+            width={112}
+            height={112}
+            className="h-full w-full object-cover"
+            priority
+          />
+        </div>
+        <div className="min-w-0 flex-1 text-center sm:text-left">
+          <h2 className="font-serif text-2xl text-stone-900">Brett Hannan</h2>
+          <p className="mt-1 text-sm text-stone-600">
+            Code with Brett · Ursuline Academy Dedham
+          </p>
+          <p className="mt-2 text-sm text-stone-700">
+            Questions, stuck on homework, or just need a vibe check before the
+            quiz? Reach out — help is meant to feel easy.
+          </p>
+          <p className="mt-3 text-sm text-stone-700">
+            Email:{" "}
+            <a
+              href="mailto:bhannan@ursulineacademy.net"
+              className="font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
+            >
+              bhannan@ursulineacademy.net
+            </a>
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
+            <SoftLink href={PLACEHOLDER} primary>
+              Live help
+            </SoftLink>
+            <SoftLink href={PLACEHOLDER}>Schedule a meeting</SoftLink>
+            <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
+          </div>
+          <p className="mt-2 text-xs text-stone-500">
+            Live help → Google Meet later · Schedule → calendar booking later ·
+            Feedback → anonymous survey later
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-8 overflow-hidden rounded-2xl">
+        <Image
+          src="/media/branded/campus-students.png"
+          alt="Ursuline Academy campus"
+          width={960}
+          height={540}
+          className="h-auto w-full object-cover"
+        />
+      </section>
+
+      <section className="mt-10">
+        <h2 className="font-serif text-2xl text-stone-900">Your classes</h2>
+        <p className="mt-1 text-sm text-stone-600">
+          Tap your class — you’ll need the passcode from Brett. Each page will
+          have Google Classroom and the syllabus.
+        </p>
+        <div className="mt-4 grid gap-4">
           {COURSES.map((c) => (
             <Link
               key={c.slug}
@@ -165,55 +249,58 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="ua-card ua-shadow-soft mt-8 flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:p-6">
-        <div className="mx-auto h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)] sm:mx-0">
-          <Image
-            src="/media/branded/brett-hannan.png"
-            alt="Brett Hannan"
-            width={112}
-            height={112}
-            className="h-full w-full object-cover"
-            priority
-          />
-        </div>
-        <div className="min-w-0 flex-1 text-center sm:text-left">
-          <h2 className="font-serif text-2xl text-stone-900">Brett Hannan</h2>
-          <p className="mt-1 text-sm text-stone-600">
-            Ursuline Academy Dedham
-          </p>
-          <p className="mt-2 text-sm text-stone-700">
-            Stuck on homework or want a quick check before a quiz? Email me or
-            use the buttons below when they go live.
-          </p>
-          <p className="mt-3 text-sm text-stone-700">
-            Email:{" "}
-            <a
-              href="mailto:bhannan@ursulineacademy.net"
-              className="font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
-            >
-              bhannan@ursulineacademy.net
-            </a>
-          </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
-            <SoftLink href={PLACEHOLDER} primary>
-              Live help
-            </SoftLink>
-            <SoftLink href={PLACEHOLDER}>Schedule a meeting</SoftLink>
-            <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
-          </div>
-        </div>
-      </section>
-
-      <section className="mt-8">
+      <section className="mt-10">
         <h2 className="font-serif text-2xl text-stone-900">Got ideas?</h2>
         <p className="mt-1 text-sm text-stone-600">
-          Field trips and guest speakers make class better. Forms are coming
-          soon.
+          Field trips and guest experts make class better — drop a suggestion
+          anytime. Forms coming soon.
         </p>
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
           <SoftLink href={PLACEHOLDER}>Suggest an academic trip</SoftLink>
           <SoftLink href={PLACEHOLDER}>Suggest an industry expert</SoftLink>
         </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="font-serif text-2xl text-stone-900">Lesson materials</h2>
+        <nav
+          aria-label="Lesson materials"
+          className="mt-4 grid gap-2 sm:grid-cols-2"
+        >
+          {[
+            {
+              href: "/ursuline-ai/",
+              title: "AI, the Brain, and Serviam",
+              blurb: "Full interactive lesson",
+            },
+            {
+              href: "/sample-lesson/",
+              title: "Sample lesson hub",
+              blurb: "Course placeholders + preview",
+            },
+            {
+              href: "/artifacts/ursuline_serviam_ai_student_handout.docx",
+              title: "Part 1 handout",
+              blurb: "Serviam Use Card",
+            },
+            {
+              href: "/artifacts/ursuline_part2_student_handout.docx",
+              title: "Part 2 handout",
+              blurb: "Inside AI lab notes",
+            },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-2xl border border-[rgba(32,37,34,0.12)] bg-white/70 px-4 py-3 hover:bg-white"
+            >
+              <span className="block text-sm font-semibold text-stone-900">
+                {item.title}
+              </span>
+              <span className="text-xs text-stone-600">{item.blurb}</span>
+            </Link>
+          ))}
+        </nav>
       </section>
 
       <p className="mt-12 text-center text-sm text-stone-500">
