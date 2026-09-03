@@ -40,7 +40,7 @@ export default async function ClassPage({ params }: Props) {
             href="/"
             className="text-sm font-medium text-[var(--ua-evergreen)] hover:underline"
           >
-            ← Code with Brett
+            ← Back to classes
           </Link>
 
           <header className="mt-6">
