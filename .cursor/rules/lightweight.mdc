@@ -1,0 +1,28 @@
+---
+description: Keep work lightweight, low-load, and architecturally sound
+alwaysApply: true
+---
+
+# Lightweight by default
+
+This project must stay **simple, fast, and cheap to run and to change**. Prefer understanding the existing structure before adding anything.
+
+## Always
+
+- **Just do it.** Apply edits, commits, and deploys without waiting for the user to review files. Don’t ask them to approve diffs unless something is destructive or unclear.
+- **Read first.** Skim the relevant files and routes so changes fit what already exists.
+- **Smallest change that works.** No new frameworks, layers, helpers, or abstractions unless asked.
+- **Low load.** Avoid heavy deps, big client bundles, extra API routes, polling, or build complexity.
+- **Low tokens / noise.** Don’t rewrite whole files, dump long plans, or add docs the user didn’t ask for.
+- **Clear architecture.** Put code where this repo already puts it (`app/` for pages, `public/` for static assets). Don’t invent parallel systems.
+
+## Never (unless explicitly asked)
+
+- Over-engineer (design systems, state libraries, config sprawl, “future-proof” wrappers)
+- Duplicate patterns that already exist in the lesson or homepage
+- Add features, refactors, or comments unrelated to the request
+- Burn tokens re-explaining or re-scanning the whole repo when a narrow edit will do
+
+## Decision test
+
+If two approaches work, pick the one with **fewer files, fewer deps, and less runtime work**.

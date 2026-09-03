@@ -1,0 +1,55 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "out",
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/ursuline-ai",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/ursuline-ai/",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/ursuline-ai/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/ursuline-ai-assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/artifacts/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "max-age=0, must-revalidate" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/ursuline", "destination": "/ursuline-ai/", "permanent": true },
+    { "source": "/ursuline/", "destination": "/ursuline-ai/", "permanent": true },
+    { "source": "/ursuline-ai", "destination": "/ursuline-ai/", "permanent": true },
+    { "source": "/ursuline-ai/faculty", "destination": "/ursuline-ai/#faculty", "permanent": true },
+    { "source": "/ursuline-ai/faculty/", "destination": "/ursuline-ai/#faculty", "permanent": true },
+    { "source": "/student", "destination": "/", "permanent": true },
+    { "source": "/student/", "destination": "/", "permanent": true },
+    { "source": "/class", "destination": "/", "permanent": true },
+    { "source": "/class/", "destination": "/", "permanent": true }
+  ]
+}
