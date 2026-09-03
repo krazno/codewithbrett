@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Instrument_Serif } from "next/font/google";
+import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import { GoogleAnalyticsHead } from "./components/GoogleAnalytics";
 import {
   GoogleTagManagerBody,
@@ -7,15 +7,16 @@ import {
 } from "./components/GoogleTagManager";
 import "./globals.css";
 
-const sans = DM_Sans({
+const sans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
 });
 
-const serif = Instrument_Serif({
-  weight: "400",
+const serif = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
 });
 
 const siteUrl = "https://www.codewithbrett.com";

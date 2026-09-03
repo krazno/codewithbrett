@@ -13,6 +13,7 @@ This project must stay **simple, fast, and cheap to run and to change**. Prefer 
 - **Read first.** Skim the relevant files and routes so changes fit what already exists.
 - **Smallest change that works.** No new frameworks, layers, helpers, or abstractions unless asked.
 - **Low load.** Avoid heavy deps, big client bundles, extra API routes, polling, or build complexity.
+- **Low network/token use.** Prefer existing local assets; avoid adding new external fetches or third-party scripts.
 - **Low tokens / noise.** Don’t rewrite whole files, dump long plans, or add docs the user didn’t ask for.
 - **Clear architecture.** Put code where this repo already puts it (`app/` for pages, `public/` for static assets). Don’t invent parallel systems.
 
