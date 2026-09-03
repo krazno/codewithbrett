@@ -10,10 +10,18 @@ export const metadata: Metadata = {
     "Code with Brett at Ursuline Academy Dedham — AI literacy lessons, student handouts, and faculty materials for Ursuline Bears in Dedham, Massachusetts.",
   alternates: { canonical: "/" },
   openGraph: {
+    type: "website",
+    siteName: "Code with Brett · Ursuline Academy Dedham",
     title: "Code with Brett · Ursuline Academy Dedham",
     description:
       "AI literacy and computer science class home for Ursuline Academy in Dedham, MA.",
     url: "/",
+    images: [
+      {
+        url: "/assets/ursuline-shield.png",
+        alt: "Ursuline Academy · Code with Brett",
+      },
+    ],
   },
 };
 
