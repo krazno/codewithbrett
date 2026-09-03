@@ -1,4 +1,4 @@
-/** Temporary course config — expand later with real Classroom / syllabus / Meet links. */
+/** Temporary course config. Expand later with real Classroom / syllabus / Meet links. */
 
 export type Course = {
   slug: string;
@@ -13,19 +13,8 @@ export type Course = {
   syllabusUrl: string; // placeholder "#" until ready
 };
 
+/** Display order: CS pair, calc pair, then homeroom. */
 export const COURSES: Course[] = [
-  {
-    slug: "study-hall",
-    title: "Study Hall",
-    room: "AH",
-    scheduleNote: "Day 4",
-    description:
-      "A quiet block to get work done. Bring homework from any class and ask if you get stuck.",
-    image: "/media/classes/study-hall/thumb.png",
-    passcode: "SH4",
-    googleClassroomUrl: "#",
-    syllabusUrl: "#",
-  },
   {
     slug: "ap-csp",
     title: "AP CSP",
@@ -34,6 +23,17 @@ export const COURSES: Course[] = [
       "How computers and the internet work, plus writing programs. Built around the AP CSP exam.",
     image: "/media/classes/ap-csp/thumb.png",
     passcode: "CSP",
+    googleClassroomUrl: "#",
+    syllabusUrl: "#",
+  },
+  {
+    slug: "ap-csp-a",
+    title: "AP CSP A",
+    room: "Rm 118",
+    description:
+      "The AP CSP course as section A. Same material as the A207 class, different period.",
+    image: "/media/classes/ap-csp-a/thumb.png",
+    passcode: "CSPA",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
   },
@@ -60,13 +60,14 @@ export const COURSES: Course[] = [
     syllabusUrl: "#",
   },
   {
-    slug: "ap-csp-a",
-    title: "AP CSP A",
-    room: "Rm 118",
+    slug: "study-hall",
+    title: "Homeroom",
+    room: "AH",
+    scheduleNote: "Day 4",
     description:
-      "The AP CSP course as section A. Same material as the A207 class, different period.",
-    image: "/media/classes/ap-csp-a/thumb.png",
-    passcode: "CSPA",
+      "A quiet block to get work done. Bring homework from any class and ask if you get stuck.",
+    image: "/media/classes/study-hall/thumb.png",
+    passcode: "SH4",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
   },

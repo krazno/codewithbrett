@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { COURSES } from "@/app/lib/courses";
+import { COURSES, type Course } from "@/app/lib/courses";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Code with Brett · Ursuline Academy Dedham",
+    absolute: "Ursuline Academy Dedham · Classes with Mr. Hannan",
   },
   description:
-    "Code with Brett at Ursuline Academy Dedham — class hubs, AI literacy, and ways to get help. Built for Ursuline Bears.",
+    "Class hubs for AP CSP, Calculus, and Homeroom at Ursuline Academy Dedham.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "Code with Brett · Ursuline Academy Dedham",
-    title: "Code with Brett · Ursuline Academy Dedham",
+    siteName: "Ursuline Academy Dedham",
+    title: "Ursuline Academy Dedham · Classes with Mr. Hannan",
     description:
-      "AI literacy and computer science class home for Ursuline Academy in Dedham, MA.",
+      "Class hubs for AP CSP, Calculus, and Homeroom at Ursuline Academy Dedham.",
     url: "/",
     images: [
       {
         url: "/media/branded/ua-seal.png",
-        alt: "Ursuline Academy · Code with Brett",
+        alt: "Ursuline Academy Dedham",
       },
     ],
   },
@@ -33,7 +33,7 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      name: "Code with Brett · Ursuline Academy Dedham",
+      name: "Ursuline Academy Dedham · Classes with Mr. Hannan",
       url: "https://www.codewithbrett.com/",
       description:
         "Computer science and AI literacy for Ursuline Academy in Dedham, Massachusetts.",
@@ -100,6 +100,44 @@ function SoftLink({
   );
 }
 
+function CourseCard({ course, wide }: { course: Course; wide?: boolean }) {
+  return (
+    <Link
+      href={`/classes/${course.slug}/`}
+      className={`ua-card ua-shadow-soft flex flex-col gap-3 p-5 text-center transition hover:bg-white sm:p-6 ${
+        wide
+          ? "sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[calc(50%-0.5rem)] sm:flex-row sm:items-center sm:text-left"
+          : ""
+      }`}
+    >
+      <div
+        className={`mx-auto h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)] ${wide ? "sm:mx-0" : ""}`}
+      >
+        <Image
+          src={course.image}
+          alt=""
+          width={80}
+          height={80}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="min-w-0 flex-1">
+        <h3 className="font-serif text-2xl text-stone-900">{course.title}</h3>
+        <p className="mt-1 text-sm text-stone-600">
+          {course.room}
+          {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-stone-700">
+          {course.description}
+        </p>
+        <span className="mt-3 inline-block text-sm font-semibold text-[var(--ua-evergreen)]">
+          Open class page
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export default function HomePage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-5 py-10 sm:px-6 sm:py-16">
@@ -133,26 +171,12 @@ export default function HomePage() {
             Faith · Courage · Joy · Ursuline Bears
           </p>
           <h1 className="mt-2 font-serif text-4xl text-stone-900 sm:text-5xl">
-            Code with Brett
+            Welcome
           </h1>
           <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-stone-700">
-            Your class hub for CS, calc, and AI — made for Ursuline girls who
-            want help that actually makes sense.
+            Your class hub for CS and calc, made for Ursuline girls who want
+            help that actually makes sense.
           </p>
-          <div className="mt-6 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
-            <Link
-              href="/ursuline-ai/"
-              className="rounded-full bg-[var(--ua-evergreen)] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33]"
-            >
-              Start the AI lesson
-            </Link>
-            <Link
-              href="/sample-lesson/"
-              className="rounded-full border border-[rgba(32,37,34,0.18)] bg-white/80 px-6 py-3 text-sm font-semibold text-[var(--ua-evergreen)] hover:bg-white"
-            >
-              Sample lesson
-            </Link>
-          </div>
         </header>
       </section>
 
@@ -170,7 +194,7 @@ export default function HomePage() {
         <div className="min-w-0 flex-1 text-center sm:text-left">
           <h2 className="font-serif text-2xl text-stone-900">Brett Hannan</h2>
           <p className="mt-1 text-sm text-stone-600">
-            Code with Brett · Ursuline Academy Dedham
+            Ursuline Academy Dedham
           </p>
           <p className="mt-2 text-sm text-stone-700">
             Questions, stuck on homework, or just need a vibe check before the
@@ -215,36 +239,13 @@ export default function HomePage() {
           Tap your class — you’ll need the passcode from Brett. Each page will
           have Google Classroom and the syllabus.
         </p>
-        <div className="mt-4 grid gap-4">
-          {COURSES.map((c) => (
-            <Link
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {COURSES.map((c, i) => (
+            <CourseCard
               key={c.slug}
-              href={`/classes/${c.slug}/`}
-              className="ua-card ua-shadow-soft flex flex-col gap-4 p-5 transition hover:bg-white sm:flex-row sm:items-center sm:p-6"
-            >
-              <div className="mx-auto h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)] sm:mx-0">
-                <Image
-                  src={c.image}
-                  alt=""
-                  width={96}
-                  height={96}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="min-w-0 flex-1 text-center sm:text-left">
-                <h3 className="font-serif text-2xl text-stone-900">{c.title}</h3>
-                <p className="mt-1 text-sm text-stone-600">
-                  {c.room}
-                  {c.scheduleNote ? ` · ${c.scheduleNote}` : ""}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-stone-700">
-                  {c.description}
-                </p>
-                <span className="mt-3 inline-block text-sm font-semibold text-[var(--ua-evergreen)]">
-                  Open class page
-                </span>
-              </div>
-            </Link>
+              course={c}
+              wide={i === COURSES.length - 1}
+            />
           ))}
         </div>
       </section>

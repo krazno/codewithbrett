@@ -3,19 +3,19 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "AI, the Brain, and Serviam",
   description:
-    "Code with Brett lesson for Ursuline Academy Dedham — AI literacy, Serviam, and Inside AI labs for Ursuline students.",
+    "AI literacy lesson for Ursuline Academy Dedham: Serviam and Inside AI labs for Ursuline students.",
   alternates: { canonical: "/ursuline-ai/" },
   openGraph: {
     type: "website",
-    siteName: "Code with Brett · Ursuline Academy Dedham",
-    title: "AI, the Brain, and Serviam · Code with Brett · Ursuline Academy Dedham",
+    siteName: "Ursuline Academy Dedham",
+    title: "AI, the Brain, and Serviam · Ursuline Academy Dedham",
     description:
       "Interactive AI literacy for Ursuline Academy students in Dedham, Massachusetts.",
     url: "/ursuline-ai/",
     images: [
       {
         url: "/assets/ursuline-shield.png",
-        alt: "Ursuline Academy · Code with Brett",
+        alt: "Ursuline Academy Dedham",
       },
     ],
   },

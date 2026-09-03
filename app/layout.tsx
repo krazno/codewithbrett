@@ -25,45 +25,44 @@ const siteUrl = "https://www.codewithbrett.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Code with Brett · Ursuline Academy Dedham",
-    template: "%s · Code with Brett · Ursuline Academy Dedham",
+    default: "Ursuline Academy Dedham · Classes with Mr. Hannan",
+    template: "%s · Ursuline Academy Dedham",
   },
   description:
-    "Code with Brett — computer science and AI literacy for Ursuline Academy in Dedham, Massachusetts.",
+    "Computer science and calculus class home for Ursuline Academy in Dedham, Massachusetts.",
   keywords: [
-    "Code with Brett",
     "Ursuline Academy Dedham",
     "Ursuline Academy",
     "Dedham MA",
-    "AI literacy",
-    "computer science",
+    "AP CSP",
+    "calculus",
     "Serviam",
     "Ursuline Bears",
   ],
-  authors: [{ name: "Brett Hannan · Code with Brett" }],
-  creator: "Code with Brett",
+  authors: [{ name: "Brett Hannan" }],
+  creator: "Brett Hannan",
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Code with Brett · Ursuline Academy Dedham",
-    title: "Code with Brett · Ursuline Academy Dedham",
+    siteName: "Ursuline Academy Dedham",
+    title: "Ursuline Academy Dedham · Classes with Mr. Hannan",
     description:
-      "Computer science and AI literacy for Ursuline Academy in Dedham, Massachusetts.",
+      "Computer science and calculus class home for Ursuline Academy in Dedham, Massachusetts.",
     images: [
       {
         url: "/media/branded/ua-seal.png",
-        alt: "Ursuline Academy · Code with Brett",
+        alt: "Ursuline Academy Dedham",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "Code with Brett · Ursuline Academy Dedham",
+    title: "Ursuline Academy Dedham · Classes with Mr. Hannan",
     description:
-      "Computer science and AI literacy for Ursuline Academy in Dedham, MA.",
+      "Computer science and calculus class home for Ursuline Academy in Dedham, MA.",
     images: ["/media/branded/ua-seal.png"],
   },
 };

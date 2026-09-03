@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sample lesson · Code with Brett · Ursuline Academy Dedham",
+  title: "Sample lesson · Ursuline Academy Dedham",
   description:
     "Temporary class hub page: course buttons and links to the current Ursuline lesson facets.",
   alternates: { canonical: "/sample-lesson/" },

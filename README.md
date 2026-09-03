@@ -1,6 +1,6 @@
 # codewithbrett.com
 
-Ursuline Academy (Dedham, MA) — Code with Brett.
+Ursuline Academy (Dedham, MA) class site.
 
 ## Routes
 

@@ -1,6 +1,6 @@
 # Branded media
 
-Shared Ursuline / Code with Brett images:
+Shared Ursuline branded images:
 
 - `ua-seal.png` — circular seal with transparent background
 - `campus-entrance.png` — campus entrance stock
