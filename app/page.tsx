@@ -261,48 +261,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-10">
-        <h2 className="font-serif text-2xl text-stone-900">Lesson materials</h2>
-        <nav
-          aria-label="Lesson materials"
-          className="mt-4 grid gap-2 sm:grid-cols-2"
-        >
-          {[
-            {
-              href: "/ursuline-ai/",
-              title: "AI, the Brain, and Serviam",
-              blurb: "Full interactive lesson",
-            },
-            {
-              href: "/sample-lesson/",
-              title: "Sample lesson hub",
-              blurb: "Course placeholders + preview",
-            },
-            {
-              href: "/artifacts/ursuline_serviam_ai_student_handout.docx",
-              title: "Part 1 handout",
-              blurb: "Serviam Use Card",
-            },
-            {
-              href: "/artifacts/ursuline_part2_student_handout.docx",
-              title: "Part 2 handout",
-              blurb: "Inside AI lab notes",
-            },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-2xl border border-[rgba(32,37,34,0.12)] bg-white/70 px-4 py-3 hover:bg-white"
-            >
-              <span className="block text-sm font-semibold text-stone-900">
-                {item.title}
-              </span>
-              <span className="text-xs text-stone-600">{item.blurb}</span>
-            </Link>
-          ))}
-        </nav>
-      </section>
-
       <p className="mt-12 text-center text-sm text-stone-500">
         Serviam ·{" "}
         <a
