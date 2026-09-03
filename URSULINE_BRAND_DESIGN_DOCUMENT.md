@@ -58,23 +58,52 @@ Defined in `app/globals.css`:
 - `--ua-lime`, `--ua-teal`, `--ua-navy`, `--ua-sage`
 - `--ua-ivory`, `--ua-charcoal`, `--ua-gray-100`
 
-## Temporary class-button schedule (current placeholder)
+## Media folders
 
-These are temporary buttons on:
-- `app/page.tsx` (homepage)
-- `app/sample-lesson/page.tsx` (full hub + placeholders for later per-course pages)
+- Branded (sitewide): `public/media/branded/`
+  - `ua-seal.png` — circular seal, **transparent** background
+  - `campus-entrance.png`, `campus-students.png` — campus stock
+  - `brett-hannan.png` — add Brett’s photo here (homepage shows **BH** initials until then)
+- Per class (later): `public/media/classes/{slug}/`
 
-Schedule to include:
-1. Study Hall — **Day 4 (AH)**
-2. AP CSP — **Rm A207**
-3. Calculus — **Rm 118**
-4. Calculus H — **Rm 118**
-5. AP CSP A — **Rm 118**
+## Class pages + temporary passcodes
+
+Config: `app/lib/courses.ts`  
+Routes: `/classes/{slug}/` with a simple passcode popup (`ClassGate`) stored in `sessionStorage`.
+
+| Class | Slug | Temp passcode |
+|---|---|---|
+| Study Hall | `study-hall` | `SH4` |
+| AP CSP | `ap-csp` | `CSP` |
+| Calculus | `calculus` | `CALC` |
+| Calculus H | `calculus-h` | `CALCH` |
+| AP CSP A | `ap-csp-a` | `CSPA` |
+
+Each class page has placeholders for **Google Classroom** and **syllabus** (fill URLs in `courses.ts`).
+
+## Homepage actions (placeholders → Google later)
+
+- Live help → Google Meet
+- Schedule a meeting → Google Calendar booking
+- Anonymous feedback → Google Form survey
+- Suggest an academic trip → Google Form
+- Suggest an industry expert → Google Form
+
+## Content protection (best effort)
+
+- `ContentGuard` + print CSS: block Ctrl/Cmd+P, soft right-click/select deterrents, blank print stylesheet
+- **Honest limit:** iPad/OS screenshots cannot be fully blocked by any website
+
+## Audience / UX notes
+
+- Primary devices: **iPads** and **laptops**
+- Tone: fun and relatable for Ursuline high school girls — not over-coded or over-engineered
 
 ## Where the brand is implemented right now
 
-- `app/globals.css` — color tokens + small UA utility styles
-- `app/layout.tsx` — font stack updates
-- `app/page.tsx` — improved homepage hero + navigation + course buttons
-- `app/sample-lesson/page.tsx` — “Sample lesson” hub with course placeholders
+- `app/globals.css` — color tokens + print/select deterrents
+- `app/layout.tsx` — fonts + `ContentGuard`
+- `app/page.tsx` — homepage (Brett block, classes, suggestions, lesson links)
+- `app/classes/[slug]/page.tsx` — gated class hubs
+- `app/sample-lesson/page.tsx` — sample lesson hub
 

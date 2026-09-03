@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
+import { ContentGuard } from "./components/ContentGuard";
 import { GoogleAnalyticsHead } from "./components/GoogleAnalytics";
 import {
   GoogleTagManagerBody,
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
       "Computer science and AI literacy for Ursuline Academy in Dedham, Massachusetts.",
     images: [
       {
-        url: "/assets/ursuline-shield.png",
+        url: "/media/branded/ua-seal.png",
         alt: "Ursuline Academy · Code with Brett",
       },
     ],
@@ -63,7 +64,7 @@ export const metadata: Metadata = {
     title: "Code with Brett · Ursuline Academy Dedham",
     description:
       "Computer science and AI literacy for Ursuline Academy in Dedham, MA.",
-    images: ["/assets/ursuline-shield.png"],
+    images: ["/media/branded/ua-seal.png"],
   },
 };
 
@@ -78,7 +79,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-stone-50 font-sans antialiased">
         <GoogleTagManagerBody />
-        {children}
+        <ContentGuard>{children}</ContentGuard>
       </body>
     </html>
   );

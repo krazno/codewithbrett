@@ -49,3 +49,31 @@ html {
 .ua-shadow-soft {
   box-shadow: 0 18px 40px rgba(11, 61, 46, 0.12);
 }
+
+/* Soft capture / print deterrents (OS screenshots cannot be fully blocked) */
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  body::after {
+    content: "Printing is disabled for this site.";
+    visibility: visible;
+    display: block;
+    padding: 2rem;
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+  }
+}
