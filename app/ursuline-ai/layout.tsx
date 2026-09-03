@@ -3,7 +3,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "AI, the Brain, and Serviam",
   description:
-    "Interactive AI literacy lessons for Ursuline Academy students. Part 1: wisdom and judgment. Part 2: Inside AI.",
+    "Code with Brett lesson for Ursuline Academy Dedham — AI literacy, Serviam, and Inside AI labs for Ursuline students.",
+  alternates: { canonical: "/ursuline-ai/" },
+  openGraph: {
+    title: "AI, the Brain, and Serviam · Code with Brett · Ursuline Academy Dedham",
+    description:
+      "Interactive AI literacy for Ursuline Academy students in Dedham, Massachusetts.",
+    url: "/ursuline-ai/",
+  },
 };
 
 export default function UrsulineAiLayout({

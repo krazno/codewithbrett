@@ -3,9 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Code with Brett · Ursuline Academy Dedham",
+  title: {
+    absolute: "Code with Brett · Ursuline Academy Dedham",
+  },
   description:
-    "Computer science and AI literacy for Ursuline Academy in Dedham, Massachusetts — lessons, handouts, and faculty materials.",
+    "Code with Brett at Ursuline Academy Dedham — AI literacy lessons, student handouts, and faculty materials for Ursuline Bears in Dedham, Massachusetts.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Code with Brett · Ursuline Academy Dedham",
+    description:
+      "AI literacy and computer science class home for Ursuline Academy in Dedham, MA.",
+    url: "/",
+  },
 };
 
 const links = [
@@ -41,13 +50,48 @@ const links = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "Code with Brett · Ursuline Academy Dedham",
+      url: "https://www.codewithbrett.com/",
+      description:
+        "Computer science and AI literacy for Ursuline Academy in Dedham, Massachusetts.",
+      publisher: {
+        "@type": "Person",
+        name: "Brett Hannan",
+      },
+    },
+    {
+      "@type": "EducationalOrganization",
+      name: "Ursuline Academy",
+      alternateName: ["Ursuline Academy Dedham", "UA Dedham"],
+      url: "https://www.ursulineacademy.net/",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "85 Lowder Street",
+        addressLocality: "Dedham",
+        addressRegion: "MA",
+        postalCode: "02026",
+        addressCountry: "US",
+      },
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-6 py-16 sm:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="mb-12 text-center">
         <Image
           src="/assets/ua-crest.png"
-          alt="Ursuline Academy"
+          alt="Ursuline Academy Dedham"
           width={72}
           height={72}
           className="mx-auto mb-6 h-[72px] w-[72px] object-contain"
