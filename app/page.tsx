@@ -8,14 +8,14 @@ export const metadata: Metadata = {
     absolute: "Ursuline Academy Dedham · Classes with Mr. Hannan",
   },
   description:
-    "Class hubs for AP CSP, Calculus, and Homeroom at Ursuline Academy Dedham.",
+    "Class hubs for AP CSP, AP CSA, Calculus Honors, and Study Hall at Ursuline Academy Dedham.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Ursuline Academy Dedham",
     title: "Ursuline Academy Dedham · Classes with Mr. Hannan",
     description:
-      "Class hubs for AP CSP, Calculus, and Homeroom at Ursuline Academy Dedham.",
+      "Class hubs for AP CSP, AP CSA, Calculus Honors, and Study Hall at Ursuline Academy Dedham.",
     url: "/",
     images: [
       {
@@ -100,19 +100,13 @@ function SoftLink({
   );
 }
 
-function CourseCard({ course, wide }: { course: Course; wide?: boolean }) {
+function CourseCard({ course }: { course: Course }) {
   return (
     <Link
       href={`/classes/${course.slug}/`}
-      className={`ua-card ua-shadow-soft flex flex-col gap-3 p-5 text-center transition hover:bg-white sm:p-6 ${
-        wide
-          ? "sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[calc(50%-0.5rem)] sm:flex-row sm:items-center sm:text-left"
-          : ""
-      }`}
+      className="ua-card ua-shadow-soft flex flex-col gap-3 p-5 text-center transition hover:bg-white sm:p-6"
     >
-      <div
-        className={`mx-auto h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)] ${wide ? "sm:mx-0" : ""}`}
-      >
+      <div className="mx-auto h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
         <Image
           src={course.image}
           alt=""
@@ -174,8 +168,8 @@ export default function HomePage() {
             Welcome
           </h1>
           <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-stone-700">
-            Your class hub for CS and calc, made for Ursuline girls who want
-            help that actually makes sense.
+            Your class hub for computer science and calculus, made for Ursuline
+            girls who want help that actually makes sense.
           </p>
         </header>
       </section>
@@ -236,12 +230,8 @@ export default function HomePage() {
           have Google Classroom and the syllabus.
         </p>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {COURSES.map((c, i) => (
-            <CourseCard
-              key={c.slug}
-              course={c}
-              wide={i === COURSES.length - 1}
-            />
+          {COURSES.map((c) => (
+            <CourseCard key={c.slug} course={c} />
           ))}
         </div>
       </section>

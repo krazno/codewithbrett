@@ -13,55 +13,74 @@ export type Course = {
   syllabusUrl: string; // placeholder "#" until ready
 };
 
-/** Display order: CS pair, calc pair, then homeroom. */
+/**
+ * Display order:
+ * 1–2 AP CSP (Principles), 3–4 Calculus H, 5 AP CSA, 6 Study Hall
+ */
 export const COURSES: Course[] = [
   {
-    slug: "ap-csp",
-    title: "AP CSP",
+    slug: "ap-csp-b",
+    title: "AP CSP (B)",
     room: "Rm A207",
+    scheduleNote: "Block B",
     description:
-      "How computers and the internet work, plus writing programs. Built around the AP CSP exam.",
-    image: "/media/classes/ap-csp/thumb.png",
-    passcode: "CSP",
+      "AP Computer Science Principles. How computers and the internet work, plus writing programs for the AP exam.",
+    image: "/media/classes/ap-csp-b/thumb.png",
+    passcode: "CSPB",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
   },
   {
-    slug: "ap-csp-a",
-    title: "AP CSP A",
-    room: "Rm 118",
+    slug: "ap-csp-f",
+    title: "AP CSP (F)",
+    room: "Rm A207",
+    scheduleNote: "Block F",
     description:
-      "The AP CSP course as section A. Same material as the A207 class, different period.",
-    image: "/media/classes/ap-csp-a/thumb.png",
-    passcode: "CSPA",
+      "AP Computer Science Principles. Same course as Block B, different period.",
+    image: "/media/classes/ap-csp-f/thumb.png",
+    passcode: "CSPF",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
   },
   {
-    slug: "calculus",
-    title: "Calculus",
+    slug: "calculus-h-d",
+    title: "Calculus H (D)",
     room: "Rm 118",
+    scheduleNote: "Block D",
     description:
-      "Limits, derivatives, and integrals. We practice a lot so the ideas actually stick.",
-    image: "/media/classes/calculus/thumb.png",
-    passcode: "CALC",
+      "Honors calculus. Limits, derivatives, and integrals, with more challenge and pace.",
+    image: "/media/classes/calculus-h-d/thumb.png",
+    passcode: "CALCD",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
   },
   {
-    slug: "calculus-h",
-    title: "Calculus H",
+    slug: "calculus-h-e",
+    title: "Calculus H (E)",
     room: "Rm 118",
+    scheduleNote: "Block E",
     description:
-      "Honors calculus. Same big ideas as Calculus, with a bit more challenge and speed.",
-    image: "/media/classes/calculus-h/thumb.png",
-    passcode: "CALCH",
+      "Honors calculus. Same course as Block D, different period.",
+    image: "/media/classes/calculus-h-e/thumb.png",
+    passcode: "CALCE",
+    googleClassroomUrl: "#",
+    syllabusUrl: "#",
+  },
+  {
+    slug: "ap-csa-h",
+    title: "AP CSA (H)",
+    room: "Rm 118",
+    scheduleNote: "Block H",
+    description:
+      "AP Computer Science A. Java programming and problem solving for the AP CSA exam.",
+    image: "/media/classes/ap-csa-h/thumb.png",
+    passcode: "CSAH",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
   },
   {
     slug: "study-hall",
-    title: "Homeroom",
+    title: "Study Hall",
     room: "AH",
     scheduleNote: "Day 4",
     description:

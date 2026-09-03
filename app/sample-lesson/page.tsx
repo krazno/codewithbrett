@@ -31,15 +31,12 @@ const MATERIAL_LINKS = [
 ];
 
 const COURSES = [
-  {
-    id: "study-hall",
-    title: "Study Hall (Day 4 - AH)",
-    room: "",
-  },
-  { id: "ap-csp", title: "AP CSP", room: "Rm A207" },
-  { id: "calculus", title: "Calculus", room: "Rm 118" },
-  { id: "calculus-h", title: "Calculus H", room: "Rm 118" },
-  { id: "ap-csp-a", title: "AP CSP A", room: "Rm 118" },
+  { id: "study-hall", title: "Study Hall (Day 4 - AH)", room: "" },
+  { id: "ap-csp-b", title: "AP CSP (B)", room: "Rm A207" },
+  { id: "ap-csp-f", title: "AP CSP (F)", room: "Rm A207" },
+  { id: "calculus-h-d", title: "Calculus H (D)", room: "Rm 118" },
+  { id: "calculus-h-e", title: "Calculus H (E)", room: "Rm 118" },
+  { id: "ap-csa-h", title: "AP CSA (H)", room: "Rm 118" },
 ];
 
 export default function SampleLessonPage() {

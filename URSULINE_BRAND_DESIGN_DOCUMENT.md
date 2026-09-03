@@ -73,11 +73,12 @@ Routes: `/classes/{slug}/` with a simple passcode popup (`ClassGate`) stored in 
 
 | Class | Slug | Temp passcode |
 |---|---|---|
+| AP CSP (B) | `ap-csp-b` | `CSPB` |
+| AP CSP (F) | `ap-csp-f` | `CSPF` |
+| Calculus H (D) | `calculus-h-d` | `CALCD` |
+| Calculus H (E) | `calculus-h-e` | `CALCE` |
+| AP CSA (H) | `ap-csa-h` | `CSAH` |
 | Study Hall | `study-hall` | `SH4` |
-| AP CSP | `ap-csp` | `CSP` |
-| Calculus | `calculus` | `CALC` |
-| Calculus H | `calculus-h` | `CALCH` |
-| AP CSP A | `ap-csp-a` | `CSPA` |
 
 Each class page has placeholders for **Google Classroom** and **syllabus** (fill URLs in `courses.ts`).
 
