@@ -101,6 +101,29 @@ export default function SampleLessonPage() {
         </nav>
       </section>
 
+      <section className="mb-10">
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <h2 className="text-lg font-semibold text-[var(--ua-evergreen)]">
+            Ursuline Academy course link (temporary)
+          </h2>
+        </div>
+        <a
+          href="https://www.boostmyschool.com/ursulineacademy?utm_source=chatgpt.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ua-card ua-shadow-soft block overflow-hidden"
+          style={{ padding: 0, borderRadius: 18 }}
+        >
+          <img
+            src="https://tse4.mm.bing.net/th/id/OIP.w6Trpp9Awa0E9WBrf-Ue9wHaHa?r=0&pid=Api"
+            alt="Ursuline Academy"
+            loading="lazy"
+            decoding="async"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </a>
+      </section>
+
       <section className="mb-8">
         <h2 className="mb-4 text-lg font-semibold text-[var(--ua-evergreen)]">
           Temporary class buttons
