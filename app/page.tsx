@@ -104,29 +104,26 @@ function CourseCard({ course }: { course: Course }) {
   return (
     <Link
       href={`/classes/${course.slug}/`}
-      className="ua-card ua-shadow-soft flex flex-col gap-3 p-5 text-center transition hover:bg-white sm:p-6"
+      className="ua-card flex gap-4 p-4 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
     >
-      <div className="mx-auto h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
+      <div className="h-20 w-24 shrink-0 overflow-hidden rounded-xl">
         <Image
           src={course.image}
           alt=""
-          width={80}
+          width={96}
           height={80}
           className="h-full w-full object-cover"
         />
       </div>
-      <div className="min-w-0 flex-1">
-        <h3 className="font-serif text-2xl text-stone-900">{course.title}</h3>
-        <p className="mt-1 text-sm text-stone-600">
+      <div className="min-w-0 flex-1 text-left">
+        <h3 className="font-serif text-xl text-stone-900">{course.title}</h3>
+        <p className="text-xs text-stone-600">
           {course.room}
           {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
         </p>
-        <p className="mt-2 text-sm leading-relaxed text-stone-700">
+        <p className="mt-1 text-xs leading-relaxed text-stone-700">
           {course.description}
         </p>
-        <span className="mt-3 inline-block text-sm font-semibold text-[var(--ua-evergreen)]">
-          Open class page
-        </span>
       </div>
     </Link>
   );
@@ -134,7 +131,7 @@ function CourseCard({ course }: { course: Course }) {
 
 export default function HomePage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-5 py-10 sm:px-6 sm:py-16">
+    <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-5 py-8 sm:px-6 sm:py-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -180,36 +177,38 @@ export default function HomePage() {
         </header>
       </section>
 
-      <section className="ua-card ua-shadow-soft mt-8 flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:p-6">
-        <div className="mx-auto h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)] sm:mx-0">
-          <Image
-            src="/media/branded/brett-hannan.png"
-            alt="Brett Hannan"
-            width={112}
-            height={112}
-            className="h-full w-full object-cover"
-            priority
-          />
-        </div>
-        <div className="min-w-0 flex-1 text-center sm:text-left">
-          <h2 className="font-serif text-2xl text-stone-900">Brett Hannan</h2>
-          <p className="mt-1 text-sm text-stone-600">
-            Ursuline Academy Dedham
+      <section className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="ua-card ua-shadow-soft flex flex-col justify-center p-6">
+          <div className="flex items-center gap-4">
+            <div className="h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
+              <Image
+                src="/media/branded/brett-hannan.png"
+                alt="Brett Hannan"
+                width={96}
+                height={96}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
+            <div>
+              <h2 className="font-serif text-3xl text-stone-900">
+                Brett Hannan
+              </h2>
+              <p className="mt-1 text-sm text-stone-600">
+                Computer Science & Mathematics
+              </p>
+            </div>
+          </div>
+          <p className="mt-5 text-sm leading-relaxed text-stone-700">
+            Questions or need help? Reach out anytime.
           </p>
-          <p className="mt-2 text-sm text-stone-700">
-            Questions, stuck on homework, or just need a vibe check before the
-            quiz? Reach out — help is meant to feel easy.
-          </p>
-          <p className="mt-3 text-sm text-stone-700">
-            Email:{" "}
-            <a
-              href="mailto:bhannan@ursulineacademy.net"
-              className="font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
-            >
-              bhannan@ursulineacademy.net
-            </a>
-          </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
+          <a
+            href="mailto:bhannan@ursulineacademy.net"
+            className="mt-2 text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
+          >
+            bhannan@ursulineacademy.net
+          </a>
+          <div className="mt-5 flex flex-wrap gap-2">
             <SoftLink href={PLACEHOLDER} primary>
               Live help
             </SoftLink>
@@ -217,19 +216,19 @@ export default function HomePage() {
             <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
           </div>
         </div>
+
+        <div className="ua-card ua-shadow-soft overflow-hidden">
+          <Image
+            src="/media/branded/brett-with-students.png"
+            alt="Mr. Hannan with Ursuline Academy students"
+            width={1024}
+            height={768}
+            className="h-full min-h-72 w-full object-cover"
+          />
+        </div>
       </section>
 
-      <section className="mt-8 overflow-hidden rounded-2xl">
-        <Image
-          src="/media/branded/brett-with-students.png"
-          alt="Mr. Hannan with Ursuline Academy students"
-          width={1024}
-          height={768}
-          className="h-auto w-full object-cover"
-        />
-      </section>
-
-      <section className="mt-10">
+      <section className="mt-8">
         <h2 className="font-serif text-2xl text-stone-900">Your classes</h2>
         <p className="mt-1 text-sm text-stone-600">
           Tap your class to open its page.
@@ -241,7 +240,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-10">
+      <section className="ua-card ua-shadow-soft mt-8 p-6">
         <h2 className="font-serif text-2xl text-stone-900">Got ideas?</h2>
         <p className="mt-1 text-sm text-stone-600">
           Field trips and guest experts make class better — drop a suggestion
