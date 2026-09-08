@@ -16,25 +16,6 @@ function subjectFor(course: Course) {
   return "Academic Support";
 }
 
-const CAMPUS_IMAGES = [
-  {
-    src: "/media/orientation/students-at-sign.png",
-    alt: "Ursuline Academy students beside the school sign",
-  },
-  {
-    src: "/media/orientation/students-outdoors.png",
-    alt: "Ursuline Academy students learning together outdoors",
-  },
-  {
-    src: "/media/orientation/campus-aerial.png",
-    alt: "Aerial view of the Ursuline Academy campus",
-  },
-  {
-    src: "/media/orientation/campus-entrance-spring.png",
-    alt: "Ursuline Academy entrance in spring",
-  },
-];
-
 export default function OrientationPage() {
   return (
     <main className="mx-auto min-h-screen w-full max-w-7xl px-5 py-6 sm:px-8 lg:flex lg:flex-col lg:py-4">
@@ -68,10 +49,6 @@ export default function OrientationPage() {
             <h1 className="mt-3 font-serif text-4xl leading-tight text-stone-900 lg:text-[2.7rem]">
               Welcome! I&apos;m Mr. Hannan.
             </h1>
-            <p className="mt-3 max-w-2xl text-lg leading-relaxed text-stone-700">
-              Computer science · Calculus · Questions · Problem-solving ·
-              Learning by doing
-            </p>
           </div>
 
           <Image
@@ -159,18 +136,6 @@ export default function OrientationPage() {
 
         <aside>
           <section className="ua-card h-full overflow-hidden">
-            <div className="bg-gradient-to-r from-emerald-50 to-[var(--ua-sage)] px-5 py-3">
-              <p className="text-xs font-semibold tracking-[0.14em] text-emerald-800 uppercase">
-                Computer Science · Mathematics
-              </p>
-              <h2 className="font-serif text-2xl text-stone-900">
-                A little about me
-              </h2>
-              <p className="mt-1 text-xs text-stone-700">
-                Data · Economy · Entrepreneurship
-              </p>
-            </div>
-
             <div className="space-y-3 p-4">
               <div>
                 <h3 className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
@@ -305,22 +270,6 @@ export default function OrientationPage() {
             </div>
           </section>
         </aside>
-      </section>
-
-      <section className="mt-4">
-        <h2 className="font-serif text-2xl text-stone-900">Campus life</h2>
-        <div className="mt-2 grid grid-cols-2 gap-2 lg:grid-cols-4">
-          {CAMPUS_IMAGES.map((image) => (
-            <Image
-              key={image.src}
-              src={image.src}
-              alt={image.alt}
-              width={680}
-              height={450}
-              className="aspect-[4/3] h-full w-full rounded-xl object-cover shadow-sm"
-            />
-          ))}
-        </div>
       </section>
 
       <footer className="mt-3 flex shrink-0 items-center justify-between border-t border-stone-300/70 pt-2 text-xs text-stone-600">

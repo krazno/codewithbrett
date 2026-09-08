@@ -25,7 +25,7 @@ export const COURSES: Course[] = [
     scheduleNote: "Block B",
     description:
       "AP Computer Science Principles. How computers and the internet work, plus writing programs for the AP exam.",
-    image: "/media/classes/ap-csp-b/thumb.png",
+    image: "/media/orientation/students-at-sign.png",
     passcode: "CSPB",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
@@ -37,7 +37,7 @@ export const COURSES: Course[] = [
     scheduleNote: "Block F",
     description:
       "AP Computer Science Principles. Same course as Block B, different period.",
-    image: "/media/classes/ap-csp-f/thumb.png",
+    image: "/media/orientation/students-outdoors.png",
     passcode: "CSPF",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
@@ -49,7 +49,7 @@ export const COURSES: Course[] = [
     scheduleNote: "Block D",
     description:
       "Honors calculus. Limits, derivatives, and integrals, with more challenge and pace.",
-    image: "/media/classes/calculus-h-d/thumb.png",
+    image: "/media/orientation/campus-aerial.png",
     passcode: "CALCD",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
@@ -61,7 +61,7 @@ export const COURSES: Course[] = [
     scheduleNote: "Block E",
     description:
       "Honors calculus. Same course as Block D, different period.",
-    image: "/media/classes/calculus-h-e/thumb.png",
+    image: "/media/orientation/campus-entrance-spring.png",
     passcode: "CALCE",
     googleClassroomUrl: "#",
     syllabusUrl: "#",
