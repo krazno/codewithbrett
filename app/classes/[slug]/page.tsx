@@ -50,6 +50,48 @@ export default async function ClassPage({ params }: Props) {
           </p>
         </header>
 
+        {course.googleClassroomUrl && course.googleClassroomCode ? (
+          <section
+            className="ua-card ua-shadow-soft mt-8 p-6"
+            aria-labelledby="google-classroom-heading"
+          >
+            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              Course access
+            </p>
+            <h2
+              id="google-classroom-heading"
+              className="mt-2 font-serif text-2xl text-stone-900"
+            >
+              Google Classroom
+            </h2>
+            <a
+              href={course.googleClassroomUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open Google Classroom for ${course.title}`}
+              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-base font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none sm:w-auto"
+            >
+              Open Google Classroom ↗
+            </a>
+            <div className="mt-5 rounded-xl bg-emerald-50 px-5 py-4">
+              <p className="text-xs font-semibold text-stone-600 uppercase">
+                Class code
+              </p>
+              <p className="mt-1 font-mono text-2xl font-bold tracking-[0.12em] text-[var(--ua-evergreen)]">
+                {course.googleClassroomCode}
+              </p>
+            </div>
+            <h3 className="mt-5 font-semibold text-stone-900">How to join</h3>
+            <ol className="mt-2 list-decimal space-y-2 pl-5 text-sm text-stone-700">
+              <li>Sign in with your Ursuline Google account.</li>
+              <li>Use the button above to open the correct class.</li>
+              <li>
+                Select “Join.” If asked for a code, enter the class code above.
+              </li>
+            </ol>
+          </section>
+        ) : null}
+
         {course.apJoinCode ? (
           <section className="ua-card ua-shadow-soft mt-8 p-6">
             <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">

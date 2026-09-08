@@ -5,6 +5,8 @@ export type Course = {
   scheduleNote?: string;
   description: string;
   image: string;
+  googleClassroomCode?: string;
+  googleClassroomUrl?: string;
   apJoinCode?: string;
 };
 
@@ -21,6 +23,9 @@ export const COURSES: Course[] = [
     description:
       "AP Computer Science Principles. How computers and the internet work, plus writing programs for the AP exam.",
     image: "/media/orientation/students-at-sign.png",
+    googleClassroomCode: "7n676v2o",
+    googleClassroomUrl:
+      "https://classroom.google.com/c/ODc4MjcwNDk2Mzk5?cjc=7n676v2o",
     apJoinCode: "Y3LEZM",
   },
   {
@@ -31,6 +36,9 @@ export const COURSES: Course[] = [
     description:
       "AP Computer Science Principles. Same course as Block B, different period.",
     image: "/media/orientation/students-outdoors.png",
+    googleClassroomCode: "wbujhmtr",
+    googleClassroomUrl:
+      "https://classroom.google.com/c/ODc4MjcwMDE5Nzc4?cjc=wbujhmtr",
     apJoinCode: "G22APR",
   },
   {
@@ -41,6 +49,9 @@ export const COURSES: Course[] = [
     description:
       "Honors calculus. Limits, derivatives, and integrals, with more challenge and pace.",
     image: "/media/orientation/campus-aerial.png",
+    googleClassroomCode: "kv3shxpx",
+    googleClassroomUrl:
+      "https://classroom.google.com/c/ODc4MjcyODE4NTE5?cjc=kv3shxpx",
   },
   {
     slug: "calculus-h-e",
@@ -50,6 +61,9 @@ export const COURSES: Course[] = [
     description:
       "Honors calculus. Same course as Block D, different period.",
     image: "/media/orientation/campus-entrance-spring.png",
+    googleClassroomCode: "cwq6rxo6",
+    googleClassroomUrl:
+      "https://classroom.google.com/c/ODc4MjcwMzkyOTU4?cjc=cwq6rxo6",
   },
   {
     slug: "ap-csa-h",
@@ -59,6 +73,9 @@ export const COURSES: Course[] = [
     description:
       "AP Computer Science A. Java programming and problem solving for the AP CSA exam.",
     image: "/media/classes/ap-csa-h/thumb.png",
+    googleClassroomCode: "ahdo734n",
+    googleClassroomUrl:
+      "https://classroom.google.com/c/ODc4MjY4MDQyMTg3?cjc=ahdo734n",
     apJoinCode: "7QXGY7",
   },
   {
