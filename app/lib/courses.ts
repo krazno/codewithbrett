@@ -1,5 +1,3 @@
-/** Temporary course config. Expand later with real Classroom / syllabus / Meet links. */
-
 export type Course = {
   slug: string;
   title: string;
@@ -7,10 +5,7 @@ export type Course = {
   scheduleNote?: string;
   description: string;
   image: string;
-  /** Temporary simple passcode for class page access */
-  passcode: string;
-  googleClassroomUrl: string; // placeholder "#" until ready
-  syllabusUrl: string; // placeholder "#" until ready
+  apJoinCode?: string;
 };
 
 /**
@@ -26,9 +21,7 @@ export const COURSES: Course[] = [
     description:
       "AP Computer Science Principles. How computers and the internet work, plus writing programs for the AP exam.",
     image: "/media/orientation/students-at-sign.png",
-    passcode: "CSPB",
-    googleClassroomUrl: "#",
-    syllabusUrl: "#",
+    apJoinCode: "Y3LEZM",
   },
   {
     slug: "ap-csp-f",
@@ -38,9 +31,7 @@ export const COURSES: Course[] = [
     description:
       "AP Computer Science Principles. Same course as Block B, different period.",
     image: "/media/orientation/students-outdoors.png",
-    passcode: "CSPF",
-    googleClassroomUrl: "#",
-    syllabusUrl: "#",
+    apJoinCode: "G22APR",
   },
   {
     slug: "calculus-h-d",
@@ -50,9 +41,6 @@ export const COURSES: Course[] = [
     description:
       "Honors calculus. Limits, derivatives, and integrals, with more challenge and pace.",
     image: "/media/orientation/campus-aerial.png",
-    passcode: "CALCD",
-    googleClassroomUrl: "#",
-    syllabusUrl: "#",
   },
   {
     slug: "calculus-h-e",
@@ -62,9 +50,6 @@ export const COURSES: Course[] = [
     description:
       "Honors calculus. Same course as Block D, different period.",
     image: "/media/orientation/campus-entrance-spring.png",
-    passcode: "CALCE",
-    googleClassroomUrl: "#",
-    syllabusUrl: "#",
   },
   {
     slug: "ap-csa-h",
@@ -74,9 +59,7 @@ export const COURSES: Course[] = [
     description:
       "AP Computer Science A. Java programming and problem solving for the AP CSA exam.",
     image: "/media/classes/ap-csa-h/thumb.png",
-    passcode: "CSAH",
-    googleClassroomUrl: "#",
-    syllabusUrl: "#",
+    apJoinCode: "7QXGY7",
   },
   {
     slug: "study-hall",
@@ -86,9 +69,6 @@ export const COURSES: Course[] = [
     description:
       "A quiet block to get work done. Bring homework from any class and ask if you get stuck.",
     image: "/media/classes/study-hall/thumb.png",
-    passcode: "SH4",
-    googleClassroomUrl: "#",
-    syllabusUrl: "#",
   },
 ];
 

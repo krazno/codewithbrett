@@ -232,8 +232,7 @@ export default function HomePage() {
       <section className="mt-10">
         <h2 className="font-serif text-2xl text-stone-900">Your classes</h2>
         <p className="mt-1 text-sm text-stone-600">
-          Tap your class — you’ll need the passcode from Brett. Each page will
-          have Google Classroom and the syllabus.
+          Tap your class to open its page.
         </p>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {COURSES.map((c) => (
