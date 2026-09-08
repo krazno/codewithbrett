@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { TodayDate } from "@/app/components/TodayDate";
 import { COURSES, type Course } from "@/app/lib/courses";
 
 export const metadata: Metadata = {
@@ -102,30 +103,39 @@ function SoftLink({
 
 function CourseCard({ course }: { course: Course }) {
   return (
-    <Link
-      href={`/classes/${course.slug}/`}
-      className="ua-card flex gap-4 p-4 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
-    >
-      <div className="h-20 w-24 shrink-0 overflow-hidden rounded-xl">
-        <Image
-          src={course.image}
-          alt=""
-          width={96}
-          height={80}
-          className="h-full w-full object-cover"
-        />
-      </div>
-      <div className="min-w-0 flex-1 text-left">
-        <h3 className="font-serif text-xl text-stone-900">{course.title}</h3>
-        <p className="text-xs text-stone-600">
-          {course.room}
-          {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
-        </p>
-        <p className="mt-1 text-xs leading-relaxed text-stone-700">
-          {course.description}
-        </p>
-      </div>
-    </Link>
+    <article className="ua-card p-4 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
+      <Link href={`/classes/${course.slug}/`} className="flex gap-4">
+        <div className="h-20 w-24 shrink-0 overflow-hidden rounded-xl">
+          <Image
+            src={course.image}
+            alt=""
+            width={96}
+            height={80}
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="min-w-0 flex-1 text-left">
+          <h3 className="font-serif text-xl text-stone-900">{course.title}</h3>
+          <p className="text-xs text-stone-600">
+            {course.room}
+            {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
+          </p>
+          <p className="mt-1 text-xs leading-relaxed text-stone-700">
+            {course.description}
+          </p>
+        </div>
+      </Link>
+      {course.googleMeetUrl ? (
+        <a
+          href={course.googleMeetUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex rounded-full bg-[var(--ua-evergreen)] px-4 py-2 text-xs font-semibold text-white hover:bg-[#0b4a33]"
+        >
+          Live help ↗
+        </a>
+      ) : null}
+    </article>
   );
 }
 
@@ -164,9 +174,8 @@ export default function HomePage() {
           <h1 className="mt-2 font-serif text-4xl text-stone-900 sm:text-5xl">
             Welcome
           </h1>
-          <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-stone-700">
-            Your class hub for computer science and calculus, made for Ursuline
-            girls who want help that actually makes sense.
+          <p className="mt-3 text-lg font-medium text-stone-700">
+            <TodayDate />
           </p>
           <Link
             href="/orientation/"
@@ -209,10 +218,12 @@ export default function HomePage() {
             bhannan@ursulineacademy.net
           </a>
           <div className="mt-5 flex flex-wrap gap-2">
-            <SoftLink href={PLACEHOLDER} primary>
-              Live help
+            <SoftLink
+              href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
+              primary
+            >
+              Schedule a meeting
             </SoftLink>
-            <SoftLink href={PLACEHOLDER}>Schedule a meeting</SoftLink>
             <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
           </div>
         </div>
@@ -228,12 +239,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-8">
-        <h2 className="font-serif text-2xl text-stone-900">Your classes</h2>
-        <p className="mt-1 text-sm text-stone-600">
-          Tap your class to open its page.
-        </p>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+      <section className="mt-8" aria-label="Classes">
+        <div className="grid gap-4 sm:grid-cols-2">
           {COURSES.map((c) => (
             <CourseCard key={c.slug} course={c} />
           ))}
@@ -241,10 +248,12 @@ export default function HomePage() {
       </section>
 
       <section className="ua-card ua-shadow-soft mt-8 p-6">
-        <h2 className="font-serif text-2xl text-stone-900">Got ideas?</h2>
+        <h2 className="font-serif text-2xl text-stone-900">
+          Help shape our classes
+        </h2>
         <p className="mt-1 text-sm text-stone-600">
-          Field trips and guest experts make class better — drop a suggestion
-          anytime. Forms coming soon.
+          Suggest a field trip or a guest expert who could bring our learning
+          to life.
         </p>
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
           <SoftLink href={PLACEHOLDER}>Suggest an academic trip</SoftLink>

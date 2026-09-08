@@ -7,6 +7,7 @@ export type Course = {
   image: string;
   googleClassroomCode?: string;
   googleClassroomUrl?: string;
+  googleMeetUrl?: string;
   apJoinCode?: string;
 };
 
@@ -26,6 +27,7 @@ export const COURSES: Course[] = [
     googleClassroomCode: "7n676v2o",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwNDk2Mzk5?cjc=7n676v2o",
+    googleMeetUrl: "https://meet.google.com/weu-wncf-uxm",
     apJoinCode: "Y3LEZM",
   },
   {
@@ -39,6 +41,7 @@ export const COURSES: Course[] = [
     googleClassroomCode: "wbujhmtr",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwMDE5Nzc4?cjc=wbujhmtr",
+    googleMeetUrl: "https://meet.google.com/pmq-gxvg-bmg",
     apJoinCode: "G22APR",
   },
   {
@@ -52,6 +55,7 @@ export const COURSES: Course[] = [
     googleClassroomCode: "kv3shxpx",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcyODE4NTE5?cjc=kv3shxpx",
+    googleMeetUrl: "https://meet.google.com/umt-zodc-mck",
   },
   {
     slug: "calculus-h-e",
@@ -64,6 +68,7 @@ export const COURSES: Course[] = [
     googleClassroomCode: "cwq6rxo6",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwMzkyOTU4?cjc=cwq6rxo6",
+    googleMeetUrl: "https://meet.google.com/ctu-npkv-aoj",
   },
   {
     slug: "ap-csa-h",
@@ -76,6 +81,7 @@ export const COURSES: Course[] = [
     googleClassroomCode: "ahdo734n",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjY4MDQyMTg3?cjc=ahdo734n",
+    googleMeetUrl: "https://meet.google.com/dqo-mwho-hni",
     apJoinCode: "7QXGY7",
   },
   {
