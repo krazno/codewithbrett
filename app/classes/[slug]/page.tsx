@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BookOpen } from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -228,13 +229,21 @@ export default async function ClassPage({ params }: Props) {
               href={course.textbook.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 block rounded-xl bg-emerald-50 px-4 py-3 hover:bg-emerald-100 focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              className="mt-4 flex items-center gap-3 rounded-xl bg-emerald-50 px-4 py-3 hover:bg-emerald-100 focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
             >
-              <span className="block text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                Main textbook
+              <span
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                aria-hidden="true"
+              >
+                <BookOpen size={24} strokeWidth={2} />
               </span>
-              <span className="mt-1 block font-semibold text-stone-900">
-                {course.textbook.title} ↗
+              <span className="min-w-0">
+                <span className="block text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  Digital textbook
+                </span>
+                <span className="mt-1 block font-semibold text-stone-900">
+                  {course.textbook.title} ↗
+                </span>
               </span>
             </a>
             {course.resources?.length ? (

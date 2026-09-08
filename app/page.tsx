@@ -251,7 +251,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      <p className="mt-12 text-center text-sm text-stone-500">
+      <aside
+        className="mt-5 text-center text-xs leading-relaxed text-stone-500"
+        aria-label="Website fact"
+      >
+        <span className="font-semibold text-emerald-800">
+          Built with 4,000+ lines of code
+        </span>{" "}
+        across TypeScript, JavaScript, CSS, Python, and shell.
+      </aside>
+
+      <section className="ua-card ua-shadow-soft mt-5 p-6">
+        <div className="flex items-center gap-3">
+          <div
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] font-serif text-sm font-bold text-white"
+            aria-hidden="true"
+          >
+            UA
+          </div>
+          <div>
+            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              Serviam
+            </p>
+            <h2 className="font-serif text-2xl text-stone-900">
+              Classroom Prayers &amp; Mindfulness
+            </h2>
+          </div>
+        </div>
+        <p className="mt-3 text-sm text-stone-600">
+          Find a quiet moment for prayer, reflection, and focus.
+        </p>
+        <div className="mt-4">
+          <SoftLink href={PLACEHOLDER} primary>
+            Open prayers &amp; mindfulness
+          </SoftLink>
+        </div>
+      </section>
+
+      <p className="mt-8 text-center text-sm text-stone-500">
         Serviam ·{" "}
         <a
           href="https://www.ursulineacademy.net/"
