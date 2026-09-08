@@ -95,7 +95,7 @@ export default function OrientationPage() {
         </div>
       </section>
 
-      <section className="mt-4 grid gap-4 lg:grid-cols-[1.55fr_0.75fr]">
+      <section className="mt-4 grid gap-4 lg:grid-cols-2">
         <div>
           <div className="flex items-end justify-between gap-4 lg:h-10">
             <div>
@@ -106,7 +106,7 @@ export default function OrientationPage() {
             </div>
           </div>
 
-          <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {COURSES.map((course) => (
               <article
                 key={course.slug}
@@ -252,7 +252,7 @@ export default function OrientationPage() {
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    Business Visionary Award
+                    South Florida Business Visionary Award
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
