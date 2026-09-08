@@ -50,9 +50,8 @@ export default function OrientationPage() {
               Welcome! I&apos;m Mr. Hannan.
             </h1>
             <p className="mt-3 max-w-2xl text-lg leading-relaxed text-stone-700">
-              I teach computer science and calculus. My classroom is a place to
-              ask questions, try ideas, solve meaningful problems, and learn
-              from every attempt.
+              Computer science · Calculus · Questions · Problem-solving ·
+              Learning by doing
             </p>
           </div>
 
@@ -105,9 +104,6 @@ export default function OrientationPage() {
               </p>
               <h2 className="font-serif text-2xl text-stone-900">My classes</h2>
             </div>
-            <p className="hidden text-sm text-stone-600 sm:block">
-              Blocks, subjects, and what we&apos;ll learn
-            </p>
           </div>
 
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -146,14 +142,13 @@ export default function OrientationPage() {
           <section className="ua-card h-full overflow-hidden">
             <div className="bg-gradient-to-r from-emerald-50 to-[var(--ua-sage)] px-5 py-3">
               <p className="text-xs font-semibold tracking-[0.14em] text-emerald-800 uppercase">
-                Teacher · Researcher · Entrepreneur
+                Computer Science · Mathematics
               </p>
               <h2 className="font-serif text-2xl text-stone-900">
                 A little about me
               </h2>
-              <p className="mt-1 text-xs leading-relaxed text-stone-700">
-                I combine classroom teaching with a background in computer
-                science, school leadership, and hands-on STEAM learning.
+              <p className="mt-1 text-xs text-stone-700">
+                Data · Economy · Entrepreneurship
               </p>
             </div>
 
@@ -165,18 +160,23 @@ export default function OrientationPage() {
                 <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    Centner Academy · Miami, Florida — Director of Artificial
-                    Intelligence and Innovation; Robotics Coach & Founder
+                    Centner Academy · Miami, FL — Director of Artificial
+                    Intelligence & Innovation; Robotics Coach & Founder
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    The Greene School · West Palm Beach, Florida — Computer
+                    The Greene School · West Palm Beach, FL — Computer
                     Science Teacher; Chief Innovation Officer & Founder
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    The Sage School · Foxborough, Massachusetts — Computer
+                    The Sage School · Foxborough, MA — Computer
                     Science and Mathematics Teacher
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    Naval Undersea Warfare Center · Newport, RI — Software
+                    Engineering
                   </li>
                 </ul>
               </div>
@@ -188,11 +188,11 @@ export default function OrientationPage() {
                 <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    M.S. in Computer Science
+                    M.S. in Computation Sciences
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    B.S. in Computer Science, Software Engineering
+                    B.S. in Software Engineering
                   </li>
                 </ul>
               </div>
@@ -204,9 +204,8 @@ export default function OrientationPage() {
                 <p className="mt-1 text-xs font-semibold text-stone-900">
                   iHANDS · Intelligent Health Advising
                 </p>
-                <p className="mt-1 text-xs leading-relaxed text-stone-700">
-                  Published research using AI, machine learning, and medical
-                  knowledge systems to support personalized health decisions.
+                <p className="mt-1 text-xs text-stone-700">
+                  AI · Machine learning · Medical knowledge systems
                 </p>
                 <a
                   href="https://doi.org/10.1109/WI-IAT.2014.180"
@@ -220,12 +219,8 @@ export default function OrientationPage() {
 
               <div className="rounded-xl border border-sky-200 bg-sky-50/70 p-3">
                 <h3 className="text-[10px] font-semibold tracking-wide text-sky-800 uppercase">
-                  Entrepreneurship & projects
+                  Recent summer projects
                 </h3>
-                <p className="mt-1 text-xs leading-relaxed text-stone-700">
-                  I own a couple of LLCs and enjoy building practical websites
-                  that help people discover local places and resources.
-                </p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   <a
                     href="https://newenglandswimmingholes.com"
@@ -248,7 +243,7 @@ export default function OrientationPage() {
 
               <div className="border-t border-stone-200 pt-2">
                 <h3 className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
-                  Awards & professional communities
+                  Awards
                 </h3>
                 <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
                   <li className="flex gap-2">
@@ -261,12 +256,31 @@ export default function OrientationPage() {
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    MIT, Amazon Future Engineer & LEGO ambassador
+                    NASA Education Recognition for Maker Space Innovation
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    NASA Maker Space recognition & robotics coaching awards
+                    Best Robotics Coach in South Florida
                   </li>
+                </ul>
+              </div>
+
+              <div className="border-t border-stone-200 pt-2">
+                <h3 className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
+                  Clubs & memberships
+                </h3>
+                <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
+                  {[
+                    "MagicSchool AI Ambassador",
+                    "LEGO Education Ambassador",
+                    "Amazon Future Engineer Teacher Ambassador",
+                    "MIT Media Lab Ambassador",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="text-emerald-700">•</span>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
