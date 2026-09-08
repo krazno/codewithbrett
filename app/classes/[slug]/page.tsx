@@ -62,7 +62,7 @@ export default async function ClassPage({ params }: Props) {
         </header>
 
         <div
-          className={`mt-6 grid gap-4 ${course.apJoinCode ? "md:grid-cols-2" : ""}`}
+          className={`mt-6 grid gap-4 ${course.googleMeetUrl ? "md:grid-cols-2" : ""}`}
         >
           {course.googleClassroomUrl && course.googleClassroomCode ? (
             <section
@@ -153,6 +153,45 @@ export default async function ClassPage({ params }: Props) {
                 <li>Select “Join a Course or Exam.”</li>
                 <li>Enter the code and confirm your section.</li>
               </ol>
+            </section>
+          ) : null}
+
+          {course.googleMeetUrl ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="live-help-heading"
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-sm font-bold text-white"
+                  aria-hidden="true"
+                >
+                  Meet
+                </div>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Course support
+                  </p>
+                  <h2
+                    id="live-help-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Live Help
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-stone-700">
+                Join the Google Meet for live help with this course.
+              </p>
+              <a
+                href={course.googleMeetUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Join Live Help for ${course.title} in Google Meet`}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Join Live Help ↗
+              </a>
             </section>
           ) : null}
         </div>

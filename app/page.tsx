@@ -125,16 +125,6 @@ function CourseCard({ course }: { course: Course }) {
           </p>
         </div>
       </Link>
-      {course.googleMeetUrl ? (
-        <a
-          href={course.googleMeetUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 inline-flex rounded-full bg-[var(--ua-evergreen)] px-4 py-2 text-xs font-semibold text-white hover:bg-[#0b4a33]"
-        >
-          Live help ↗
-        </a>
-      ) : null}
     </article>
   );
 }
