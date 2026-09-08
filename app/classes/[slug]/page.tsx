@@ -69,15 +69,26 @@ export default async function ClassPage({ params }: Props) {
               className="ua-card ua-shadow-soft p-6"
               aria-labelledby="google-classroom-heading"
             >
-              <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                Course access
-              </p>
-              <h2
-                id="google-classroom-heading"
-                className="mt-2 font-serif text-2xl text-stone-900"
-              >
-                Join Google Classroom
-              </h2>
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/media/logos/google-classroom.png"
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 object-contain"
+                />
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Course access
+                  </p>
+                  <h2
+                    id="google-classroom-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Join Google Classroom
+                  </h2>
+                </div>
+              </div>
               <a
                 href={course.googleClassroomUrl}
                 target="_blank"
@@ -105,19 +116,29 @@ export default async function ClassPage({ params }: Props) {
 
           {course.apJoinCode ? (
             <section className="ua-card ua-shadow-soft p-6">
-              <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                College Board
-              </p>
-              <h2 className="mt-2 font-serif text-2xl text-stone-900">
-                Join My AP
-              </h2>
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-navy)] font-serif text-xl font-bold text-white"
+                  aria-hidden="true"
+                >
+                  AP<sup className="text-[8px]">®</sup>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-indigo-800 uppercase">
+                    College Board
+                  </p>
+                  <h2 className="font-serif text-2xl text-stone-900">
+                    Join My AP®
+                  </h2>
+                </div>
+              </div>
               <a
                 href="https://myap.collegeboard.org/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-navy)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#191d45] focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2 focus:outline-none"
               >
-                Open My AP ↗
+                Open My AP® ↗
               </a>
               <div className="mt-4 rounded-xl bg-indigo-50 px-4 py-3">
                 <p className="text-xs font-semibold text-stone-600 uppercase">
