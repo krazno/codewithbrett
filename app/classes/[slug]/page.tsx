@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COURSES, getCourse } from "@/app/lib/courses";
@@ -24,109 +25,128 @@ export default async function ClassPage({ params }: Props) {
   const course = getCourse(slug);
   if (!course) notFound();
 
+  const headerImage = course.slug.startsWith("ap-cs")
+    ? "/media/course-headers/computer-science.png"
+    : course.slug.startsWith("calculus")
+      ? "/media/course-headers/mathematics.png"
+      : course.image;
+
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
-      <div className="mx-auto max-w-2xl px-6 py-10 sm:py-14">
-        <Link
-          href="/"
-          className="text-sm font-medium text-[var(--ua-evergreen)] hover:underline"
-        >
-          ← Back to classes
-        </Link>
-
-        <header className="mt-6">
-          <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-            Ursuline Academy
-          </p>
-          <h1 className="mt-2 font-serif text-4xl text-stone-900 sm:text-5xl">
-            {course.title}
-          </h1>
-          <p className="mt-2 text-stone-600">
-            {course.room}
-            {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
-          </p>
-          <p className="mt-4 leading-relaxed text-stone-700">
-            {course.description}
-          </p>
+      <div className="mx-auto max-w-5xl px-6 py-8 sm:py-10">
+        <header className="overflow-hidden rounded-3xl bg-[var(--ua-evergreen)] shadow-xl">
+          <div className="relative aspect-[4/1] min-h-40">
+            <Image
+              src={headerImage}
+              alt=""
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+          <div className="grid gap-3 px-7 py-5 text-white sm:grid-cols-[1fr_auto] sm:items-end sm:px-10">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.16em] text-emerald-100 uppercase">
+                Ursuline Academy · 2026–2027
+              </p>
+              <h1 className="mt-1 font-serif text-4xl">{course.title}</h1>
+              <p className="mt-2 max-w-2xl text-sm text-white/80">
+                {course.description}
+              </p>
+            </div>
+            <p className="font-semibold text-emerald-50">
+              {course.room}
+              {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
+            </p>
+          </div>
         </header>
 
-        {course.googleClassroomUrl && course.googleClassroomCode ? (
-          <section
-            className="ua-card ua-shadow-soft mt-8 p-6"
-            aria-labelledby="google-classroom-heading"
+        <div
+          className={`mt-6 grid gap-4 ${course.apJoinCode ? "md:grid-cols-2" : ""}`}
+        >
+          {course.googleClassroomUrl && course.googleClassroomCode ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="google-classroom-heading"
+            >
+              <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                Course access
+              </p>
+              <h2
+                id="google-classroom-heading"
+                className="mt-2 font-serif text-2xl text-stone-900"
+              >
+                Join Google Classroom
+              </h2>
+              <a
+                href={course.googleClassroomUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open Google Classroom for ${course.title}`}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Open Google Classroom ↗
+              </a>
+              <div className="mt-4 rounded-xl bg-emerald-50 px-4 py-3">
+                <p className="text-xs font-semibold text-stone-600 uppercase">
+                  Class code
+                </p>
+                <p className="mt-1 font-mono text-2xl font-bold tracking-[0.12em] text-[var(--ua-evergreen)]">
+                  {course.googleClassroomCode}
+                </p>
+              </div>
+              <ol className="mt-4 list-decimal space-y-1.5 pl-5 text-sm text-stone-700">
+                <li>Sign in with your Ursuline Google account.</li>
+                <li>Open the correct class using the button.</li>
+                <li>Select “Join” and enter the code if asked.</li>
+              </ol>
+            </section>
+          ) : null}
+
+          {course.apJoinCode ? (
+            <section className="ua-card ua-shadow-soft p-6">
+              <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                College Board
+              </p>
+              <h2 className="mt-2 font-serif text-2xl text-stone-900">
+                Join My AP
+              </h2>
+              <a
+                href="https://myap.collegeboard.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-navy)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#191d45] focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2 focus:outline-none"
+              >
+                Open My AP ↗
+              </a>
+              <div className="mt-4 rounded-xl bg-indigo-50 px-4 py-3">
+                <p className="text-xs font-semibold text-stone-600 uppercase">
+                  Join code
+                </p>
+                <p className="mt-1 font-mono text-2xl font-bold tracking-[0.16em] text-[var(--ua-navy)]">
+                  {course.apJoinCode}
+                </p>
+              </div>
+              <ol className="mt-4 list-decimal space-y-1.5 pl-5 text-sm text-stone-700">
+                <li>Sign in with your College Board account.</li>
+                <li>Select “Join a Course or Exam.”</li>
+                <li>Enter the code and confirm your section.</li>
+              </ol>
+            </section>
+          ) : null}
+        </div>
+
+        <footer className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-sm">
+          <Link
+            href="/"
+            className="font-medium text-[var(--ua-evergreen)] hover:underline"
           >
-            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-              Course access
-            </p>
-            <h2
-              id="google-classroom-heading"
-              className="mt-2 font-serif text-2xl text-stone-900"
-            >
-              Google Classroom
-            </h2>
-            <a
-              href={course.googleClassroomUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open Google Classroom for ${course.title}`}
-              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-base font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none sm:w-auto"
-            >
-              Open Google Classroom ↗
-            </a>
-            <div className="mt-5 rounded-xl bg-emerald-50 px-5 py-4">
-              <p className="text-xs font-semibold text-stone-600 uppercase">
-                Class code
-              </p>
-              <p className="mt-1 font-mono text-2xl font-bold tracking-[0.12em] text-[var(--ua-evergreen)]">
-                {course.googleClassroomCode}
-              </p>
-            </div>
-            <h3 className="mt-5 font-semibold text-stone-900">How to join</h3>
-            <ol className="mt-2 list-decimal space-y-2 pl-5 text-sm text-stone-700">
-              <li>Sign in with your Ursuline Google account.</li>
-              <li>Use the button above to open the correct class.</li>
-              <li>
-                Select “Join.” If asked for a code, enter the class code above.
-              </li>
-            </ol>
-          </section>
-        ) : null}
-
-        {course.apJoinCode ? (
-          <section className="ua-card ua-shadow-soft mt-8 p-6">
-            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-              College Board · My AP
-            </p>
-            <h2 className="mt-2 font-serif text-2xl text-stone-900">
-              Join this AP section
-            </h2>
-            <div className="mt-4 rounded-xl bg-emerald-50 px-5 py-4">
-              <p className="text-xs font-semibold text-stone-600 uppercase">
-                Join code
-              </p>
-              <p className="mt-1 font-mono text-3xl font-bold tracking-[0.18em] text-[var(--ua-evergreen)]">
-                {course.apJoinCode}
-              </p>
-            </div>
-            <ol className="mt-5 list-decimal space-y-2 pl-5 text-sm text-stone-700">
-              <li>Sign in to My AP with your College Board account.</li>
-              <li>Select “Join a Course or Exam.”</li>
-              <li>Enter the join code above and confirm your class section.</li>
-            </ol>
-            <a
-              href="https://myap.collegeboard.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex rounded-full bg-[var(--ua-evergreen)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#0b4a33]"
-            >
-              Open My AP ↗
-            </a>
-          </section>
-        ) : null}
-
-        <p className="mt-10 text-center text-xs text-stone-500">
-          Faith · Courage · Joy · Serviam
-        </p>
+            ← Back to classes
+          </Link>
+          <p className="text-xs text-stone-500">
+            Faith · Courage · Joy · Serviam
+          </p>
+        </footer>
       </div>
     </main>
   );
