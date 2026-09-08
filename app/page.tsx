@@ -221,10 +221,10 @@ export default function HomePage() {
 
       <section className="mt-8 overflow-hidden rounded-2xl">
         <Image
-          src="/media/branded/campus-students.png"
-          alt="Ursuline Academy campus"
-          width={960}
-          height={540}
+          src="/media/branded/brett-with-students.png"
+          alt="Mr. Hannan with Ursuline Academy students"
+          width={1024}
+          height={768}
           className="h-auto w-full object-cover"
         />
       </section>
