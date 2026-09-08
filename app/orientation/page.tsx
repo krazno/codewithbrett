@@ -18,7 +18,7 @@ function subjectFor(course: Course) {
 
 export default function OrientationPage() {
   return (
-    <main className="mx-auto min-h-screen w-full max-w-7xl px-5 py-6 sm:px-8 lg:flex lg:h-screen lg:min-h-0 lg:flex-col lg:overflow-hidden lg:py-4">
+    <main className="mx-auto min-h-screen w-full max-w-7xl px-5 py-6 sm:px-8 lg:flex lg:flex-col lg:py-4">
       <section className="ua-card ua-shadow-soft relative overflow-hidden rounded-[24px]">
         <div className="pointer-events-none absolute inset-0">
           <Image
@@ -96,7 +96,7 @@ export default function OrientationPage() {
         </div>
       </section>
 
-      <section className="mt-4 grid gap-4 lg:min-h-0 lg:flex-1 lg:grid-cols-[1.55fr_0.75fr]">
+      <section className="mt-4 grid gap-4 lg:grid-cols-[1.55fr_0.75fr]">
         <div>
           <div className="flex items-end justify-between gap-4 lg:h-10">
             <div>
@@ -110,7 +110,7 @@ export default function OrientationPage() {
             </p>
           </div>
 
-          <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:h-[calc(100%-3.25rem)] lg:grid-cols-3 lg:grid-rows-2">
+          <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {COURSES.map((course) => (
               <article
                 key={course.slug}
@@ -142,11 +142,11 @@ export default function OrientationPage() {
           </div>
         </div>
 
-        <aside className="lg:min-h-0">
+        <aside>
           <section className="ua-card h-full overflow-hidden">
             <div className="bg-gradient-to-r from-emerald-50 to-[var(--ua-sage)] px-5 py-3">
               <p className="text-xs font-semibold tracking-[0.14em] text-emerald-800 uppercase">
-                Teacher · Technologist · Researcher
+                Teacher · Researcher · Entrepreneur
               </p>
               <h2 className="font-serif text-2xl text-stone-900">
                 A little about me
@@ -165,15 +165,18 @@ export default function OrientationPage() {
                 <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    Centner Academy — High School Principal & AI Director
+                    Centner Academy · Miami, Florida — Director of Artificial
+                    Intelligence and Innovation; Robotics Coach & Founder
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    The Greene School — Assistant Head & CIO
+                    The Greene School · West Palm Beach, Florida — Computer
+                    Science Teacher; Chief Innovation Officer & Founder
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    The Sage School — Technology & Computer Science Director
+                    The Sage School · Foxborough, Massachusetts — Computer
+                    Science and Mathematics Teacher
                   </li>
                 </ul>
               </div>
@@ -215,9 +218,37 @@ export default function OrientationPage() {
                 </a>
               </div>
 
+              <div className="rounded-xl border border-sky-200 bg-sky-50/70 p-3">
+                <h3 className="text-[10px] font-semibold tracking-wide text-sky-800 uppercase">
+                  Entrepreneurship & projects
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-stone-700">
+                  I own a couple of LLCs and enjoy building practical websites
+                  that help people discover local places and resources.
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <a
+                    href="https://newenglandswimmingholes.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-sky-300 bg-white px-3 py-1.5 text-[10px] font-semibold text-sky-900 hover:bg-sky-100"
+                  >
+                    New England Swimming Holes ↗
+                  </a>
+                  <a
+                    href="https://newenglandfarmguide.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-sky-300 bg-white px-3 py-1.5 text-[10px] font-semibold text-sky-900 hover:bg-sky-100"
+                  >
+                    New England Farm Guide ↗
+                  </a>
+                </div>
+              </div>
+
               <div className="border-t border-stone-200 pt-2">
                 <h3 className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
-                  Selected recognition
+                  Awards & professional communities
                 </h3>
                 <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
                   <li className="flex gap-2">
@@ -231,6 +262,10 @@ export default function OrientationPage() {
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
                     MIT, Amazon Future Engineer & LEGO ambassador
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    NASA Maker Space recognition & robotics coaching awards
                   </li>
                 </ul>
               </div>
