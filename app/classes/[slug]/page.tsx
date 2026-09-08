@@ -211,6 +211,35 @@ export default async function ClassPage({ params }: Props) {
               </a>
             </section>
           ) : null}
+
+          {course.textbook ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="digital-textbook-heading"
+            >
+              <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                Digital textbook
+              </p>
+              <h2
+                id="digital-textbook-heading"
+                className="mt-1 font-serif text-2xl text-stone-900"
+              >
+                {course.textbook.title}
+              </h2>
+              <p className="mt-2 text-sm text-stone-600">
+                {course.textbook.note}
+              </p>
+              <a
+                href={course.textbook.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${course.textbook.title} digital textbook in a new tab`}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Open digital textbook ↗
+              </a>
+            </section>
+          ) : null}
         </div>
 
         <footer className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-sm">

@@ -10,6 +10,11 @@ export type Course = {
   googleClassroomUrl?: string;
   googleMeetUrl?: string;
   apJoinCode?: string;
+  textbook?: {
+    title: string;
+    url: string;
+    note: string;
+  };
 };
 
 /**
@@ -31,6 +36,11 @@ export const COURSES: Course[] = [
       "https://classroom.google.com/c/ODc4MjcwNDk2Mzk5?cjc=7n676v2o",
     googleMeetUrl: "https://meet.google.com/weu-wncf-uxm",
     apJoinCode: "Y3LEZM",
+    textbook: {
+      title: "OpenStax Introduction to Computer Science",
+      url: "https://openstax.org/books/introduction-computer-science/pages/1-introduction",
+      note: "Primary digital textbook",
+    },
   },
   {
     slug: "ap-csp-f",
@@ -46,6 +56,11 @@ export const COURSES: Course[] = [
       "https://classroom.google.com/c/ODc4MjcwMDE5Nzc4?cjc=wbujhmtr",
     googleMeetUrl: "https://meet.google.com/pmq-gxvg-bmg",
     apJoinCode: "G22APR",
+    textbook: {
+      title: "OpenStax Introduction to Computer Science",
+      url: "https://openstax.org/books/introduction-computer-science/pages/1-introduction",
+      note: "Primary digital textbook",
+    },
   },
   {
     slug: "calculus-h-d",
@@ -60,6 +75,11 @@ export const COURSES: Course[] = [
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcyODE4NTE5?cjc=kv3shxpx",
     googleMeetUrl: "https://meet.google.com/umt-zodc-mck",
+    textbook: {
+      title: "OpenStax Calculus Volume 1",
+      url: "https://openstax.org/details/books/calculus-volume-1",
+      note: "Primary digital textbook",
+    },
   },
   {
     slug: "calculus-h-e",
@@ -74,6 +94,11 @@ export const COURSES: Course[] = [
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwMzkyOTU4?cjc=cwq6rxo6",
     googleMeetUrl: "https://meet.google.com/ctu-npkv-aoj",
+    textbook: {
+      title: "OpenStax Calculus Volume 1",
+      url: "https://openstax.org/details/books/calculus-volume-1",
+      note: "Primary digital textbook",
+    },
   },
   {
     slug: "ap-csa-h",
@@ -89,6 +114,11 @@ export const COURSES: Course[] = [
       "https://classroom.google.com/c/ODc4MjY4MDQyMTg3?cjc=ahdo734n",
     googleMeetUrl: "https://meet.google.com/dqo-mwho-hni",
     apJoinCode: "7QXGY7",
+    textbook: {
+      title: "CSAwesome2: AP CSA Java 2026+",
+      url: "https://runestone.academy/ns/books/published/csawesome2/csawesome2.html?mode=browsing",
+      note: "Primary digital textbook · AP-authorized · CSAwesome approved",
+    },
   },
   {
     slug: "study-hall",
