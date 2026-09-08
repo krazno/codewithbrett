@@ -5,6 +5,7 @@ export type Course = {
   scheduleNote?: string;
   description: string;
   image: string;
+  seal?: string;
   googleClassroomCode?: string;
   googleClassroomUrl?: string;
   googleMeetUrl?: string;
@@ -23,7 +24,8 @@ export const COURSES: Course[] = [
     scheduleNote: "Block B",
     description:
       "AP Computer Science Principles. How computers and the internet work, plus writing programs for the AP exam.",
-    image: "/media/orientation/students-at-sign.png",
+    image: "/media/classes/ap-csp-b/seal.png",
+    seal: "/media/classes/ap-csp-b/seal.png",
     googleClassroomCode: "7n676v2o",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwNDk2Mzk5?cjc=7n676v2o",
@@ -37,7 +39,8 @@ export const COURSES: Course[] = [
     scheduleNote: "Block F",
     description:
       "AP Computer Science Principles. Same course as Block B, different period.",
-    image: "/media/orientation/students-outdoors.png",
+    image: "/media/classes/ap-csp-f/seal.png",
+    seal: "/media/classes/ap-csp-f/seal.png",
     googleClassroomCode: "wbujhmtr",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwMDE5Nzc4?cjc=wbujhmtr",
@@ -51,7 +54,8 @@ export const COURSES: Course[] = [
     scheduleNote: "Block D",
     description:
       "Honors calculus. Limits, derivatives, and integrals, with more challenge and pace.",
-    image: "/media/orientation/campus-aerial.png",
+    image: "/media/classes/calculus-h-d/seal.png",
+    seal: "/media/classes/calculus-h-d/seal.png",
     googleClassroomCode: "kv3shxpx",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcyODE4NTE5?cjc=kv3shxpx",
@@ -64,7 +68,8 @@ export const COURSES: Course[] = [
     scheduleNote: "Block E",
     description:
       "Honors calculus. Same course as Block D, different period.",
-    image: "/media/orientation/campus-entrance-spring.png",
+    image: "/media/classes/calculus-h-e/seal.png",
+    seal: "/media/classes/calculus-h-e/seal.png",
     googleClassroomCode: "cwq6rxo6",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwMzkyOTU4?cjc=cwq6rxo6",
@@ -77,7 +82,8 @@ export const COURSES: Course[] = [
     scheduleNote: "Block H",
     description:
       "AP Computer Science A. Java programming and problem solving for the AP CSA exam.",
-    image: "/media/classes/ap-csa-h/thumb.png",
+    image: "/media/classes/ap-csa-h/seal.png",
+    seal: "/media/classes/ap-csa-h/seal.png",
     googleClassroomCode: "ahdo734n",
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjY4MDQyMTg3?cjc=ahdo734n",

@@ -44,7 +44,24 @@ export default async function ClassPage({ params }: Props) {
               className="object-cover"
             />
           </div>
-          <div className="grid gap-3 px-7 py-5 text-white sm:grid-cols-[1fr_auto] sm:items-end sm:px-10">
+          <div
+            className={`grid gap-3 px-7 py-5 text-white sm:items-end sm:px-10 ${
+              course.seal
+                ? "sm:grid-cols-[auto_1fr_auto]"
+                : "sm:grid-cols-[1fr_auto]"
+            }`}
+          >
+            {course.seal ? (
+              <div className="h-24 w-24 overflow-hidden rounded-full">
+                <Image
+                  src={course.seal}
+                  alt=""
+                  width={96}
+                  height={96}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ) : null}
             <div>
               <p className="text-xs font-semibold tracking-[0.16em] text-emerald-100 uppercase">
                 Ursuline Academy · 2026–2027

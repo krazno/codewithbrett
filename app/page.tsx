@@ -105,11 +105,11 @@ function CourseCard({ course }: { course: Course }) {
   return (
     <article className="ua-card p-4 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
       <Link href={`/classes/${course.slug}/`} className="flex gap-4">
-        <div className="h-20 w-24 shrink-0 overflow-hidden rounded-xl">
+        <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full">
           <Image
             src={course.image}
             alt=""
-            width={96}
+            width={80}
             height={80}
             className="h-full w-full object-cover"
           />
