@@ -16,6 +16,25 @@ function subjectFor(course: Course) {
   return "Academic Support";
 }
 
+const CAMPUS_IMAGES = [
+  {
+    src: "/media/orientation/students-at-sign.png",
+    alt: "Ursuline Academy students beside the school sign",
+  },
+  {
+    src: "/media/orientation/students-outdoors.png",
+    alt: "Ursuline Academy students learning together outdoors",
+  },
+  {
+    src: "/media/orientation/campus-aerial.png",
+    alt: "Aerial view of the Ursuline Academy campus",
+  },
+  {
+    src: "/media/orientation/campus-entrance-spring.png",
+    alt: "Ursuline Academy entrance in spring",
+  },
+];
+
 export default function OrientationPage() {
   return (
     <main className="mx-auto min-h-screen w-full max-w-7xl px-5 py-6 sm:px-8 lg:flex lg:flex-col lg:py-4">
@@ -286,6 +305,22 @@ export default function OrientationPage() {
             </div>
           </section>
         </aside>
+      </section>
+
+      <section className="mt-4">
+        <h2 className="font-serif text-2xl text-stone-900">Campus life</h2>
+        <div className="mt-2 grid grid-cols-2 gap-2 lg:grid-cols-4">
+          {CAMPUS_IMAGES.map((image) => (
+            <Image
+              key={image.src}
+              src={image.src}
+              alt={image.alt}
+              width={680}
+              height={450}
+              className="aspect-[4/3] h-full w-full rounded-xl object-cover shadow-sm"
+            />
+          ))}
+        </div>
       </section>
 
       <footer className="mt-3 flex shrink-0 items-center justify-between border-t border-stone-300/70 pt-2 text-xs text-stone-600">
