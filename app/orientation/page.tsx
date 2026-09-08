@@ -18,7 +18,7 @@ function subjectFor(course: Course) {
 
 export default function OrientationPage() {
   return (
-    <main className="mx-auto min-h-screen w-full max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
+    <main className="mx-auto min-h-screen w-full max-w-7xl px-5 py-6 sm:px-8 lg:flex lg:h-screen lg:min-h-0 lg:flex-col lg:overflow-hidden lg:py-4">
       <section className="ua-card ua-shadow-soft relative overflow-hidden rounded-[24px]">
         <div className="pointer-events-none absolute inset-0">
           <Image
@@ -31,7 +31,7 @@ export default function OrientationPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[rgba(247,244,236,0.96)] via-[rgba(255,255,255,0.91)] to-[rgba(225,240,231,0.92)]" />
         </div>
 
-        <div className="relative z-10 grid gap-6 px-6 py-8 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="relative z-10 grid gap-4 px-6 py-6 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:py-5">
           <div>
             <div className="flex items-center gap-3">
               <Image
@@ -46,7 +46,7 @@ export default function OrientationPage() {
                 New Student Orientation
               </p>
             </div>
-            <h1 className="mt-5 font-serif text-4xl leading-tight text-stone-900 sm:text-5xl">
+            <h1 className="mt-3 font-serif text-4xl leading-tight text-stone-900 lg:text-[2.7rem]">
               Welcome! I&apos;m Mr. Hannan.
             </h1>
             <p className="mt-3 max-w-2xl text-lg leading-relaxed text-stone-700">
@@ -61,50 +61,79 @@ export default function OrientationPage() {
             alt="Brett Hannan"
             width={180}
             height={180}
-            className="mx-auto h-40 w-40 rounded-full border-4 border-white object-cover shadow-xl sm:h-44 sm:w-44"
+            className="mx-auto h-36 w-36 rounded-full border-4 border-white object-cover shadow-xl lg:h-28 lg:w-28"
             priority
           />
         </div>
       </section>
 
-      <section className="mt-7 grid gap-5 lg:grid-cols-[1.35fr_0.65fr]">
+      <section className="mt-4 rounded-2xl bg-[var(--ua-evergreen)] px-5 py-4 text-white shadow-lg lg:shrink-0 lg:py-3">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="shrink-0">
+            <p className="text-xs font-semibold tracking-[0.14em] text-emerald-100 uppercase">
+              What to bring
+            </p>
+            <h2 className="font-serif text-2xl">You&apos;re ready with:</h2>
+          </div>
+          <ul className="grid flex-1 grid-cols-2 gap-2 text-sm sm:grid-cols-4 lg:max-w-3xl">
+            {[
+              "Your device",
+              "A writing implement",
+              "Paper",
+              "An eager mind",
+            ].map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-2"
+              >
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/15 text-xs">
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="mt-4 grid gap-4 lg:min-h-0 lg:flex-1 lg:grid-cols-[1.55fr_0.75fr]">
         <div>
-          <div className="flex items-end justify-between gap-4">
+          <div className="flex items-end justify-between gap-4 lg:h-10">
             <div>
               <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
                 2026–2027
               </p>
-              <h2 className="font-serif text-3xl text-stone-900">My classes</h2>
+              <h2 className="font-serif text-2xl text-stone-900">My classes</h2>
             </div>
             <p className="hidden text-sm text-stone-600 sm:block">
               Blocks, subjects, and what we&apos;ll learn
             </p>
           </div>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:h-[calc(100%-3.25rem)] lg:grid-cols-3 lg:grid-rows-2">
             {COURSES.map((course) => (
               <article
                 key={course.slug}
-                className="ua-card flex gap-4 border-l-4 border-l-[var(--ua-evergreen)] p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md sm:min-h-36"
+                className="ua-card flex gap-3 border-l-4 border-l-[var(--ua-evergreen)] p-3 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md lg:min-h-0"
               >
                 <Image
                   src={course.image}
                   alt=""
-                  width={72}
-                  height={72}
-                  className="h-[72px] w-[72px] shrink-0 rounded-xl object-cover"
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 shrink-0 rounded-xl object-cover"
                 />
                 <div>
-                  <p className="text-xs font-semibold tracking-wide text-[var(--ua-evergreen)] uppercase">
+                  <p className="text-[10px] font-semibold tracking-wide text-[var(--ua-evergreen)] uppercase">
                     {subjectFor(course)} · {course.scheduleNote}
                   </p>
-                  <h3 className="mt-1 font-serif text-xl text-stone-900">
+                  <h3 className="font-serif text-lg text-stone-900">
                     {course.title}
                   </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-stone-700">
+                  <p className="mt-1 text-xs leading-relaxed text-stone-700">
                     {course.description}
                   </p>
-                  <p className="mt-2 text-xs font-medium text-stone-500">
+                  <p className="mt-1 text-[10px] font-medium text-stone-500">
                     {course.room}
                   </p>
                 </div>
@@ -113,72 +142,47 @@ export default function OrientationPage() {
           </div>
         </div>
 
-        <aside className="space-y-5">
-          <section className="rounded-2xl bg-[var(--ua-evergreen)] p-6 text-white shadow-lg">
-            <p className="text-xs font-semibold tracking-[0.14em] text-emerald-100 uppercase">
-              What to bring
-            </p>
-            <h2 className="mt-2 font-serif text-3xl">You&apos;re ready with:</h2>
-            <ul className="mt-4 space-y-3 text-base">
-              {[
-                "Your device",
-                "A writing implement",
-                "Paper",
-                "An eager mind to learn",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/15 text-sm">
-                    ✓
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="ua-card overflow-hidden">
-            <div className="bg-gradient-to-r from-emerald-50 to-[var(--ua-sage)] px-6 py-5">
+        <aside className="lg:min-h-0">
+          <section className="ua-card h-full overflow-hidden">
+            <div className="bg-gradient-to-r from-emerald-50 to-[var(--ua-sage)] px-5 py-3">
               <p className="text-xs font-semibold tracking-[0.14em] text-emerald-800 uppercase">
                 Teacher · Technologist · Researcher
               </p>
-              <h2 className="mt-1 font-serif text-3xl text-stone-900">
+              <h2 className="font-serif text-2xl text-stone-900">
                 A little about me
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-stone-700">
+              <p className="mt-1 text-xs leading-relaxed text-stone-700">
                 I combine classroom teaching with a background in computer
                 science, school leadership, and hands-on STEAM learning.
               </p>
             </div>
 
-            <div className="space-y-5 p-6">
+            <div className="space-y-3 p-4">
               <div>
-                <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                <h3 className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
                   Before Ursuline
                 </h3>
-                <ul className="mt-2 space-y-1.5 text-sm text-stone-700">
+                <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    Centner Academy — Founding High School Principal and
-                    Director of Artificial Intelligence
+                    Centner Academy — High School Principal & AI Director
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    The Greene School — Founding Assistant Head of School and
-                    Chief Information Officer
+                    The Greene School — Assistant Head & CIO
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    The Sage School — Director of Technology and Computer
-                    Science
+                    The Sage School — Technology & Computer Science Director
                   </li>
                 </ul>
               </div>
 
-              <div className="border-t border-stone-200 pt-4">
-              <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                Education
-              </h3>
-                <ul className="mt-2 space-y-1.5 text-sm text-stone-700">
+              <div className="border-t border-stone-200 pt-2">
+                <h3 className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
+                  Education · UMass Dartmouth
+                </h3>
+                <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
                     M.S. in Computer Science
@@ -188,51 +192,45 @@ export default function OrientationPage() {
                     B.S. in Computer Science, Software Engineering
                   </li>
                 </ul>
-                <p className="mt-2 text-xs text-stone-500">
-                  University of Massachusetts Dartmouth
-                </p>
               </div>
 
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4">
-                <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-3">
+                <h3 className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
                   My research
                 </h3>
-                <p className="mt-2 text-sm font-semibold text-stone-900">
-                  iHANDS: Intelligent Health Advising and Decision-Support Agent
+                <p className="mt-1 text-xs font-semibold text-stone-900">
+                  iHANDS · Intelligent Health Advising
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-stone-700">
-                  This published research explored how artificial intelligence,
-                  machine learning, and medical knowledge systems could work
-                  together to provide personalized health guidance and support
-                  better decisions.
+                <p className="mt-1 text-xs leading-relaxed text-stone-700">
+                  Published research using AI, machine learning, and medical
+                  knowledge systems to support personalized health decisions.
                 </p>
                 <a
                   href="https://doi.org/10.1109/WI-IAT.2014.180"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center rounded-full bg-[var(--ua-evergreen)] px-4 py-2 text-xs font-semibold text-white hover:bg-[#0b4a33]"
+                  className="mt-2 inline-flex items-center rounded-full bg-[var(--ua-evergreen)] px-3 py-1.5 text-[10px] font-semibold text-white hover:bg-[#0b4a33]"
                 >
                   View the IEEE publication ↗
                 </a>
               </div>
 
-              <div className="border-t border-stone-200 pt-4">
-                <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              <div className="border-t border-stone-200 pt-2">
+                <h3 className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
                   Selected recognition
                 </h3>
-                <ul className="mt-2 space-y-1.5 text-sm text-stone-700">
+                <ul className="mt-1 space-y-0.5 text-xs text-stone-700">
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
                     Governor&apos;s Proclamation for STEAM Education
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    South Florida Science Center Business Visionary Award
+                    Business Visionary Award
                   </li>
                   <li className="flex gap-2">
                     <span className="text-emerald-700">•</span>
-                    MIT Media Lab, Amazon Future Engineer, and LEGO Education
-                    ambassador
+                    MIT, Amazon Future Engineer & LEGO ambassador
                   </li>
                 </ul>
               </div>
@@ -241,7 +239,7 @@ export default function OrientationPage() {
         </aside>
       </section>
 
-      <footer className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-stone-300/70 pt-5 text-sm text-stone-600 sm:flex-row">
+      <footer className="mt-3 flex shrink-0 items-center justify-between border-t border-stone-300/70 pt-2 text-xs text-stone-600">
         <p>Faith · Courage · Joy · Serviam</p>
         <Link
           href="/"
