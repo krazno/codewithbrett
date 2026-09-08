@@ -85,7 +85,7 @@ export default function OrientationPage() {
             {COURSES.map((course) => (
               <article
                 key={course.slug}
-                className="ua-card flex gap-4 p-4 sm:min-h-36"
+                className="ua-card flex gap-4 border-l-4 border-l-[var(--ua-evergreen)] p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md sm:min-h-36"
               >
                 <Image
                   src={course.image}
@@ -136,41 +136,106 @@ export default function OrientationPage() {
             </ul>
           </section>
 
-          <section className="ua-card p-6">
-            <h2 className="font-serif text-2xl text-stone-900">
-              A little about me
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-stone-700">
-              Before Ursuline, I led technology, computer science, AI, and
-              STEAM programs at Centner Academy, The Greene School, and The
-              Sage School.
-            </p>
-
-            <div className="mt-4 border-t border-stone-200 pt-4">
-              <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                Education
-              </h3>
-              <p className="mt-2 text-sm text-stone-700">
-                M.S. Computer Science
-                <br />
-                B.S. Computer Science, Software Engineering
-                <br />
-                <span className="text-stone-500">
-                  University of Massachusetts Dartmouth
-                </span>
+          <section className="ua-card overflow-hidden">
+            <div className="bg-gradient-to-r from-emerald-50 to-[var(--ua-sage)] px-6 py-5">
+              <p className="text-xs font-semibold tracking-[0.14em] text-emerald-800 uppercase">
+                Teacher · Technologist · Researcher
+              </p>
+              <h2 className="mt-1 font-serif text-3xl text-stone-900">
+                A little about me
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                I combine classroom teaching with a background in computer
+                science, school leadership, and hands-on STEAM learning.
               </p>
             </div>
 
-            <div className="mt-4 border-t border-stone-200 pt-4">
+            <div className="space-y-5 p-6">
+              <div>
+                <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  Before Ursuline
+                </h3>
+                <ul className="mt-2 space-y-1.5 text-sm text-stone-700">
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    Centner Academy — Founding High School Principal and
+                    Director of Artificial Intelligence
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    The Greene School — Founding Assistant Head of School and
+                    Chief Information Officer
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    The Sage School — Director of Technology and Computer
+                    Science
+                  </li>
+                </ul>
+              </div>
+
+              <div className="border-t border-stone-200 pt-4">
               <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                Research & recognition
+                Education
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-stone-700">
-                Published AI researcher and co-developer of the iHANDS
-                intelligent health advising system. Honors include a
-                Governor&apos;s Proclamation for STEAM Education and the South
-                Florida Science Center Business Visionary Award.
-              </p>
+                <ul className="mt-2 space-y-1.5 text-sm text-stone-700">
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    M.S. in Computer Science
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    B.S. in Computer Science, Software Engineering
+                  </li>
+                </ul>
+                <p className="mt-2 text-xs text-stone-500">
+                  University of Massachusetts Dartmouth
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4">
+                <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  My research
+                </h3>
+                <p className="mt-2 text-sm font-semibold text-stone-900">
+                  iHANDS: Intelligent Health Advising and Decision-Support Agent
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  This published research explored how artificial intelligence,
+                  machine learning, and medical knowledge systems could work
+                  together to provide personalized health guidance and support
+                  better decisions.
+                </p>
+                <a
+                  href="https://doi.org/10.1109/WI-IAT.2014.180"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center rounded-full bg-[var(--ua-evergreen)] px-4 py-2 text-xs font-semibold text-white hover:bg-[#0b4a33]"
+                >
+                  View the IEEE publication ↗
+                </a>
+              </div>
+
+              <div className="border-t border-stone-200 pt-4">
+                <h3 className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  Selected recognition
+                </h3>
+                <ul className="mt-2 space-y-1.5 text-sm text-stone-700">
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    Governor&apos;s Proclamation for STEAM Education
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    South Florida Science Center Business Visionary Award
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-700">•</span>
+                    MIT Media Lab, Amazon Future Engineer, and LEGO Education
+                    ambassador
+                  </li>
+                </ul>
+              </div>
             </div>
           </section>
         </aside>
