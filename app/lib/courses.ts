@@ -15,6 +15,11 @@ export type Course = {
     url: string;
     note: string;
   };
+  resources?: {
+    title: string;
+    url: string;
+    category: "Supplemental" | "Supplemental & story reading";
+  }[];
 };
 
 /**
@@ -41,6 +46,18 @@ export const COURSES: Course[] = [
       url: "https://openstax.org/books/introduction-computer-science/pages/1-introduction",
       note: "Primary digital textbook",
     },
+    resources: [
+      {
+        title: "Blown to Bits, 2nd Edition",
+        url: "https://www.pearson.com/en-us/subject-catalog/p/blown-to-bits-your-life-liberty-and-happiness-after-the-digital-explosion/P200000000091/9780137460168",
+        category: "Supplemental",
+      },
+      {
+        title: "The Machine Stops",
+        url: "https://www.gutenberg.org/ebooks/72890",
+        category: "Supplemental & story reading",
+      },
+    ],
   },
   {
     slug: "ap-csp-f",
@@ -61,6 +78,18 @@ export const COURSES: Course[] = [
       url: "https://openstax.org/books/introduction-computer-science/pages/1-introduction",
       note: "Primary digital textbook",
     },
+    resources: [
+      {
+        title: "Blown to Bits, 2nd Edition",
+        url: "https://www.pearson.com/en-us/subject-catalog/p/blown-to-bits-your-life-liberty-and-happiness-after-the-digital-explosion/P200000000091/9780137460168",
+        category: "Supplemental",
+      },
+      {
+        title: "The Machine Stops",
+        url: "https://www.gutenberg.org/ebooks/72890",
+        category: "Supplemental & story reading",
+      },
+    ],
   },
   {
     slug: "calculus-h-d",
@@ -77,9 +106,26 @@ export const COURSES: Course[] = [
     googleMeetUrl: "https://meet.google.com/umt-zodc-mck",
     textbook: {
       title: "OpenStax Calculus Volume 1",
-      url: "https://openstax.org/details/books/calculus-volume-1",
+      url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
       note: "Primary digital textbook",
     },
+    resources: [
+      {
+        title: "Calculus Made Easy",
+        url: "https://www.gutenberg.org/ebooks/33283",
+        category: "Supplemental",
+      },
+      {
+        title: "Katherine Johnson: A Lifetime of STEM",
+        url: "https://www.nasa.gov/learning-resources/katherine-johnson-a-lifetime-of-stem/",
+        category: "Supplemental & story reading",
+      },
+      {
+        title: "Sofia Kovalevskaya",
+        url: "https://mathshistory.st-andrews.ac.uk/Biographies/Kovalevskaya/",
+        category: "Supplemental & story reading",
+      },
+    ],
   },
   {
     slug: "calculus-h-e",
@@ -96,9 +142,26 @@ export const COURSES: Course[] = [
     googleMeetUrl: "https://meet.google.com/ctu-npkv-aoj",
     textbook: {
       title: "OpenStax Calculus Volume 1",
-      url: "https://openstax.org/details/books/calculus-volume-1",
+      url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
       note: "Primary digital textbook",
     },
+    resources: [
+      {
+        title: "Calculus Made Easy",
+        url: "https://www.gutenberg.org/ebooks/33283",
+        category: "Supplemental",
+      },
+      {
+        title: "Katherine Johnson: A Lifetime of STEM",
+        url: "https://www.nasa.gov/learning-resources/katherine-johnson-a-lifetime-of-stem/",
+        category: "Supplemental & story reading",
+      },
+      {
+        title: "Sofia Kovalevskaya",
+        url: "https://mathshistory.st-andrews.ac.uk/Biographies/Kovalevskaya/",
+        category: "Supplemental & story reading",
+      },
+    ],
   },
   {
     slug: "ap-csa-h",
@@ -119,6 +182,13 @@ export const COURSES: Course[] = [
       url: "https://runestone.academy/ns/books/published/csawesome2/csawesome2.html?mode=browsing",
       note: "Primary digital textbook · AP-authorized · CSAwesome approved",
     },
+    resources: [
+      {
+        title: "Think Java, 2nd Edition",
+        url: "https://greenteapress.com/wp/think-java-2e/",
+        category: "Supplemental",
+      },
+    ],
   },
   {
     slug: "study-hall",

@@ -105,7 +105,7 @@ export default function SampleLessonPage() {
           </h2>
         </div>
         <a
-          href="https://www.boostmyschool.com/ursulineacademy?utm_source=chatgpt.com"
+          href="https://www.boostmyschool.com/ursulineacademy"
           target="_blank"
           rel="noopener noreferrer"
           className="ua-card ua-shadow-soft block overflow-hidden"

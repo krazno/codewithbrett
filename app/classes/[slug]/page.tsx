@@ -211,36 +211,53 @@ export default async function ClassPage({ params }: Props) {
               </a>
             </section>
           ) : null}
-
-          {course.textbook ? (
-            <section
-              className="ua-card ua-shadow-soft p-6"
-              aria-labelledby="digital-textbook-heading"
-            >
-              <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                Digital textbook
-              </p>
-              <h2
-                id="digital-textbook-heading"
-                className="mt-1 font-serif text-2xl text-stone-900"
-              >
-                {course.textbook.title}
-              </h2>
-              <p className="mt-2 text-sm text-stone-600">
-                {course.textbook.note}
-              </p>
-              <a
-                href={course.textbook.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Open ${course.textbook.title} digital textbook in a new tab`}
-                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
-              >
-                Open digital textbook ↗
-              </a>
-            </section>
-          ) : null}
         </div>
+
+        {course.textbook ? (
+          <section
+            className="ua-card ua-shadow-soft mt-6 p-6"
+            aria-labelledby="resources-heading"
+          >
+            <h2
+              id="resources-heading"
+              className="font-serif text-2xl text-stone-900"
+            >
+              Resources
+            </h2>
+            <a
+              href={course.textbook.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 block rounded-xl bg-emerald-50 px-4 py-3 hover:bg-emerald-100 focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+            >
+              <span className="block text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                Main textbook
+              </span>
+              <span className="mt-1 block font-semibold text-stone-900">
+                {course.textbook.title} ↗
+              </span>
+            </a>
+            {course.resources?.length ? (
+              <ul className="mt-3 divide-y divide-stone-200">
+                {course.resources.map((resource) => (
+                  <li key={resource.url}>
+                    <a
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col gap-0.5 px-1 py-3 hover:text-[var(--ua-evergreen)] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none sm:flex-row sm:items-center sm:justify-between"
+                    >
+                      <span className="font-medium">{resource.title} ↗</span>
+                      <span className="text-xs text-stone-500">
+                        {resource.category}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </section>
+        ) : null}
 
         <footer className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-sm">
           <Link
