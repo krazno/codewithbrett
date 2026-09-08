@@ -171,6 +171,12 @@ export default function HomePage() {
             Your class hub for computer science and calculus, made for Ursuline
             girls who want help that actually makes sense.
           </p>
+          <Link
+            href="/orientation/"
+            className="mt-5 inline-flex items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#0b4a33]"
+          >
+            New student orientation
+          </Link>
         </header>
       </section>
 
