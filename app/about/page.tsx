@@ -96,33 +96,67 @@ export default function AboutPage() {
             <ListCard title="Prior roles" items={experience} />
           </div>
 
-          <ListCard
-            title="Education"
-            items={[
-              "M.S. in Computation Sciences · UMass Dartmouth",
-              "B.S. in Software Engineering · UMass Dartmouth",
-            ]}
-          />
+          <div className="md:col-span-2">
+            <ListCard
+              title="Education"
+              items={[
+                "M.S. in Computation Sciences · UMass Dartmouth",
+                "B.S. in Software Engineering · UMass Dartmouth",
+              ]}
+            />
+          </div>
 
-          <section className="ua-card ua-shadow-soft p-6">
-            <h2 className="font-serif text-2xl text-stone-900">Research</h2>
-            <p className="mt-3 text-sm font-semibold text-stone-900">
-              iHANDS · Intelligent Health Advising
-            </p>
-            <p className="mt-1 text-sm text-stone-600">
-              AI · Machine learning · Medical knowledge systems
-            </p>
-            <a
-              href="https://doi.org/10.1109/WI-IAT.2014.180"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex rounded-full bg-[var(--ua-evergreen)] px-4 py-2 text-sm font-semibold text-white hover:bg-[#0b4a33]"
-            >
-              View IEEE publication ↗
-            </a>
+          <section className="ua-card ua-shadow-soft p-6 md:col-span-2">
+            <h2 className="font-serif text-2xl text-stone-900">
+              Publications, research, and media
+            </h2>
+            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-stone-700">
+              <li className="flex gap-2">
+                <span className="text-emerald-700" aria-hidden="true">
+                  •
+                </span>
+                <span>
+                  Applying Big Data Analytics in Bioinformatics and Medicine
+                  (2017)
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-emerald-700" aria-hidden="true">
+                  •
+                </span>
+                <span>Focus on Healthful Fats and Diet Patterns (2017)</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-emerald-700" aria-hidden="true">
+                  •
+                </span>
+                <span>
+                  iHANDS: Intelligent Health Advising and Decision-Support
+                  Agent — IEEE/WI-IAT Conference (2014) ·{" "}
+                  <a
+                    href="https://doi.org/10.1109/WI-IAT.2014.180"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-[var(--ua-evergreen)] underline underline-offset-4"
+                  >
+                    View IEEE publication ↗
+                  </a>
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-emerald-700" aria-hidden="true">
+                  •
+                </span>
+                <span>
+                  Featured in Palm Beach Post, South Florida Science Center,
+                  NASA Education, and MIT Media Lab pieces on classroom
+                  innovation and robotics
+                </span>
+              </li>
+            </ul>
           </section>
 
-          <section className="ua-card ua-shadow-soft p-6">
+          <section className="ua-card ua-shadow-soft p-6 md:col-span-2">
             <h2 className="font-serif text-2xl text-stone-900">
               Recent summer projects
             </h2>
