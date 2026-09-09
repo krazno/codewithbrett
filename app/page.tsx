@@ -137,49 +137,51 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <section className="ua-card ua-shadow-soft relative overflow-hidden rounded-[22px]">
-        <div className="pointer-events-none absolute inset-0">
-          <Image
-            src="/media/branded/campus-entrance.png"
-            alt=""
-            fill
-            className="object-cover opacity-[0.18]"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(247,244,236,0.75)] via-[rgba(255,255,255,0.88)] to-[rgba(238,246,241,0.95)]" />
+      <section className="grid gap-4 lg:grid-cols-2">
+        <div className="ua-card ua-shadow-soft relative overflow-hidden rounded-[22px]">
+          <div className="pointer-events-none absolute inset-0">
+            <Image
+              src="/media/branded/campus-entrance.png"
+              alt=""
+              fill
+              className="object-cover opacity-[0.18]"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(247,244,236,0.75)] via-[rgba(255,255,255,0.88)] to-[rgba(238,246,241,0.95)]" />
+          </div>
+
+          <header className="relative z-10 flex h-full items-center gap-4 px-5 py-5 sm:px-7">
+            <Image
+              src="/media/branded/ua-seal.png"
+              alt="Ursuline Academy Dedham"
+              width={52}
+              height={52}
+              className="h-[52px] w-[52px] shrink-0 object-contain"
+              priority
+            />
+            <div>
+              <p className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
+                Faith · Courage · Joy · Ursuline Bears
+              </p>
+              <h1 className="mt-1 font-serif text-3xl text-stone-900 sm:text-4xl">
+                Welcome
+              </h1>
+              <p className="mt-1 text-sm font-medium text-stone-700">
+                <TodayDate />
+              </p>
+              <Link
+                href="/orientation/"
+                className="mt-3 inline-flex items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-2 text-xs font-semibold text-white shadow-md transition hover:bg-[#0b4a33]"
+              >
+                New student orientation
+              </Link>
+            </div>
+          </header>
         </div>
 
-        <header className="relative z-10 px-5 py-8 text-center sm:px-8 sm:py-10">
-          <Image
-            src="/media/branded/ua-seal.png"
-            alt="Ursuline Academy Dedham"
-            width={72}
-            height={72}
-            className="mx-auto h-[72px] w-[72px] object-contain"
-            priority
-          />
-          <p className="mt-3 text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-            Faith · Courage · Joy · Ursuline Bears
-          </p>
-          <h1 className="mt-2 font-serif text-4xl text-stone-900 sm:text-5xl">
-            Welcome
-          </h1>
-          <p className="mt-3 text-lg font-medium text-stone-700">
-            <TodayDate />
-          </p>
-          <Link
-            href="/orientation/"
-            className="mt-5 inline-flex items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#0b4a33]"
-          >
-            New student orientation
-          </Link>
-        </header>
-      </section>
-
-      <section className="mt-6 grid gap-4 sm:grid-cols-2">
-        <div className="ua-card ua-shadow-soft flex flex-col justify-center p-6">
+        <div className="ua-card ua-shadow-soft flex flex-col justify-center p-5 sm:p-6">
           <div className="flex items-center gap-4">
-            <div className="h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
+            <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
               <Image
                 src="/media/branded/brett-hannan.png"
                 alt="Brett Hannan"
@@ -198,34 +200,25 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-          <p className="mt-5 text-sm leading-relaxed text-stone-700">
+          <p className="mt-3 text-sm leading-relaxed text-stone-700">
             Questions or need help? Reach out anytime.
           </p>
           <a
             href="mailto:bhannan@ursulineacademy.net"
-            className="mt-2 text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
+            className="mt-1 text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
           >
             bhannan@ursulineacademy.net
           </a>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             <SoftLink
               href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
               primary
             >
               Schedule a meeting
             </SoftLink>
+            <SoftLink href="/about/">About me</SoftLink>
             <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
           </div>
-        </div>
-
-        <div className="ua-card ua-shadow-soft overflow-hidden">
-          <Image
-            src="/media/branded/brett-with-students.png"
-            alt="Mr. Hannan with Ursuline Academy students"
-            width={1024}
-            height={768}
-            className="h-full min-h-72 w-full object-cover"
-          />
         </div>
       </section>
 
@@ -361,6 +354,16 @@ export default function HomePage() {
             </div>
           </div>
         </article>
+      </section>
+
+      <section className="ua-card ua-shadow-soft mt-6 overflow-hidden">
+        <Image
+          src="/media/branded/brett-with-students.png"
+          alt="Mr. Hannan with Ursuline Academy students"
+          width={1024}
+          height={768}
+          className="h-auto w-full object-cover"
+        />
       </section>
 
       <aside
