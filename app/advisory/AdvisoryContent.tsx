@@ -88,13 +88,38 @@ const ORIENTATION_SCHEDULE: ScheduleItem[] = [
 
 const SESSION_KEY = "advisory-access";
 
+/** Same natural date style as the homepage `TodayDate` (without the live clock). */
+function formatAdvisoryDate(date: Date) {
+  const day = date.getDate();
+  const suffix =
+    day % 100 >= 11 && day % 100 <= 13
+      ? "th"
+      : day % 10 === 1
+        ? "st"
+        : day % 10 === 2
+          ? "nd"
+          : day % 10 === 3
+            ? "rd"
+            : "th";
+  const weekday = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+  }).format(date);
+  const month = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+  }).format(date);
+
+  return `${weekday}, ${month} ${day}${suffix}`;
+}
+
 export function AdvisoryContent() {
   const [passcode, setPasscode] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
+  const [today, setToday] = useState<Date | null>(null);
 
   useEffect(() => {
     setUnlocked(sessionStorage.getItem(SESSION_KEY) === "granted");
+    setToday(new Date());
   }, []);
 
   function unlock(event: FormEvent<HTMLFormElement>) {
@@ -167,24 +192,23 @@ export function AdvisoryContent() {
         className="ua-card ua-shadow-soft overflow-hidden"
         aria-labelledby="orientation-day2-heading"
       >
-        <div className="flex items-start gap-3 border-b border-emerald-800/15 bg-[linear-gradient(135deg,#eef5ef_0%,#f7f4ec_100%)] px-5 py-4 sm:items-center sm:px-7 sm:py-5">
-          <Image
-            src="/media/branded/us-flag.svg"
-            alt="American flag"
-            width={48}
-            height={26}
-            className="mt-1 h-6 w-11 shrink-0 rounded-sm shadow-sm ring-1 ring-stone-300/70 sm:mt-0 sm:h-7 sm:w-12"
-          />
-          <div className="min-w-0">
-            <p className="text-xs font-semibold tracking-[0.16em] text-emerald-800 uppercase">
-              Schedule
-            </p>
+        <div className="border-b border-emerald-800/15 bg-[linear-gradient(135deg,#eef5ef_0%,#f7f4ec_100%)] px-5 py-4 sm:px-7 sm:py-5">
+          <p className="text-xs font-semibold tracking-[0.16em] text-emerald-800 uppercase">
+            Advisory · Schedule
+          </p>
+          <div className="mt-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
             <h2
               id="orientation-day2-heading"
               className="font-serif text-2xl leading-tight text-stone-900 sm:text-3xl"
             >
               All Student Orientation Day 2
             </h2>
+            <time
+              dateTime={today?.toISOString()}
+              className="shrink-0 text-sm font-semibold text-stone-700 sm:text-base"
+            >
+              {today ? formatAdvisoryDate(today) : "\u00A0"}
+            </time>
           </div>
         </div>
 
@@ -229,19 +253,19 @@ export function AdvisoryContent() {
         </ol>
       </section>
 
-      <div className="grid gap-5 lg:grid-cols-[1.6fr_0.8fr]">
+      <div className="grid gap-5 md:grid-cols-2">
         <section
-          className="ua-card ua-shadow-soft flex items-center justify-center px-6 py-10 sm:px-12 sm:py-14"
+          className="ua-card ua-shadow-soft flex px-6 py-8 sm:px-8 sm:py-10"
           aria-labelledby="ursuline-prayer-heading"
         >
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto w-full max-w-xl text-center">
             <h2
               id="ursuline-prayer-heading"
-              className="font-serif text-3xl text-stone-900 sm:text-4xl"
+              className="font-serif text-2xl text-stone-900 sm:text-3xl"
             >
               Ursuline Prayer
             </h2>
-            <blockquote className="mt-6 space-y-4 font-serif text-xl leading-relaxed text-stone-800 sm:text-2xl sm:leading-relaxed">
+            <blockquote className="mt-5 space-y-3 font-serif text-lg leading-relaxed text-stone-800 sm:text-xl sm:leading-relaxed">
               <p>
                 Gracious God, let us remain in harmony, united together all of one
                 heart and one will.
@@ -255,7 +279,7 @@ export function AdvisoryContent() {
                 For if we try to be like this, without any doubt, the Lord God
                 will be in our midst.
               </p>
-              <p className="pt-2 font-semibold text-[var(--ua-evergreen)]">
+              <p className="pt-1 font-semibold text-[var(--ua-evergreen)]">
                 Amen.
               </p>
             </blockquote>
@@ -263,38 +287,68 @@ export function AdvisoryContent() {
         </section>
 
         <section
-          className="ua-card ua-shadow-soft p-6 sm:p-8"
-          aria-labelledby="locker-heading"
+          className="ua-card ua-shadow-soft flex px-6 py-8 sm:px-8 sm:py-10"
+          aria-labelledby="pledge-heading"
         >
-          <h2 id="locker-heading" className="font-serif text-3xl text-stone-900">
-            Locker Assignments
-          </h2>
-          <table className="mt-5 w-full border-collapse text-left">
-            <thead>
-              <tr className="border-b-2 border-emerald-800 text-xs tracking-wide text-stone-600 uppercase">
-                <th scope="col" className="px-2 py-2 font-semibold">
-                  Initials
-                </th>
-                <th scope="col" className="px-2 py-2 text-right font-semibold">
-                  Locker
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-stone-200">
-              {LOCKERS.map(([initials, locker]) => (
-                <tr key={locker}>
-                  <th scope="row" className="px-2 py-2.5 font-semibold text-stone-900">
-                    {initials}
-                  </th>
-                  <td className="px-2 py-2.5 text-right tabular-nums text-stone-700">
-                    {locker}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="mx-auto w-full max-w-xl text-center">
+            <div className="flex items-center justify-center gap-3">
+              <Image
+                src="/media/branded/us-flag.svg"
+                alt="American flag"
+                width={56}
+                height={30}
+                className="h-7 w-12 shrink-0 rounded-sm shadow-sm ring-1 ring-stone-300/70 sm:h-8 sm:w-14"
+              />
+              <h2
+                id="pledge-heading"
+                className="font-serif text-2xl text-stone-900 sm:text-3xl"
+              >
+                Pledge of Allegiance
+              </h2>
+            </div>
+            <blockquote className="mt-5 font-serif text-lg leading-relaxed text-stone-800 sm:text-xl sm:leading-relaxed">
+              <p>
+                I pledge allegiance to the Flag of the United States of America,
+                and to the Republic for which it stands, one Nation under God,
+                indivisible, with liberty and justice for all.
+              </p>
+            </blockquote>
+          </div>
         </section>
       </div>
+
+      <section
+        className="ua-card ua-shadow-soft p-6 sm:p-8"
+        aria-labelledby="locker-heading"
+      >
+        <h2 id="locker-heading" className="font-serif text-3xl text-stone-900">
+          Locker Assignments
+        </h2>
+        <table className="mt-5 w-full max-w-md border-collapse text-left">
+          <thead>
+            <tr className="border-b-2 border-emerald-800 text-xs tracking-wide text-stone-600 uppercase">
+              <th scope="col" className="px-2 py-2 font-semibold">
+                Initials
+              </th>
+              <th scope="col" className="px-2 py-2 text-right font-semibold">
+                Locker
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-stone-200">
+            {LOCKERS.map(([initials, locker]) => (
+              <tr key={locker}>
+                <th scope="row" className="px-2 py-2.5 font-semibold text-stone-900">
+                  {initials}
+                </th>
+                <td className="px-2 py-2.5 text-right tabular-nums text-stone-700">
+                  {locker}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { AdvisoryContent } from "./AdvisoryContent";
 export const metadata: Metadata = {
   title: "Advisory",
   description:
-    "All Student Orientation Day 2 schedule, Ursuline Prayer, and Advisory materials.",
+    "All Student Orientation Day 2 schedule, Ursuline Prayer, Pledge of Allegiance, and Advisory materials.",
   alternates: { canonical: "/advisory/" },
   robots: { index: false, follow: false },
 };
