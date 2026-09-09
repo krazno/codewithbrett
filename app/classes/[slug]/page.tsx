@@ -93,7 +93,15 @@ export default async function ClassPage({ params }: Props) {
         </header>
 
         <div
-          className={`mt-6 grid gap-4 ${course.googleMeetUrl ? "md:grid-cols-2" : ""}`}
+          className={`mt-6 grid gap-4 ${
+            course.apJoinCode
+              ? "md:grid-cols-2"
+              : course.textbook
+                ? "md:grid-cols-2 lg:grid-cols-3"
+                : course.googleMeetUrl
+                  ? "md:grid-cols-2"
+                  : ""
+          }`}
         >
           {course.googleClassroomUrl && course.googleClassroomCode ? (
             <section
@@ -225,61 +233,68 @@ export default async function ClassPage({ params }: Props) {
               </a>
             </section>
           ) : null}
-        </div>
 
-        {course.textbook ? (
-          <section
-            className="ua-card ua-shadow-soft mt-6 p-6"
-            aria-labelledby="resources-heading"
-          >
-            <h2
-              id="resources-heading"
-              className="font-serif text-2xl text-stone-900"
+          {course.textbook ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="resources-heading"
             >
-              Resources
-            </h2>
-            <a
-              href={course.textbook.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 flex items-center gap-3 rounded-xl bg-emerald-50 px-4 py-3 hover:bg-emerald-100 focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
-            >
-              <span
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
-                aria-hidden="true"
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <BookOpen size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Course materials
+                  </p>
+                  <h2
+                    id="resources-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Resources
+                  </h2>
+                </div>
+              </div>
+              <a
+                href={course.textbook.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 block rounded-xl bg-emerald-50 px-4 py-3 hover:bg-emerald-100 focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
-                <BookOpen size={24} strokeWidth={2} />
-              </span>
-              <span className="min-w-0">
                 <span className="block text-xs font-semibold tracking-wide text-emerald-800 uppercase">
                   Digital textbook
                 </span>
                 <span className="mt-1 block font-semibold text-stone-900">
                   {course.textbook.title} ↗
                 </span>
-              </span>
-            </a>
-            {course.resources?.length ? (
-              <ul className="mt-3 divide-y divide-stone-200">
-                {course.resources.map((resource) => (
-                  <li key={resource.url}>
-                    <a
-                      href={resource.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex flex-col gap-0.5 px-1 py-3 hover:text-[var(--ua-evergreen)] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none sm:flex-row sm:items-center sm:justify-between"
-                    >
-                      <span className="font-medium">{resource.title} ↗</span>
-                      <span className="text-xs text-stone-500">
-                        {resource.category}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </section>
-        ) : null}
+              </a>
+              {course.resources?.length ? (
+                <ul className="mt-3 divide-y divide-stone-200">
+                  {course.resources.map((resource) => (
+                    <li key={resource.url}>
+                      <a
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block px-1 py-3 hover:text-[var(--ua-evergreen)] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                      >
+                        <span className="block text-sm font-medium">
+                          {resource.title} ↗
+                        </span>
+                        <span className="mt-0.5 block text-xs text-stone-500">
+                          {resource.category}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </section>
+          ) : null}
+        </div>
 
         <footer className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-sm">
           <Link
