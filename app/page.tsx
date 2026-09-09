@@ -288,6 +288,66 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="ua-card ua-shadow-soft mt-5 overflow-hidden">
+        <div className="grid sm:grid-cols-[1.1fr_0.9fr]">
+          <div className="flex flex-col justify-center p-6 sm:p-8">
+            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              For school &amp; beyond
+            </p>
+            <h2 className="mt-1 font-serif text-3xl text-stone-900">
+              Tools &amp; Resources
+            </h2>
+            <p className="mt-2 max-w-lg text-sm leading-relaxed text-stone-600">
+              A short list of software that supports writing, coding, and class
+              projects.
+            </p>
+            <div className="mt-5">
+              <Link
+                href="/resources/"
+                className="inline-flex items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0b4a33]"
+              >
+                More resources
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex min-h-48 items-center justify-center bg-gradient-to-br from-[#e9f3ed] via-white to-[#edf0f8] p-6">
+            <div
+              className="flex items-center justify-center gap-3 sm:gap-4"
+              aria-label="Featured tools: Cursor, Wispr Flow, and Eclipse IDE"
+            >
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-stone-200 bg-white p-3 shadow-sm">
+                <Image
+                  src="/media/resources/cursor.svg"
+                  alt="Cursor"
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 object-contain"
+                />
+              </div>
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-stone-200 bg-white p-3 shadow-sm">
+                <Image
+                  src="/media/resources/wispr-flow.svg"
+                  alt="Wispr Flow"
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 object-contain"
+                />
+              </div>
+              <div className="flex h-20 w-24 items-center justify-center rounded-2xl border border-stone-200 bg-white p-3 shadow-sm">
+                <Image
+                  src="/media/resources/eclipse-ide.svg"
+                  alt="Eclipse IDE"
+                  width={80}
+                  height={28}
+                  className="h-auto w-full object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <p className="mt-8 text-center text-sm text-stone-500">
         Serviam ·{" "}
         <a
