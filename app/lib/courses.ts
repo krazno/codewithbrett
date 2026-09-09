@@ -203,7 +203,7 @@ export const COURSES: Course[] = [
   },
   {
     slug: "study-hall",
-    title: "Study Hall",
+    title: "Study Hall (A)",
     room: "AH",
     scheduleNote: "Day 4",
     description:
