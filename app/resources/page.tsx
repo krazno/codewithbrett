@@ -17,6 +17,7 @@ const resources = [
     image: "/media/resources/cursor.svg",
     imageWidth: 56,
     imageHeight: 56,
+    textIcon: null,
   },
   {
     name: "Wispr Flow",
@@ -25,6 +26,7 @@ const resources = [
     image: "/media/resources/wispr-flow.svg",
     imageWidth: 56,
     imageHeight: 56,
+    textIcon: null,
   },
   {
     name: "Eclipse IDE",
@@ -33,6 +35,7 @@ const resources = [
     image: "/media/resources/eclipse-ide.svg",
     imageWidth: 96,
     imageHeight: 32,
+    textIcon: null,
   },
   {
     name: "NotebookLM",
@@ -42,6 +45,17 @@ const resources = [
     image: null,
     imageWidth: 56,
     imageHeight: 56,
+    textIcon: "NLM",
+  },
+  {
+    name: "Google Gems",
+    href: "https://gemini.google.com/gems/view",
+    description:
+      "Create custom Gemini experts for repeatable tasks and guided workflows.",
+    image: null,
+    imageWidth: 56,
+    imageHeight: 56,
+    textIcon: "G",
   },
 ] as const;
 
@@ -89,7 +103,7 @@ export default function ResourcesPage() {
                     aria-label={resource.name}
                     className="font-serif text-lg font-bold text-stone-700"
                   >
-                    NLM
+                    {resource.textIcon}
                   </span>
                 )}
               </div>
@@ -122,7 +136,7 @@ export default function ResourcesPage() {
                     aria-hidden="true"
                     className="font-serif text-lg font-bold text-stone-700"
                   >
-                    NLM
+                    {resource.textIcon}
                   </span>
                 )}
               </div>
