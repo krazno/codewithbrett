@@ -57,6 +57,15 @@ const resources = [
     imageHeight: 56,
     textIcon: "G",
   },
+  {
+    name: "Gamma",
+    href: "https://gamma.app/",
+    description: "AI-assisted presentations and slides.",
+    image: null,
+    imageWidth: 56,
+    imageHeight: 56,
+    textIcon: "Γ",
+  },
 ] as const;
 
 export default function ResourcesPage() {
@@ -84,11 +93,11 @@ export default function ResourcesPage() {
             </p>
           </div>
 
-          <div className="flex min-h-44 items-center justify-center gap-3 bg-gradient-to-br from-[#e9f3ed] via-white to-[#edf0f8] p-6">
+          <div className="flex min-h-44 flex-wrap items-center justify-center gap-2 bg-gradient-to-br from-[#e9f3ed] via-white to-[#edf0f8] p-6 sm:gap-3">
             {resources.map((resource) => (
               <div
                 key={resource.name}
-                className="flex h-16 w-16 items-center justify-center rounded-2xl border border-stone-200 bg-white p-2.5 shadow-sm sm:h-20 sm:w-20"
+                className="flex h-14 w-14 items-center justify-center rounded-2xl border border-stone-200 bg-white p-2.5 shadow-sm sm:h-16 sm:w-16"
               >
                 {resource.image ? (
                   <Image

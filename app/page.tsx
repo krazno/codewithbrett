@@ -308,8 +308,8 @@ export default function HomePage() {
               projects.
             </p>
             <div
-              className="mt-5 flex items-center gap-2"
-              aria-label="Featured tools: Cursor, Wispr Flow, and Eclipse IDE"
+              className="mt-5 flex flex-wrap items-center gap-2"
+              aria-label="Featured tools: Cursor, Wispr Flow, Eclipse IDE, and Gamma"
             >
               <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-stone-200 bg-white p-2 shadow-sm">
                 <Image
@@ -337,6 +337,14 @@ export default function HomePage() {
                   height={24}
                   className="h-auto w-full object-contain"
                 />
+              </div>
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-stone-200 bg-white p-2 shadow-sm">
+                <span
+                  aria-label="Gamma"
+                  className="font-serif text-lg font-bold text-stone-700"
+                >
+                  Γ
+                </span>
               </div>
             </div>
             <div className="mt-auto pt-5">

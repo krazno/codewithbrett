@@ -335,6 +335,48 @@ export default async function ClassPage({ params }: Props) {
           ) : null}
         </div>
 
+        {/* Academic classes only (omit Study Hall). Paste Share → Embed URL into gammaEmbedSrc. */}
+        {course.googleClassroomUrl ? (
+          <section
+            className="ua-card ua-shadow-soft mt-4 overflow-hidden p-6"
+            aria-labelledby="gamma-presentation-heading"
+          >
+            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              Current deck
+            </p>
+            <h2
+              id="gamma-presentation-heading"
+              className="mt-1 font-serif text-2xl text-stone-900"
+            >
+              Class presentation
+            </h2>
+            <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+              {course.gammaEmbedSrc ? (
+                <div className="aspect-video w-full">
+                  <iframe
+                    src={course.gammaEmbedSrc}
+                    title={
+                      course.gammaEmbedTitle ??
+                      `${course.title} class presentation`
+                    }
+                    className="h-full w-full border-0"
+                    allow="fullscreen"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              ) : (
+                <div className="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-stone-50 px-6 text-center">
+                  <p className="text-sm font-medium text-stone-500">
+                    Presentation coming soon
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
+        ) : null}
+
         <footer className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-sm">
           <Link
             href="/"

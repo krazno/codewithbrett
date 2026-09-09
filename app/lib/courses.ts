@@ -12,6 +12,13 @@ export type Course = {
   syllabusUrl?: string;
   summerWorkUrl?: string;
   apJoinCode?: string;
+  /**
+   * Gamma public embed URL from Share → Embed (e.g. https://gamma.app/embed/…).
+   * Leave undefined until a deck is ready; the class page still shows a slot.
+   */
+  gammaEmbedSrc?: string;
+  /** Optional accessible title for the Gamma iframe (defaults to “Class presentation”). */
+  gammaEmbedTitle?: string;
   textbook?: {
     title: string;
     url: string;
