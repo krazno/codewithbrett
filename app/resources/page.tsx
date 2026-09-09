@@ -34,6 +34,15 @@ const resources = [
     imageWidth: 96,
     imageHeight: 32,
   },
+  {
+    name: "NotebookLM",
+    href: "https://notebooklm.google/",
+    description:
+      "AI-assisted research and study notebook grounded in your sources.",
+    image: null,
+    imageWidth: 56,
+    imageHeight: 56,
+  },
 ] as const;
 
 export default function ResourcesPage() {
@@ -67,13 +76,22 @@ export default function ResourcesPage() {
                 key={resource.name}
                 className="flex h-16 w-16 items-center justify-center rounded-2xl border border-stone-200 bg-white p-2.5 shadow-sm sm:h-20 sm:w-20"
               >
-                <Image
-                  src={resource.image}
-                  alt={`${resource.name} logo`}
-                  width={resource.imageWidth}
-                  height={resource.imageHeight}
-                  className="max-h-full w-full object-contain"
-                />
+                {resource.image ? (
+                  <Image
+                    src={resource.image}
+                    alt={`${resource.name} logo`}
+                    width={resource.imageWidth}
+                    height={resource.imageHeight}
+                    className="max-h-full w-full object-contain"
+                  />
+                ) : (
+                  <span
+                    aria-label={resource.name}
+                    className="font-serif text-lg font-bold text-stone-700"
+                  >
+                    NLM
+                  </span>
+                )}
               </div>
             ))}
           </div>
@@ -91,13 +109,22 @@ export default function ResourcesPage() {
               className="ua-card flex items-center gap-4 p-5 sm:gap-6 sm:p-6"
             >
               <div className="flex h-16 w-20 shrink-0 items-center justify-center rounded-xl border border-stone-200 bg-white p-2.5">
-                <Image
-                  src={resource.image}
-                  alt=""
-                  width={resource.imageWidth}
-                  height={resource.imageHeight}
-                  className="max-h-full w-full object-contain"
-                />
+                {resource.image ? (
+                  <Image
+                    src={resource.image}
+                    alt=""
+                    width={resource.imageWidth}
+                    height={resource.imageHeight}
+                    className="max-h-full w-full object-contain"
+                  />
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="font-serif text-lg font-bold text-stone-700"
+                  >
+                    NLM
+                  </span>
+                )}
               </div>
               <div className="min-w-0 flex-1">
                 <h3 className="font-serif text-2xl text-stone-900">
