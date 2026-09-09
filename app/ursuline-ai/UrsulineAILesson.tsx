@@ -1041,7 +1041,7 @@ export default function UrsulineAILesson() {
 
   return (
     <div id="top" className="min-h-screen bg-stone-50 text-stone-900 scroll-mt-0">
-      <nav className="sticky top-0 z-50 border-b border-stone-200/70 bg-stone-50/90 backdrop-blur-md">
+      <nav className="sticky top-[var(--site-header-height)] z-50 border-b border-stone-200/70 bg-stone-50/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-4 sm:py-3 md:px-6 md:py-4">
           <a
             href="#top"

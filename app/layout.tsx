@@ -7,6 +7,7 @@ import {
   GoogleTagManagerHead,
 } from "./components/GoogleTagManager";
 import { QuoteFooter } from "./components/QuoteFooter";
+import { SiteHeader } from "./components/SiteHeader";
 import "./globals.css";
 
 const sans = Source_Sans_3({
@@ -79,6 +80,7 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col bg-stone-50 font-sans antialiased">
         <GoogleTagManagerBody />
+        <SiteHeader />
         <div className="flex-1">
           <ContentGuard>{children}</ContentGuard>
         </div>

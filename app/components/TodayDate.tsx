@@ -85,8 +85,8 @@ export function TodayDateLabel({ className }: { className?: string }) {
       suppressHydrationWarning
       aria-label={now ? full : "Today’s date"}
     >
-      <span className="sm:hidden">{compact}</span>
-      <span className="hidden sm:inline">{full}</span>
+      <span className="md:hidden">{compact}</span>
+      <span className="hidden md:inline">{full}</span>
     </time>
   );
 }
