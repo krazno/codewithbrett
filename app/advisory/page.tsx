@@ -15,26 +15,46 @@ export const metadata: Metadata = {
 export default function AdvisoryPage() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
-      <div
-        className="sticky top-0 z-50 border-b border-emerald-900/15 bg-[#f7f4ec]/95 shadow-sm backdrop-blur-md"
+      <header
+        className="sticky top-0 z-50 border-b border-black/25 bg-[var(--ua-evergreen)] text-white shadow-md"
         role="banner"
       >
         <nav
           aria-label="Advisory"
-          className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-3 py-2.5 sm:px-6 sm:py-3"
+          className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-3 py-2 sm:gap-4 sm:px-6 sm:py-2.5"
         >
-          <Link
-            href="/"
-            className="shrink-0 text-sm font-semibold text-[var(--ua-evergreen)] underline decoration-emerald-800/30 underline-offset-4 hover:decoration-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
-          >
-            Home
-          </Link>
-          <TodayDateLabel className="text-right text-sm font-semibold text-[var(--ua-evergreen)] sm:text-base" />
-        </nav>
-      </div>
+          <div className="flex min-w-0 items-center gap-2.5 sm:gap-3.5">
+            <Image
+              src="/media/branded/ua-seal.png"
+              alt=""
+              width={40}
+              height={40}
+              priority
+              className="h-8 w-8 shrink-0 object-contain sm:h-9 sm:w-9"
+            />
+            <div
+              className="hidden h-6 w-px shrink-0 bg-white/25 sm:block"
+              aria-hidden
+            />
+            <div className="flex min-w-0 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
+              <p className="truncate font-serif text-[0.95rem] leading-none font-semibold tracking-tight sm:text-base">
+                Advisory
+              </p>
+              <Link
+                href="/"
+                className="w-fit text-xs font-semibold tracking-wide text-white/90 uppercase underline decoration-white/40 underline-offset-[3px] hover:text-white hover:decoration-white focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ua-evergreen)] sm:text-[0.7rem]"
+              >
+                Home
+              </Link>
+            </div>
+          </div>
 
-      <div className="mx-auto flex min-h-[calc(100vh-2.75rem)] max-w-5xl flex-col px-5 pt-6 pb-8 sm:px-6 sm:pt-8 sm:pb-10">
-        <header className="overflow-hidden rounded-3xl bg-[var(--ua-evergreen)] shadow-xl">
+          <TodayDateLabel className="max-w-[52%] shrink-0 text-right text-[0.7rem] leading-snug font-medium text-white/95 sm:max-w-none sm:text-sm sm:font-semibold" />
+        </nav>
+      </header>
+
+      <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-5xl flex-col px-5 pt-6 pb-8 sm:px-6 sm:pt-8 sm:pb-10">
+        <div className="overflow-hidden rounded-3xl bg-[var(--ua-evergreen)] shadow-xl">
           <div className="relative aspect-[4/1] min-h-40">
             <Image
               src="/media/branded/campus-entrance.png"
@@ -61,7 +81,7 @@ export default function AdvisoryPage() {
               </h1>
             </div>
           </div>
-        </header>
+        </div>
 
         <AdvisoryContent />
 

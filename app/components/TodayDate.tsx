@@ -60,12 +60,16 @@ export function TodayDateLabel({ className }: { className?: string }) {
     setNow(new Date());
   }, []);
 
+  const label = now ? formatTodayDate(now) : "\u00A0";
+
   return (
     <time
       dateTime={now ? now.toISOString().slice(0, 10) : undefined}
       className={className}
+      suppressHydrationWarning
+      aria-label={now ? undefined : "Today’s date"}
     >
-      {now ? formatTodayDate(now) : "\u00A0"}
+      {label}
     </time>
   );
 }
