@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PhotoCarousel } from "../components/PhotoCarousel";
 
 export const metadata: Metadata = {
   title: "About Mr. Hannan",
@@ -60,7 +61,7 @@ const lifePhotos = [
   },
   {
     src: "/media/about/brett/robotics-students.jpg",
-    alt: "Brett Hannan with students at a robotics event, several holding small robots",
+    alt: "Brett Hannan with a student robotics team at an event",
   },
   {
     src: "/media/about/brett/umass-graduation.jpg",
@@ -72,7 +73,7 @@ const lifePhotos = [
   },
   {
     src: "/media/about/brett/robotics-mentoring.jpg",
-    alt: "Brett Hannan mentoring students at a robotics competition",
+    alt: "Brett Hannan talking with a student robotics team",
   },
   {
     src: "/media/about/brett/bridge-city.jpg",
@@ -101,30 +102,6 @@ function ListCard({
         ))}
       </ul>
     </section>
-  );
-}
-
-function PhotoGrid({
-  photos,
-}: {
-  photos: readonly { src: string; alt: string }[];
-}) {
-  return (
-    <ul className="mt-4 grid max-w-2xl grid-cols-3 gap-2.5 sm:grid-cols-4">
-      {photos.map((photo) => (
-        <li key={photo.src}>
-          <div className="relative aspect-square overflow-hidden rounded-xl bg-stone-200">
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              fill
-              sizes="140px"
-              className="object-cover"
-            />
-          </div>
-        </li>
-      ))}
-    </ul>
   );
 }
 
@@ -258,22 +235,12 @@ export default function AboutPage() {
             </ul>
           </section>
 
-          <section className="ua-card ua-shadow-soft p-6 md:col-span-2">
-            <h2 className="font-serif text-2xl text-stone-900">Life &amp; work</h2>
-            <p className="mt-2 text-sm leading-relaxed text-stone-700">
-              A few snapshots from teaching, travel, and life outside the
-              classroom.
-            </p>
-            <PhotoGrid photos={lifePhotos} />
-          </section>
-
-          <section className="ua-card ua-shadow-soft p-6 md:col-span-2">
-            <h2 className="font-serif text-2xl text-stone-900">My Cat</h2>
-            <p className="mt-2 text-sm leading-relaxed text-stone-700">
-              When I&apos;m not teaching or tinkering with code, my cat keeps me
-              company — sometimes in a necktie, sometimes mid-nap.
-            </p>
-            <PhotoGrid photos={catPhotos} />
+          <section
+            className="ua-card ua-shadow-soft grid gap-4 p-4 sm:p-5 md:col-span-2 md:grid-cols-2"
+            aria-label="Photo galleries"
+          >
+            <PhotoCarousel photos={lifePhotos} label="Photos from life and work" />
+            <PhotoCarousel photos={catPhotos} label="Photos of a black cat" />
           </section>
 
           <ListCard title="Awards" items={awards} />
