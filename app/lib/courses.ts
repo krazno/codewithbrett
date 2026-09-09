@@ -56,6 +56,9 @@ export const COURSES: Course[] = [
     summerWorkUrl:
       "https://drive.google.com/file/d/1MHy2unu6ZNfZAK9pGB-Ur123fRdGqR0a/view?usp=sharing",
     apJoinCode: "Y3LEZM",
+    gammaEmbedSrc: "https://gamma.app/embed/yf84iuczscacr6s",
+    gammaUrl: "https://gamma.app/docs/Welcome-to-yf84iuczscacr6s",
+    gammaEmbedTitle: "Welcome to AP CSP",
     textbook: {
       title: "OpenStax Introduction to Computer Science",
       url: "https://openstax.org/books/introduction-computer-science/pages/1-introduction",
@@ -92,6 +95,9 @@ export const COURSES: Course[] = [
     summerWorkUrl:
       "https://drive.google.com/file/d/1MHy2unu6ZNfZAK9pGB-Ur123fRdGqR0a/view?usp=sharing",
     apJoinCode: "G22APR",
+    gammaEmbedSrc: "https://gamma.app/embed/yf84iuczscacr6s",
+    gammaUrl: "https://gamma.app/docs/Welcome-to-yf84iuczscacr6s",
+    gammaEmbedTitle: "Welcome to AP CSP",
     textbook: {
       title: "OpenStax Introduction to Computer Science",
       url: "https://openstax.org/books/introduction-computer-science/pages/1-introduction",
