@@ -149,70 +149,75 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[rgba(247,244,236,0.78)] via-[rgba(255,255,255,0.9)] to-[rgba(238,246,241,0.94)]" />
         </div>
 
-        <header className="relative z-10 flex items-center justify-center gap-5 px-5 py-6 text-center sm:py-7">
-          <Image
-            src="/media/branded/ua-seal.png"
-            alt="Ursuline Academy Dedham"
-            width={64}
-            height={64}
-            className="h-14 w-14 shrink-0 object-contain sm:h-16 sm:w-16"
-            priority
-          />
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.14em] text-emerald-800 uppercase">
-              Faith · Courage · Joy
-            </p>
-            <h1 className="mt-1 font-serif text-3xl text-stone-900 sm:text-4xl">
-              Welcome
-            </h1>
-            <div className="mt-2 text-xl font-semibold text-stone-800 sm:text-2xl">
-              <TodayDate />
-            </div>
-          </div>
-        </header>
-      </section>
-
-      <section className="ua-card ua-shadow-soft mt-4 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-6">
-        <div className="flex items-center gap-4">
-          <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
+        <div className="relative z-10 grid gap-6 p-5 sm:p-6 md:grid-cols-2 md:items-center md:gap-8 md:p-7">
+          <header className="flex items-center gap-4 sm:gap-5">
             <Image
-              src="/media/branded/brett-hannan.png"
-              alt="Brett Hannan"
-              width={96}
-              height={96}
-              className="h-full w-full object-cover"
+              src="/media/branded/ua-seal.png"
+              alt="Ursuline Academy Dedham"
+              width={112}
+              height={112}
+              className="h-24 w-24 shrink-0 object-contain sm:h-28 sm:w-28"
               priority
             />
-          </div>
-          <div>
-            <h2 className="font-serif text-3xl text-stone-900">
-              Brett Hannan
-            </h2>
-            <p className="mt-1 text-sm text-stone-600">
-              Computer Science & Mathematics
-            </p>
-          </div>
-        </div>
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.14em] text-emerald-800/80 uppercase">
+                Faith · Courage · Joy
+              </p>
+              <h1 className="mt-1 font-serif text-3xl text-stone-900 sm:text-4xl">
+                Welcome
+              </h1>
+              <div className="mt-2 text-xl font-semibold text-stone-800 sm:text-2xl">
+                <TodayDate />
+              </div>
+            </div>
+          </header>
 
-        <div className="mt-4 sm:mt-0 sm:text-right">
-          <p className="text-sm leading-relaxed text-stone-700">
-            Questions or need help? Reach out anytime.
-          </p>
-          <a
-            href="mailto:bhannan@ursulineacademy.net"
-            className="mt-1 inline-block text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
-          >
-            bhannan@ursulineacademy.net
-          </a>
-          <div className="mt-3 flex flex-wrap gap-2 sm:justify-end">
-            <SoftLink
-              href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
-              primary
-            >
-              Schedule a meeting
-            </SoftLink>
-            <SoftLink href="/about/">About me</SoftLink>
-            <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
+          <div>
+            <div className="flex items-center gap-4">
+              <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
+                <Image
+                  src="/media/branded/brett-hannan.png"
+                  alt="Brett Hannan"
+                  width={96}
+                  height={96}
+                  className="h-full w-full object-cover"
+                  priority
+                />
+              </div>
+              <div>
+                <h2 className="font-serif text-2xl text-stone-900 sm:text-3xl">
+                  Brett Hannan
+                </h2>
+                <p className="mt-1 text-sm text-stone-600">
+                  Computer Science & Mathematics
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <p className="text-sm leading-relaxed text-stone-700">
+                Questions or need help? Reach out anytime.
+              </p>
+              <a
+                href="mailto:bhannan@ursulineacademy.net"
+                className="mt-1 inline-block text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
+              >
+                bhannan@ursulineacademy.net
+              </a>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <SoftLink
+                  href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
+                  primary
+                >
+                  Schedule a meeting
+                </SoftLink>
+                <SoftLink href="/about/">About me</SoftLink>
+                <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
+                <SoftLink href="https://calendar.app.google/Y59k115ZMYyLjcUG6">
+                  Google Calendar
+                </SoftLink>
+              </div>
+            </div>
           </div>
         </div>
       </section>
