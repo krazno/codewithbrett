@@ -17,6 +17,8 @@ export type Course = {
    * Leave undefined until a deck is ready; the class page still shows a slot.
    */
   gammaEmbedSrc?: string;
+  /** Gamma Share / docs URL for “Open presentation” (e.g. https://gamma.app/docs/…). */
+  gammaUrl?: string;
   /** Optional accessible title for the Gamma iframe (defaults to “Class Presentation”). */
   gammaEmbedTitle?: string;
   textbook?: {
@@ -126,6 +128,8 @@ export const COURSES: Course[] = [
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
     gammaEmbedSrc: "https://gamma.app/embed/fspy3bsk7zfi634",
+    gammaUrl:
+      "https://gamma.app/docs/Welcome-to-Calculus-Honors-fspy3bsk7zfi634",
     gammaEmbedTitle: "Welcome to Calculus Honors",
     textbook: {
       title: "OpenStax Calculus Volume 1",
@@ -168,6 +172,8 @@ export const COURSES: Course[] = [
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
     gammaEmbedSrc: "https://gamma.app/embed/fspy3bsk7zfi634",
+    gammaUrl:
+      "https://gamma.app/docs/Welcome-to-Calculus-Honors-fspy3bsk7zfi634",
     gammaEmbedTitle: "Welcome to Calculus Honors",
     textbook: {
       title: "OpenStax Calculus Volume 1",

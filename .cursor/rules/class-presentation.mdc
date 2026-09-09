@@ -1,0 +1,16 @@
+---
+description: Class Presentation Gamma card — two-column span, embed + open URL
+globs: app/lib/courses.ts,app/classes/**/*
+alwaysApply: false
+---
+
+# Class Presentation (Gamma)
+
+On academic class pages (`app/classes/[slug]/page.tsx`), the Class Presentation card:
+
+- Spans **two grid columns** (`md:col-span-2`) so the embed fills the row
+- Embeds via `gammaEmbedSrc` (Share → Embed URL, `https://gamma.app/embed/…`)
+- Always pairs a deck with `gammaUrl` (Share/docs URL, `https://gamma.app/docs/…`) for “Open presentation ↗”
+- Optional `gammaEmbedTitle` for the iframe accessible name
+
+When adding or updating a deck in `app/lib/courses.ts`, set **both** `gammaEmbedSrc` and `gammaUrl`. Leave both unset for “Presentation coming soon.” Do not invent alternate UI; match the existing ua-card button pattern.

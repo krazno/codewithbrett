@@ -334,10 +334,10 @@ export default async function ClassPage({ params }: Props) {
             </section>
           ) : null}
 
-          {/* Academic classes only (omit Study Hall). Paste Share → Embed URL into gammaEmbedSrc. */}
+          {/* Academic classes only (omit Study Hall). Paste Share → Embed into gammaEmbedSrc + docs into gammaUrl. */}
           {course.googleClassroomUrl ? (
             <section
-              className="ua-card ua-shadow-soft overflow-hidden p-6"
+              className="ua-card ua-shadow-soft overflow-hidden p-6 md:col-span-2"
               aria-labelledby="gamma-presentation-heading"
             >
               <div className="flex items-center gap-3">
@@ -383,6 +383,17 @@ export default async function ClassPage({ params }: Props) {
                   </div>
                 )}
               </div>
+              {course.gammaUrl ? (
+                <a
+                  href={course.gammaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open class presentation for ${course.title} in a new tab`}
+                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                >
+                  Open presentation ↗
+                </a>
+              ) : null}
             </section>
           ) : null}
         </div>
