@@ -2,18 +2,20 @@
 
 import { useEffect, useState } from "react";
 
+function daySuffix(day: number) {
+  return day % 100 >= 11 && day % 100 <= 13
+    ? "th"
+    : day % 10 === 1
+      ? "st"
+      : day % 10 === 2
+        ? "nd"
+        : day % 10 === 3
+          ? "rd"
+          : "th";
+}
+
 export function formatTodayDate(date: Date) {
   const day = date.getDate();
-  const suffix =
-    day % 100 >= 11 && day % 100 <= 13
-      ? "th"
-      : day % 10 === 1
-        ? "st"
-        : day % 10 === 2
-          ? "nd"
-          : day % 10 === 3
-            ? "rd"
-            : "th";
   const weekday = new Intl.DateTimeFormat("en-US", {
     weekday: "long",
   }).format(date);
@@ -21,7 +23,20 @@ export function formatTodayDate(date: Date) {
     month: "long",
   }).format(date);
 
-  return `${weekday}, ${month} ${day}${suffix}`;
+  return `${weekday}, ${month} ${day}${daySuffix(day)}`;
+}
+
+/** Compact label for narrow sticky headers (e.g. Wed, Sep 9th). */
+export function formatTodayDateCompact(date: Date) {
+  const day = date.getDate();
+  const weekday = new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
+  }).format(date);
+  const month = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+  }).format(date);
+
+  return `${weekday}, ${month} ${day}${daySuffix(day)}`;
 }
 
 function formatTime(date: Date) {
@@ -60,16 +75,18 @@ export function TodayDateLabel({ className }: { className?: string }) {
     setNow(new Date());
   }, []);
 
-  const label = now ? formatTodayDate(now) : "\u00A0";
+  const full = now ? formatTodayDate(now) : "\u00A0";
+  const compact = now ? formatTodayDateCompact(now) : "\u00A0";
 
   return (
     <time
       dateTime={now ? now.toISOString().slice(0, 10) : undefined}
       className={className}
       suppressHydrationWarning
-      aria-label={now ? undefined : "Today’s date"}
+      aria-label={now ? full : "Today’s date"}
     >
-      {label}
+      <span className="sm:hidden">{compact}</span>
+      <span className="hidden sm:inline">{full}</span>
     </time>
   );
 }

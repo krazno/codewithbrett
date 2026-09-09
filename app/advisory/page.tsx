@@ -49,7 +49,7 @@ export default function AdvisoryPage() {
             </div>
           </div>
 
-          <TodayDateLabel className="max-w-[52%] shrink-0 text-right text-[0.7rem] leading-snug font-medium text-white/95 sm:max-w-none sm:text-sm sm:font-semibold" />
+          <TodayDateLabel className="shrink-0 whitespace-nowrap text-right text-[0.7rem] leading-snug font-medium text-white sm:text-sm sm:font-semibold" />
         </nav>
       </header>
 
