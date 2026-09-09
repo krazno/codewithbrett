@@ -106,6 +106,33 @@ html {
   }
 }
 
+/* Nav countdown: ~1Hz soft red pulse in final 5 minutes */
+@keyframes nav-timer-flash {
+  0%,
+  100% {
+    background-color: rgb(220 38 38);
+    color: #fff;
+    opacity: 1;
+  }
+  50% {
+    background-color: rgb(254 202 202);
+    color: rgb(127 29 29);
+    opacity: 0.92;
+  }
+}
+
+.nav-timer-flash {
+  animation: nav-timer-flash 1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-timer-flash {
+    animation: none;
+    background-color: rgb(220 38 38);
+    color: #fff;
+  }
+}
+
 /* Soft capture / print deterrents (OS screenshots cannot be fully blocked) */
 body {
   -webkit-user-select: none;
