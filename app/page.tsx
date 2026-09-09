@@ -259,71 +259,99 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="ua-card ua-shadow-soft mt-8 p-6">
-        <h2 className="font-serif text-2xl text-stone-900">
-          Help shape our classes
-        </h2>
-        <p className="mt-1 text-sm text-stone-600">
-          Suggest a field trip or a guest expert who could bring our learning
-          to life.
-        </p>
-        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-          <SoftLink href={PLACEHOLDER}>Suggest an academic trip</SoftLink>
-          <SoftLink href={PLACEHOLDER}>Suggest an industry expert</SoftLink>
-        </div>
-      </section>
-
-      <aside
-        className="mt-5 text-center text-xs leading-relaxed text-stone-500"
-        aria-label="Website fact"
+      <section
+        className="mt-8 grid gap-4 lg:grid-cols-3"
+        aria-label="Class features"
       >
-        <span className="font-semibold text-emerald-800">
-          Built with 4,000+ lines of code
-        </span>{" "}
-        across TypeScript, JavaScript, CSS, Python, and shell.
-      </aside>
-
-      <section className="ua-card ua-shadow-soft mt-5 p-6">
-        <div className="flex items-center gap-3">
-          <div
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] font-serif text-sm font-bold text-white"
-            aria-hidden="true"
-          >
-            UA
+        <article className="ua-card ua-shadow-soft flex h-full flex-col p-6">
+          <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+            Your ideas
+          </p>
+          <h2 className="mt-1 font-serif text-2xl text-stone-900">
+            Help shape our classes
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-stone-600">
+            Suggest a field trip or a guest expert who could bring our learning
+            to life.
+          </p>
+          <div className="mt-auto flex flex-col gap-2 pt-5">
+            <SoftLink href={PLACEHOLDER}>Suggest an academic trip</SoftLink>
+            <SoftLink href={PLACEHOLDER}>Suggest an industry expert</SoftLink>
           </div>
-          <div>
-            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-              Serviam
-            </p>
-            <h2 className="font-serif text-2xl text-stone-900">
-              Classroom Prayers &amp; Mindfulness
-            </h2>
-          </div>
-        </div>
-        <p className="mt-3 text-sm text-stone-600">
-          Find a quiet moment for prayer, reflection, and focus.
-        </p>
-        <div className="mt-4">
-          <SoftLink href={PLACEHOLDER} primary>
-            Open prayers &amp; mindfulness
-          </SoftLink>
-        </div>
-      </section>
+        </article>
 
-      <section className="ua-card ua-shadow-soft mt-5 overflow-hidden">
-        <div className="grid sm:grid-cols-[1.1fr_0.9fr]">
-          <div className="flex flex-col justify-center p-6 sm:p-8">
+        <article className="ua-card ua-shadow-soft flex h-full flex-col p-6">
+          <div className="flex items-center gap-3">
+            <div
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] font-serif text-sm font-bold text-white"
+              aria-hidden="true"
+            >
+              UA
+            </div>
+            <div>
+              <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                Serviam
+              </p>
+              <h2 className="font-serif text-2xl leading-tight text-stone-900">
+                Classroom Prayers &amp; Mindfulness
+              </h2>
+            </div>
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-stone-600">
+            Find a quiet moment for prayer, reflection, and focus.
+          </p>
+          <div className="mt-auto pt-5">
+            <SoftLink href={PLACEHOLDER} primary>
+              Open prayers &amp; mindfulness
+            </SoftLink>
+          </div>
+        </article>
+
+        <article className="ua-card ua-shadow-soft flex h-full flex-col overflow-hidden">
+          <div className="flex flex-1 flex-col p-6">
             <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
               For school &amp; beyond
             </p>
-            <h2 className="mt-1 font-serif text-3xl text-stone-900">
+            <h2 className="mt-1 font-serif text-2xl text-stone-900">
               Tools &amp; Resources
             </h2>
-            <p className="mt-2 max-w-lg text-sm leading-relaxed text-stone-600">
+            <p className="mt-3 text-sm leading-relaxed text-stone-600">
               A short list of software that supports writing, coding, and class
               projects.
             </p>
-            <div className="mt-5">
+            <div
+              className="mt-5 flex items-center gap-2"
+              aria-label="Featured tools: Cursor, Wispr Flow, and Eclipse IDE"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-stone-200 bg-white p-2 shadow-sm">
+                <Image
+                  src="/media/resources/cursor.svg"
+                  alt="Cursor"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 object-contain"
+                />
+              </div>
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-stone-200 bg-white p-2 shadow-sm">
+                <Image
+                  src="/media/resources/wispr-flow.svg"
+                  alt="Wispr Flow"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 object-contain"
+                />
+              </div>
+              <div className="flex h-14 w-20 items-center justify-center rounded-xl border border-stone-200 bg-white p-2 shadow-sm">
+                <Image
+                  src="/media/resources/eclipse-ide.svg"
+                  alt="Eclipse IDE"
+                  width={64}
+                  height={24}
+                  className="h-auto w-full object-contain"
+                />
+              </div>
+            </div>
+            <div className="mt-auto pt-5">
               <Link
                 href="/resources/"
                 className="inline-flex items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0b4a33]"
@@ -332,45 +360,20 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-
-          <div className="flex min-h-48 items-center justify-center bg-gradient-to-br from-[#e9f3ed] via-white to-[#edf0f8] p-6">
-            <div
-              className="flex items-center justify-center gap-3 sm:gap-4"
-              aria-label="Featured tools: Cursor, Wispr Flow, and Eclipse IDE"
-            >
-              <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-stone-200 bg-white p-3 shadow-sm">
-                <Image
-                  src="/media/resources/cursor.svg"
-                  alt="Cursor"
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 object-contain"
-                />
-              </div>
-              <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-stone-200 bg-white p-3 shadow-sm">
-                <Image
-                  src="/media/resources/wispr-flow.svg"
-                  alt="Wispr Flow"
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 object-contain"
-                />
-              </div>
-              <div className="flex h-20 w-24 items-center justify-center rounded-2xl border border-stone-200 bg-white p-3 shadow-sm">
-                <Image
-                  src="/media/resources/eclipse-ide.svg"
-                  alt="Eclipse IDE"
-                  width={80}
-                  height={28}
-                  className="h-auto w-full object-contain"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        </article>
       </section>
 
-      <p className="mt-8 text-center text-sm text-stone-500">
+      <aside
+        className="mt-7 text-center text-xs leading-relaxed text-stone-500"
+        aria-label="Website fact"
+      >
+        <span className="font-semibold text-emerald-800">
+          Built with 4,000+ lines of code
+        </span>{" "}
+        across TypeScript, JavaScript, CSS, Python, and shell.
+      </aside>
+
+      <p className="mt-5 text-center text-sm text-stone-500">
         Serviam ·{" "}
         <a
           href="https://www.ursulineacademy.net/"
