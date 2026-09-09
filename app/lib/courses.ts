@@ -222,6 +222,10 @@ export const COURSES: Course[] = [
     summerWorkUrl:
       "https://drive.google.com/file/d/11Wuja7oinHxfxkHBMVnBEBgjvq4cQTby/view?usp=sharing",
     apJoinCode: "7QXGY7",
+    gammaEmbedSrc: "https://gamma.app/embed/3r12upg9je59366",
+    gammaUrl:
+      "https://gamma.app/docs/Welcome-to-AP-Computer-Science-A-3r12upg9je59366",
+    gammaEmbedTitle: "Welcome to AP CSA",
     textbook: {
       title: "CSAwesome2: AP CSA Java 2026+",
       url: "https://runestone.academy/ns/books/published/csawesome2/csawesome2.html?mode=browsing",
