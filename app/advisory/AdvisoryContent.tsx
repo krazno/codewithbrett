@@ -87,39 +87,16 @@ const ORIENTATION_SCHEDULE: ScheduleItem[] = [
 ];
 
 const SESSION_KEY = "advisory-access";
-
-/** Same natural date style as the homepage `TodayDate` (without the live clock). */
-function formatAdvisoryDate(date: Date) {
-  const day = date.getDate();
-  const suffix =
-    day % 100 >= 11 && day % 100 <= 13
-      ? "th"
-      : day % 10 === 1
-        ? "st"
-        : day % 10 === 2
-          ? "nd"
-          : day % 10 === 3
-            ? "rd"
-            : "th";
-  const weekday = new Intl.DateTimeFormat("en-US", {
-    weekday: "long",
-  }).format(date);
-  const month = new Intl.DateTimeFormat("en-US", {
-    month: "long",
-  }).format(date);
-
-  return `${weekday}, ${month} ${day}${suffix}`;
-}
+const ORIENTATION_DATE_LABEL = "Thursday, September 10th";
+const ORIENTATION_DATE_ISO = "2026-09-10";
 
 export function AdvisoryContent() {
   const [passcode, setPasscode] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
-  const [today, setToday] = useState<Date | null>(null);
 
   useEffect(() => {
     setUnlocked(sessionStorage.getItem(SESSION_KEY) === "granted");
-    setToday(new Date());
   }, []);
 
   function unlock(event: FormEvent<HTMLFormElement>) {
@@ -145,6 +122,11 @@ export function AdvisoryContent() {
           <h2 className="mt-2 font-serif text-3xl text-stone-900">
             Enter passcode
           </h2>
+          <p className="mt-2 text-sm font-semibold text-[var(--ua-evergreen)]">
+            <time dateTime={ORIENTATION_DATE_ISO}>{ORIENTATION_DATE_LABEL}</time>
+            <span className="font-normal text-stone-500"> · </span>
+            All Student Orientation Day 2
+          </p>
           <p className="mt-3 text-sm leading-relaxed text-stone-600">
             This is a casual client-side gate for Advisory materials, not
             secure authentication.
@@ -204,10 +186,10 @@ export function AdvisoryContent() {
               All Student Orientation Day 2
             </h2>
             <time
-              dateTime={today?.toISOString()}
+              dateTime={ORIENTATION_DATE_ISO}
               className="shrink-0 text-sm font-semibold text-stone-700 sm:text-base"
             >
-              {today ? formatAdvisoryDate(today) : "\u00A0"}
+              {ORIENTATION_DATE_LABEL}
             </time>
           </div>
         </div>

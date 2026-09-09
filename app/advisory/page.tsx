@@ -14,7 +14,31 @@ export const metadata: Metadata = {
 export default function AdvisoryPage() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
-      <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-5 py-8 sm:px-6 sm:py-10">
+      <div
+        className="sticky top-0 z-50 border-b border-emerald-900/20 bg-[var(--ua-evergreen)]/95 text-white shadow-md backdrop-blur-md"
+        role="banner"
+      >
+        <nav
+          aria-label="Advisory session"
+          className="mx-auto flex max-w-5xl items-center justify-center px-3 py-2.5 text-center sm:px-6 sm:py-3"
+        >
+          <p className="flex max-w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 text-[0.68rem] leading-snug font-semibold tracking-wide text-emerald-50 sm:gap-x-2 sm:text-sm">
+            <span className="text-white">Advisory</span>
+            <span className="text-emerald-200/70" aria-hidden="true">
+              ·
+            </span>
+            <time dateTime="2026-09-10" className="text-[#c6e86a]">
+              Thursday, September 10th
+            </time>
+            <span className="text-emerald-200/70" aria-hidden="true">
+              ·
+            </span>
+            <span>All Student Orientation Day 2</span>
+          </p>
+        </nav>
+      </div>
+
+      <div className="mx-auto flex min-h-[calc(100vh-2.75rem)] max-w-5xl flex-col px-5 pt-6 pb-8 sm:px-6 sm:pt-8 sm:pb-10">
         <header className="overflow-hidden rounded-3xl bg-[var(--ua-evergreen)] shadow-xl">
           <div className="relative aspect-[4/1] min-h-40">
             <Image
