@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { TodayDateLabel } from "@/app/components/TodayDate";
 import { AdvisoryContent } from "./AdvisoryContent";
 
 export const metadata: Metadata = {
@@ -15,26 +16,20 @@ export default function AdvisoryPage() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
       <div
-        className="sticky top-0 z-50 border-b border-emerald-900/20 bg-[var(--ua-evergreen)]/95 text-white shadow-md backdrop-blur-md"
+        className="sticky top-0 z-50 border-b border-emerald-900/15 bg-[#f7f4ec]/95 shadow-sm backdrop-blur-md"
         role="banner"
       >
         <nav
-          aria-label="Advisory session"
-          className="mx-auto flex max-w-5xl items-center justify-center px-3 py-2.5 text-center sm:px-6 sm:py-3"
+          aria-label="Advisory"
+          className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-3 py-2.5 sm:px-6 sm:py-3"
         >
-          <p className="flex max-w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 text-[0.68rem] leading-snug font-semibold tracking-wide text-emerald-50 sm:gap-x-2 sm:text-sm">
-            <span className="text-white">Advisory</span>
-            <span className="text-emerald-200/70" aria-hidden="true">
-              ·
-            </span>
-            <time dateTime="2026-09-10" className="text-[#c6e86a]">
-              Thursday, September 10th
-            </time>
-            <span className="text-emerald-200/70" aria-hidden="true">
-              ·
-            </span>
-            <span>All Student Orientation Day 2</span>
-          </p>
+          <Link
+            href="/"
+            className="shrink-0 text-sm font-semibold text-[var(--ua-evergreen)] underline decoration-emerald-800/30 underline-offset-4 hover:decoration-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+          >
+            Home
+          </Link>
+          <TodayDateLabel className="text-right text-sm font-semibold text-[var(--ua-evergreen)] sm:text-base" />
         </nav>
       </div>
 

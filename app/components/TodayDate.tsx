@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-function formatDate(date: Date) {
+export function formatTodayDate(date: Date) {
   const day = date.getDate();
   const suffix =
     day % 100 >= 11 && day % 100 <= 13
@@ -44,10 +44,28 @@ export function TodayDate() {
 
   return (
     <time dateTime={now?.toISOString()}>
-      <span className="block">{now ? formatDate(now) : "\u00A0"}</span>
+      <span className="block">{now ? formatTodayDate(now) : "\u00A0"}</span>
       <span className="mt-1 block text-base font-semibold text-emerald-800 sm:text-lg">
         {now ? formatTime(now) : "\u00A0"}
       </span>
+    </time>
+  );
+}
+
+/** Date-only label for sticky bars (no clock). */
+export function TodayDateLabel({ className }: { className?: string }) {
+  const [now, setNow] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setNow(new Date());
+  }, []);
+
+  return (
+    <time
+      dateTime={now ? now.toISOString().slice(0, 10) : undefined}
+      className={className}
+    >
+      {now ? formatTodayDate(now) : "\u00A0"}
     </time>
   );
 }
