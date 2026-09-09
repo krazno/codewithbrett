@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { PhotoCarousel } from "../components/PhotoCarousel";
 
 export const metadata: Metadata = {
@@ -17,6 +18,11 @@ const experience = [
   "Naval Undersea Warfare Center · Newport, RI — Software Engineering",
 ];
 
+const education = [
+  "M.S. in Computation Sciences",
+  "B.S. in Software Engineering",
+];
+
 const awards = [
   "Governor’s Proclamation for STEAM Education",
   "South Florida Business Visionary Award",
@@ -29,6 +35,45 @@ const memberships = [
   "LEGO Education Ambassador",
   "Amazon Future Engineer Teacher Ambassador",
   "MIT Media Lab Ambassador",
+];
+
+const publications: ReactNode[] = [
+  "Applying Big Data Analytics in Bioinformatics and Medicine (2017)",
+  "Focus on Healthful Fats and Diet Patterns (2017)",
+  <>
+    iHANDS: Intelligent Health Advising and Decision-Support Agent — IEEE/WI-IAT
+    Conference (2014) ·{" "}
+    <a
+      href="https://doi.org/10.1109/WI-IAT.2014.180"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-semibold text-[var(--ua-evergreen)] underline underline-offset-4"
+    >
+      View IEEE publication ↗
+    </a>
+  </>,
+  "Featured in Palm Beach Post, South Florida Science Center, NASA Education, and MIT Media Lab pieces on classroom innovation and robotics",
+];
+
+const summerProjects: ReactNode[] = [
+  <a
+    key="swimming"
+    href="https://newenglandswimmingholes.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-semibold text-[var(--ua-evergreen)] underline underline-offset-4"
+  >
+    New England Swimming Holes ↗
+  </a>,
+  <a
+    key="farm"
+    href="https://newenglandfarmguide.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-semibold text-[var(--ua-evergreen)] underline underline-offset-4"
+  >
+    New England Farm Guide ↗
+  </a>,
 ];
 
 const catPhotos = [
@@ -86,14 +131,14 @@ function ListCard({
   items,
 }: {
   title: string;
-  items: readonly string[];
+  items: readonly ReactNode[];
 }) {
   return (
     <section className="ua-card ua-shadow-soft p-6">
       <h2 className="font-serif text-2xl text-stone-900">{title}</h2>
       <ul className="mt-3 space-y-2 text-sm leading-relaxed text-stone-700">
-        {items.map((item) => (
-          <li key={item} className="flex gap-2">
+        {items.map((item, index) => (
+          <li key={index} className="flex gap-2">
             <span className="text-emerald-700" aria-hidden="true">
               •
             </span>
@@ -143,108 +188,27 @@ export default function AboutPage() {
         </header>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
-          <div className="md:col-span-2">
-            <ListCard title="Prior roles" items={experience} />
-          </div>
+          <ListCard title="Prior roles" items={experience} />
+          <ListCard title="Education" items={education} />
+          <ListCard
+            title="Publications, research, and media"
+            items={publications}
+          />
+          <ListCard title="Recent summer projects" items={summerProjects} />
 
-          <div className="md:col-span-2">
-            <ListCard
-              title="Education"
-              items={[
-                "M.S. in Computation Sciences · UMass Dartmouth",
-                "B.S. in Software Engineering · UMass Dartmouth",
-              ]}
-            />
-          </div>
-
-          <section className="ua-card ua-shadow-soft p-6 md:col-span-2">
-            <h2 className="font-serif text-2xl text-stone-900">
-              Publications, research, and media
-            </h2>
-            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-stone-700">
-              <li className="flex gap-2">
-                <span className="text-emerald-700" aria-hidden="true">
-                  •
-                </span>
-                <span>
-                  Applying Big Data Analytics in Bioinformatics and Medicine
-                  (2017)
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-emerald-700" aria-hidden="true">
-                  •
-                </span>
-                <span>Focus on Healthful Fats and Diet Patterns (2017)</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-emerald-700" aria-hidden="true">
-                  •
-                </span>
-                <span>
-                  iHANDS: Intelligent Health Advising and Decision-Support
-                  Agent — IEEE/WI-IAT Conference (2014) ·{" "}
-                  <a
-                    href="https://doi.org/10.1109/WI-IAT.2014.180"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-[var(--ua-evergreen)] underline underline-offset-4"
-                  >
-                    View IEEE publication ↗
-                  </a>
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-emerald-700" aria-hidden="true">
-                  •
-                </span>
-                <span>
-                  Featured in Palm Beach Post, South Florida Science Center,
-                  NASA Education, and MIT Media Lab pieces on classroom
-                  innovation and robotics
-                </span>
-              </li>
-            </ul>
-          </section>
-
-          <section className="ua-card ua-shadow-soft p-6 md:col-span-2">
-            <h2 className="font-serif text-2xl text-stone-900">
-              Recent summer projects
-            </h2>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <a
-                  href="https://newenglandswimmingholes.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[var(--ua-evergreen)] underline underline-offset-4"
-                >
-                  New England Swimming Holes ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://newenglandfarmguide.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[var(--ua-evergreen)] underline underline-offset-4"
-                >
-                  New England Farm Guide ↗
-                </a>
-              </li>
-            </ul>
-          </section>
+          <ListCard title="Awards" items={awards} />
+          <ListCard title="Clubs & memberships" items={memberships} />
 
           <section
             className="ua-card ua-shadow-soft grid gap-4 p-4 sm:p-5 md:col-span-2 md:grid-cols-2"
             aria-label="Photo galleries"
           >
-            <PhotoCarousel photos={lifePhotos} label="Photos from life and work" />
+            <PhotoCarousel
+              photos={lifePhotos}
+              label="Photos from life and work"
+            />
             <PhotoCarousel photos={catPhotos} label="Photos of a black cat" />
           </section>
-
-          <ListCard title="Awards" items={awards} />
-          <ListCard title="Clubs & memberships" items={memberships} />
         </div>
 
         <footer className="mt-8 flex items-center justify-between gap-4 border-t border-stone-300 pt-4 text-sm">
