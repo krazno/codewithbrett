@@ -5,7 +5,8 @@ import { AdvisoryContent } from "./AdvisoryContent";
 
 export const metadata: Metadata = {
   title: "Advisory",
-  description: "The Ursuline Prayer for Advisory at Ursuline Academy Dedham.",
+  description:
+    "All Student Orientation Day 2 schedule, Ursuline Prayer, and Advisory materials.",
   alternates: { canonical: "/advisory/" },
   robots: { index: false, follow: false },
 };
