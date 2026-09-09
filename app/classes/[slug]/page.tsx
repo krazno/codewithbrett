@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Presentation } from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -333,49 +333,59 @@ export default async function ClassPage({ params }: Props) {
               ) : null}
             </section>
           ) : null}
-        </div>
 
-        {/* Academic classes only (omit Study Hall). Paste Share → Embed URL into gammaEmbedSrc. */}
-        {course.googleClassroomUrl ? (
-          <section
-            className="ua-card ua-shadow-soft mt-4 overflow-hidden p-6"
-            aria-labelledby="gamma-presentation-heading"
-          >
-            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-              Current deck
-            </p>
-            <h2
-              id="gamma-presentation-heading"
-              className="mt-1 font-serif text-2xl text-stone-900"
+          {/* Academic classes only (omit Study Hall). Paste Share → Embed URL into gammaEmbedSrc. */}
+          {course.googleClassroomUrl ? (
+            <section
+              className="ua-card ua-shadow-soft overflow-hidden p-6"
+              aria-labelledby="gamma-presentation-heading"
             >
-              Class presentation
-            </h2>
-            <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
-              {course.gammaEmbedSrc ? (
-                <div className="aspect-video w-full">
-                  <iframe
-                    src={course.gammaEmbedSrc}
-                    title={
-                      course.gammaEmbedTitle ??
-                      `${course.title} class presentation`
-                    }
-                    className="h-full w-full border-0"
-                    allow="fullscreen"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
-              ) : (
-                <div className="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-stone-50 px-6 text-center">
-                  <p className="text-sm font-medium text-stone-500">
-                    Presentation coming soon
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <Presentation size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Current deck
                   </p>
+                  <h2
+                    id="gamma-presentation-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Class Presentation
+                  </h2>
                 </div>
-              )}
-            </div>
-          </section>
-        ) : null}
+              </div>
+              <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+                {course.gammaEmbedSrc ? (
+                  <div className="aspect-video min-h-[12rem] w-full">
+                    <iframe
+                      src={course.gammaEmbedSrc}
+                      title={
+                        course.gammaEmbedTitle ??
+                        `${course.title} Class Presentation`
+                      }
+                      className="h-full w-full border-0"
+                      allow="fullscreen"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex aspect-video min-h-[12rem] w-full items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-stone-50 px-6 text-center">
+                    <p className="text-sm font-medium text-stone-500">
+                      Presentation coming soon
+                    </p>
+                  </div>
+                )}
+              </div>
+            </section>
+          ) : null}
+        </div>
 
         <footer className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-sm">
           <Link

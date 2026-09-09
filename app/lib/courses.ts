@@ -17,7 +17,7 @@ export type Course = {
    * Leave undefined until a deck is ready; the class page still shows a slot.
    */
   gammaEmbedSrc?: string;
-  /** Optional accessible title for the Gamma iframe (defaults to “Class presentation”). */
+  /** Optional accessible title for the Gamma iframe (defaults to “Class Presentation”). */
   gammaEmbedTitle?: string;
   textbook?: {
     title: string;
@@ -78,7 +78,7 @@ export const COURSES: Course[] = [
     room: "Rm A207",
     scheduleNote: "Block F",
     description:
-      "AP Computer Science Principles. Same course as Block B, different period.",
+      "AP Computer Science Principles. Data, the internet, and creative coding for the AP exam—Block F section.",
     image: "/media/classes/ap-csp-f/seal.png",
     seal: "/media/classes/ap-csp-f/seal.png",
     googleClassroomCode: "wbujhmtr",
@@ -154,7 +154,7 @@ export const COURSES: Course[] = [
     room: "Rm 118",
     scheduleNote: "Block E",
     description:
-      "Honors calculus. Same course as Block D, different period.",
+      "Honors calculus. Limits, derivatives, and integrals with rigor and pace for Block E.",
     image: "/media/classes/calculus-h-e/seal.png",
     seal: "/media/classes/calculus-h-e/seal.png",
     googleClassroomCode: "cwq6rxo6",
