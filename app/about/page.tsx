@@ -30,6 +30,56 @@ const memberships = [
   "MIT Media Lab Ambassador",
 ];
 
+const catPhotos = [
+  {
+    src: "/media/about/cat/business-cat.jpg",
+    alt: "A black cat wearing a white collar and striped necktie at a desk behind a keyboard",
+  },
+  {
+    src: "/media/about/cat/yoga-mat.jpg",
+    alt: "A black cat lounging on an orange yoga mat with a waterfront view behind",
+  },
+  {
+    src: "/media/about/cat/sleeping-white-bed.jpg",
+    alt: "A black cat with white whiskers sleeping on a white quilted bedspread",
+  },
+  {
+    src: "/media/about/cat/sleeping-skyline.jpg",
+    alt: "A black cat sleeping in sunlight on a bed with a water and city skyline view",
+  },
+] as const;
+
+const lifePhotos = [
+  {
+    src: "/media/about/brett/graffiti-wall.jpg",
+    alt: "Brett Hannan with friends posing playfully in front of a colorful graffiti mural",
+  },
+  {
+    src: "/media/about/brett/friends-hedge.jpg",
+    alt: "Brett Hannan with two friends, arms around each other, in front of a green hedge",
+  },
+  {
+    src: "/media/about/brett/robotics-students.jpg",
+    alt: "Brett Hannan with students at a robotics event, several holding small robots",
+  },
+  {
+    src: "/media/about/brett/umass-graduation.jpg",
+    alt: "Brett Hannan at his University of Massachusetts Dartmouth graduation with family",
+  },
+  {
+    src: "/media/about/brett/umass-friends.jpg",
+    alt: "Brett Hannan smiling with friends indoors, wearing a UMass Dartmouth shirt",
+  },
+  {
+    src: "/media/about/brett/robotics-mentoring.jpg",
+    alt: "Brett Hannan mentoring students at a robotics competition",
+  },
+  {
+    src: "/media/about/brett/bridge-city.jpg",
+    alt: "Brett Hannan in a blue jacket and sunglasses by a stone bridge overlooking a city",
+  },
+] as const;
+
 function ListCard({
   title,
   items,
@@ -51,6 +101,30 @@ function ListCard({
         ))}
       </ul>
     </section>
+  );
+}
+
+function PhotoGrid({
+  photos,
+}: {
+  photos: readonly { src: string; alt: string }[];
+}) {
+  return (
+    <ul className="mt-4 grid max-w-2xl grid-cols-3 gap-2.5 sm:grid-cols-4">
+      {photos.map((photo) => (
+        <li key={photo.src}>
+          <div className="relative aspect-square overflow-hidden rounded-xl bg-stone-200">
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              sizes="140px"
+              className="object-cover"
+            />
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -182,6 +256,24 @@ export default function AboutPage() {
                 </a>
               </li>
             </ul>
+          </section>
+
+          <section className="ua-card ua-shadow-soft p-6 md:col-span-2">
+            <h2 className="font-serif text-2xl text-stone-900">Life &amp; work</h2>
+            <p className="mt-2 text-sm leading-relaxed text-stone-700">
+              A few snapshots from teaching, travel, and life outside the
+              classroom.
+            </p>
+            <PhotoGrid photos={lifePhotos} />
+          </section>
+
+          <section className="ua-card ua-shadow-soft p-6 md:col-span-2">
+            <h2 className="font-serif text-2xl text-stone-900">My Cat</h2>
+            <p className="mt-2 text-sm leading-relaxed text-stone-700">
+              When I&apos;m not teaching or tinkering with code, my cat keeps me
+              company — sometimes in a necktie, sometimes mid-nap.
+            </p>
+            <PhotoGrid photos={catPhotos} />
           </section>
 
           <ListCard title="Awards" items={awards} />
