@@ -16,10 +16,13 @@ const COURSE_LINKS = [
 ] as const;
 
 const navLinkClass =
-  "rounded-sm text-sm font-semibold tracking-wide text-white/95 uppercase hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ua-evergreen)]";
+  "rounded-sm text-[0.9375rem] font-medium leading-none text-white/95 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ua-evergreen)]";
 
 const menuLinkClass =
-  "block rounded-md px-3 py-2 text-sm font-semibold text-stone-900 hover:bg-emerald-50 focus:outline-none focus-visible:bg-emerald-50 focus-visible:ring-2 focus-visible:ring-emerald-700";
+  "block rounded-md px-3 py-2 text-sm font-medium text-stone-900 hover:bg-emerald-50 focus:outline-none focus-visible:bg-emerald-50 focus-visible:ring-2 focus-visible:ring-emerald-700";
+
+const mobileLinkClass =
+  "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -73,29 +76,29 @@ export function SiteHeader() {
       className="sticky top-0 z-[60] border-b border-black/25 bg-[var(--ua-evergreen)] text-white shadow-md"
       role="banner"
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-3 py-2 sm:gap-4 sm:px-6 sm:py-2.5">
-        <div className="flex min-w-0 items-center gap-2.5 sm:gap-4">
+      <div className="mx-auto flex h-[var(--site-header-height)] max-w-5xl items-center justify-between gap-4 px-3 sm:gap-6 sm:px-6">
+        <div className="flex min-w-0 items-center gap-5 sm:gap-7">
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-2.5 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ua-evergreen)]"
+            className="flex shrink-0 items-center gap-3 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ua-evergreen)]"
             aria-label="Ursuline Academy Dedham — Home"
           >
             <Image
               src="/media/branded/ua-seal.png"
               alt=""
-              width={40}
-              height={40}
+              width={36}
+              height={36}
               priority
-              className="h-8 w-8 object-contain sm:h-9 sm:w-9"
+              className="h-8 w-8 object-contain"
             />
-            <span className="hidden font-serif text-base leading-none font-semibold tracking-tight sm:inline">
+            <span className="hidden font-serif text-[1.125rem] leading-none font-semibold tracking-tight sm:inline">
               Ursuline
             </span>
           </Link>
 
           <nav
             aria-label="Site"
-            className="hidden items-center gap-4 md:flex lg:gap-5"
+            className="hidden items-center gap-6 border-l border-white/25 pl-5 md:flex lg:gap-7 lg:pl-6"
           >
             <Link href="/" className={navLinkClass}>
               Home
@@ -105,14 +108,14 @@ export function SiteHeader() {
               <button
                 ref={coursesButtonRef}
                 type="button"
-                className={`${navLinkClass} inline-flex items-center gap-1`}
+                className={`${navLinkClass} inline-flex items-center gap-1.5`}
                 aria-expanded={coursesOpen}
                 aria-haspopup="menu"
                 aria-controls={coursesMenuId}
                 onClick={() => setCoursesOpen((open) => !open)}
               >
                 Courses
-                <span aria-hidden className="text-[0.65rem]">
+                <span aria-hidden className="text-[0.6rem] leading-none opacity-80">
                   {coursesOpen ? "▴" : "▾"}
                 </span>
               </button>
@@ -122,7 +125,7 @@ export function SiteHeader() {
                   id={coursesMenuId}
                   role="menu"
                   aria-label="Courses"
-                  className="absolute top-[calc(100%+0.4rem)] left-0 z-50 min-w-[13.5rem] rounded-lg border border-stone-200 bg-white py-1.5 text-left shadow-lg"
+                  className="absolute top-[calc(100%+0.45rem)] left-0 z-50 min-w-[13.5rem] rounded-lg border border-stone-200 bg-white py-1.5 text-left shadow-lg"
                 >
                   {COURSE_LINKS.map((item) => (
                     <li key={item.href} role="none">
@@ -146,13 +149,13 @@ export function SiteHeader() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <TodayDateLabel className="whitespace-nowrap text-right text-[0.7rem] leading-snug font-medium text-white md:text-sm md:font-semibold" />
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <TodayDateLabel className="whitespace-nowrap text-right text-[0.75rem] leading-none font-medium text-white/90 md:text-sm" />
 
           <button
             id="site-mobile-toggle"
             type="button"
-            className="inline-flex items-center justify-center rounded-md border border-white/35 px-2.5 py-1.5 text-xs font-semibold tracking-wide text-white uppercase hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ua-evergreen)] md:hidden"
+            className="inline-flex items-center justify-center rounded-md border border-white/35 px-2.5 py-1.5 text-sm font-medium leading-none text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ua-evergreen)] md:hidden"
             aria-expanded={mobileOpen}
             aria-controls={mobileMenuId}
             onClick={() => setMobileOpen((open) => !open)}
@@ -169,23 +172,23 @@ export function SiteHeader() {
         >
           <nav
             aria-label="Mobile"
-            className="mx-auto flex max-w-5xl flex-col gap-1 px-3 py-3 sm:px-6"
+            className="mx-auto flex max-w-5xl flex-col gap-0.5 px-3 py-2.5 sm:px-6"
           >
             <Link
               href="/"
-              className="rounded-md px-3 py-2 text-sm font-semibold text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className={mobileLinkClass}
               onClick={() => setMobileOpen(false)}
             >
               Home
             </Link>
-            <p className="px-3 pt-2 pb-1 text-[0.65rem] font-semibold tracking-[0.14em] text-white/70 uppercase">
+            <p className="px-3 pt-2.5 pb-1 text-sm font-medium text-white/65">
               Courses
             </p>
             {COURSE_LINKS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-md px-3 py-2 text-sm font-semibold text-white/95 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className={`${mobileLinkClass} text-white/95`}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -193,7 +196,7 @@ export function SiteHeader() {
             ))}
             <Link
               href="/about/"
-              className="rounded-md px-3 py-2 text-sm font-semibold text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className={mobileLinkClass}
               onClick={() => setMobileOpen(false)}
             >
               Contact
