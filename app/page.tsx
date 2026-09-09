@@ -234,6 +234,28 @@ export default function HomePage() {
           {COURSES.map((c) => (
             <CourseCard key={c.slug} course={c} />
           ))}
+          <article className="ua-card p-4 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
+            <Link href="/advisory/" className="flex items-center gap-4">
+              <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full">
+                <Image
+                  src="/media/branded/ua-seal.png"
+                  alt=""
+                  width={80}
+                  height={80}
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <div className="min-w-0 flex-1 text-left">
+                <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  Ursuline Academy
+                </p>
+                <h3 className="font-serif text-xl text-stone-900">Advisory</h3>
+                <p className="mt-1 text-xs leading-relaxed text-stone-700">
+                  Prayer and reflection.
+                </p>
+              </div>
+            </Link>
+          </article>
         </div>
       </section>
 

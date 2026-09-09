@@ -1,0 +1,11 @@
+---
+description: Prevent direct student identifiers from being published
+alwaysApply: true
+---
+
+# Student Privacy
+
+- Never add a student's full first and last name, student ID, email address, or other direct student identifier to any public website file or content.
+- Display student initials only when the user explicitly requests student display.
+- If a request includes or asks to publish full student names or identifiers, stop and ask for explicit confirmation. Recommend a safer alternative such as anonymized labels, private authenticated access, or omitting the data.
+- Treat combinations of otherwise limited data that expose a student's identity, location, schedule, or physical access details as sensitive.
