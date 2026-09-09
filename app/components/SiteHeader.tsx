@@ -53,8 +53,6 @@ export function SiteHeader() {
         setCoursesOpen(false);
       }
       if (mobileOpen && mobileRef.current && !mobileRef.current.contains(target)) {
-        const toggle = document.getElementById("site-mobile-toggle");
-        if (toggle && toggle.contains(target)) return;
         setMobileOpen(false);
       }
     }
@@ -71,13 +69,11 @@ export function SiteHeader() {
 
   return (
     <header
+      ref={mobileRef}
       className="sticky top-0 z-[60] border-b border-black/25 bg-[var(--ua-evergreen)] text-white shadow-md"
       role="banner"
     >
-      <div
-        ref={mobileRef}
-        className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-3 py-2 sm:gap-4 sm:px-6 sm:py-2.5"
-      >
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-3 py-2 sm:gap-4 sm:px-6 sm:py-2.5">
         <div className="flex min-w-0 items-center gap-2.5 sm:gap-4">
           <Link
             href="/"
