@@ -72,8 +72,8 @@ function SoftLink({
 }) {
   const ready = href !== "#";
   const className = primary
-    ? "inline-flex items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#0b4a33]"
-    : "inline-flex items-center justify-center rounded-full border border-[rgba(32,37,34,0.18)] bg-white/80 px-5 py-2.5 text-sm font-semibold text-stone-800 hover:bg-white";
+    ? "inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-[#0b4a33]"
+    : "inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[rgba(32,37,34,0.18)] bg-white/80 px-4 py-2.5 text-center text-sm font-semibold text-stone-800 hover:bg-white";
 
   if (!ready) {
     return (
@@ -149,7 +149,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[rgba(247,244,236,0.78)] via-[rgba(255,255,255,0.9)] to-[rgba(238,246,241,0.94)]" />
         </div>
 
-        <div className="relative z-10 grid gap-6 p-5 sm:p-6 md:grid-cols-2 md:items-center md:gap-8 md:p-7">
+        <div className="relative z-10 grid gap-7 p-5 sm:gap-8 sm:p-6 md:grid-cols-2 md:items-center md:gap-10 md:p-7">
           <header className="flex items-center gap-4 sm:gap-5">
             <Image
               src="/media/branded/ua-seal.png"
@@ -159,7 +159,7 @@ export default function HomePage() {
               className="h-24 w-24 shrink-0 object-contain sm:h-28 sm:w-28"
               priority
             />
-            <div>
+            <div className="min-w-0">
               <p className="text-[10px] font-semibold tracking-[0.14em] text-emerald-800/80 uppercase">
                 Faith · Courage · Joy
               </p>
@@ -172,7 +172,7 @@ export default function HomePage() {
             </div>
           </header>
 
-          <div>
+          <div className="flex min-w-0 flex-col gap-5">
             <div className="flex items-center gap-4">
               <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
                 <Image
@@ -184,8 +184,8 @@ export default function HomePage() {
                   priority
                 />
               </div>
-              <div>
-                <h2 className="font-serif text-2xl text-stone-900 sm:text-3xl">
+              <div className="min-w-0">
+                <h2 className="font-serif text-2xl leading-tight text-stone-900 sm:text-3xl">
                   Brett Hannan
                 </h2>
                 <p className="mt-1 text-sm text-stone-600">
@@ -194,29 +194,34 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="mt-4">
-              <p className="text-sm leading-relaxed text-stone-700">
+            <div>
+              <p className="text-sm leading-relaxed text-stone-600">
                 Questions or need help? Reach out anytime.
               </p>
               <a
                 href="mailto:bhannan@ursulineacademy.net"
-                className="mt-1 inline-block text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
+                className="mt-1.5 inline-block text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
               >
                 bhannan@ursulineacademy.net
               </a>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <SoftLink
-                  href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
-                  primary
-                >
-                  Schedule a meeting
-                </SoftLink>
-                <SoftLink href="/about/">About me</SoftLink>
-                <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
-                <SoftLink href="https://calendar.app.google/Y59k115ZMYyLjcUG6">
-                  Google Calendar
-                </SoftLink>
-              </div>
+            </div>
+
+            <div
+              className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+              role="group"
+              aria-label="Quick actions"
+            >
+              <SoftLink
+                href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
+                primary
+              >
+                Schedule a meeting
+              </SoftLink>
+              <SoftLink href="/about/">About me</SoftLink>
+              <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
+              <SoftLink href="https://calendar.app.google/Y59k115ZMYyLjcUG6">
+                Google Calendar
+              </SoftLink>
             </div>
           </div>
         </div>
