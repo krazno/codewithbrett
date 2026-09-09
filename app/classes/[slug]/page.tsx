@@ -98,11 +98,50 @@ export default async function ClassPage({ params }: Props) {
               ? "md:grid-cols-2"
               : course.textbook
                 ? "md:grid-cols-2 lg:grid-cols-3"
-                : course.googleMeetUrl
+                : course.googleMeetUrl || course.summerWorkUrl
                   ? "md:grid-cols-2"
                   : ""
           }`}
         >
+          {course.summerWorkUrl ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="summer-work-heading"
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-sm font-bold text-white"
+                  aria-hidden="true"
+                >
+                  SW
+                </div>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Before classes begin
+                  </p>
+                  <h2
+                    id="summer-work-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Summer work
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-stone-700">
+                Open the summer assignment for this course.
+              </p>
+              <a
+                href={course.summerWorkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open summer work for ${course.title} in a new tab`}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Open Summer work ↗
+              </a>
+            </section>
+          ) : null}
+
           {course.googleClassroomUrl && course.googleClassroomCode ? (
             <section
               className="ua-card ua-shadow-soft p-6"

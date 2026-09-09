@@ -10,6 +10,7 @@ export type Course = {
   googleClassroomUrl?: string;
   googleMeetUrl?: string;
   syllabusUrl?: string;
+  summerWorkUrl?: string;
   apJoinCode?: string;
   textbook?: {
     title: string;
@@ -43,6 +44,8 @@ export const COURSES: Course[] = [
     googleMeetUrl: "https://meet.google.com/weu-wncf-uxm",
     syllabusUrl:
       "https://docs.google.com/document/d/1yJIb8zwbEaQzgO7xT8VamcOliQnA1Z-s/edit?usp=sharing",
+    summerWorkUrl:
+      "https://drive.google.com/file/d/1MHy2unu6ZNfZAK9pGB-Ur123fRdGqR0a/view?usp=sharing",
     apJoinCode: "Y3LEZM",
     textbook: {
       title: "OpenStax Introduction to Computer Science",
@@ -77,6 +80,8 @@ export const COURSES: Course[] = [
     googleMeetUrl: "https://meet.google.com/pmq-gxvg-bmg",
     syllabusUrl:
       "https://docs.google.com/document/d/1yJIb8zwbEaQzgO7xT8VamcOliQnA1Z-s/edit?usp=sharing",
+    summerWorkUrl:
+      "https://drive.google.com/file/d/1MHy2unu6ZNfZAK9pGB-Ur123fRdGqR0a/view?usp=sharing",
     apJoinCode: "G22APR",
     textbook: {
       title: "OpenStax Introduction to Computer Science",
@@ -111,6 +116,8 @@ export const COURSES: Course[] = [
     googleMeetUrl: "https://meet.google.com/umt-zodc-mck",
     syllabusUrl:
       "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
+    summerWorkUrl:
+      "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
     textbook: {
       title: "OpenStax Calculus Volume 1",
       url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
@@ -149,6 +156,8 @@ export const COURSES: Course[] = [
     googleMeetUrl: "https://meet.google.com/ctu-npkv-aoj",
     syllabusUrl:
       "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
+    summerWorkUrl:
+      "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
     textbook: {
       title: "OpenStax Calculus Volume 1",
       url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
@@ -187,6 +196,8 @@ export const COURSES: Course[] = [
     googleMeetUrl: "https://meet.google.com/dqo-mwho-hni",
     syllabusUrl:
       "https://docs.google.com/document/d/1H1YdzHNvq0xnf7qhqEe9SrOX40oBJSkP/edit?usp=sharing",
+    summerWorkUrl:
+      "https://drive.google.com/file/d/11Wuja7oinHxfxkHBMVnBEBgjvq4cQTby/view?usp=sharing",
     apJoinCode: "7QXGY7",
     textbook: {
       title: "CSAwesome2: AP CSA Java 2026+",
