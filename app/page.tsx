@@ -194,34 +194,32 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div>
+            <div className="flex flex-col gap-3">
               <p className="text-sm leading-relaxed text-stone-600">
                 Questions or need help? Reach out anytime.
               </p>
-              <a
-                href="mailto:bhannan@ursulineacademy.net"
-                className="mt-1.5 inline-block text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
+              <div
+                className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+                role="group"
+                aria-label="Quick actions"
               >
-                bhannan@ursulineacademy.net
-              </a>
-            </div>
-
-            <div
-              className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
-              role="group"
-              aria-label="Quick actions"
-            >
-              <SoftLink
-                href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
-                primary
-              >
-                Schedule a meeting
-              </SoftLink>
-              <SoftLink href="/about/">About me</SoftLink>
-              <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
-              <SoftLink href="https://calendar.app.google/Y59k115ZMYyLjcUG6">
-                Google Calendar
-              </SoftLink>
+                <SoftLink
+                  href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
+                  primary
+                >
+                  Schedule a meeting
+                </SoftLink>
+                <SoftLink href="mailto:bhannan@ursulineacademy.net">
+                  Email
+                </SoftLink>
+                <SoftLink href="/about/">About me</SoftLink>
+                <SoftLink href="https://calendar.app.google/Y59k115ZMYyLjcUG6">
+                  Google Calendar
+                </SoftLink>
+                <div className="sm:col-span-2">
+                  <SoftLink href={PLACEHOLDER}>Anonymous feedback</SoftLink>
+                </div>
+              </div>
             </div>
           </div>
         </div>
