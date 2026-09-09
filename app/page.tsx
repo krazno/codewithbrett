@@ -137,79 +137,74 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <section className="grid gap-4 lg:grid-cols-2">
-        <div className="ua-card ua-shadow-soft relative overflow-hidden rounded-[22px]">
-          <div className="pointer-events-none absolute inset-0">
-            <Image
-              src="/media/branded/campus-entrance.png"
-              alt=""
-              fill
-              className="object-cover opacity-[0.18]"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(247,244,236,0.75)] via-[rgba(255,255,255,0.88)] to-[rgba(238,246,241,0.95)]" />
-          </div>
-
-          <header className="relative z-10 flex h-full items-center gap-4 px-5 py-5 sm:px-7">
-            <Image
-              src="/media/branded/ua-seal.png"
-              alt="Ursuline Academy Dedham"
-              width={52}
-              height={52}
-              className="h-[52px] w-[52px] shrink-0 object-contain"
-              priority
-            />
-            <div>
-              <p className="text-[10px] font-semibold tracking-wide text-emerald-800 uppercase">
-                Faith · Courage · Joy · Ursuline Bears
-              </p>
-              <h1 className="mt-1 font-serif text-3xl text-stone-900 sm:text-4xl">
-                Welcome
-              </h1>
-              <p className="mt-1 text-sm font-medium text-stone-700">
-                <TodayDate />
-              </p>
-              <Link
-                href="/orientation/"
-                className="mt-3 inline-flex items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-2 text-xs font-semibold text-white shadow-md transition hover:bg-[#0b4a33]"
-              >
-                New student orientation
-              </Link>
-            </div>
-          </header>
+      <section className="ua-card ua-shadow-soft relative overflow-hidden rounded-[22px]">
+        <div className="pointer-events-none absolute inset-0">
+          <Image
+            src="/media/branded/campus-entrance.png"
+            alt=""
+            fill
+            className="object-cover opacity-[0.18]"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(247,244,236,0.78)] via-[rgba(255,255,255,0.9)] to-[rgba(238,246,241,0.94)]" />
         </div>
 
-        <div className="ua-card ua-shadow-soft flex flex-col justify-center p-5 sm:p-6">
-          <div className="flex items-center gap-4">
-            <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
-              <Image
-                src="/media/branded/brett-hannan.png"
-                alt="Brett Hannan"
-                width={96}
-                height={96}
-                className="h-full w-full object-cover"
-                priority
-              />
-            </div>
-            <div>
-              <h2 className="font-serif text-3xl text-stone-900">
-                Brett Hannan
-              </h2>
-              <p className="mt-1 text-sm text-stone-600">
-                Computer Science & Mathematics
-              </p>
+        <header className="relative z-10 flex items-center justify-center gap-5 px-5 py-6 text-center sm:py-7">
+          <Image
+            src="/media/branded/ua-seal.png"
+            alt="Ursuline Academy Dedham"
+            width={64}
+            height={64}
+            className="h-14 w-14 shrink-0 object-contain sm:h-16 sm:w-16"
+            priority
+          />
+          <div>
+            <p className="text-[10px] font-semibold tracking-[0.14em] text-emerald-800 uppercase">
+              Faith · Courage · Joy
+            </p>
+            <h1 className="mt-1 font-serif text-3xl text-stone-900 sm:text-4xl">
+              Welcome
+            </h1>
+            <div className="mt-2 text-xl font-semibold text-stone-800 sm:text-2xl">
+              <TodayDate />
             </div>
           </div>
-          <p className="mt-3 text-sm leading-relaxed text-stone-700">
+        </header>
+      </section>
+
+      <section className="ua-card ua-shadow-soft mt-4 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-6">
+        <div className="flex items-center gap-4">
+          <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[rgba(13,92,61,0.25)]">
+            <Image
+              src="/media/branded/brett-hannan.png"
+              alt="Brett Hannan"
+              width={96}
+              height={96}
+              className="h-full w-full object-cover"
+              priority
+            />
+          </div>
+          <div>
+            <h2 className="font-serif text-3xl text-stone-900">
+              Brett Hannan
+            </h2>
+            <p className="mt-1 text-sm text-stone-600">
+              Computer Science & Mathematics
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-4 sm:mt-0 sm:text-right">
+          <p className="text-sm leading-relaxed text-stone-700">
             Questions or need help? Reach out anytime.
           </p>
           <a
             href="mailto:bhannan@ursulineacademy.net"
-            className="mt-1 text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
+            className="mt-1 inline-block text-sm font-medium text-[var(--ua-evergreen)] underline underline-offset-2"
           >
             bhannan@ursulineacademy.net
           </a>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2 sm:justify-end">
             <SoftLink
               href="https://calendar.app.google/Y59k115ZMYyLjcUG6"
               primary

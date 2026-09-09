@@ -14,25 +14,40 @@ function formatDate(date: Date) {
           : day % 10 === 3
             ? "rd"
             : "th";
-  const words = new Intl.DateTimeFormat("en-US", {
+  const weekday = new Intl.DateTimeFormat("en-US", {
     weekday: "long",
+  }).format(date);
+  const month = new Intl.DateTimeFormat("en-US", {
     month: "long",
   }).format(date);
 
-  return `${words} ${day}${suffix}`;
+  return `${weekday}, ${month} ${day}${suffix}`;
+}
+
+function formatTime(date: Date) {
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(date);
 }
 
 export function TodayDate() {
-  const [today, setToday] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
-    const timer = window.setInterval(() => setToday(new Date()), 60_000);
+    const updateTime = () => setNow(new Date());
+    updateTime();
+
+    const timer = window.setInterval(updateTime, 60_000);
     return () => window.clearInterval(timer);
   }, []);
 
   return (
-    <time dateTime={today.toISOString().slice(0, 10)} suppressHydrationWarning>
-      {formatDate(today)}
+    <time dateTime={now?.toISOString()}>
+      <span className="block">{now ? formatDate(now) : "\u00A0"}</span>
+      <span className="mt-1 block text-base font-semibold text-emerald-800 sm:text-lg">
+        {now ? formatTime(now) : "\u00A0"}
+      </span>
     </time>
   );
 }
