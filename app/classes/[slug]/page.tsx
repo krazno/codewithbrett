@@ -72,10 +72,23 @@ export default async function ClassPage({ params }: Props) {
                 {course.description}
               </p>
             </div>
-            <p className="font-semibold text-emerald-50">
-              {course.room}
-              {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
-            </p>
+            <div className="flex items-center gap-3 sm:flex-col sm:items-end">
+              <p className="whitespace-nowrap font-semibold text-emerald-50">
+                {course.room}
+                {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
+              </p>
+              {course.syllabusUrl ? (
+                <a
+                  href={course.syllabusUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open syllabus for ${course.title} in a new tab`}
+                  className="inline-flex rounded-full border border-white/50 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--ua-evergreen)] focus:outline-none"
+                >
+                  Syllabus
+                </a>
+              ) : null}
+            </div>
           </div>
         </header>
 

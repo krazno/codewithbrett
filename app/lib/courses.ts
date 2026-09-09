@@ -9,6 +9,7 @@ export type Course = {
   googleClassroomCode?: string;
   googleClassroomUrl?: string;
   googleMeetUrl?: string;
+  syllabusUrl?: string;
   apJoinCode?: string;
   textbook?: {
     title: string;
@@ -40,6 +41,8 @@ export const COURSES: Course[] = [
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwNDk2Mzk5?cjc=7n676v2o",
     googleMeetUrl: "https://meet.google.com/weu-wncf-uxm",
+    syllabusUrl:
+      "https://docs.google.com/document/d/1yJIb8zwbEaQzgO7xT8VamcOliQnA1Z-s/edit?usp=sharing",
     apJoinCode: "Y3LEZM",
     textbook: {
       title: "OpenStax Introduction to Computer Science",
@@ -72,6 +75,8 @@ export const COURSES: Course[] = [
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwMDE5Nzc4?cjc=wbujhmtr",
     googleMeetUrl: "https://meet.google.com/pmq-gxvg-bmg",
+    syllabusUrl:
+      "https://docs.google.com/document/d/1yJIb8zwbEaQzgO7xT8VamcOliQnA1Z-s/edit?usp=sharing",
     apJoinCode: "G22APR",
     textbook: {
       title: "OpenStax Introduction to Computer Science",
@@ -104,6 +109,8 @@ export const COURSES: Course[] = [
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcyODE4NTE5?cjc=kv3shxpx",
     googleMeetUrl: "https://meet.google.com/umt-zodc-mck",
+    syllabusUrl:
+      "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
     textbook: {
       title: "OpenStax Calculus Volume 1",
       url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
@@ -140,6 +147,8 @@ export const COURSES: Course[] = [
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjcwMzkyOTU4?cjc=cwq6rxo6",
     googleMeetUrl: "https://meet.google.com/ctu-npkv-aoj",
+    syllabusUrl:
+      "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
     textbook: {
       title: "OpenStax Calculus Volume 1",
       url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
@@ -176,6 +185,8 @@ export const COURSES: Course[] = [
     googleClassroomUrl:
       "https://classroom.google.com/c/ODc4MjY4MDQyMTg3?cjc=ahdo734n",
     googleMeetUrl: "https://meet.google.com/dqo-mwho-hni",
+    syllabusUrl:
+      "https://docs.google.com/document/d/1H1YdzHNvq0xnf7qhqEe9SrOX40oBJSkP/edit?usp=sharing",
     apJoinCode: "7QXGY7",
     textbook: {
       title: "CSAwesome2: AP CSA Java 2026+",
