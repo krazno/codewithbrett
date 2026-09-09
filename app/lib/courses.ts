@@ -125,6 +125,8 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
+    gammaEmbedSrc: "https://gamma.app/embed/fspy3bsk7zfi634",
+    gammaEmbedTitle: "Welcome to Calculus Honors",
     textbook: {
       title: "OpenStax Calculus Volume 1",
       url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
@@ -165,6 +167,8 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
+    gammaEmbedSrc: "https://gamma.app/embed/fspy3bsk7zfi634",
+    gammaEmbedTitle: "Welcome to Calculus Honors",
     textbook: {
       title: "OpenStax Calculus Volume 1",
       url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
