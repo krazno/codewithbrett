@@ -1,0 +1,1697 @@
+{
+  "meta": {
+    "school": "Ursuline Academy Dedham",
+    "year": "2026-2027",
+    "timezone": "America/New_York",
+    "day0Start": "2026-09-10",
+    "day1Start": "2026-09-11",
+    "source": "Ursuline_2026-27_Authoritative_Teaching_Schedule.md + Teaching Impact Calendar + UA schedule screenshots",
+    "notes": "Nav shows compact Day N only. Full teaching schedule is consultable data, not rendered on every page. Prefer Brett's Day 0/Day 1 start for Sep 10\u201311; ledger governs subsequent dates."
+  },
+  "calendar": {
+    "2026-09-10": {
+      "kind": "day0",
+      "cycleDay": 0,
+      "label": "Day 0",
+      "notes": "User-authoritative start: Day 0 before Q1 Day 1"
+    },
+    "2026-09-11": {
+      "notes": "Q1 begins",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2026-09-14": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2026-09-15": {
+      "notes": "7th grade community day",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": true
+    },
+    "2026-09-16": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2026-09-17": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2026-09-18": {
+      "notes": "Mass - Holy Spirit",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": true
+    },
+    "2026-09-21": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2026-09-22": {
+      "notes": "College Wkshp / Terrific Tuesday",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": true
+    },
+    "2026-09-23": {
+      "notes": "Faculty Mtg",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2026-09-24": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2026-09-25": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2026-09-28": {
+      "notes": "Gradebook updated",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2026-09-29": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2026-09-30": {
+      "notes": "Mission Mtg / College Fair",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": true
+    },
+    "2026-10-01": {
+      "notes": "9th grade community day",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": true
+    },
+    "2026-10-02": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2026-10-05": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2026-10-06": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2026-10-07": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2026-10-08": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2026-10-09": {
+      "notes": "PSAT /Grandfriends Day",
+      "kind": "special",
+      "cycleDay": 0,
+      "label": "Day 0",
+      "special": true
+    },
+    "2026-10-12": {
+      "notes": "Indigenous Peoples Day",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2026-10-13": {
+      "notes": "Gradebook updated 9am",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2026-10-14": {
+      "notes": "Faculty Mtg",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2026-10-15": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2026-10-16": {
+      "notes": "midquarter report sent to families",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2026-10-19": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2026-10-20": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2026-10-21": {
+      "notes": "Mission Mtg",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2026-10-22": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2026-10-23": {
+      "notes": "Mass-St. Ursula / Code of Conduct",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": true
+    },
+    "2026-10-26": {
+      "notes": "Gradebook updated",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2026-10-27": {
+      "notes": "7/8 Grade Admissions Visit Day",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2026-10-28": {
+      "notes": "9th Grade Admissions Visit Day",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2026-10-29": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2026-10-30": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2026-11-02": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2026-11-03": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2026-11-04": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2026-11-05": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2026-11-06": {
+      "notes": "End Q1",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2026-11-09": {
+      "notes": "Q2 begins",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2026-11-10": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2026-11-11": {
+      "notes": "Veterans Day",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2026-11-12": {
+      "notes": "Grades due 9am",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2026-11-13": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2026-11-16": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2026-11-17": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2026-11-18": {
+      "notes": "Faculty Mtg / 7/8 Visit Day",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2026-11-19": {
+      "notes": "9th Grade Admissions Visit Day",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2026-11-20": {
+      "notes": "Friendsgiving / Powder Puff",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": true
+    },
+    "2026-11-23": {
+      "notes": "In-Person Parent Teacher Conf.",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2026-11-24": {
+      "notes": "Virtual Parent Teacher Conf.",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2026-11-30": {
+      "notes": "Asycn. Virtual PD Day",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2026-12-01": {
+      "notes": "Gradebook updated 9am",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2026-12-02": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2026-12-03": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2026-12-04": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2026-12-07": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2026-12-08": {
+      "notes": "Mass - Immac. Conception",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": true
+    },
+    "2026-12-09": {
+      "notes": "all grades Admissions Visit Day",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2026-12-10": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2026-12-11": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2026-12-14": {
+      "notes": "Gradebook updated 9am",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2026-12-15": {
+      "notes": "midquarter report sent to families",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2026-12-16": {
+      "notes": "Faculty Mtg",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2026-12-17": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2026-12-18": {
+      "notes": "Talent Show",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": true
+    },
+    "2027-01-04": {
+      "notes": "In-Person PD Day",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2027-01-05": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-01-06": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-01-07": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-01-08": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-01-11": {
+      "notes": "Gradebook updated",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-01-12": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-01-13": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-01-14": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-01-15": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-01-18": {
+      "notes": "MLK Day",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2027-01-19": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-01-20": {
+      "notes": "Faculty Mtg",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-01-21": {
+      "notes": "End Q2/Sem1",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-01-22": {
+      "notes": "Q3 begins - All Grades Visit Day",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-01-25": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-01-26": {
+      "notes": "Grades due 9am",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-01-27": {
+      "notes": "Mass: St. Angela-Ring",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": true
+    },
+    "2027-01-28": {
+      "notes": "11th Gr Retreat",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": true
+    },
+    "2027-01-29": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-02-01": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-02-02": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-02-03": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-02-04": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-02-05": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-02-08": {
+      "notes": "Gradebook updated",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-02-09": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-02-10": {
+      "notes": "Mass: Ash Wed / Faculty Mtg",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": true
+    },
+    "2027-02-11": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-02-12": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-02-22": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-02-23": {
+      "notes": "Gradebook updated 9am",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-02-24": {
+      "notes": "Mass:Justice & Peace / Mission Mtg",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": true
+    },
+    "2027-02-25": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-02-26": {
+      "notes": "midquarter report sent to families",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-03-01": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-03-02": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-03-03": {
+      "notes": "7th Gr Retreat",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": true
+    },
+    "2027-03-04": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-03-05": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-03-08": {
+      "notes": "Gradebook updated",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-03-09": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-03-10": {
+      "notes": "8th Gr Retreat / Faculty Mtg",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": true
+    },
+    "2027-03-11": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-03-12": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-03-15": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-03-16": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-03-17": {
+      "notes": "9th Gr Retreat / Faculty Mtg",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": true
+    },
+    "2027-03-18": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-03-19": {
+      "notes": "Women in Leadership Day",
+      "kind": "special",
+      "cycleDay": 0,
+      "label": "Day 0",
+      "special": true
+    },
+    "2027-03-22": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-03-23": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-03-24": {
+      "notes": "End Q3 / 10th Gr Retreat",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": true
+    },
+    "2027-03-25": {
+      "notes": "Holy Thursday - Faculty Retreat",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2027-03-26": {
+      "notes": "Good Friday",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2027-03-29": {
+      "notes": "Easter Monday",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2027-03-30": {
+      "notes": "Q4 begins",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-03-31": {
+      "notes": "Mission Meeting",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-04-01": {
+      "notes": "Grades due 3pm for all",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-04-02": {
+      "notes": "PD Day",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2027-04-05": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-04-06": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-04-07": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-04-08": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-04-09": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-04-12": {
+      "notes": "Gradebook updated",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-04-13": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-04-14": {
+      "notes": "Faculty Meeting",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-04-15": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-04-16": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-04-26": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-04-27": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-04-28": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-04-29": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-04-30": {
+      "notes": "Mass - St. Marie Inc. / Prom",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": true
+    },
+    "2027-05-03": {
+      "notes": "Gdbk updated 9am: AP 8am: H.Geo 12pm: Bio",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-05-04": {
+      "notes": "midquarter sent to families:  AP 12pm: Euro",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-05-05": {
+      "notes": "AP  8am: English Lit  12pm: Physics 1",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-05-06": {
+      "notes": "Mass - Ascension AP 8am French 12pm: Chem",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": true
+    },
+    "2027-05-07": {
+      "notes": "Last day (srs)/End Q4 non-AP /  8am APUSH",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-05-10": {
+      "notes": "Sr finals: AP 8am Calc AB/BC 12pm: Music",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-05-11": {
+      "notes": "Senior finals",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-05-12": {
+      "notes": "AP 8am: Eng Lang 12pm: Art Hist & Comp Sc A",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-05-13": {
+      "notes": "AP 8am: Spanish Lang 12pm: Enviro. Sc.",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-05-14": {
+      "notes": "Non-AP Sr-Grades due AP 8am:CS Princ 12pm: Psych",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-05-17": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-05-18": {
+      "notes": "AP Srs - Grades due 9am",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-05-19": {
+      "notes": "Faculty Meeting/8th Gr. promotion",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": true
+    },
+    "2027-05-20": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-05-21": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-05-24": {
+      "notes": "Gradebook updated",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-05-25": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 3,
+      "label": "Day 3",
+      "affected": false
+    },
+    "2027-05-26": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 4,
+      "label": "Day 4",
+      "affected": false
+    },
+    "2027-05-27": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 5,
+      "label": "Day 5",
+      "affected": false
+    },
+    "2027-05-28": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 6,
+      "label": "Day 6",
+      "affected": false
+    },
+    "2027-05-31": {
+      "notes": "Memorial Day",
+      "kind": "no_school",
+      "cycleDay": null,
+      "label": null
+    },
+    "2027-06-01": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 7,
+      "label": "Day 7",
+      "affected": false
+    },
+    "2027-06-02": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 8,
+      "label": "Day 8",
+      "affected": false
+    },
+    "2027-06-03": {
+      "notes": "",
+      "kind": "cycle",
+      "cycleDay": 1,
+      "label": "Day 1",
+      "affected": false
+    },
+    "2027-06-04": {
+      "notes": "End Q4",
+      "kind": "cycle",
+      "cycleDay": 2,
+      "label": "Day 2",
+      "affected": false
+    },
+    "2027-06-07": {
+      "kind": "special",
+      "cycleDay": 0,
+      "label": "Day 0",
+      "special": true,
+      "notes": "Exams/Study Days"
+    },
+    "2027-06-08": {
+      "kind": "special",
+      "cycleDay": 0,
+      "label": "Day 0",
+      "special": true,
+      "notes": "Exams/Study Days"
+    },
+    "2027-06-09": {
+      "kind": "special",
+      "cycleDay": 0,
+      "label": "Day 0",
+      "special": true,
+      "notes": "Exams/Study Days"
+    },
+    "2027-06-10": {
+      "kind": "special",
+      "cycleDay": 0,
+      "label": "Day 0",
+      "special": true,
+      "notes": "Exams/Study Days"
+    },
+    "2027-06-11": {
+      "kind": "special",
+      "cycleDay": 0,
+      "label": "Day 0",
+      "special": true,
+      "notes": "Exams/Study Days"
+    }
+  },
+  "blockRotation": {
+    "times": [
+      {
+        "slot": "advisory",
+        "time": "8:00-8:07",
+        "fixed": "Advisory"
+      },
+      {
+        "slot": "1",
+        "time": "8:10-8:55"
+      },
+      {
+        "slot": "2",
+        "time": "8:58-9:43"
+      },
+      {
+        "slot": "activity",
+        "time": "9:46-10:16",
+        "fixed": "Activity"
+      },
+      {
+        "slot": "3",
+        "time": "10:19-11:04"
+      },
+      {
+        "slot": "4",
+        "time": "11:07-11:52"
+      },
+      {
+        "slot": "lunch",
+        "time": "11:55-1:10",
+        "note": "Lunch block; Math/CS take second lunch (class 11:55-12:40, lunch 12:40-1:10)"
+      },
+      {
+        "slot": "5",
+        "time": "1:13-1:58"
+      },
+      {
+        "slot": "6",
+        "time": "2:01-2:46"
+      },
+      {
+        "slot": "dropped",
+        "time": null,
+        "fixed": "Class does not meet"
+      }
+    ],
+    "days": {
+      "1": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "2": [
+        "H",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "3": [
+        "G",
+        "H",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "4": [
+        "F",
+        "G",
+        "H",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "5": [
+        "E",
+        "F",
+        "G",
+        "H",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "6": [
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "A",
+        "B",
+        "C"
+      ],
+      "7": [
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "A",
+        "B"
+      ],
+      "8": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "A"
+      ]
+    },
+    "slotOrder": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "lunch",
+      "5",
+      "6",
+      "dropped"
+    ]
+  },
+  "teaching": {
+    "teacher": "Brett Hannan",
+    "year": "2026-2027",
+    "blocks": {
+      "A": {
+        "course": "Study Hall",
+        "room": "AHAL",
+        "notes": "Day 4 only (A4)",
+        "meetsDays": [
+          4
+        ]
+      },
+      "B": {
+        "course": "AP Computer Science Principles",
+        "short": "AP CSP",
+        "room": "A207"
+      },
+      "C": null,
+      "D": {
+        "course": "Calculus Honors",
+        "short": "Calculus H",
+        "room": "118"
+      },
+      "E": {
+        "course": "Calculus Honors",
+        "short": "Calculus H",
+        "room": "118"
+      },
+      "F": {
+        "course": "AP Computer Science Principles",
+        "short": "AP CSP",
+        "room": "A207"
+      },
+      "G": null,
+      "H": {
+        "course": "AP Computer Science A",
+        "short": "AP CSA",
+        "room": "118"
+      }
+    },
+    "duties": [
+      {
+        "cycleDay": 4,
+        "what": "Study Hall AHAL during A block",
+        "time": "11:07-11:52"
+      },
+      {
+        "cycleDay": 8,
+        "what": "Lunch duty",
+        "time": null
+      }
+    ],
+    "lunch": {
+      "policy": "second",
+      "departments": [
+        "Theology",
+        "English",
+        "Math",
+        "CS",
+        "Fine Arts",
+        "counseling",
+        "7/8 Specials"
+      ],
+      "classWindow": "11:55-12:40",
+      "lunchWindow": "12:40-1:10"
+    },
+    "rotationSequences": {
+      "1": {
+        "dropped": "H",
+        "load": 4,
+        "sequence": [
+          {
+            "time": "8:58-9:43",
+            "block": "B",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "11:07-11:52",
+            "block": "D",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "11:55-1:10",
+            "block": "E",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "1:13-1:58",
+            "block": "F",
+            "course": "AP CSP",
+            "room": "A207"
+          }
+        ]
+      },
+      "2": {
+        "dropped": "G",
+        "load": 5,
+        "sequence": [
+          {
+            "time": "8:10-8:55",
+            "block": "H",
+            "course": "AP CSA",
+            "room": "118"
+          },
+          {
+            "time": "10:19-11:04",
+            "block": "B",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "11:55-1:10",
+            "block": "D",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "1:13-1:58",
+            "block": "E",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "2:01-2:46",
+            "block": "F",
+            "course": "AP CSP",
+            "room": "A207"
+          }
+        ]
+      },
+      "3": {
+        "dropped": "F",
+        "load": 4,
+        "sequence": [
+          {
+            "time": "8:58-9:43",
+            "block": "H",
+            "course": "AP CSA",
+            "room": "118"
+          },
+          {
+            "time": "11:07-11:52",
+            "block": "B",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "1:13-1:58",
+            "block": "D",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "2:01-2:46",
+            "block": "E",
+            "course": "Calculus Honors",
+            "room": "118"
+          }
+        ]
+      },
+      "4": {
+        "dropped": "E",
+        "load": 4,
+        "sequence": [
+          {
+            "time": "8:10-8:55",
+            "block": "F",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "10:19-11:04",
+            "block": "H",
+            "course": "AP CSA",
+            "room": "118"
+          },
+          {
+            "time": "11:07-11:52",
+            "block": "A",
+            "course": "Study Hall",
+            "room": "AHAL"
+          },
+          {
+            "time": "11:55-1:10",
+            "block": "B",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "2:01-2:46",
+            "block": "D",
+            "course": "Calculus Honors",
+            "room": "118"
+          }
+        ]
+      },
+      "5": {
+        "dropped": "D",
+        "load": 4,
+        "sequence": [
+          {
+            "time": "8:10-8:55",
+            "block": "E",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "8:58-9:43",
+            "block": "F",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "11:07-11:52",
+            "block": "H",
+            "course": "AP CSA",
+            "room": "118"
+          },
+          {
+            "time": "1:13-1:58",
+            "block": "B",
+            "course": "AP CSP",
+            "room": "A207"
+          }
+        ]
+      },
+      "6": {
+        "dropped": "C",
+        "load": 5,
+        "sequence": [
+          {
+            "time": "8:10-8:55",
+            "block": "D",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "8:58-9:43",
+            "block": "E",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "10:19-11:04",
+            "block": "F",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "11:55-1:10",
+            "block": "H",
+            "course": "AP CSA",
+            "room": "118"
+          },
+          {
+            "time": "2:01-2:46",
+            "block": "B",
+            "course": "AP CSP",
+            "room": "A207"
+          }
+        ]
+      },
+      "7": {
+        "dropped": "B",
+        "load": 4,
+        "sequence": [
+          {
+            "time": "8:58-9:43",
+            "block": "D",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "10:19-11:04",
+            "block": "E",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "11:07-11:52",
+            "block": "F",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "1:13-1:58",
+            "block": "H",
+            "course": "AP CSA",
+            "room": "118"
+          }
+        ]
+      },
+      "8": {
+        "dropped": "A",
+        "load": 5,
+        "sequence": [
+          {
+            "time": "8:10-8:55",
+            "block": "B",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "10:19-11:04",
+            "block": "D",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "11:07-11:52",
+            "block": "E",
+            "course": "Calculus Honors",
+            "room": "118"
+          },
+          {
+            "time": "11:55-1:10",
+            "block": "F",
+            "course": "AP CSP",
+            "room": "A207"
+          },
+          {
+            "time": "duty",
+            "block": null,
+            "course": "Lunch duty",
+            "room": null
+          },
+          {
+            "time": "2:01-2:46",
+            "block": "H",
+            "course": "AP CSA",
+            "room": "118"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -5,7 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { COURSES } from "@/app/lib/courses";
+import { CycleDayLabel } from "./CycleDayLabel";
 import { NavCountdownTimer } from "./NavCountdownTimer";
+import { NavQuoteStrip } from "./NavQuoteStrip";
 import { TodayDateLabel } from "./TodayDate";
 
 const COURSE_LINKS = [
@@ -152,7 +154,10 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2 sm:gap-2.5">
           <NavCountdownTimer />
-          <TodayDateLabel className="hidden whitespace-nowrap text-right text-[0.75rem] leading-none font-medium text-white/90 min-[420px]:inline md:text-sm" />
+          <div className="hidden min-[420px]:flex min-[420px]:flex-col min-[420px]:items-end min-[420px]:gap-0.5">
+            <TodayDateLabel className="whitespace-nowrap text-right text-[0.75rem] leading-none font-medium text-white/90 md:text-sm" />
+            <CycleDayLabel className="whitespace-nowrap text-right text-[0.7rem] leading-none font-semibold tracking-wide text-white/80 md:text-xs" />
+          </div>
 
           <button
             id="site-mobile-toggle"
@@ -206,6 +211,8 @@ export function SiteHeader() {
           </nav>
         </div>
       ) : null}
+
+      <NavQuoteStrip />
     </header>
   );
 }

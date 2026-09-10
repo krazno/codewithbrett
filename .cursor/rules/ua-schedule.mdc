@@ -1,0 +1,24 @@
+---
+description: Ursuline 2026-27 day cycle + teaching schedule data for agents
+alwaysApply: true
+---
+
+# UA schedule (system knowledge)
+
+## Where data lives
+
+- `data/ua-schedule-2026-27.json` — date→cycle map, block rotation A–H, Brett’s teaching blocks/sequences (consult; do **not** dump full schedule UI on every page)
+- `data/Ursuline_2026-27_Authoritative_Teaching_Schedule.md` — narrative authoritative reference
+- `app/lib/uaSchedule.ts` — `getCycleDayLabel()`, `getCalendarEntry()`, America/New_York date keys
+
+## Cycle start (authoritative for agents)
+
+- **Day 0** = Thursday, **2026-09-10**
+- **Day 1** = Friday, **2026-09-11** (Q1 begins)
+- Later dates follow `calendar` in the JSON (Teaching Impact Calendar ledger). Special / no-numbered days → **Day 0**; no school → no nav day label.
+
+## Nav vs full schedule
+
+- SiteHeader shows a compact **Day N** / **Day 0** next to the date only.
+- Quotes under nav hide on scroll; footer quotes stay.
+- For “what am I teaching today?” read JSON `teaching.rotationSequences` + today’s `cycleDay` — do not invent a homepage schedule board unless asked.
