@@ -382,7 +382,7 @@ export default function HomePage() {
         aria-label="Website fact"
       >
         <span className="font-semibold text-emerald-800">
-          Built with 4,000+ lines of code
+          Built with 6,000+ lines of code
         </span>{" "}
         across TypeScript, JavaScript, CSS, Python, and shell.
       </aside>
