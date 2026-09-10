@@ -1,23 +1,13 @@
-export const SITE_QUOTES = [
-  {
-    text: "She is clothed with strength and dignity, and she laughs without fear of the future.",
-    source: "Proverbs 31:25",
-  },
+export type SiteQuote = {
+  text: string;
+  source: string;
+};
+
+/** St. Angela Merici only — used by the top nav quote ribbon. */
+export const ANGELA_QUOTES = [
   {
     text: "Act, move, believe, strive, hope, cry out to Him with all your heart.",
     source: "St. Angela Merici, Prologue to the Counsels",
-  },
-  {
-    text: "Whatever you do, work at it with all your heart.",
-    source: "Colossians 3:23",
-  },
-  {
-    text: "For God gave us a spirit not of fear but of power and love and self-control.",
-    source: "2 Timothy 1:7",
-  },
-  {
-    text: "With God all things are possible.",
-    source: "Matthew 19:26",
   },
   {
     text: "For it is not enough to begin, if one does not also persevere.",
@@ -55,4 +45,26 @@ export const SITE_QUOTES = [
     text: "In times of great need, true friendship is recognised.",
     source: "St. Angela Merici",
   },
-] as const;
+] as const satisfies readonly SiteQuote[];
+
+/** Scripture + Angela mix — used by the footer quote rotation. */
+export const SITE_QUOTES = [
+  {
+    text: "She is clothed with strength and dignity, and she laughs without fear of the future.",
+    source: "Proverbs 31:25",
+  },
+  ANGELA_QUOTES[0],
+  {
+    text: "Whatever you do, work at it with all your heart.",
+    source: "Colossians 3:23",
+  },
+  {
+    text: "For God gave us a spirit not of fear but of power and love and self-control.",
+    source: "2 Timothy 1:7",
+  },
+  {
+    text: "With God all things are possible.",
+    source: "Matthew 19:26",
+  },
+  ...ANGELA_QUOTES.slice(1),
+] as const satisfies readonly SiteQuote[];

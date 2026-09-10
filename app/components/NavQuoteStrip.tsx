@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SITE_QUOTES } from "@/app/lib/quotes";
+import { ANGELA_QUOTES } from "@/app/lib/quotes";
 
 /** Topmost rotating quote banner; hides when the page scrolls down. */
 export function NavQuoteStrip() {
@@ -10,7 +10,7 @@ export function NavQuoteStrip() {
 
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setQuoteIndex((current) => (current + 1) % SITE_QUOTES.length);
+      setQuoteIndex((current) => (current + 1) % ANGELA_QUOTES.length);
     }, 5000);
     return () => window.clearInterval(interval);
   }, []);
@@ -24,7 +24,7 @@ export function NavQuoteStrip() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const quote = SITE_QUOTES[quoteIndex];
+  const quote = ANGELA_QUOTES[quoteIndex];
 
   return (
     <div
