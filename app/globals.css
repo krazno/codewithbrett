@@ -17,8 +17,9 @@
   --ua-ivory: #f7f4ec;
   --ua-charcoal: #202522;
   --ua-gray-100: #e9ecea;
-  /* Soft cream-sage strip above sticky nav (distinct from evergreen bar) */
-  --ua-quote-bar: #e8f0e4;
+  /* Soft sage strip above sticky evergreen nav */
+  --ua-quote-bar: #eef5ea;
+  --ua-quote-bar-edge: rgba(13, 92, 61, 0.14);
 }
 
 html {
@@ -100,6 +101,18 @@ html {
     opacity: 0;
     transform: translateY(-0.35rem);
   }
+}
+
+.site-quote-bar {
+  border-bottom: 1px solid var(--ua-quote-bar-edge);
+  background:
+    linear-gradient(
+      180deg,
+      #f7faf5 0%,
+      var(--ua-quote-bar) 55%,
+      #e6f0e2 100%
+    );
+  color: var(--ua-evergreen);
 }
 
 .site-nav-quote {

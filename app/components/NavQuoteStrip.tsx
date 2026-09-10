@@ -28,21 +28,22 @@ export function NavQuoteStrip() {
 
   return (
     <div
-      className={`overflow-hidden border-b border-[var(--ua-evergreen)]/12 bg-[var(--ua-quote-bar)] text-[var(--ua-evergreen)] transition-[max-height,opacity,border-color] duration-200 ease-out ${
+      className={`site-quote-bar overflow-hidden transition-[max-height,opacity,border-color] duration-200 ease-out ${
         hidden
           ? "max-h-0 border-transparent opacity-0"
-          : "max-h-16 opacity-100"
+          : "max-h-20 opacity-100"
       }`}
+      aria-label="Inspirational quote"
       aria-hidden={hidden}
     >
       <figure
-        className="site-nav-quote mx-auto flex max-w-5xl flex-wrap items-baseline justify-center gap-x-2.5 gap-y-0.5 px-3 py-2 text-center sm:px-6"
+        className="site-nav-quote mx-auto flex max-w-5xl flex-wrap items-baseline justify-center gap-x-2.5 gap-y-0.5 px-3 py-2.5 text-center sm:px-6"
         key={quoteIndex}
       >
-        <blockquote className="min-w-0 font-serif text-[0.8125rem] font-medium leading-snug tracking-[0.01em] text-[var(--ua-evergreen)] sm:text-[0.9375rem] sm:leading-snug">
+        <blockquote className="min-w-0 font-serif text-[0.875rem] font-medium leading-snug tracking-[0.01em] text-[var(--ua-evergreen)] sm:text-[1rem] sm:leading-snug">
           “{quote.text}”
         </blockquote>
-        <figcaption className="shrink-0 font-sans text-[0.625rem] font-medium tracking-[0.08em] text-[var(--ua-teal)]/85 uppercase sm:text-[0.68rem]">
+        <figcaption className="shrink-0 font-sans text-[0.625rem] font-medium tracking-[0.1em] text-[var(--ua-teal)] uppercase sm:text-[0.68rem]">
           — {quote.source}
         </figcaption>
       </figure>

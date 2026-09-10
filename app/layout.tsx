@@ -6,6 +6,7 @@ import {
   GoogleTagManagerBody,
   GoogleTagManagerHead,
 } from "./components/GoogleTagManager";
+import { NavQuoteStrip } from "./components/NavQuoteStrip";
 import { QuoteFooter } from "./components/QuoteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import "./globals.css";
@@ -80,6 +81,7 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col bg-stone-50 font-sans antialiased">
         <GoogleTagManagerBody />
+        <NavQuoteStrip />
         <SiteHeader />
         <div className="flex-1">
           <ContentGuard>{children}</ContentGuard>

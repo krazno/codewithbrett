@@ -7,7 +7,6 @@ import { useEffect, useId, useRef, useState } from "react";
 import { COURSES } from "@/app/lib/courses";
 import { CycleDayLabel } from "./CycleDayLabel";
 import { NavCountdownTimer } from "./NavCountdownTimer";
-import { NavQuoteStrip } from "./NavQuoteStrip";
 import { TodayDateLabel } from "./TodayDate";
 
 const COURSE_LINKS = [
@@ -74,10 +73,11 @@ export function SiteHeader() {
   }, [coursesOpen, mobileOpen]);
 
   return (
-    <header ref={mobileRef} className="sticky top-0 z-[60]" role="banner">
-      <NavQuoteStrip />
-
-      <div className="border-b border-black/25 bg-[var(--ua-evergreen)] text-white shadow-md">
+    <header
+      ref={mobileRef}
+      className="sticky top-0 z-[60] border-b border-black/25 bg-[var(--ua-evergreen)] text-white shadow-md"
+      role="banner"
+    >
       <div className="mx-auto flex h-[var(--site-header-height)] max-w-5xl items-center justify-between gap-4 px-3 sm:gap-6 sm:px-6">
         <div className="flex min-w-0 items-center gap-5 sm:gap-7">
           <Link
@@ -210,7 +210,6 @@ export function SiteHeader() {
           </nav>
         </div>
       ) : null}
-      </div>
     </header>
   );
 }
