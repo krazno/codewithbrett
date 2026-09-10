@@ -1,23 +1,33 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE, SITE_NAME } from "../lib/site";
+
+const lessonTitle = "AI, the Brain, and Serviam";
+const lessonDescription =
+  "AI literacy lesson for Ursuline Academy Dedham: Serviam judgment with AI and Inside AI labs for students.";
 
 export const metadata: Metadata = {
-  title: "AI, the Brain, and Serviam",
-  description:
-    "AI literacy lesson for Ursuline Academy Dedham: Serviam and Inside AI labs for Ursuline students.",
+  title: lessonTitle,
+  description: lessonDescription,
   alternates: { canonical: "/ursuline-ai/" },
   openGraph: {
     type: "website",
-    siteName: "Ursuline Academy Dedham",
-    title: "AI, the Brain, and Serviam · Ursuline Academy Dedham",
-    description:
-      "Interactive AI literacy for Ursuline Academy students in Dedham, Massachusetts.",
+    siteName: SITE_NAME,
+    title: `${lessonTitle} · ${SITE_NAME}`,
+    description: lessonDescription,
     url: "/ursuline-ai/",
     images: [
       {
         url: "/assets/ursuline-shield.png",
         alt: "Ursuline Academy Dedham",
       },
+      DEFAULT_OG_IMAGE,
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${lessonTitle} · ${SITE_NAME}`,
+    description: lessonDescription,
+    images: ["/assets/ursuline-shield.png"],
   },
 };
 

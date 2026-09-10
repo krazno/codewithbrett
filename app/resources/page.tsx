@@ -1,12 +1,30 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { DEFAULT_OG_IMAGE, SITE_NAME } from "@/app/lib/site";
+
+const resourcesTitle = "Tools & Resources";
+const resourcesDescription =
+  "Practical software for writing, coding, and class projects — Cursor, Wispr Flow, Eclipse, and more for Code with Brett students.";
 
 export const metadata: Metadata = {
-  title: "Tools & Resources",
-  description:
-    "A concise collection of software resources for writing, coding, and class projects.",
+  title: resourcesTitle,
+  description: resourcesDescription,
   alternates: { canonical: "/resources/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${resourcesTitle} · ${SITE_NAME}`,
+    description: resourcesDescription,
+    url: "/resources/",
+    images: [DEFAULT_OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${resourcesTitle} · ${SITE_NAME}`,
+    description: resourcesDescription,
+    images: [DEFAULT_OG_IMAGE.url],
+  },
 };
 
 const resources = [

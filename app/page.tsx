@@ -3,27 +3,34 @@ import Image from "next/image";
 import Link from "next/link";
 import { TodayDate } from "@/app/components/TodayDate";
 import { COURSES, type Course } from "@/app/lib/courses";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from "@/app/lib/site";
+
+const homeTitle = `${SITE_NAME} · Computer Science & Math at Ursuline Academy`;
+const homeDescription =
+  "Class hubs for AP CSP, AP CSA, Calculus Honors, and Study Hall with Brett Hannan at Ursuline Academy Dedham.";
 
 export const metadata: Metadata = {
-  title: {
-    absolute: "Ursuline Academy Dedham · Classes with Mr. Hannan",
-  },
-  description:
-    "Class hubs for AP CSP, AP CSA, Calculus Honors, and Study Hall at Ursuline Academy Dedham.",
+  title: { absolute: homeTitle },
+  description: homeDescription,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "Ursuline Academy Dedham",
-    title: "Ursuline Academy Dedham · Classes with Mr. Hannan",
-    description:
-      "Class hubs for AP CSP, AP CSA, Calculus Honors, and Study Hall at Ursuline Academy Dedham.",
+    siteName: SITE_NAME,
+    title: homeTitle,
+    description: homeDescription,
     url: "/",
-    images: [
-      {
-        url: "/media/branded/ua-seal.png",
-        alt: "Ursuline Academy Dedham",
-      },
-    ],
+    images: [DEFAULT_OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeTitle,
+    description: homeDescription,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 
@@ -34,18 +41,24 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      name: "Ursuline Academy Dedham · Classes with Mr. Hannan",
-      url: "https://www.codewithbrett.com/",
-      description:
-        "Computer science and AI literacy for Ursuline Academy in Dedham, Massachusetts.",
-      publisher: {
-        "@type": "Person",
-        name: "Brett Hannan",
-        email: "bhannan@ursulineacademy.net",
-      },
+      name: SITE_NAME,
+      url: `${SITE_URL}/`,
+      description: SITE_DESCRIPTION,
+      publisher: { "@id": `${SITE_URL}/about/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/about/#person`,
+      name: "Brett Hannan",
+      url: `${SITE_URL}/about/`,
+      image: `${SITE_URL}/media/branded/brett-hannan.png`,
+      jobTitle: "Computer Science and Mathematics Teacher",
+      email: "bhannan@ursulineacademy.net",
+      worksFor: { "@id": `${SITE_URL}/#organization` },
     },
     {
       "@type": "EducationalOrganization",
+      "@id": `${SITE_URL}/#organization`,
       name: "Ursuline Academy",
       alternateName: ["Ursuline Academy Dedham", "UA Dedham"],
       url: "https://www.ursulineacademy.net/",
@@ -58,6 +71,19 @@ const jsonLd = {
         addressCountry: "US",
       },
     },
+    ...[
+      COURSES.find((c) => c.slug === "ap-csp-b"),
+      COURSES.find((c) => c.slug === "calculus-h-d"),
+      COURSES.find((c) => c.slug === "ap-csa-h"),
+    ]
+      .filter((course): course is Course => Boolean(course))
+      .map((course) => ({
+        "@type": "Course",
+        name: course.title.replace(/\s*\([A-H]\)$/, ""),
+        description: course.description,
+        provider: { "@id": `${SITE_URL}/#organization` },
+        instructor: { "@id": `${SITE_URL}/about/#person` },
+      })),
   ],
 };
 
@@ -108,7 +134,7 @@ function CourseCard({ course }: { course: Course }) {
         <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full">
           <Image
             src={course.image}
-            alt=""
+            alt={`${course.title} class`}
             width={80}
             height={80}
             className="h-full w-full object-cover"
@@ -164,7 +190,7 @@ export default function HomePage() {
                 Faith · Courage · Joy
               </p>
               <h1 className="mt-1 font-serif text-3xl text-stone-900 sm:text-4xl">
-                Welcome
+                Code with Brett
               </h1>
               <div className="mt-2 text-xl font-semibold text-stone-800 sm:text-2xl">
                 <TodayDate />

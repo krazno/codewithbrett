@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import { ContentGuard } from "./components/ContentGuard";
 import { GoogleAnalyticsHead } from "./components/GoogleAnalytics";
@@ -9,6 +9,12 @@ import {
 import { NavQuoteStrip } from "./components/NavQuoteStrip";
 import { QuoteFooter } from "./components/QuoteFooter";
 import { SiteHeader } from "./components/SiteHeader";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from "./lib/site";
 import "./globals.css";
 
 const sans = Source_Sans_3({
@@ -23,50 +29,48 @@ const serif = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = "https://www.codewithbrett.com";
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Ursuline Academy Dedham · Classes with Mr. Hannan",
-    template: "%s · Ursuline Academy Dedham",
+    default: `${SITE_NAME} · CS & Math at Ursuline Academy`,
+    template: `%s · ${SITE_NAME}`,
   },
-  description:
-    "Computer science and calculus class home for Ursuline Academy in Dedham, Massachusetts.",
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
+    "Code with Brett",
+    "Brett Hannan",
     "Ursuline Academy Dedham",
-    "Ursuline Academy",
+    "AP Computer Science Principles",
+    "AP Computer Science A",
+    "Calculus Honors",
     "Dedham MA",
-    "AP CSP",
-    "calculus",
-    "Serviam",
-    "Ursuline Bears",
+    "computer science teacher",
   ],
-  authors: [{ name: "Brett Hannan" }],
+  authors: [{ name: "Brett Hannan", url: `${SITE_URL}/about/` }],
   creator: "Brett Hannan",
+  publisher: SITE_NAME,
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: siteUrl,
-    siteName: "Ursuline Academy Dedham",
-    title: "Ursuline Academy Dedham · Classes with Mr. Hannan",
-    description:
-      "Computer science and calculus class home for Ursuline Academy in Dedham, Massachusetts.",
-    images: [
-      {
-        url: "/media/branded/ua-seal.png",
-        alt: "Ursuline Academy Dedham",
-      },
-    ],
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} · CS & Math at Ursuline Academy`,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
-    card: "summary",
-    title: "Ursuline Academy Dedham · Classes with Mr. Hannan",
-    description:
-      "Computer science and calculus class home for Ursuline Academy in Dedham, MA.",
-    images: ["/media/branded/ua-seal.png"],
+    card: "summary_large_image",
+    title: `${SITE_NAME} · CS & Math at Ursuline Academy`,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

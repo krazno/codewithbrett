@@ -3,12 +3,58 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { PhotoCarousel } from "../components/PhotoCarousel";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/app/lib/site";
+
+const aboutTitle = "About Brett Hannan";
+const aboutDescription =
+  "Brett Hannan teaches computer science and mathematics at Ursuline Academy Dedham — AP CSP, AP CSA, Calculus Honors, AI literacy, and classroom innovation.";
 
 export const metadata: Metadata = {
-  title: "About Mr. Hannan",
-  description:
-    "About Brett Hannan, Computer Science and Mathematics teacher at Ursuline Academy Dedham.",
+  title: aboutTitle,
+  description: aboutDescription,
   alternates: { canonical: "/about/" },
+  openGraph: {
+    type: "profile",
+    siteName: SITE_NAME,
+    title: `${aboutTitle} · ${SITE_NAME}`,
+    description: aboutDescription,
+    url: "/about/",
+    images: [
+      DEFAULT_OG_IMAGE,
+      {
+        url: "/media/branded/brett-hannan.png",
+        width: 220,
+        height: 285,
+        alt: "Brett Hannan",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${aboutTitle} · ${SITE_NAME}`,
+    description: aboutDescription,
+    images: [DEFAULT_OG_IMAGE.url],
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}/about/#person`,
+  name: "Brett Hannan",
+  url: `${SITE_URL}/about/`,
+  image: `${SITE_URL}/media/branded/brett-hannan.png`,
+  jobTitle: "Computer Science and Mathematics Teacher",
+  email: "bhannan@ursulineacademy.net",
+  worksFor: {
+    "@type": "EducationalOrganization",
+    name: "Ursuline Academy",
+    url: "https://www.ursulineacademy.net/",
+  },
 };
 
 const experience = [
@@ -153,6 +199,10 @@ function ListCard({
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
       <div className="mx-auto max-w-5xl px-5 py-8 sm:px-6 sm:py-10">
         <header className="ua-shadow-soft overflow-hidden rounded-3xl bg-[var(--ua-evergreen)] text-white">
           <div className="relative aspect-[4/1] min-h-36">

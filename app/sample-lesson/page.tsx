@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { SITE_NAME } from "@/app/lib/site";
 
 export const metadata: Metadata = {
-  title: "Sample lesson · Ursuline Academy Dedham",
+  title: "Sample Lesson",
   description:
-    "Temporary class hub page: course buttons and links to the current Ursuline lesson facets.",
+    "Temporary class hub with links to the Ursuline AI literacy lesson facets and course materials.",
   alternates: { canonical: "/sample-lesson/" },
+  robots: { index: false, follow: false },
+  openGraph: {
+    siteName: SITE_NAME,
+    title: `Sample Lesson · ${SITE_NAME}`,
+    url: "/sample-lesson/",
+  },
 };
 
 const MATERIAL_LINKS = [

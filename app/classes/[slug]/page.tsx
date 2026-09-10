@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookOpen, Presentation } from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
+import { SITE_NAME } from "@/app/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -15,9 +16,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const course = getCourse(slug);
   if (!course) return { title: "Class" };
+
+  const title = course.title;
+  const description = `${course.description} Room ${course.room}${
+    course.scheduleNote ? ` · ${course.scheduleNote}` : ""
+  } at Ursuline Academy Dedham.`;
+
   return {
-    title: course.title,
+    title,
+    description,
+    alternates: { canonical: `/classes/${course.slug}/` },
+    // Class hubs include Classroom / Meet codes — keep out of public search.
     robots: { index: false, follow: false },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      title: `${title} · ${SITE_NAME}`,
+      description,
+      url: `/classes/${course.slug}/`,
+      images: [
+        {
+          url: course.image,
+          alt: `${course.title} class`,
+        },
+      ],
+    },
   };
 }
 
@@ -56,7 +79,7 @@ export default async function ClassPage({ params }: Props) {
               <div className="h-24 w-24 overflow-hidden rounded-full">
                 <Image
                   src={course.seal}
-                  alt=""
+                  alt={`${course.title} seal`}
                   width={96}
                   height={96}
                   className="h-full w-full object-cover"

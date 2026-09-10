@@ -2,12 +2,30 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { COURSES, type Course } from "@/app/lib/courses";
+import { DEFAULT_OG_IMAGE, SITE_NAME } from "@/app/lib/site";
+
+const orientationTitle = "New Student Orientation";
+const orientationDescription =
+  "Meet Mr. Hannan (Brett Hannan), see this year's CS and math classes, and learn what to bring on day one at Ursuline Academy Dedham.";
 
 export const metadata: Metadata = {
-  title: "New Student Orientation · Meet Mr. Hannan",
-  description:
-    "Meet Mr. Hannan, see this year's classes, and learn what to bring to class.",
+  title: orientationTitle,
+  description: orientationDescription,
   alternates: { canonical: "/orientation/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${orientationTitle} · ${SITE_NAME}`,
+    description: orientationDescription,
+    url: "/orientation/",
+    images: [DEFAULT_OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${orientationTitle} · ${SITE_NAME}`,
+    description: orientationDescription,
+    images: [DEFAULT_OG_IMAGE.url],
+  },
 };
 
 function subjectFor(course: Course) {
@@ -110,7 +128,7 @@ export default function OrientationPage() {
               >
                 <Image
                   src={course.image}
-                  alt=""
+                  alt={`${course.title} class`}
                   width={56}
                   height={56}
                   className="h-14 w-14 shrink-0 rounded-xl object-cover"
