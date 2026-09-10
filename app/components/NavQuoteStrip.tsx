@@ -31,7 +31,7 @@ export function NavQuoteStrip() {
       className={`site-quote-bar overflow-hidden transition-[max-height,opacity,border-color] duration-200 ease-out ${
         hidden
           ? "max-h-0 border-transparent opacity-0"
-          : "max-h-20 opacity-100"
+          : "max-h-28 opacity-100"
       }`}
       aria-label="Inspirational quote"
       aria-hidden={hidden}
