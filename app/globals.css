@@ -17,6 +17,8 @@
   --ua-ivory: #f7f4ec;
   --ua-charcoal: #202522;
   --ua-gray-100: #e9ecea;
+  /* Soft cream-sage strip above sticky nav (distinct from evergreen bar) */
+  --ua-quote-bar: #e8f0e4;
 }
 
 html {
@@ -100,8 +102,34 @@ html {
   }
 }
 
+.site-nav-quote {
+  animation: site-nav-quote-fade 5s ease-in-out both;
+}
+
+.site-nav-quote blockquote {
+  font-style: italic;
+  font-weight: 500;
+}
+
+@keyframes site-nav-quote-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(0.2rem);
+  }
+  10%,
+  88% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-0.15rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .site-quote-content {
+  .site-quote-content,
+  .site-nav-quote {
     animation: none;
   }
 }

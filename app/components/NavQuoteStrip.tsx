@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { SITE_QUOTES } from "@/app/lib/quotes";
 
-/** Slim rotating quotes under sticky nav; hides when the page is scrolled down. */
+/** Topmost rotating quote banner; hides when the page scrolls down. */
 export function NavQuoteStrip() {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [hidden, setHidden] = useState(false);
@@ -28,21 +28,21 @@ export function NavQuoteStrip() {
 
   return (
     <div
-      className={`overflow-hidden border-b border-black/15 bg-[var(--ua-evergreen)]/95 text-white transition-[max-height,opacity,border-color] duration-200 ease-out ${
+      className={`overflow-hidden border-b border-[var(--ua-evergreen)]/12 bg-[var(--ua-quote-bar)] text-[var(--ua-evergreen)] transition-[max-height,opacity,border-color] duration-200 ease-out ${
         hidden
           ? "max-h-0 border-transparent opacity-0"
-          : "max-h-14 opacity-100"
+          : "max-h-16 opacity-100"
       }`}
       aria-hidden={hidden}
     >
       <figure
-        className="site-nav-quote mx-auto flex max-w-5xl items-baseline justify-center gap-x-2 px-3 py-1.5 text-center sm:px-6"
+        className="site-nav-quote mx-auto flex max-w-5xl flex-wrap items-baseline justify-center gap-x-2.5 gap-y-0.5 px-3 py-2 text-center sm:px-6"
         key={quoteIndex}
       >
-        <blockquote className="min-w-0 truncate font-serif text-[0.8125rem] font-medium leading-snug text-white/95 sm:text-sm">
+        <blockquote className="min-w-0 font-serif text-[0.8125rem] font-medium leading-snug tracking-[0.01em] text-[var(--ua-evergreen)] sm:text-[0.9375rem] sm:leading-snug">
           “{quote.text}”
         </blockquote>
-        <figcaption className="hidden shrink-0 text-[0.65rem] font-semibold tracking-wide text-white/70 uppercase sm:inline">
+        <figcaption className="shrink-0 font-sans text-[0.625rem] font-medium tracking-[0.08em] text-[var(--ua-teal)]/85 uppercase sm:text-[0.68rem]">
           — {quote.source}
         </figcaption>
       </figure>

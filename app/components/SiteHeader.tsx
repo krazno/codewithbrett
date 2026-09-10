@@ -74,11 +74,10 @@ export function SiteHeader() {
   }, [coursesOpen, mobileOpen]);
 
   return (
-    <header
-      ref={mobileRef}
-      className="sticky top-0 z-[60] border-b border-black/25 bg-[var(--ua-evergreen)] text-white shadow-md"
-      role="banner"
-    >
+    <header ref={mobileRef} className="sticky top-0 z-[60]" role="banner">
+      <NavQuoteStrip />
+
+      <div className="border-b border-black/25 bg-[var(--ua-evergreen)] text-white shadow-md">
       <div className="mx-auto flex h-[var(--site-header-height)] max-w-5xl items-center justify-between gap-4 px-3 sm:gap-6 sm:px-6">
         <div className="flex min-w-0 items-center gap-5 sm:gap-7">
           <Link
@@ -211,8 +210,7 @@ export function SiteHeader() {
           </nav>
         </div>
       ) : null}
-
-      <NavQuoteStrip />
+      </div>
     </header>
   );
 }
