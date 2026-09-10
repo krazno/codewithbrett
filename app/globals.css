@@ -17,9 +17,9 @@
   --ua-ivory: #f7f4ec;
   --ua-charcoal: #202522;
   --ua-gray-100: #e9ecea;
-  /* Soft sage strip above sticky evergreen nav */
-  --ua-quote-bar: #eef5ea;
-  --ua-quote-bar-edge: rgba(13, 92, 61, 0.14);
+  /* Soft sage strip above sticky evergreen nav — distinct from white/cream page */
+  --ua-quote-bar: #dfead8;
+  --ua-quote-bar-edge: rgba(13, 92, 61, 0.18);
 }
 
 html {
@@ -108,9 +108,9 @@ html {
   background:
     linear-gradient(
       180deg,
-      #f7faf5 0%,
-      var(--ua-quote-bar) 55%,
-      #e6f0e2 100%
+      #eef6e9 0%,
+      var(--ua-quote-bar) 50%,
+      #d4e3cc 100%
     );
   color: var(--ua-evergreen);
 }
