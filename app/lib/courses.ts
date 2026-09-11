@@ -150,9 +150,9 @@ export const COURSES: Course[] = [
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
     entryTicketUrl: "https://forms.gle/C4F8DniGuVLnqKmy6",
-    gammaEmbedSrc: "https://gamma.app/embed/fspy3bsk7zfi634",
+    gammaEmbedSrc: "https://gamma.app/embed/19h1pn659bum5n6",
     gammaUrl:
-      "https://gamma.app/docs/Welcome-to-Calculus-Honors-fspy3bsk7zfi634",
+      "https://gamma.app/docs/Welcome-to-Calculus-Honors-19h1pn659bum5n6",
     gammaEmbedTitle: "Welcome to Calculus Honors",
     textbook: {
       title: "OpenStax Calculus Volume 1",
@@ -195,9 +195,9 @@ export const COURSES: Course[] = [
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
     entryTicketUrl: "https://forms.gle/C4F8DniGuVLnqKmy6",
-    gammaEmbedSrc: "https://gamma.app/embed/fspy3bsk7zfi634",
+    gammaEmbedSrc: "https://gamma.app/embed/19h1pn659bum5n6",
     gammaUrl:
-      "https://gamma.app/docs/Welcome-to-Calculus-Honors-fspy3bsk7zfi634",
+      "https://gamma.app/docs/Welcome-to-Calculus-Honors-19h1pn659bum5n6",
     gammaEmbedTitle: "Welcome to Calculus Honors",
     textbook: {
       title: "OpenStax Calculus Volume 1",
