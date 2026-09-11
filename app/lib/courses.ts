@@ -11,6 +11,14 @@ export type Course = {
   googleMeetUrl?: string;
   syllabusUrl?: string;
   summerWorkUrl?: string;
+  /** Daily entry-ticket link (changes each day; different per class). Leave unset until posted. */
+  entryTicketUrl?: string;
+  /** Coding-platform section join code (e.g. JVFFNT). */
+  sectionCode?: string;
+  /** Display name of the coding platform (e.g. "CodeHS"). */
+  sectionPlatform?: string;
+  /** Student join URL for the coding-platform section. */
+  sectionJoinUrl?: string;
   apJoinCode?: string;
   /**
    * Gamma public embed URL from Share → Embed (e.g. https://gamma.app/embed/…).
@@ -55,6 +63,10 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1yJIb8zwbEaQzgO7xT8VamcOliQnA1Z-s/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1MHy2unu6ZNfZAK9pGB-Ur123fRdGqR0a/view?usp=sharing",
+    entryTicketUrl: "https://forms.gle/GLYCRkeJtsofXQY36",
+    sectionCode: "JVFFNT",
+    sectionPlatform: "Code.org",
+    sectionJoinUrl: "https://studio.code.org/join/JVFFNT",
     apJoinCode: "Y3LEZM",
     gammaEmbedSrc: "https://gamma.app/embed/yf84iuczscacr6s",
     gammaUrl: "https://gamma.app/docs/Welcome-to-yf84iuczscacr6s",
@@ -94,6 +106,10 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1yJIb8zwbEaQzgO7xT8VamcOliQnA1Z-s/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1MHy2unu6ZNfZAK9pGB-Ur123fRdGqR0a/view?usp=sharing",
+    entryTicketUrl: "https://forms.gle/GLYCRkeJtsofXQY36",
+    sectionCode: "WHTKBZ",
+    sectionPlatform: "Code.org",
+    sectionJoinUrl: "https://studio.code.org/join/WHTKBZ",
     apJoinCode: "G22APR",
     gammaEmbedSrc: "https://gamma.app/embed/yf84iuczscacr6s",
     gammaUrl: "https://gamma.app/docs/Welcome-to-yf84iuczscacr6s",
@@ -133,6 +149,7 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
+    entryTicketUrl: "https://forms.gle/C4F8DniGuVLnqKmy6",
     gammaEmbedSrc: "https://gamma.app/embed/fspy3bsk7zfi634",
     gammaUrl:
       "https://gamma.app/docs/Welcome-to-Calculus-Honors-fspy3bsk7zfi634",
@@ -177,6 +194,7 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
+    entryTicketUrl: "https://forms.gle/C4F8DniGuVLnqKmy6",
     gammaEmbedSrc: "https://gamma.app/embed/fspy3bsk7zfi634",
     gammaUrl:
       "https://gamma.app/docs/Welcome-to-Calculus-Honors-fspy3bsk7zfi634",

@@ -20,75 +20,66 @@ type ScheduleItem = {
   time: string;
   title: string;
   detail?: string;
-  nested?: { label: string; time: string }[];
+  nested?: { label: string; time: string; detail?: string }[];
 };
 
-const ORIENTATION_SCHEDULE: ScheduleItem[] = [
+const DAY_ONE_SCHEDULE: ScheduleItem[] = [
   {
-    time: "8:00–8:15",
+    time: "8:00–8:07",
     title: "Advisory — Prayer and Pledge",
-    detail: "Advisory Locations · All-Student Welcome!",
+    detail: "Advisory Locations",
   },
   {
-    time: "8:15–8:45",
-    title: "Bethlehem Farm Presentation / Athletic and Theatre Plug",
-    detail: "RC Gym",
-  },
-  {
-    time: "8:45–8:55",
-    title: "Break — Club Fair",
-  },
-  {
-    time: "8:55–9:15",
+    time: "8:10–8:55",
     title: "A Block",
-    detail: "Assigned Classrooms · 30-minute classes",
   },
   {
-    time: "9:20–9:50",
+    time: "8:58–9:43",
     title: "B Block",
   },
   {
-    time: "9:55–10:25",
+    time: "9:46–10:16",
+    title: "Activity",
+  },
+  {
+    time: "10:19–11:04",
     title: "C Block",
   },
   {
-    time: "10:30–11:00",
+    time: "11:07–11:52",
     title: "D Block",
   },
   {
-    time: "11:05–11:35",
-    title: "E Block",
-  },
-  {
-    time: "11:40–12:45",
-    title: "Lunch / Tea Room",
+    time: "11:55–1:10",
+    title: "Lunch / E Block",
     nested: [
-      { label: "Lunch 1", time: "11:40–12:10 · Class 12:15–12:45" },
-      { label: "Lunch 2", time: "Class 11:40–12:10 · Lunch 12:15–12:45" },
+      {
+        label: "First Lunch",
+        time: "11:55–12:25",
+        detail:
+          "Science, Directed Research, History, World Language, 9th grade colloquium, Study Hall",
+      },
+      {
+        label: "Second Lunch",
+        time: "12:40–1:10",
+        detail:
+          "Theology, English, Math, CS, Fine Arts, counseling classes, 7/8 Specials",
+      },
     ],
   },
   {
-    time: "12:50–1:20",
+    time: "1:13–1:58",
     title: "F Block",
   },
   {
-    time: "1:25–1:55",
+    time: "2:01–2:46",
     title: "G Block",
-  },
-  {
-    time: "2:00–2:30",
-    title: "H Block",
-  },
-  {
-    time: "2:30–2:46",
-    title: "Advisory — Kahoot about Student Expectations",
-    detail: "Advisory Locations",
   },
 ];
 
 const SESSION_KEY = "advisory-access";
-const ORIENTATION_DATE_LABEL = "Thursday, September 10th";
-const ORIENTATION_DATE_ISO = "2026-09-10";
+const DAY_ONE_DATE_LABEL = "Friday, September 11th";
+const DAY_ONE_DATE_ISO = "2026-09-11";
 
 export function AdvisoryContent() {
   const [passcode, setPasscode] = useState("");
@@ -123,9 +114,9 @@ export function AdvisoryContent() {
             Enter passcode
           </h2>
           <p className="mt-2 text-sm font-semibold text-[var(--ua-evergreen)]">
-            <time dateTime={ORIENTATION_DATE_ISO}>{ORIENTATION_DATE_LABEL}</time>
+            <time dateTime={DAY_ONE_DATE_ISO}>{DAY_ONE_DATE_LABEL}</time>
             <span className="font-normal text-stone-500"> · </span>
-            All Student Orientation Day 2
+            Day 1 · First Day of Classes
           </p>
           <p className="mt-3 text-sm leading-relaxed text-stone-600">
             This is a casual client-side gate for Advisory materials, not
@@ -171,8 +162,26 @@ export function AdvisoryContent() {
   return (
     <div className="my-6 flex flex-1 flex-col gap-5 sm:my-8">
       <section
+        aria-label="Notices"
+        className="ua-card ua-shadow-soft divide-y divide-emerald-900/8 overflow-hidden text-sm"
+      >
+        <p className="flex items-center gap-2.5 px-4 py-2.5 text-stone-700 sm:px-5">
+          <span aria-hidden className="shrink-0 text-base leading-none">🩺</span>
+          <span className="font-semibold text-stone-900">Health forms due</span>
+        </p>
+        <p className="flex items-center gap-2.5 px-4 py-2.5 text-stone-700 sm:px-5">
+          <span aria-hidden className="shrink-0 text-base leading-none">🫖</span>
+          <span>Don&rsquo;t leave belongings in the Tea Room.</span>
+        </p>
+        <p className="flex items-center gap-2.5 px-4 py-2.5 text-stone-700 sm:px-5">
+          <span aria-hidden className="shrink-0 text-base leading-none">🧹</span>
+          <span>Help keep our campus clean.</span>
+        </p>
+      </section>
+
+      <section
         className="ua-card ua-shadow-soft overflow-hidden"
-        aria-labelledby="orientation-day2-heading"
+        aria-labelledby="day-one-heading"
       >
         <div className="border-b border-emerald-800/15 bg-[linear-gradient(135deg,#eef5ef_0%,#f7f4ec_100%)] px-5 py-4 sm:px-7 sm:py-5">
           <p className="text-xs font-semibold tracking-[0.16em] text-emerald-800 uppercase">
@@ -180,22 +189,22 @@ export function AdvisoryContent() {
           </p>
           <div className="mt-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
             <h2
-              id="orientation-day2-heading"
+              id="day-one-heading"
               className="font-serif text-2xl leading-tight text-stone-900 sm:text-3xl"
             >
-              All Student Orientation Day 2
+              Day 1 · First Day of Classes
             </h2>
             <time
-              dateTime={ORIENTATION_DATE_ISO}
+              dateTime={DAY_ONE_DATE_ISO}
               className="shrink-0 text-sm font-semibold text-stone-700 sm:text-base"
             >
-              {ORIENTATION_DATE_LABEL}
+              {DAY_ONE_DATE_LABEL}
             </time>
           </div>
         </div>
 
         <ol className="divide-y divide-emerald-900/8 px-3 py-2 sm:px-4">
-          {ORIENTATION_SCHEDULE.map((item) => (
+          {DAY_ONE_SCHEDULE.map((item) => (
             <li
               key={`${item.time}-${item.title}`}
               className="grid grid-cols-[6.5rem_1fr] gap-3 px-2 py-2.5 sm:grid-cols-[7.5rem_1fr] sm:gap-4 sm:px-3 sm:py-3"
@@ -225,6 +234,11 @@ export function AdvisoryContent() {
                         <span className="mt-0.5 block tabular-nums text-emerald-900/80">
                           {row.time}
                         </span>
+                        {row.detail ? (
+                          <span className="mt-0.5 block text-stone-600">
+                            {row.detail}
+                          </span>
+                        ) : null}
                       </li>
                     ))}
                   </ul>
@@ -233,6 +247,9 @@ export function AdvisoryContent() {
             </li>
           ))}
         </ol>
+        <p className="border-t border-emerald-900/8 px-5 py-3 text-xs text-stone-500 sm:px-7">
+          H Block does not meet on Day 1.
+        </p>
       </section>
 
       <div className="grid gap-5 md:grid-cols-2">

@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BookOpen, Presentation } from "lucide-react";
+import { BookOpen, ClipboardList, KeyRound, Presentation } from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
 import { SITE_NAME } from "@/app/lib/site";
+
+const STUDENT_PROFILE_SURVEY_URL = "https://forms.gle/bSMTuh9JSgLWbpKdA";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -126,6 +128,74 @@ export default async function ClassPage({ params }: Props) {
                   : ""
           }`}
         >
+          <section
+            className="ua-card ua-shadow-soft overflow-hidden md:col-span-2"
+            aria-label="Entry Ticket"
+          >
+            <Image
+              src="/media/entry-ticket/banner.png"
+              alt="Entry Ticket — Think, Share, Grow"
+              width={1024}
+              height={341}
+              priority
+              className="w-full object-cover"
+            />
+            <div className="p-6">
+              {course.entryTicketUrl ? (
+                <a
+                  href={course.entryTicketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Complete today's entry ticket for ${course.title} in a new tab`}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                >
+                  Complete Entry Ticket ↗
+                </a>
+              ) : (
+                <p className="rounded-full bg-emerald-50 px-5 py-3 text-center text-sm font-semibold text-stone-500">
+                  Posted at the start of class.
+                </p>
+              )}
+            </div>
+          </section>
+
+          <section
+            className="ua-card ua-shadow-soft p-6"
+            aria-labelledby="student-profile-heading"
+          >
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                aria-hidden="true"
+              >
+                <ClipboardList size={24} strokeWidth={2} />
+              </span>
+              <div>
+                <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  Getting started
+                </p>
+                <h2
+                  id="student-profile-heading"
+                  className="font-serif text-2xl text-stone-900"
+                >
+                  Student Passions, Interest &amp; Learning Profile
+                </h2>
+              </div>
+            </div>
+            <p className="mt-4 text-sm text-stone-700">
+              Tell me about your passions, interests, and how you learn best.
+            </p>
+            <a
+              href={STUDENT_PROFILE_SURVEY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open the Student Passions, Interest & Learning Profile survey for ${course.title} in a new tab`}
+              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+            >
+              Open the survey ↗
+            </a>
+          </section>
+
           {course.summerWorkUrl ? (
             <section
               className="ua-card ua-shadow-soft p-6"
@@ -212,6 +282,54 @@ export default async function ClassPage({ params }: Props) {
                 <li>Open the correct class using the button.</li>
                 <li>Select “Join” and enter the code if asked.</li>
               </ol>
+            </section>
+          ) : null}
+
+          {course.sectionCode ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="section-code-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <KeyRound size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    {course.sectionPlatform ?? "Class platform"}
+                  </p>
+                  <h2
+                    id="section-code-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Join your section
+                  </h2>
+                </div>
+              </div>
+              {course.sectionJoinUrl ? (
+                <a
+                  href={course.sectionJoinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Join the ${
+                    course.sectionPlatform ?? "class"
+                  } section for ${course.title}`}
+                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                >
+                  {`Open ${course.sectionPlatform ?? "platform"} ↗`}
+                </a>
+              ) : null}
+              <div className="mt-4 rounded-xl bg-emerald-50 px-4 py-3">
+                <p className="text-xs font-semibold text-stone-600 uppercase">
+                  Section code
+                </p>
+                <p className="mt-1 font-mono text-2xl font-bold tracking-[0.12em] text-[var(--ua-evergreen)]">
+                  {course.sectionCode}
+                </p>
+              </div>
             </section>
           ) : null}
 
