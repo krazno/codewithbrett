@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BookOpen, ClipboardList, KeyRound, Presentation } from "lucide-react";
+import {
+  BookOpen,
+  ClipboardList,
+  Film,
+  KeyRound,
+  Presentation,
+} from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
 import { SITE_NAME } from "@/app/lib/site";
 import { CourseNoticeModal } from "./CourseNoticeModal";
@@ -481,6 +487,56 @@ export default async function ClassPage({ params }: Props) {
             </section>
           ) : null}
 
+          {course.challengeVideoEmbedUrl ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="challenge-video-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <Film size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Calculus Challenge
+                  </p>
+                  <h2
+                    id="challenge-video-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Sample video
+                  </h2>
+                </div>
+              </div>
+              <div className="mx-auto mt-4 w-full max-w-[325px] overflow-hidden rounded-2xl border border-stone-200 bg-black">
+                <div className="aspect-[9/16] w-full">
+                  <iframe
+                    src={course.challengeVideoEmbedUrl}
+                    title={`${course.title} challenge sample video`}
+                    className="h-full w-full border-0"
+                    allow="autoplay; encrypted-media; fullscreen"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              </div>
+              {course.challengeVideoUrl ? (
+                <a
+                  href={course.challengeVideoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Watch the calculus challenge sample video for ${course.title} on TikTok`}
+                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                >
+                  Watch on TikTok ↗
+                </a>
+              ) : null}
+            </section>
+          ) : null}
+
           {/* Academic classes only (omit Study Hall). Paste Share → Embed into gammaEmbedSrc + docs into gammaUrl. */}
           {course.googleClassroomUrl ? (
             <section
@@ -541,6 +597,40 @@ export default async function ClassPage({ params }: Props) {
                   Open presentation ↗
                 </a>
               ) : null}
+
+              {course.presentations?.map((deck) => (
+                <div key={deck.url} className="mt-6">
+                  {deck.label ? (
+                    <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                      {deck.label}
+                    </p>
+                  ) : null}
+                  <div className="mt-2 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+                    <div className="aspect-video min-h-[12rem] w-full">
+                      <iframe
+                        src={deck.embedSrc}
+                        title={deck.title ?? `${course.title} presentation`}
+                        className="h-full w-full border-0"
+                        allow="fullscreen"
+                        sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation"
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      />
+                    </div>
+                  </div>
+                  <a
+                    href={deck.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${
+                      deck.label ?? "presentation"
+                    } for ${course.title} in a new tab`}
+                    className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                  >
+                    Open presentation ↗
+                  </a>
+                </div>
+              ))}
             </section>
           ) : null}
         </div>

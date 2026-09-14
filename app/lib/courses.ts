@@ -29,6 +29,19 @@ export type Course = {
   gammaUrl?: string;
   /** Optional accessible title for the Gamma iframe (defaults to “Class Presentation”). */
   gammaEmbedTitle?: string;
+  /** Additional Gamma decks shown below the primary presentation (e.g. daily slides). */
+  presentations?: {
+    label?: string;
+    /** Gamma embed URL (Share → Embed, https://gamma.app/embed/…). */
+    embedSrc: string;
+    /** Gamma docs URL for the “Open presentation” link. */
+    url: string;
+    title?: string;
+  }[];
+  /** Sample challenge video shown as a small embed (TikTok /embed/v2/… URL). */
+  challengeVideoEmbedUrl?: string;
+  /** Original link for the challenge video (opens in a new tab). */
+  challengeVideoUrl?: string;
   textbook?: {
     title: string;
     url: string;
@@ -154,6 +167,18 @@ export const COURSES: Course[] = [
     gammaUrl:
       "https://gamma.app/docs/Welcome-to-Calculus-Honors-19h1pn659bum5n6",
     gammaEmbedTitle: "Welcome to Calculus Honors",
+    presentations: [
+      {
+        label: "Monday, September 14, 2026",
+        embedSrc: "https://gamma.app/embed/rf5z0keme2g0nk2",
+        url: "https://gamma.app/docs/Calculus-Honors-Monday-September-14-2026-rf5z0keme2g0nk2",
+        title: "Calculus Honors — Monday, September 14, 2026",
+      },
+    ],
+    challengeVideoUrl:
+      "https://www.tiktok.com/@akerr109/video/7641810146879868191",
+    challengeVideoEmbedUrl:
+      "https://www.tiktok.com/embed/v2/7641810146879868191",
     textbook: {
       title: "OpenStax Calculus Volume 1",
       url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
@@ -199,6 +224,18 @@ export const COURSES: Course[] = [
     gammaUrl:
       "https://gamma.app/docs/Welcome-to-Calculus-Honors-19h1pn659bum5n6",
     gammaEmbedTitle: "Welcome to Calculus Honors",
+    presentations: [
+      {
+        label: "Monday, September 14, 2026",
+        embedSrc: "https://gamma.app/embed/rf5z0keme2g0nk2",
+        url: "https://gamma.app/docs/Calculus-Honors-Monday-September-14-2026-rf5z0keme2g0nk2",
+        title: "Calculus Honors — Monday, September 14, 2026",
+      },
+    ],
+    challengeVideoUrl:
+      "https://www.tiktok.com/@akerr109/video/7641810146879868191",
+    challengeVideoEmbedUrl:
+      "https://www.tiktok.com/embed/v2/7641810146879868191",
     textbook: {
       title: "OpenStax Calculus Volume 1",
       url: "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
