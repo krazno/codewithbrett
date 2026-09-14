@@ -63,7 +63,7 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1yJIb8zwbEaQzgO7xT8VamcOliQnA1Z-s/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1MHy2unu6ZNfZAK9pGB-Ur123fRdGqR0a/view?usp=sharing",
-    entryTicketUrl: "https://forms.gle/GLYCRkeJtsofXQY36",
+    entryTicketUrl: "https://forms.gle/RWjQEkW6jnrEZfWz6",
     sectionCode: "JVFFNT",
     sectionPlatform: "Code.org",
     sectionJoinUrl: "https://studio.code.org/join/JVFFNT",
@@ -106,7 +106,7 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1yJIb8zwbEaQzgO7xT8VamcOliQnA1Z-s/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1MHy2unu6ZNfZAK9pGB-Ur123fRdGqR0a/view?usp=sharing",
-    entryTicketUrl: "https://forms.gle/GLYCRkeJtsofXQY36",
+    entryTicketUrl: "https://forms.gle/RWjQEkW6jnrEZfWz6",
     sectionCode: "WHTKBZ",
     sectionPlatform: "Code.org",
     sectionJoinUrl: "https://studio.code.org/join/WHTKBZ",
@@ -149,7 +149,7 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
-    entryTicketUrl: "https://forms.gle/C4F8DniGuVLnqKmy6",
+    entryTicketUrl: "https://forms.gle/PLYusBx6j3VuY3v38",
     gammaEmbedSrc: "https://gamma.app/embed/19h1pn659bum5n6",
     gammaUrl:
       "https://gamma.app/docs/Welcome-to-Calculus-Honors-19h1pn659bum5n6",
@@ -194,7 +194,7 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1QI5PtjlFoUx-HpBcj-3TDQkT7VhTzsOL/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/1pdug9Ckuy4AdxfaVg0en345NslyCkPa1/view?usp=sharing",
-    entryTicketUrl: "https://forms.gle/C4F8DniGuVLnqKmy6",
+    entryTicketUrl: "https://forms.gle/PLYusBx6j3VuY3v38",
     gammaEmbedSrc: "https://gamma.app/embed/19h1pn659bum5n6",
     gammaUrl:
       "https://gamma.app/docs/Welcome-to-Calculus-Honors-19h1pn659bum5n6",
@@ -239,6 +239,7 @@ export const COURSES: Course[] = [
       "https://docs.google.com/document/d/1H1YdzHNvq0xnf7qhqEe9SrOX40oBJSkP/edit?usp=sharing",
     summerWorkUrl:
       "https://drive.google.com/file/d/11Wuja7oinHxfxkHBMVnBEBgjvq4cQTby/view?usp=sharing",
+    entryTicketUrl: "https://forms.gle/t1BBHe1RLcSwd2MUA",
     apJoinCode: "7QXGY7",
     gammaEmbedSrc: "https://gamma.app/embed/3r12upg9je59366",
     gammaUrl:
