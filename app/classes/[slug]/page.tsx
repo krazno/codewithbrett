@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { BookOpen, ClipboardList, KeyRound, Presentation } from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
 import { SITE_NAME } from "@/app/lib/site";
+import { CourseNoticeModal } from "./CourseNoticeModal";
 
 const STUDENT_PROFILE_SURVEY_URL = "https://forms.gle/bSMTuh9JSgLWbpKdA";
 
@@ -59,6 +60,11 @@ export default async function ClassPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
+      <CourseNoticeModal
+        slug={course.slug}
+        courseTitle={course.title}
+        googleClassroomUrl={course.googleClassroomUrl}
+      />
       <div className="mx-auto max-w-5xl px-6 py-8 sm:py-10">
         <header className="overflow-hidden rounded-3xl bg-[var(--ua-evergreen)] shadow-xl">
           <div className="relative aspect-[4/1] min-h-40">
