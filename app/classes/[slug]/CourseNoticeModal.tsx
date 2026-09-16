@@ -6,14 +6,18 @@ export function CourseNoticeModal({
   slug,
   courseTitle,
   googleClassroomUrl,
+  scholarshipUrl,
 }: {
   slug: string;
   courseTitle: string;
   googleClassroomUrl?: string;
+  scholarshipUrl?: string;
 }) {
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const storageKey = `course-notice-dismissed:${slug}`;
+  const storageKey = scholarshipUrl
+    ? `course-notice-dismissed:${slug}:scholarship`
+    : `course-notice-dismissed:${slug}`;
 
   useEffect(() => {
     if (sessionStorage.getItem(storageKey) !== "1") setOpen(true);
@@ -63,7 +67,24 @@ export function CourseNoticeModal({
           Classroom for this course. Thank you for your patience as I port over
           our curriculum.
         </p>
-        <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-end">
+        {scholarshipUrl ? (
+          <p className="mt-3 text-sm leading-relaxed text-stone-700">
+            Scholarships are available for Calculus Honors, and the list will
+            continue to grow. Open the scholarship document to see what is
+            posted now.
+          </p>
+        ) : null}
+        <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-end">
+          {scholarshipUrl ? (
+            <a
+              href={scholarshipUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-[var(--ua-evergreen)] px-5 py-2.5 text-sm font-semibold text-[var(--ua-evergreen)] hover:bg-emerald-50 focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+            >
+              View scholarships ↗
+            </a>
+          ) : null}
           {googleClassroomUrl ? (
             <a
               href={googleClassroomUrl}

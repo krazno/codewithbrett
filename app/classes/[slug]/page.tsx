@@ -83,6 +83,11 @@ export default async function ClassPage({ params }: Props) {
         slug={course.slug}
         courseTitle={course.title}
         googleClassroomUrl={course.googleClassroomUrl}
+        scholarshipUrl={
+          course.slug.startsWith("calculus")
+            ? CALCULUS_SCHOLARSHIP_URL
+            : undefined
+        }
       />
       <div className="mx-auto max-w-5xl px-5 py-6 sm:px-6 sm:py-8">
         <header className="overflow-hidden rounded-3xl bg-[var(--ua-evergreen)] shadow-xl">
@@ -155,7 +160,7 @@ export default async function ClassPage({ params }: Props) {
             </p>
           </section>
         ) : (
-        <div className="mt-5 grid items-stretch gap-3 md:grid-cols-2">
+        <div className="mt-5 grid items-start gap-3 md:grid-cols-2">
           {course.ideEmbedUrl || course.ideUrl ? (
             <section
               className="ua-card ua-shadow-soft overflow-hidden p-5 md:col-span-2"
@@ -271,12 +276,12 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Complete today's entry ticket for ${course.title} in Google Classroom`}
-                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Complete Entry Ticket ↗
               </a>
             ) : (
-              <p className="mt-auto pt-4 rounded-full bg-emerald-50 px-5 py-3 text-center text-sm font-semibold text-stone-500">
+              <p className="mt-4 rounded-full bg-emerald-50 px-5 py-3 text-center text-sm font-semibold text-stone-500">
                 Posted at the start of class.
               </p>
             )}
@@ -313,7 +318,7 @@ export default async function ClassPage({ params }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Open the Student Passions, Interest & Learning Profile survey for ${course.title} in a new tab`}
-              className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
             >
               Open the survey ↗
             </a>
@@ -351,7 +356,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open summer work for ${course.title} in a new tab`}
-                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open Summer work ↗
               </a>
@@ -390,7 +395,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open the scholarship document for ${course.title} in a new tab`}
-                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open Scholarship ↗
               </a>
@@ -527,7 +532,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open MakeCode Arcade for ${course.title}`}
-                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open MakeCode Arcade ↗
               </a>
@@ -566,7 +571,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open Online Java for ${course.title}`}
-                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open Online Java ↗
               </a>
@@ -647,7 +652,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Join Live Help for ${course.title} in Google Meet`}
-                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Join Live Help ↗
               </a>
