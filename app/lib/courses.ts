@@ -42,6 +42,12 @@ export type Course = {
   challengeVideoEmbedUrl?: string;
   /** Original link for the challenge video (opens in a new tab). */
   challengeVideoUrl?: string;
+  /** Embedded online IDE URL (iframe, e.g. a OneCompiler Java embed). */
+  ideEmbedUrl?: string;
+  /** Link to open a full online IDE in a new tab. */
+  ideUrl?: string;
+  /** Display name of the IDE (e.g. "OneCompiler"). */
+  idePlatform?: string;
   textbook?: {
     title: string;
     url: string;
@@ -277,6 +283,9 @@ export const COURSES: Course[] = [
     summerWorkUrl:
       "https://drive.google.com/file/d/11Wuja7oinHxfxkHBMVnBEBgjvq4cQTby/view?usp=sharing",
     entryTicketUrl: "https://forms.gle/t1BBHe1RLcSwd2MUA",
+    ideEmbedUrl: "https://onecompiler.com/embed/java",
+    ideUrl: "https://onecompiler.com/java",
+    idePlatform: "OneCompiler",
     apJoinCode: "7QXGY7",
     gammaEmbedSrc: "https://gamma.app/embed/3r12upg9je59366",
     gammaUrl:

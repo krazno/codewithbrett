@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import {
   BookOpen,
   ClipboardList,
+  Code2,
   Film,
   KeyRound,
   Presentation,
@@ -631,6 +632,65 @@ export default async function ClassPage({ params }: Props) {
                   </a>
                 </div>
               ))}
+            </section>
+          ) : null}
+
+          {course.ideEmbedUrl || course.ideUrl ? (
+            <section
+              className="ua-card ua-shadow-soft overflow-hidden p-6 md:col-span-2"
+              aria-labelledby="ide-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <Code2 size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    {course.idePlatform ?? "Code editor"}
+                  </p>
+                  <h2
+                    id="ide-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Java IDE
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-stone-700">
+                Write, compile, and run Java right here — or open the full editor
+                in a new tab.
+              </p>
+              {course.ideEmbedUrl ? (
+                <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+                  <div className="h-[32rem] w-full">
+                    <iframe
+                      src={course.ideEmbedUrl}
+                      title={`${course.title} Java IDE`}
+                      className="h-full w-full border-0"
+                      allow="clipboard-read; clipboard-write"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals allow-downloads"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                </div>
+              ) : null}
+              {course.ideUrl ? (
+                <a
+                  href={course.ideUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open the ${
+                    course.idePlatform ?? "online"
+                  } Java editor for ${course.title} in a new tab`}
+                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                >
+                  {`Open ${course.idePlatform ?? "IDE"} ↗`}
+                </a>
+              ) : null}
             </section>
           ) : null}
         </div>
