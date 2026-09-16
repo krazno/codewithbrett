@@ -4,13 +4,19 @@ import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const STORAGE_KEY = "ua-nav-countdown";
-const WARNING_MS = 7 * 60 * 1000;
+const FIVE_MS = 5 * 60 * 1000;
+const THREE_MS = 3 * 60 * 1000;
+const ONE_MS = 1 * 60 * 1000;
+const FIVE_ANNOUNCE_WINDOW_MS = 2500;
 const WARNING_REPEAT_MS = 45_000;
 const PRESETS_MIN = [5, 10, 15, 20, 25, 30, 40, 45] as const;
+
+type TimerStage = "normal" | "yellow" | "red-outline" | "red-flash" | "done";
 
 type StoredTimer = {
   endsAt: number;
   warnedAt?: number;
+  announcedFive?: boolean;
 };
 
 function formatRemaining(ms: number) {
@@ -22,6 +28,15 @@ function formatRemaining(ms: number) {
     return `${hours}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
   }
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function stageFor(remainingMs: number, running: boolean, finished: boolean): TimerStage {
+  if (finished) return "done";
+  if (!running) return "normal";
+  if (remainingMs <= ONE_MS) return "red-flash";
+  if (remainingMs <= THREE_MS) return "red-outline";
+  if (remainingMs <= FIVE_MS) return "yellow";
+  return "normal";
 }
 
 function readStored(): StoredTimer | null {
@@ -57,6 +72,56 @@ function playTone(audio: HTMLAudioElement | null) {
   }
 }
 
+function pickFemaleVoice(): SpeechSynthesisVoice | undefined {
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = [
+    /samantha/i,
+    /karen/i,
+    /moira/i,
+    /tessa/i,
+    /fiona/i,
+    /victoria/i,
+    /zira/i,
+    /female/i,
+    /google us english/i,
+    /google uk english female/i,
+  ];
+  for (const re of preferred) {
+    const match = voices.find((voice) => re.test(voice.name));
+    if (match) return match;
+  }
+  return voices.find((voice) => voice.lang.toLowerCase().startsWith("en"));
+}
+
+function speakFiveMinutesRemaining() {
+  if (typeof window === "undefined" || !window.speechSynthesis) return;
+
+  const speak = () => {
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance("5 minutes remaining");
+      utterance.lang = "en-US";
+      utterance.rate = 0.95;
+      utterance.pitch = 1.08;
+      const voice = pickFemaleVoice();
+      if (voice) utterance.voice = voice;
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length === 0) {
+    window.speechSynthesis.addEventListener("voiceschanged", speak, {
+      once: true,
+    });
+    window.setTimeout(speak, 250);
+    return;
+  }
+  speak();
+}
+
 export function NavCountdownTimer() {
   const panelId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -64,6 +129,7 @@ export function NavCountdownTimer() {
   const finalAudioRef = useRef<HTMLAudioElement | null>(null);
   const lastWarnedRef = useRef(0);
   const finishedRef = useRef(false);
+  const announcedFiveRef = useRef(false);
 
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
@@ -78,6 +144,7 @@ export function NavCountdownTimer() {
       setEndsAt(stored.endsAt);
       lastWarnedRef.current = stored.warnedAt ?? 0;
       finishedRef.current = stored.endsAt <= Date.now();
+      announcedFiveRef.current = Boolean(stored.announcedFive);
     }
     setReady(true);
     setNow(Date.now());
@@ -86,7 +153,14 @@ export function NavCountdownTimer() {
     const syncMotion = () => setReducedMotion(mq.matches);
     syncMotion();
     mq.addEventListener("change", syncMotion);
-    return () => mq.removeEventListener("change", syncMotion);
+
+    const warmVoices = () => window.speechSynthesis.getVoices();
+    warmVoices();
+    window.speechSynthesis.addEventListener("voiceschanged", warmVoices);
+    return () => {
+      mq.removeEventListener("change", syncMotion);
+      window.speechSynthesis.removeEventListener("voiceschanged", warmVoices);
+    };
   }, []);
 
   useEffect(() => {
@@ -119,17 +193,33 @@ export function NavCountdownTimer() {
   const remainingMs = endsAt == null ? 0 : Math.max(0, endsAt - now);
   const running = endsAt != null && remainingMs > 0;
   const finished = endsAt != null && remainingMs === 0;
-  const inWarning = (running || finished) && remainingMs <= WARNING_MS;
+  const stage = stageFor(remainingMs, running, finished);
   const display = endsAt == null ? null : formatRemaining(remainingMs);
 
   useEffect(() => {
     if (endsAt == null) return;
 
-    if (remainingMs > 0 && remainingMs <= WARNING_MS) {
+    if (
+      remainingMs > 0 &&
+      remainingMs <= FIVE_MS &&
+      remainingMs > FIVE_MS - FIVE_ANNOUNCE_WINDOW_MS &&
+      !announcedFiveRef.current
+    ) {
+      announcedFiveRef.current = true;
+      writeStored({ endsAt, warnedAt: lastWarnedRef.current, announcedFive: true });
+      playTone(warningAudioRef.current);
+      speakFiveMinutesRemaining();
+    }
+
+    if (remainingMs > 0 && remainingMs <= ONE_MS) {
       const since = now - lastWarnedRef.current;
       if (lastWarnedRef.current === 0 || since >= WARNING_REPEAT_MS) {
         lastWarnedRef.current = now;
-        writeStored({ endsAt, warnedAt: now });
+        writeStored({
+          endsAt,
+          warnedAt: now,
+          announcedFive: announcedFiveRef.current,
+        });
         playTone(warningAudioRef.current);
       }
     }
@@ -137,12 +227,16 @@ export function NavCountdownTimer() {
     if (remainingMs === 0 && !finishedRef.current) {
       finishedRef.current = true;
       playTone(finalAudioRef.current);
-      writeStored({ endsAt, warnedAt: lastWarnedRef.current || now });
+      writeStored({
+        endsAt,
+        warnedAt: lastWarnedRef.current || now,
+        announcedFive: announcedFiveRef.current,
+      });
     }
   }, [endsAt, remainingMs, now]);
 
-  function unlockAudio() {
-    const warn = warningAudioRef.current;
+  function unlockAudio(skipWarning = false) {
+    const warn = skipWarning ? null : warningAudioRef.current;
     const fin = finalAudioRef.current;
     for (const a of [warn, fin]) {
       if (!a) continue;
@@ -158,17 +252,29 @@ export function NavCountdownTimer() {
           a.muted = false;
         });
     }
+    try {
+      window.speechSynthesis.getVoices();
+    } catch {
+      /* ignore */
+    }
   }
 
   function startMinutes(minutes: number) {
     const ms = Math.max(1, Math.round(minutes * 60_000));
     const nextEnds = Date.now() + ms;
-    unlockAudio();
+    const atFive = ms <= FIVE_MS && ms > FIVE_MS - FIVE_ANNOUNCE_WINDOW_MS;
+    unlockAudio(atFive);
     finishedRef.current = false;
     lastWarnedRef.current = 0;
+    announcedFiveRef.current = atFive;
     setEndsAt(nextEnds);
     setNow(Date.now());
-    writeStored({ endsAt: nextEnds });
+    writeStored({ endsAt: nextEnds, announcedFive: atFive });
+    if (atFive) {
+      if (warningAudioRef.current) warningAudioRef.current.muted = false;
+      playTone(warningAudioRef.current);
+      speakFiveMinutesRemaining();
+    }
     setOpen(false);
   }
 
@@ -177,7 +283,13 @@ export function NavCountdownTimer() {
     setNow(Date.now());
     lastWarnedRef.current = 0;
     finishedRef.current = false;
+    announcedFiveRef.current = false;
     writeStored(null);
+    try {
+      window.speechSynthesis.cancel();
+    } catch {
+      /* ignore */
+    }
     setOpen(false);
   }
 
@@ -197,24 +309,37 @@ export function NavCountdownTimer() {
   }
 
   const flashClass =
-    inWarning && !reducedMotion
-      ? "nav-timer-flash"
-      : inWarning
-        ? "bg-red-600 text-white"
-        : finished
-          ? "bg-red-700 text-white"
-          : "bg-white/15 text-white hover:bg-white/25";
+    stage === "yellow" && !reducedMotion
+      ? "nav-timer-yellow"
+      : stage === "yellow"
+        ? "bg-yellow-400 text-yellow-950"
+        : stage === "red-outline"
+          ? "bg-white text-red-700 ring-2 ring-red-600"
+          : (stage === "red-flash" || stage === "done") && !reducedMotion
+            ? "nav-timer-flash"
+            : stage === "red-flash" || stage === "done"
+              ? "bg-red-600 text-white"
+              : "bg-white/15 text-white hover:bg-white/25";
+
+  const overlayClass =
+    stage === "yellow"
+      ? reducedMotion
+        ? "shadow-[inset_0_0_0_18px_rgb(250_204_21)]"
+        : "screen-timer-yellow-frame"
+      : stage === "red-outline"
+        ? "screen-timer-red-outline"
+        : stage === "red-flash" || stage === "done"
+          ? reducedMotion
+            ? "bg-red-600/30"
+            : "screen-timer-flash"
+          : null;
 
   return (
     <div ref={rootRef} className="relative shrink-0">
-      {inWarning
+      {overlayClass
         ? createPortal(
             <div
-              className={`pointer-events-none fixed inset-0 z-[80] ${
-                reducedMotion
-                  ? "bg-red-600/30"
-                  : "screen-timer-flash"
-              }`}
+              className={`pointer-events-none fixed inset-0 z-[80] ${overlayClass}`}
               aria-hidden
             />,
             document.body,
@@ -243,7 +368,7 @@ export function NavCountdownTimer() {
             aria-label={
               finished
                 ? "Timer finished"
-                : inWarning
+                : stage === "yellow"
                   ? `Timer warning, ${display} remaining`
                   : `Timer, ${display} remaining`
             }

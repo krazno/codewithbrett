@@ -147,7 +147,6 @@ html {
   }
 }
 
-/* Nav countdown: ~1Hz soft red pulse in final 7 minutes */
 @keyframes nav-timer-flash {
   0%,
   100% {
@@ -164,6 +163,40 @@ html {
 
 .nav-timer-flash {
   animation: nav-timer-flash 1s ease-in-out infinite;
+}
+
+@keyframes nav-timer-yellow {
+  0%,
+  100% {
+    background-color: rgb(250 204 21);
+    color: rgb(113 63 18);
+  }
+  50% {
+    background-color: rgb(254 240 138);
+    color: rgb(133 77 14);
+  }
+}
+
+.nav-timer-yellow {
+  animation: nav-timer-yellow 1s ease-in-out infinite;
+}
+
+@keyframes screen-timer-yellow-frame {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 18px rgb(250 204 21);
+  }
+  50% {
+    box-shadow: inset 0 0 0 18px rgb(253 224 71 / 0.2);
+  }
+}
+
+.screen-timer-yellow-frame {
+  animation: screen-timer-yellow-frame 1s ease-in-out infinite;
+}
+
+.screen-timer-red-outline {
+  box-shadow: inset 0 0 0 18px rgb(220 38 38);
 }
 
 @keyframes screen-timer-flash {
@@ -185,6 +218,17 @@ html {
     animation: none;
     background-color: rgb(220 38 38);
     color: #fff;
+  }
+
+  .nav-timer-yellow {
+    animation: none;
+    background-color: rgb(250 204 21);
+    color: rgb(113 63 18);
+  }
+
+  .screen-timer-yellow-frame {
+    animation: none;
+    box-shadow: inset 0 0 0 18px rgb(250 204 21);
   }
 
   .screen-timer-flash {

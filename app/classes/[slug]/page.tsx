@@ -80,7 +80,7 @@ export default async function ClassPage({ params }: Props) {
         courseTitle={course.title}
         googleClassroomUrl={course.googleClassroomUrl}
       />
-      <div className="mx-auto max-w-5xl px-6 py-8 sm:py-10">
+      <div className="mx-auto max-w-5xl px-5 py-6 sm:px-6 sm:py-8">
         <header className="overflow-hidden rounded-3xl bg-[var(--ua-evergreen)] shadow-xl">
           <div className="relative aspect-[4/1] min-h-40">
             <Image
@@ -151,17 +151,66 @@ export default async function ClassPage({ params }: Props) {
             </p>
           </section>
         ) : (
-        <div
-          className={`mt-6 grid gap-4 ${
-            course.apJoinCode
-              ? "md:grid-cols-2"
-              : course.textbook
-                ? "md:grid-cols-2 lg:grid-cols-3"
-                : course.googleMeetUrl || course.summerWorkUrl
-                  ? "md:grid-cols-2"
-                  : ""
-          }`}
-        >
+        <div className="mt-5 grid items-stretch gap-3 md:grid-cols-2">
+          {course.ideEmbedUrl || course.ideUrl ? (
+            <section
+              className="ua-card ua-shadow-soft overflow-hidden p-5 md:col-span-2"
+              aria-labelledby="ide-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <Code2 size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    {course.idePlatform ?? "Code editor"}
+                  </p>
+                  <h2
+                    id="ide-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Java IDE
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-3 text-sm text-stone-700">
+                Write, compile, and run Java right here — or open the full editor
+                in a new tab.
+              </p>
+              {course.ideEmbedUrl ? (
+                <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+                  <div className="h-[32rem] w-full">
+                    <iframe
+                      src={course.ideEmbedUrl}
+                      title={`${course.title} Java IDE`}
+                      className="h-full w-full border-0"
+                      allow="clipboard-read; clipboard-write"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals allow-downloads"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                </div>
+              ) : null}
+              {course.ideUrl ? (
+                <a
+                  href={course.ideUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open the ${
+                    course.idePlatform ?? "online"
+                  } Java editor for ${course.title} in a new tab`}
+                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                >
+                  {`Open ${course.idePlatform ?? "IDE"} ↗`}
+                </a>
+              ) : null}
+            </section>
+          ) : null}
+
           <section
             className="ua-card ua-shadow-soft overflow-hidden md:col-span-2"
             aria-label="Entry Ticket"
@@ -174,13 +223,13 @@ export default async function ClassPage({ params }: Props) {
               priority
               className="w-full object-cover"
             />
-            <div className="p-6">
-              {course.entryTicketUrl ? (
+            <div className="p-5">
+              {course.googleClassroomUrl ? (
                 <a
-                  href={course.entryTicketUrl}
+                  href={course.googleClassroomUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Complete today's entry ticket for ${course.title} in a new tab`}
+                  aria-label={`Complete today's entry ticket for ${course.title} in Google Classroom`}
                   className="inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
                 >
                   Complete Entry Ticket ↗
@@ -194,54 +243,7 @@ export default async function ClassPage({ params }: Props) {
           </section>
 
           <section
-            className="ua-card ua-shadow-soft overflow-hidden p-6 md:col-span-2"
-            aria-labelledby="stretch-heading"
-          >
-            <div className="flex items-center gap-3">
-              <span
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-sm font-bold text-white"
-                aria-hidden="true"
-              >
-                5m
-              </span>
-              <div>
-                <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                  Start of class
-                </p>
-                <h2
-                  id="stretch-heading"
-                  className="font-serif text-2xl text-stone-900"
-                >
-                  5-Minute Stretch
-                </h2>
-              </div>
-            </div>
-            <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
-              <div className="aspect-video min-h-[12rem] w-full">
-                <iframe
-                  src={STRETCH_EMBED_URL}
-                  title="5-Minute Stretch"
-                  className="h-full w-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                />
-              </div>
-            </div>
-            <a
-              href={STRETCH_WATCH_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open the 5-minute stretch video on YouTube"
-              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
-            >
-              Open on YouTube ↗
-            </a>
-          </section>
-
-          <section
-            className="ua-card ua-shadow-soft p-6"
+            className="ua-card ua-shadow-soft flex h-full flex-col p-5"
             aria-labelledby="student-profile-heading"
           >
             <div className="flex items-center gap-3">
@@ -263,7 +265,7 @@ export default async function ClassPage({ params }: Props) {
                 </h2>
               </div>
             </div>
-            <p className="mt-4 text-sm text-stone-700">
+            <p className="mt-3 text-sm text-stone-700">
               Tell me about your passions, interests, and how you learn best.
             </p>
             <a
@@ -271,7 +273,7 @@ export default async function ClassPage({ params }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Open the Student Passions, Interest & Learning Profile survey for ${course.title} in a new tab`}
-              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
             >
               Open the survey ↗
             </a>
@@ -279,7 +281,7 @@ export default async function ClassPage({ params }: Props) {
 
           {course.summerWorkUrl ? (
             <section
-              className="ua-card ua-shadow-soft p-6"
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
               aria-labelledby="summer-work-heading"
             >
               <div className="flex items-center gap-3">
@@ -301,7 +303,7 @@ export default async function ClassPage({ params }: Props) {
                   </h2>
                 </div>
               </div>
-              <p className="mt-4 text-sm text-stone-700">
+              <p className="mt-3 text-sm text-stone-700">
                 Open the summer assignment for this course.
               </p>
               <a
@@ -309,7 +311,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open summer work for ${course.title} in a new tab`}
-                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open Summer work ↗
               </a>
@@ -318,7 +320,7 @@ export default async function ClassPage({ params }: Props) {
 
           {course.googleClassroomUrl && course.googleClassroomCode ? (
             <section
-              className="ua-card ua-shadow-soft p-6"
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
               aria-labelledby="google-classroom-heading"
             >
               <div className="flex items-center gap-3">
@@ -368,7 +370,7 @@ export default async function ClassPage({ params }: Props) {
 
           {course.sectionCode ? (
             <section
-              className="ua-card ua-shadow-soft p-6"
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
               aria-labelledby="section-code-heading"
             >
               <div className="flex items-center gap-3">
@@ -416,7 +418,7 @@ export default async function ClassPage({ params }: Props) {
 
           {showMakeCode ? (
             <section
-              className="ua-card ua-shadow-soft p-6"
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
               aria-labelledby="makecode-heading"
             >
               <div className="flex items-center gap-3">
@@ -438,7 +440,7 @@ export default async function ClassPage({ params }: Props) {
                   </h2>
                 </div>
               </div>
-              <p className="mt-4 text-sm text-stone-700">
+              <p className="mt-3 text-sm text-stone-700">
                 Open the MakeCode Arcade editor to build games for class.
               </p>
               <a
@@ -446,7 +448,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open MakeCode Arcade for ${course.title}`}
-                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open MakeCode Arcade ↗
               </a>
@@ -455,7 +457,7 @@ export default async function ClassPage({ params }: Props) {
 
           {showOnlineJava ? (
             <section
-              className="ua-card ua-shadow-soft p-6"
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
               aria-labelledby="online-java-heading"
             >
               <div className="flex items-center gap-3">
@@ -477,7 +479,7 @@ export default async function ClassPage({ params }: Props) {
                   </h2>
                 </div>
               </div>
-              <p className="mt-4 text-sm text-stone-700">
+              <p className="mt-3 text-sm text-stone-700">
                 Write and run Java in the browser for class practice.
               </p>
               <a
@@ -485,7 +487,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open Online Java for ${course.title}`}
-                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open Online Java ↗
               </a>
@@ -493,7 +495,7 @@ export default async function ClassPage({ params }: Props) {
           ) : null}
 
           {course.apJoinCode ? (
-            <section className="ua-card ua-shadow-soft p-6">
+            <section className="ua-card ua-shadow-soft flex h-full flex-col p-5">
               <div className="flex items-center gap-3">
                 <div
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-navy)] font-serif text-xl font-bold text-white"
@@ -536,7 +538,7 @@ export default async function ClassPage({ params }: Props) {
 
           {course.googleMeetUrl ? (
             <section
-              className="ua-card ua-shadow-soft p-6"
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
               aria-labelledby="live-help-heading"
             >
               <div className="flex items-center gap-3">
@@ -558,7 +560,7 @@ export default async function ClassPage({ params }: Props) {
                   </h2>
                 </div>
               </div>
-              <p className="mt-4 text-sm text-stone-700">
+              <p className="mt-3 text-sm text-stone-700">
                 Join the Google Meet for live help with this course.
               </p>
               <a
@@ -566,7 +568,7 @@ export default async function ClassPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Join Live Help for ${course.title} in Google Meet`}
-                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Join Live Help ↗
               </a>
@@ -575,7 +577,7 @@ export default async function ClassPage({ params }: Props) {
 
           {course.textbook ? (
             <section
-              className="ua-card ua-shadow-soft p-6"
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
               aria-labelledby="resources-heading"
             >
               <div className="flex items-center gap-3">
@@ -636,7 +638,7 @@ export default async function ClassPage({ params }: Props) {
 
           {course.challengeVideoEmbedUrl ? (
             <section
-              className="ua-card ua-shadow-soft p-6"
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
               aria-labelledby="challenge-video-heading"
             >
               <div className="flex items-center gap-3">
@@ -658,7 +660,7 @@ export default async function ClassPage({ params }: Props) {
                   </h2>
                 </div>
               </div>
-              <div className="mx-auto mt-4 w-full max-w-[325px] overflow-hidden rounded-2xl border border-stone-200 bg-black">
+              <div className="mx-auto mt-3 w-full max-w-[14rem] overflow-hidden rounded-2xl border border-stone-200 bg-black">
                 <div className="aspect-[9/16] w-full">
                   <iframe
                     src={course.challengeVideoEmbedUrl}
@@ -687,7 +689,7 @@ export default async function ClassPage({ params }: Props) {
           {/* Academic classes only (omit Study Hall). Paste Share → Embed into gammaEmbedSrc + docs into gammaUrl. */}
           {course.googleClassroomUrl ? (
             <section
-              className="ua-card ua-shadow-soft overflow-hidden p-6 md:col-span-2"
+              className="ua-card ua-shadow-soft overflow-hidden p-5 md:col-span-2"
               aria-labelledby="gamma-presentation-heading"
             >
               <div className="flex items-center gap-3">
@@ -781,68 +783,54 @@ export default async function ClassPage({ params }: Props) {
             </section>
           ) : null}
 
-          {course.ideEmbedUrl || course.ideUrl ? (
-            <section
-              className="ua-card ua-shadow-soft overflow-hidden p-6 md:col-span-2"
-              aria-labelledby="ide-heading"
-            >
-              <div className="flex items-center gap-3">
-                <span
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
-                  aria-hidden="true"
+          <section
+            className="ua-card ua-shadow-soft mx-auto flex w-full max-w-[18rem] flex-col p-4 md:col-span-2"
+            aria-labelledby="stretch-heading"
+          >
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-xs font-bold text-white"
+                aria-hidden="true"
+              >
+                5m
+              </span>
+              <div>
+                <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  Start of class
+                </p>
+                <h2
+                  id="stretch-heading"
+                  className="font-serif text-xl text-stone-900"
                 >
-                  <Code2 size={24} strokeWidth={2} />
-                </span>
-                <div>
-                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-                    {course.idePlatform ?? "Code editor"}
-                  </p>
-                  <h2
-                    id="ide-heading"
-                    className="font-serif text-2xl text-stone-900"
-                  >
-                    Java IDE
-                  </h2>
-                </div>
+                  5-Minute Stretch
+                </h2>
               </div>
-              <p className="mt-4 text-sm text-stone-700">
-                Write, compile, and run Java right here — or open the full editor
-                in a new tab.
-              </p>
-              {course.ideEmbedUrl ? (
-                <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
-                  <div className="h-[32rem] w-full">
-                    <iframe
-                      src={course.ideEmbedUrl}
-                      title={`${course.title} Java IDE`}
-                      className="h-full w-full border-0"
-                      allow="clipboard-read; clipboard-write"
-                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals allow-downloads"
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                  </div>
-                </div>
-              ) : null}
-              {course.ideUrl ? (
-                <a
-                  href={course.ideUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open the ${
-                    course.idePlatform ?? "online"
-                  } Java editor for ${course.title} in a new tab`}
-                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
-                >
-                  {`Open ${course.idePlatform ?? "IDE"} ↗`}
-                </a>
-              ) : null}
-            </section>
-          ) : null}
+            </div>
+            <div className="mx-auto mt-3 aspect-square w-full max-w-[14rem] overflow-hidden rounded-xl border border-stone-200 bg-black">
+              <iframe
+                src={STRETCH_EMBED_URL}
+                title="5-Minute Stretch"
+                className="h-full w-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+            <a
+              href={STRETCH_WATCH_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the 5-minute stretch video on YouTube"
+              className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+            >
+              Open on YouTube ↗
+            </a>
+          </section>
         </div>
         )}
 
-        <footer className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-sm">
+        <footer className="mt-5 flex items-center justify-between border-t border-stone-300 pt-3 text-sm">
           <Link
             href="/"
             className="font-medium text-[var(--ua-evergreen)] hover:underline"
