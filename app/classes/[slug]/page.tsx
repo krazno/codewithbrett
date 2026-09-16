@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
 import { SITE_NAME } from "@/app/lib/site";
+import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { CourseNoticeModal } from "./CourseNoticeModal";
 
 const STUDENT_PROFILE_SURVEY_URL = "https://forms.gle/bSMTuh9JSgLWbpKdA";
@@ -241,6 +242,23 @@ export default async function ClassPage({ params }: Props) {
               )}
             </div>
           </section>
+
+          {course.slug.startsWith("calculus") ? (
+            <section
+              className="md:col-span-2"
+              aria-label="UA Function Garden"
+            >
+              <FunctionGardenLazy embedded />
+              <p className="mt-2 text-center text-sm">
+                <Link
+                  href="/tools/function-garden/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open UA Function Garden on its own page
+                </Link>
+              </p>
+            </section>
+          ) : null}
 
           <section
             className="ua-card ua-shadow-soft flex h-full flex-col p-5"
