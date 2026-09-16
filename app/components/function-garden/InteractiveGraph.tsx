@@ -347,9 +347,8 @@ export function InteractiveGraph({
           </>
         ) : null}
       </svg>
-      <p className="border-t border-[rgba(31,77,58,0.12)] px-3 py-2 text-center text-xs leading-snug text-[#1F4D3A] sm:text-sm">
-        The viewing window shows only part of the graph. It does not
-        automatically limit the domain.
+      <p className="border-t border-[rgba(31,77,58,0.12)] px-3 py-1.5 text-center text-[0.7rem] leading-snug text-[#1F4D3A] sm:text-xs">
+        Viewing window only — it does not limit the domain.
       </p>
     </div>
   );
