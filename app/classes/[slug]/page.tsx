@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
+  Award,
   BookOpen,
   ClipboardList,
   Code2,
@@ -17,6 +18,8 @@ import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGar
 import { CourseNoticeModal } from "./CourseNoticeModal";
 
 const STUDENT_PROFILE_SURVEY_URL = "https://forms.gle/bSMTuh9JSgLWbpKdA";
+const CALCULUS_SCHOLARSHIP_URL =
+  "https://docs.google.com/document/d/1uuqsegcM0cNvbckZKWlfMPJdoMBfoGhHoShTDdYkpfU/edit?usp=sharing";
 const STRETCH_VIDEO_ID = "37tBZS7-E9k";
 const STRETCH_WATCH_URL = `https://www.youtube.com/watch?v=${STRETCH_VIDEO_ID}`;
 const STRETCH_EMBED_URL = `https://www.youtube.com/embed/${STRETCH_VIDEO_ID}`;
@@ -351,6 +354,45 @@ export default async function ClassPage({ params }: Props) {
                 className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open Summer work ↗
+              </a>
+            </section>
+          ) : null}
+
+          {course.slug.startsWith("calculus") ? (
+            <section
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
+              aria-labelledby="scholarship-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <Award size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Opportunities
+                  </p>
+                  <h2
+                    id="scholarship-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Scholarship
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-3 text-sm text-stone-700">
+                Open the Calculus Honors scholarship information.
+              </p>
+              <a
+                href={CALCULUS_SCHOLARSHIP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open the scholarship document for ${course.title} in a new tab`}
+                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Open Scholarship ↗
               </a>
             </section>
           ) : null}
