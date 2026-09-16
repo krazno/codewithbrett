@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 };
 
 function subjectFor(course: Course) {
+  if (course.comingSoon || course.slug === "coding-club") return "Club";
   if (course.slug.startsWith("ap-cs")) return "Computer Science";
   if (course.slug.startsWith("calculus")) return "Mathematics";
   return "Academic Support";
@@ -135,7 +136,8 @@ export default function OrientationPage() {
                 />
                 <div>
                   <p className="text-[10px] font-semibold tracking-wide text-[var(--ua-evergreen)] uppercase">
-                    {subjectFor(course)} · {course.scheduleNote}
+                    {subjectFor(course)}
+                    {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
                   </p>
                   <h3 className="font-serif text-lg text-stone-900">
                     {course.title}

@@ -7,6 +7,7 @@ import {
   ClipboardList,
   Code2,
   Film,
+  Gamepad2,
   KeyRound,
   Presentation,
 } from "lucide-react";
@@ -15,6 +16,11 @@ import { SITE_NAME } from "@/app/lib/site";
 import { CourseNoticeModal } from "./CourseNoticeModal";
 
 const STUDENT_PROFILE_SURVEY_URL = "https://forms.gle/bSMTuh9JSgLWbpKdA";
+const STRETCH_VIDEO_ID = "37tBZS7-E9k";
+const STRETCH_WATCH_URL = `https://www.youtube.com/watch?v=${STRETCH_VIDEO_ID}`;
+const STRETCH_EMBED_URL = `https://www.youtube.com/embed/${STRETCH_VIDEO_ID}`;
+const MAKECODE_URL = "https://arcade.makecode.com/#editor";
+const ONLINE_JAVA_URL = "https://www.online-java.com/";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -59,11 +65,13 @@ export default async function ClassPage({ params }: Props) {
   const course = getCourse(slug);
   if (!course) notFound();
 
-  const headerImage = course.slug.startsWith("ap-cs")
+  const headerImage = course.slug.startsWith("ap-cs") || course.slug === "coding-club"
     ? "/media/course-headers/computer-science.png"
     : course.slug.startsWith("calculus")
       ? "/media/course-headers/mathematics.png"
       : course.image;
+  const showMakeCode = course.slug.startsWith("ap-csp");
+  const showOnlineJava = course.slug.startsWith("ap-csa");
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
@@ -130,6 +138,19 @@ export default async function ClassPage({ params }: Props) {
           </div>
         </header>
 
+        {course.comingSoon ? (
+          <section className="ua-card ua-shadow-soft mt-6 p-8 text-center sm:p-10">
+            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              New this year
+            </p>
+            <h2 className="mt-2 font-serif text-3xl text-stone-900">
+              Coming soon
+            </h2>
+            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-stone-600">
+              {course.description}
+            </p>
+          </section>
+        ) : (
         <div
           className={`mt-6 grid gap-4 ${
             course.apJoinCode
@@ -170,6 +191,53 @@ export default async function ClassPage({ params }: Props) {
                 </p>
               )}
             </div>
+          </section>
+
+          <section
+            className="ua-card ua-shadow-soft overflow-hidden p-6 md:col-span-2"
+            aria-labelledby="stretch-heading"
+          >
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-sm font-bold text-white"
+                aria-hidden="true"
+              >
+                5m
+              </span>
+              <div>
+                <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  Start of class
+                </p>
+                <h2
+                  id="stretch-heading"
+                  className="font-serif text-2xl text-stone-900"
+                >
+                  5-Minute Stretch
+                </h2>
+              </div>
+            </div>
+            <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+              <div className="aspect-video min-h-[12rem] w-full">
+                <iframe
+                  src={STRETCH_EMBED_URL}
+                  title="5-Minute Stretch"
+                  className="h-full w-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
+            </div>
+            <a
+              href={STRETCH_WATCH_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the 5-minute stretch video on YouTube"
+              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+            >
+              Open on YouTube ↗
+            </a>
           </section>
 
           <section
@@ -343,6 +411,84 @@ export default async function ClassPage({ params }: Props) {
                   {course.sectionCode}
                 </p>
               </div>
+            </section>
+          ) : null}
+
+          {showMakeCode ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="makecode-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <Gamepad2 size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Game coding
+                  </p>
+                  <h2
+                    id="makecode-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    MakeCode Arcade
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-stone-700">
+                Open the MakeCode Arcade editor to build games for class.
+              </p>
+              <a
+                href={MAKECODE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open MakeCode Arcade for ${course.title}`}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Open MakeCode Arcade ↗
+              </a>
+            </section>
+          ) : null}
+
+          {showOnlineJava ? (
+            <section
+              className="ua-card ua-shadow-soft p-6"
+              aria-labelledby="online-java-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <Code2 size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Practice coding
+                  </p>
+                  <h2
+                    id="online-java-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    Online Java
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-stone-700">
+                Write and run Java in the browser for class practice.
+              </p>
+              <a
+                href={ONLINE_JAVA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open Online Java for ${course.title}`}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Open Online Java ↗
+              </a>
             </section>
           ) : null}
 
@@ -694,6 +840,7 @@ export default async function ClassPage({ params }: Props) {
             </section>
           ) : null}
         </div>
+        )}
 
         <footer className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-sm">
           <Link

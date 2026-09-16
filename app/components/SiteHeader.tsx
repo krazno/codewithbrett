@@ -13,8 +13,9 @@ const COURSE_LINKS = [
   ...COURSES.map((course) => ({
     href: `/classes/${course.slug}/`,
     label: course.title,
+    comingSoon: Boolean(course.comingSoon),
   })),
-  { href: "/advisory/", label: "Advisory" },
+  { href: "/advisory/", label: "Advisory", comingSoon: false },
 ] as const;
 
 const navLinkClass =
@@ -138,6 +139,11 @@ export function SiteHeader() {
                         onClick={() => setCoursesOpen(false)}
                       >
                         {item.label}
+                        {item.comingSoon ? (
+                          <span className="ml-1.5 text-[10px] font-semibold tracking-wide text-stone-500 uppercase">
+                            soon
+                          </span>
+                        ) : null}
                       </Link>
                     </li>
                   ))}
@@ -198,6 +204,11 @@ export function SiteHeader() {
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
+                {item.comingSoon ? (
+                  <span className="ml-1.5 text-[10px] font-semibold tracking-wide text-white/65 uppercase">
+                    soon
+                  </span>
+                ) : null}
               </Link>
             ))}
             <Link

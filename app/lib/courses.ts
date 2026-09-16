@@ -58,11 +58,13 @@ export type Course = {
     url: string;
     category: "Supplemental" | "Supplemental & story reading";
   }[];
+  /** Placeholder course shown in nav/home until the hub is ready. */
+  comingSoon?: boolean;
 };
 
 /**
  * Display order:
- * 1–2 AP CSP (Principles), 3–4 Calculus H, 5 AP CSA, 6 Study Hall
+ * 1–2 AP CSP (Principles), 3–4 Calculus H, 5 AP CSA, 6 Study Hall, 7 Coding Club
  */
 export const COURSES: Course[] = [
   {
@@ -312,6 +314,16 @@ export const COURSES: Course[] = [
     description:
       "A quiet block to get work done. Bring homework from any class and ask if you get stuck.",
     image: "/media/classes/study-hall/thumb.png",
+  },
+  {
+    slug: "coding-club",
+    title: "Coding Club",
+    room: "After school",
+    scheduleNote: "Coming soon",
+    description:
+      "A club for coding, making, and sharing projects. Details coming soon.",
+    image: "/media/branded/ua-seal.png",
+    comingSoon: true,
   },
 ];
 

@@ -76,7 +76,7 @@ const jsonLd = {
       COURSES.find((c) => c.slug === "calculus-h-d"),
       COURSES.find((c) => c.slug === "ap-csa-h"),
     ]
-      .filter((course): course is Course => Boolean(course))
+      .filter((course): course is Course => course != null && !course.comingSoon)
       .map((course) => ({
         "@type": "Course",
         name: course.title.replace(/\s*\([A-H]\)$/, ""),
@@ -141,6 +141,11 @@ function CourseCard({ course }: { course: Course }) {
           />
         </div>
         <div className="min-w-0 flex-1 text-left">
+          {course.comingSoon ? (
+            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              Coming soon
+            </p>
+          ) : null}
           <h3 className="font-serif text-xl text-stone-900">{course.title}</h3>
           <p className="text-xs text-stone-600">
             {course.room}

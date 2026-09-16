@@ -56,6 +56,24 @@ const resources = [
     textIcon: null,
   },
   {
+    name: "MakeCode Arcade",
+    href: "https://arcade.makecode.com/#editor",
+    description: "Block and JavaScript game editor for class projects.",
+    image: "/media/resources/makecode-arcade.svg",
+    imageWidth: 56,
+    imageHeight: 56,
+    textIcon: null,
+  },
+  {
+    name: "Online Java",
+    href: "https://www.online-java.com/",
+    description: "Write and run Java in the browser.",
+    image: "/media/resources/online-java.svg",
+    imageWidth: 56,
+    imageHeight: 56,
+    textIcon: null,
+  },
+  {
     name: "NotebookLM",
     href: "https://notebooklm.google/",
     description:

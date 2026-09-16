@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 const STORAGE_KEY = "ua-nav-countdown";
-const WARNING_MS = 5 * 60 * 1000;
+const WARNING_MS = 7 * 60 * 1000;
 const WARNING_REPEAT_MS = 45_000;
-const PRESETS_MIN = [5, 10, 15, 20, 30, 45, 60] as const;
+const PRESETS_MIN = [5, 10, 15, 20, 25, 30, 40, 45] as const;
 
 type StoredTimer = {
   endsAt: number;
@@ -206,6 +207,19 @@ export function NavCountdownTimer() {
 
   return (
     <div ref={rootRef} className="relative shrink-0">
+      {inWarning
+        ? createPortal(
+            <div
+              className={`pointer-events-none fixed inset-0 z-[80] ${
+                reducedMotion
+                  ? "bg-red-600/30"
+                  : "screen-timer-flash"
+              }`}
+              aria-hidden
+            />,
+            document.body,
+          )
+        : null}
       <audio
         ref={warningAudioRef}
         src="/media/timer-warning.wav"

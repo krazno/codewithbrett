@@ -147,7 +147,7 @@ html {
   }
 }
 
-/* Nav countdown: ~1Hz soft red pulse in final 5 minutes */
+/* Nav countdown: ~1Hz soft red pulse in final 7 minutes */
 @keyframes nav-timer-flash {
   0%,
   100% {
@@ -166,11 +166,30 @@ html {
   animation: nav-timer-flash 1s ease-in-out infinite;
 }
 
+@keyframes screen-timer-flash {
+  0%,
+  100% {
+    background-color: rgb(220 38 38 / 0.18);
+  }
+  50% {
+    background-color: rgb(220 38 38 / 0.48);
+  }
+}
+
+.screen-timer-flash {
+  animation: screen-timer-flash 1s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-timer-flash {
     animation: none;
     background-color: rgb(220 38 38);
     color: #fff;
+  }
+
+  .screen-timer-flash {
+    animation: none;
+    background-color: rgb(220 38 38 / 0.28);
   }
 }
 
