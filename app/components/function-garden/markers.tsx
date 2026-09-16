@@ -7,6 +7,7 @@ export type MarkerId =
   | "basketball"
   | "music"
   | "star"
+  | "treehill"
   | "classic";
 
 type MarkerDef = {
@@ -115,6 +116,18 @@ export const MARKERS: MarkerDef[] = [
           d="M12 3.2 14.4 9h6.2l-5 3.7 1.9 6.1L12 15.6 6.5 18.8 8.4 12.7 3.4 9h6.2L12 3.2Z"
           fill="currentColor"
         />
+      </svg>
+    ),
+  },
+  {
+    id: "treehill",
+    label: "One Tree Hill",
+    icon: (size) => (
+      <svg {...svgProps(size)}>
+        <rect x="10.4" y="14" width="3.2" height="7.2" rx="0.6" fill="currentColor" />
+        <circle cx="12" cy="8.2" r="5.4" fill="currentColor" />
+        <circle cx="7.6" cy="11.2" r="3.6" fill="currentColor" />
+        <circle cx="16.4" cy="11.2" r="3.6" fill="currentColor" />
       </svg>
     ),
   },
