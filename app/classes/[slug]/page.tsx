@@ -215,6 +215,23 @@ export default async function ClassPage({ params }: Props) {
             </section>
           ) : null}
 
+          {course.slug.startsWith("calculus") ? (
+            <section
+              className="md:col-span-2"
+              aria-label="UA Function Garden"
+            >
+              <FunctionGardenLazy embedded />
+              <p className="mt-2 text-center text-sm">
+                <Link
+                  href="/tools/function-garden/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open UA Function Garden on its own page
+                </Link>
+              </p>
+            </section>
+          ) : null}
+
           <section
             className="ua-card ua-shadow-soft flex h-full flex-col p-5"
             aria-labelledby="entry-ticket-heading"
@@ -238,14 +255,14 @@ export default async function ClassPage({ params }: Props) {
                 </h2>
               </div>
             </div>
-            <div className="mx-auto mt-3 aspect-square w-full max-w-[14rem] overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
+            <div className="mt-3 overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
               <Image
                 src="/media/entry-ticket/banner.png"
                 alt="Entry Ticket — Think, Share, Grow"
                 width={1024}
                 height={341}
                 priority
-                className="h-full w-full object-cover"
+                className="h-auto w-full object-contain"
               />
             </div>
             {course.googleClassroomUrl ? (
@@ -264,23 +281,6 @@ export default async function ClassPage({ params }: Props) {
               </p>
             )}
           </section>
-
-          {course.slug.startsWith("calculus") ? (
-            <section
-              className="md:col-span-2"
-              aria-label="UA Function Garden"
-            >
-              <FunctionGardenLazy embedded />
-              <p className="mt-2 text-center text-sm">
-                <Link
-                  href="/tools/function-garden/"
-                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
-                >
-                  Open UA Function Garden on its own page
-                </Link>
-              </p>
-            </section>
-          ) : null}
 
           <section
             className="ua-card ua-shadow-soft flex h-full flex-col p-5"
