@@ -213,34 +213,53 @@ export default async function ClassPage({ params }: Props) {
           ) : null}
 
           <section
-            className="ua-card ua-shadow-soft overflow-hidden md:col-span-2"
-            aria-label="Entry Ticket"
+            className="ua-card ua-shadow-soft flex h-full flex-col p-5"
+            aria-labelledby="entry-ticket-heading"
           >
-            <Image
-              src="/media/entry-ticket/banner.png"
-              alt="Entry Ticket — Think, Share, Grow"
-              width={1024}
-              height={341}
-              priority
-              className="w-full object-cover"
-            />
-            <div className="p-5">
-              {course.googleClassroomUrl ? (
-                <a
-                  href={course.googleClassroomUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Complete today's entry ticket for ${course.title} in Google Classroom`}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
-                >
-                  Complete Entry Ticket ↗
-                </a>
-              ) : (
-                <p className="rounded-full bg-emerald-50 px-5 py-3 text-center text-sm font-semibold text-stone-500">
-                  Posted at the start of class.
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-xs font-bold text-white"
+                aria-hidden="true"
+              >
+                ET
+              </span>
+              <div>
+                <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                  Start of class
                 </p>
-              )}
+                <h2
+                  id="entry-ticket-heading"
+                  className="font-serif text-2xl text-stone-900"
+                >
+                  Entry Ticket
+                </h2>
+              </div>
             </div>
+            <div className="mx-auto mt-3 aspect-square w-full max-w-[14rem] overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
+              <Image
+                src="/media/entry-ticket/banner.png"
+                alt="Entry Ticket — Think, Share, Grow"
+                width={1024}
+                height={341}
+                priority
+                className="h-full w-full object-cover"
+              />
+            </div>
+            {course.googleClassroomUrl ? (
+              <a
+                href={course.googleClassroomUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Complete today's entry ticket for ${course.title} in Google Classroom`}
+                className="mt-auto pt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Complete Entry Ticket ↗
+              </a>
+            ) : (
+              <p className="mt-auto pt-4 rounded-full bg-emerald-50 px-5 py-3 text-center text-sm font-semibold text-stone-500">
+                Posted at the start of class.
+              </p>
+            )}
           </section>
 
           {course.slug.startsWith("calculus") ? (
