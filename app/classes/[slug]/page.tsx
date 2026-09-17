@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
 import { SITE_NAME } from "@/app/lib/site";
+import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
 import { WhereCalculusGoesNextLazy } from "@/app/components/rate-of-change/WhereCalculusGoesNextLazy";
@@ -163,6 +164,12 @@ export default async function ClassPage({ params }: Props) {
           </section>
         ) : (
         <div className="mt-5 grid items-start gap-3 md:grid-cols-2">
+          {showMakeCode ? (
+            <div className="md:col-span-2">
+              <BinaryFlipLab />
+            </div>
+          ) : null}
+
           {course.ideEmbedUrl || course.ideUrl ? (
             <section
               className="ua-card ua-shadow-soft overflow-hidden p-5 md:col-span-2"
