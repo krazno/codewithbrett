@@ -4,6 +4,7 @@ import { useId, useMemo, useState } from "react";
 
 /** Place values, high bit first. Extend this array later for 5–8 bits. */
 const PLACE_VALUES = [8, 4, 2, 1] as const;
+const PLACE_EXPONENTS = [3, 2, 1, 0] as const;
 
 type ChallengeType = "build" | "read";
 type Challenge = { type: ChallengeType; target: number };
@@ -52,6 +53,14 @@ function Equiv({ value }: { value: number }) {
       {" ⇔ "}
       {binaryOf(value)}
       <sub>2</sub>
+    </span>
+  );
+}
+
+function PowerTerm({ on, exponent }: { on: boolean; exponent: number }) {
+  return (
+    <span className={on ? "text-[#14382A]" : "text-stone-400"}>
+      ({on ? 1 : 0} × 2<sup>{exponent}</sup>)
     </span>
   );
 }
@@ -163,8 +172,11 @@ export function BinaryFlipLab() {
           const on = bits[index];
           return (
             <div key={place} className="text-center">
-              <p className="mb-1 font-mono text-sm font-semibold text-[#14382A]">
+              <p className="mb-0.5 font-mono text-sm font-semibold text-[#14382A]">
                 {place}
+              </p>
+              <p className="mb-1 font-mono text-xs text-stone-600">
+                2<sup>{PLACE_EXPONENTS[index]}</sup>
               </p>
               <button
                 type="button"
@@ -189,9 +201,19 @@ export function BinaryFlipLab() {
       </div>
 
       <p
-        className="mt-3 text-center font-mono text-base font-semibold text-[#14382A] sm:text-lg"
+        className="mt-3 text-center font-mono text-sm font-semibold leading-relaxed text-[#14382A] sm:text-base"
         aria-live="polite"
       >
+        {PLACE_EXPONENTS.map((exponent, index) => (
+          <span key={exponent}>
+            {index > 0 ? " + " : null}
+            <PowerTerm on={bits[index]} exponent={exponent} />
+          </span>
+        ))}
+        {" = "}
+        {total}
+      </p>
+      <p className="mt-1 text-center font-mono text-sm text-stone-700 sm:text-base">
         {equation} = {total}
       </p>
       <p className="mt-1 text-center text-sm text-stone-800">
