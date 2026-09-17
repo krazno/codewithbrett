@@ -15,6 +15,7 @@ import {
 import { COURSES, getCourse } from "@/app/lib/courses";
 import { SITE_NAME } from "@/app/lib/site";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
+import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
 import { WhereCalculusGoesNextLazy } from "@/app/components/rate-of-change/WhereCalculusGoesNextLazy";
 import { CourseNoticeModal } from "./CourseNoticeModal";
 
@@ -220,6 +221,8 @@ export default async function ClassPage({ params }: Props) {
               ) : null}
             </section>
           ) : null}
+
+          {showOnlineJava ? <JavaDataTypesLab /> : null}
 
           {course.slug.startsWith("calculus") ? (
             <section
