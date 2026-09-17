@@ -15,6 +15,7 @@ import {
 import { COURSES, getCourse } from "@/app/lib/courses";
 import { SITE_NAME } from "@/app/lib/site";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
+import { WhereCalculusGoesNextLazy } from "@/app/components/rate-of-change/WhereCalculusGoesNextLazy";
 import { CourseNoticeModal } from "./CourseNoticeModal";
 
 const STUDENT_PROFILE_SURVEY_URL = "https://forms.gle/bSMTuh9JSgLWbpKdA";
@@ -234,6 +235,16 @@ export default async function ClassPage({ params }: Props) {
                   Open UA Function Garden on its own page
                 </Link>
               </p>
+            </section>
+          ) : null}
+
+          {course.slug === "calculus-h-e" ? (
+            <section
+              id="where-calculus-goes-next"
+              className="mt-8 scroll-mt-24 md:col-span-2 md:mt-10"
+              aria-label="Where Calculus Goes Next"
+            >
+              <WhereCalculusGoesNextLazy />
             </section>
           ) : null}
 
