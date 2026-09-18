@@ -20,6 +20,7 @@ import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
 import { SeeTheSecantLine } from "@/app/components/rate-of-change/SeeTheSecantLine";
 import { WhereCalculusGoesNextLazy } from "@/app/components/rate-of-change/WhereCalculusGoesNextLazy";
 import { CourseNoticeModal } from "./CourseNoticeModal";
+import { CoursePasscodeGate } from "./CoursePasscodeGate";
 
 const STUDENT_PROFILE_SURVEY_URL = "https://forms.gle/bSMTuh9JSgLWbpKdA";
 const CALCULUS_SCHOLARSHIP_URL =
@@ -83,6 +84,7 @@ export default async function ClassPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
+      <CoursePasscodeGate courseTitle={course.title}>
       <CourseNoticeModal
         slug={course.slug}
         courseTitle={course.title}
@@ -952,6 +954,7 @@ export default async function ClassPage({ params }: Props) {
           </p>
         </footer>
       </div>
+      </CoursePasscodeGate>
     </main>
   );
 }
