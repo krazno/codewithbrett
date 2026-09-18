@@ -17,6 +17,7 @@ import { SITE_NAME } from "@/app/lib/site";
 import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
+import { SeeTheSecantLine } from "@/app/components/rate-of-change/SeeTheSecantLine";
 import { WhereCalculusGoesNextLazy } from "@/app/components/rate-of-change/WhereCalculusGoesNextLazy";
 import { CourseNoticeModal } from "./CourseNoticeModal";
 
@@ -246,6 +247,10 @@ export default async function ClassPage({ params }: Props) {
                 </Link>
               </p>
             </section>
+          ) : null}
+
+          {course.slug.startsWith("calculus") ? (
+            <SeeTheSecantLine />
           ) : null}
 
           {course.slug === "calculus-h-e" ? (
