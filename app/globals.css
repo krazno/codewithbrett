@@ -213,6 +213,23 @@ html {
   animation: screen-timer-flash 1s ease-in-out infinite;
 }
 
+@keyframes best-selves-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 10px 18px rgb(196 92 120 / 0.16));
+  }
+  50% {
+    transform: scale(1.035);
+    filter: drop-shadow(0 16px 28px rgb(196 92 120 / 0.3));
+  }
+}
+
+.best-selves-heart {
+  animation: best-selves-pulse 2.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-timer-flash {
     animation: none;
@@ -234,6 +251,11 @@ html {
   .screen-timer-flash {
     animation: none;
     background-color: rgb(220 38 38 / 0.28);
+  }
+
+  .best-selves-heart {
+    animation: none;
+    filter: drop-shadow(0 10px 18px rgb(196 92 120 / 0.16));
   }
 }
 

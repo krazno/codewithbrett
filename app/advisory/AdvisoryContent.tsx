@@ -24,65 +24,26 @@ type ScheduleItem = {
   nested?: { label: string; time: string; detail?: string }[];
 };
 
-const DAY_ONE_SCHEDULE: ScheduleItem[] = [
-  {
-    time: "8:00–8:07",
-    title: "Advisory — Prayer and Pledge",
-    detail: "Advisory Locations",
-  },
-  {
-    time: "8:10–8:55",
-    title: "A Block",
-  },
-  {
-    time: "8:58–9:43",
-    title: "B Block",
-  },
-  {
-    time: "9:46–10:16",
-    title: "Activity",
-  },
-  {
-    time: "10:19–11:04",
-    title: "C Block",
-  },
-  {
-    time: "11:07–11:52",
-    title: "D Block",
-  },
-  {
-    time: "11:55–1:10",
-    title: "Lunch / E Block",
-    nested: [
-      {
-        label: "First Lunch",
-        time: "11:55–12:25",
-        detail:
-          "Science, Directed Research, History, World Language, 9th grade colloquium, Study Hall",
-      },
-      {
-        label: "Second Lunch",
-        time: "12:40–1:10",
-        detail:
-          "Theology, English, Math, CS, Fine Arts, counseling classes, 7/8 Specials",
-      },
-    ],
-  },
-  {
-    time: "1:13–1:58",
-    title: "F Block",
-  },
-  {
-    time: "2:01–2:46",
-    title: "G Block",
-  },
+const MASS_SCHEDULE: ScheduleItem[] = [
+  { time: "8:00–8:07", title: "Advisory" },
+  { time: "8:10–8:40", title: "D Block" },
+  { time: "8:43–9:13", title: "E Block" },
+  { time: "9:16–9:46", title: "F Block" },
+  { time: "9:49–10:10", title: "Break" },
+  { time: "10:13–10:43", title: "G Block" },
+  { time: "10:46–11:16", title: "A Block" },
+  { time: "11:19–11:49", title: "H1" },
+  { time: "11:51–12:21", title: "H2" },
+  { time: "12:25–12:55", title: "B Block" },
+  { time: "1:00–2:00", title: "Holy Spirit Mass" },
+  { time: "2:10–2:45", title: "Advisory" },
 ];
 
 const MASS_SEATING_URL =
   "https://docs.google.com/spreadsheets/d/1uvD2PyJvUQRa7BvlVCOGNvgkafJ2ffy0hg1ooslDMJs/edit?gid=0#gid=0";
 const SESSION_KEY = "advisory-access";
-const DAY_ONE_DATE_LABEL = "Friday, September 11th";
-const DAY_ONE_DATE_ISO = "2026-09-11";
+const MASS_DATE_LABEL = "Friday, September 18th";
+const MASS_DATE_ISO = "2026-09-18";
 
 export function AdvisoryContent() {
   const [passcode, setPasscode] = useState("");
@@ -117,9 +78,9 @@ export function AdvisoryContent() {
             Enter passcode
           </h2>
           <p className="mt-2 text-sm font-semibold text-[var(--ua-evergreen)]">
-            <time dateTime={DAY_ONE_DATE_ISO}>{DAY_ONE_DATE_LABEL}</time>
+            <time dateTime={MASS_DATE_ISO}>{MASS_DATE_LABEL}</time>
             <span className="font-normal text-stone-500"> · </span>
-            Day 1 · First Day of Classes
+            Day 6 · Holy Spirit Mass
           </p>
           <p className="mt-3 text-sm leading-relaxed text-stone-600">
             This is a casual client-side gate for Advisory materials, not
@@ -186,7 +147,7 @@ export function AdvisoryContent() {
 
       <section
         className="ua-card ua-shadow-soft overflow-hidden"
-        aria-labelledby="day-one-heading"
+        aria-labelledby="mass-schedule-heading"
       >
         <div className="border-b border-emerald-800/15 bg-[linear-gradient(135deg,#eef5ef_0%,#f7f4ec_100%)] px-5 py-4 sm:px-7 sm:py-5">
           <p className="text-xs font-semibold tracking-[0.16em] text-emerald-800 uppercase">
@@ -194,22 +155,22 @@ export function AdvisoryContent() {
           </p>
           <div className="mt-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
             <h2
-              id="day-one-heading"
+              id="mass-schedule-heading"
               className="font-serif text-2xl leading-tight text-stone-900 sm:text-3xl"
             >
-              Day 1 · First Day of Classes
+              Day 6 · Holy Spirit Mass
             </h2>
             <time
-              dateTime={DAY_ONE_DATE_ISO}
+              dateTime={MASS_DATE_ISO}
               className="shrink-0 text-sm font-semibold text-stone-700 sm:text-base"
             >
-              {DAY_ONE_DATE_LABEL}
+              {MASS_DATE_LABEL}
             </time>
           </div>
         </div>
 
         <ol className="divide-y divide-emerald-900/8 px-3 py-2 sm:px-4">
-          {DAY_ONE_SCHEDULE.map((item) => (
+          {MASS_SCHEDULE.map((item) => (
             <li
               key={`${item.time}-${item.title}`}
               className="grid grid-cols-[6.5rem_1fr] gap-3 px-2 py-2.5 sm:grid-cols-[7.5rem_1fr] sm:gap-4 sm:px-3 sm:py-3"
@@ -253,7 +214,7 @@ export function AdvisoryContent() {
           ))}
         </ol>
         <p className="border-t border-emerald-900/8 px-5 py-3 text-xs text-stone-500 sm:px-7">
-          H Block does not meet on Day 1.
+          Modified schedule for Holy Spirit Mass.
         </p>
       </section>
 

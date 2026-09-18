@@ -4,30 +4,31 @@ import { useId, useState } from "react";
 
 type Arm = "looks" | "sounds" | "feels";
 
-const ARMS: { id: Arm; title: string; emoji: string; placeholder: string; tone: string }[] =
-  [
-    {
-      id: "looks",
-      title: "Looks like",
-      emoji: "👀",
-      placeholder: "Including someone new…",
-      tone: "bg-[#EAF3ED]",
-    },
-    {
-      id: "sounds",
-      title: "Sounds like",
-      emoji: "💬",
-      placeholder: "You can sit with us…",
-      tone: "bg-[#FBF6E8]",
-    },
-    {
-      id: "feels",
-      title: "Feels like",
-      emoji: "💗",
-      placeholder: "Safe and welcomed…",
-      tone: "bg-[#F8EEF5]",
-    },
-  ];
+const ARMS: {
+  id: Arm;
+  title: string;
+  emoji: string;
+  placeholder: string;
+}[] = [
+  {
+    id: "looks",
+    title: "Looks like",
+    emoji: "👀",
+    placeholder: "Including someone new…",
+  },
+  {
+    id: "sounds",
+    title: "Sounds like",
+    emoji: "💬",
+    placeholder: "You can sit with us…",
+  },
+  {
+    id: "feels",
+    title: "Feels like",
+    emoji: "💗",
+    placeholder: "Safe and welcomed…",
+  },
+];
 
 const PROMPTS = [
   "What does kindness look like at Ursuline?",
@@ -47,6 +48,7 @@ const hit =
 
 export function BestSelvesActivity() {
   const formId = useId();
+  const clipId = `best-selves-heart-${formId.replace(/:/g, "")}`;
   const [notes, setNotes] = useState<Record<Arm, string[]>>({
     looks: [],
     sounds: [],
@@ -66,7 +68,7 @@ export function BestSelvesActivity() {
     if (!text) return;
     setNotes((current) => ({
       ...current,
-      [arm]: [...current[arm], text].slice(-6),
+      [arm]: [...current[arm], text].slice(-4),
     }));
     setDrafts((current) => ({ ...current, [arm]: "" }));
   }
@@ -82,12 +84,11 @@ export function BestSelvesActivity() {
       >
         Living Our Best Selves at UA
       </h2>
-      <p className="mt-1 max-w-2xl text-sm text-stone-700">
-        Small choices can help everyone feel seen, supported, and welcome. Let’s
-        imagine the kind of community we want to create together.
+      <p className="mt-1 text-sm text-stone-700">
+        Type into the Y chart. Your notes appear in the heart.
       </p>
 
-      <div className="mt-4 flex flex-wrap items-center gap-2">
+      <div className="mt-3 flex flex-wrap items-center gap-2">
         <p className="min-w-0 flex-1 font-serif text-base text-[#14382A] sm:text-lg">
           {PROMPTS[promptIndex]}
         </p>
@@ -100,68 +101,94 @@ export function BestSelvesActivity() {
         </button>
       </div>
 
-      <div className="mt-4 grid gap-3 md:grid-cols-3">
-        {ARMS.map((arm) => (
-          <div key={arm.id} className={`rounded-2xl p-3 ${arm.tone}`}>
-            <p className="font-serif text-lg text-stone-900">
-              {arm.title} {arm.emoji}
-            </p>
-            <ul className="mt-2 min-h-[2.5rem] space-y-1">
-              {notes[arm.id].map((note, index) => (
-                <li
-                  key={`${note}-${index}`}
-                  className="rounded-xl bg-white px-2.5 py-1.5 text-sm text-stone-800"
-                >
-                  {note}
-                </li>
-              ))}
-            </ul>
-            <form
-              className="mt-2 flex gap-1.5"
-              onSubmit={(event) => {
-                event.preventDefault();
-                addNote(arm.id);
-              }}
+      <div className="mx-auto mt-2 w-full max-w-[34rem] px-1 py-3 sm:px-3">
+        <div className="best-selves-heart relative">
+          <svg
+            viewBox="0 0 240 220"
+            className="pointer-events-none h-auto w-full"
+            aria-hidden="true"
+          >
+            <defs>
+              <clipPath id={clipId} clipPathUnits="objectBoundingBox">
+                <path d="M0.5 0.927 C 0.158 0.673 0.033 0.445 0.033 0.264 C 0.033 0.109 0.142 0.027 0.275 0.027 C 0.367 0.027 0.45 0.082 0.5 0.191 C 0.55 0.082 0.633 0.027 0.725 0.027 C 0.858 0.027 0.967 0.109 0.967 0.264 C 0.967 0.445 0.842 0.673 0.5 0.927 Z" />
+              </clipPath>
+            </defs>
+            <path
+              d="M120 204 C 38 148 8 98 8 58 C 8 24 34 6 66 6 C 88 6 108 18 120 42 C 132 18 152 6 174 6 C 206 6 232 24 232 58 C 232 98 202 148 120 204 Z"
+              fill="#F8EEF5"
+              stroke="#C9A24A"
+              strokeWidth="2.4"
+            />
+            <path
+              d="M48 62 L120 118 L192 62"
+              fill="none"
+              stroke="#14382A"
+              strokeOpacity="0.28"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <path
+              d="M120 118 L120 188"
+              fill="none"
+              stroke="#14382A"
+              strokeOpacity="0.28"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <text
+              x="120"
+              y="124"
+              textAnchor="middle"
+              fill="#C9A24A"
+              fontFamily="Georgia, serif"
+              fontSize="22"
             >
-              <label className="sr-only" htmlFor={`${formId}-${arm.id}`}>
-                Add to {arm.title}
-              </label>
-              <input
-                id={`${formId}-${arm.id}`}
-                value={drafts[arm.id]}
-                maxLength={80}
-                placeholder={arm.placeholder}
-                onChange={(event) =>
-                  setDrafts((current) => ({
-                    ...current,
-                    [arm.id]: event.target.value,
-                  }))
-                }
-                className="min-h-11 min-w-0 flex-1 rounded-xl border border-stone-300 bg-white px-3 text-base focus:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
-              />
-              <button
-                type="submit"
-                className={`${hit} w-11 shrink-0 bg-[var(--ua-evergreen)] px-0 text-white`}
-                aria-label={`Add to ${arm.title}`}
-              >
-                +
-              </button>
-            </form>
+              Y
+            </text>
+          </svg>
+
+          <div
+            className="absolute inset-0"
+            style={{ clipPath: `url(#${clipId})` }}
+          >
+            <HeartArm
+              arm={ARMS[0]}
+              formId={formId}
+              notes={notes.looks}
+              draft={drafts.looks}
+              className="absolute top-[10%] left-[8%] h-[32%] w-[36%]"
+              onDraft={(value) =>
+                setDrafts((current) => ({ ...current, looks: value }))
+              }
+              onAdd={() => addNote("looks")}
+            />
+            <HeartArm
+              arm={ARMS[1]}
+              formId={formId}
+              notes={notes.sounds}
+              draft={drafts.sounds}
+              className="absolute top-[10%] right-[8%] h-[32%] w-[36%]"
+              onDraft={(value) =>
+                setDrafts((current) => ({ ...current, sounds: value }))
+              }
+              onAdd={() => addNote("sounds")}
+            />
+            <HeartArm
+              arm={ARMS[2]}
+              formId={formId}
+              notes={notes.feels}
+              draft={drafts.feels}
+              className="absolute top-[52%] left-[22%] h-[28%] w-[56%]"
+              onDraft={(value) =>
+                setDrafts((current) => ({ ...current, feels: value }))
+              }
+              onAdd={() => addNote("feels")}
+            />
           </div>
-        ))}
+        </div>
       </div>
 
-      <details className="mt-3 text-sm text-stone-700">
-        <summary className="cursor-pointer font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D6B55B]">
-          Need an idea?
-        </summary>
-        <p className="mt-2 text-stone-600">
-          Looks like: inviting someone to join. Sounds like: “Are you okay?”
-          Feels like: welcomed and valued.
-        </p>
-      </details>
-
-      <div className="mt-4 border-t border-stone-200 pt-4">
+      <div className="border-t border-stone-200 pt-4">
         <h3 className="font-serif text-xl text-stone-900">One small choice</h3>
         <p className="mt-1 text-sm text-stone-700">
           What is one thing you can personally do today to help someone feel
@@ -199,17 +226,68 @@ export function BestSelvesActivity() {
           </form>
         )}
       </div>
-
-      <details className="mt-3 text-sm text-stone-600">
-        <summary className="cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D6B55B]">
-          For the advisory leader
-        </summary>
-        <p className="mt-2">
-          Invite students to share their ideas aloud while you record them on
-          the classroom whiteboard. At the end, take a picture of the completed
-          Y chart to send to Blanca.
-        </p>
-      </details>
     </section>
+  );
+}
+
+function HeartArm({
+  arm,
+  formId,
+  notes,
+  draft,
+  className,
+  onDraft,
+  onAdd,
+}: {
+  arm: (typeof ARMS)[number];
+  formId: string;
+  notes: string[];
+  draft: string;
+  className: string;
+  onDraft: (value: string) => void;
+  onAdd: () => void;
+}) {
+  return (
+    <div className={`flex flex-col ${className}`}>
+      <p className="font-serif text-sm leading-tight text-stone-900 sm:text-base">
+        {arm.title} {arm.emoji}
+      </p>
+      <form
+        className="mt-1 flex gap-1"
+        onSubmit={(event) => {
+          event.preventDefault();
+          onAdd();
+        }}
+      >
+        <label className="sr-only" htmlFor={`${formId}-${arm.id}`}>
+          Add to {arm.title}
+        </label>
+        <input
+          id={`${formId}-${arm.id}`}
+          value={draft}
+          maxLength={60}
+          placeholder={arm.placeholder}
+          onChange={(event) => onDraft(event.target.value)}
+          className="min-h-9 min-w-0 flex-1 rounded-full border border-stone-300/90 bg-white/90 px-2.5 text-sm focus:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+        />
+        <button
+          type="submit"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-sm font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D6B55B]"
+          aria-label={`Add to ${arm.title}`}
+        >
+          +
+        </button>
+      </form>
+      <ul className="mt-1 min-h-0 flex-1 space-y-0.5 overflow-hidden">
+        {notes.map((note, index) => (
+          <li
+            key={`${note}-${index}`}
+            className="truncate rounded-lg bg-white/80 px-2 py-0.5 text-xs text-stone-800 sm:text-sm"
+          >
+            {note}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
