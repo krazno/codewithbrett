@@ -48,7 +48,6 @@ const hit =
 
 export function BestSelvesActivity() {
   const formId = useId();
-  const clipId = `best-selves-heart-${formId.replace(/:/g, "")}`;
   const [notes, setNotes] = useState<Record<Arm, string[]>>({
     looks: [],
     sounds: [],
@@ -68,7 +67,7 @@ export function BestSelvesActivity() {
     if (!text) return;
     setNotes((current) => ({
       ...current,
-      [arm]: [...current[arm], text].slice(-4),
+      [arm]: [...current[arm], text].slice(-8),
     }));
     setDrafts((current) => ({ ...current, [arm]: "" }));
   }
@@ -85,7 +84,7 @@ export function BestSelvesActivity() {
         Living Our Best Selves at UA
       </h2>
       <p className="mt-1 text-sm text-stone-700">
-        Type into the Y chart. Your notes appear in the heart.
+        Add notes beside the Y chart.
       </p>
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -101,94 +100,118 @@ export function BestSelvesActivity() {
         </button>
       </div>
 
-      <div className="mx-auto mt-2 w-full max-w-[34rem] px-1 py-3 sm:px-3">
-        <div className="best-selves-heart relative">
-          <svg
-            viewBox="0 0 240 220"
-            className="pointer-events-none h-auto w-full"
-            aria-hidden="true"
-          >
-            <defs>
-              <clipPath id={clipId} clipPathUnits="objectBoundingBox">
-                <path d="M0.5 0.927 C 0.158 0.673 0.033 0.445 0.033 0.264 C 0.033 0.109 0.142 0.027 0.275 0.027 C 0.367 0.027 0.45 0.082 0.5 0.191 C 0.55 0.082 0.633 0.027 0.725 0.027 C 0.858 0.027 0.967 0.109 0.967 0.264 C 0.967 0.445 0.842 0.673 0.5 0.927 Z" />
-              </clipPath>
-            </defs>
-            <path
-              d="M120 204 C 38 148 8 98 8 58 C 8 24 34 6 66 6 C 88 6 108 18 120 42 C 132 18 152 6 174 6 C 206 6 232 24 232 58 C 232 98 202 148 120 204 Z"
-              fill="#F8EEF5"
-              stroke="#C9A24A"
-              strokeWidth="2.4"
-            />
-            <path
-              d="M48 62 L120 118 L192 62"
-              fill="none"
-              stroke="#14382A"
-              strokeOpacity="0.28"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M120 118 L120 188"
-              fill="none"
-              stroke="#14382A"
-              strokeOpacity="0.28"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <text
-              x="120"
-              y="124"
-              textAnchor="middle"
-              fill="#C9A24A"
-              fontFamily="Georgia, serif"
-              fontSize="22"
-            >
-              Y
-            </text>
-          </svg>
+      <div className="mt-4 grid items-start gap-3 md:grid-cols-[minmax(0,1fr)_minmax(14rem,20rem)_minmax(0,1fr)]">
+        <ArmPanel
+          arm={ARMS[0]}
+          formId={formId}
+          notes={notes.looks}
+          draft={drafts.looks}
+          className="md:order-1"
+          onDraft={(value) =>
+            setDrafts((current) => ({ ...current, looks: value }))
+          }
+          onAdd={() => addNote("looks")}
+        />
 
-          <div
-            className="absolute inset-0"
-            style={{ clipPath: `url(#${clipId})` }}
-          >
-            <HeartArm
-              arm={ARMS[0]}
-              formId={formId}
-              notes={notes.looks}
-              draft={drafts.looks}
-              className="absolute top-[10%] left-[8%] h-[32%] w-[36%]"
-              onDraft={(value) =>
-                setDrafts((current) => ({ ...current, looks: value }))
-              }
-              onAdd={() => addNote("looks")}
-            />
-            <HeartArm
-              arm={ARMS[1]}
-              formId={formId}
-              notes={notes.sounds}
-              draft={drafts.sounds}
-              className="absolute top-[10%] right-[8%] h-[32%] w-[36%]"
-              onDraft={(value) =>
-                setDrafts((current) => ({ ...current, sounds: value }))
-              }
-              onAdd={() => addNote("sounds")}
-            />
-            <HeartArm
-              arm={ARMS[2]}
-              formId={formId}
-              notes={notes.feels}
-              draft={drafts.feels}
-              className="absolute top-[52%] left-[22%] h-[28%] w-[56%]"
-              onDraft={(value) =>
-                setDrafts((current) => ({ ...current, feels: value }))
-              }
-              onAdd={() => addNote("feels")}
-            />
+        <div className="order-first mx-auto w-full max-w-[20rem] md:order-2">
+          <div className="best-selves-heart">
+            <svg
+              viewBox="0 0 240 220"
+              className="h-auto w-full"
+              role="img"
+              aria-label="Y chart heart: Looks like, Sounds like, Feels like"
+            >
+              <path
+                d="M120 204 C 38 148 8 98 8 58 C 8 24 34 6 66 6 C 88 6 108 18 120 42 C 132 18 152 6 174 6 C 206 6 232 24 232 58 C 232 98 202 148 120 204 Z"
+                fill="#F8EEF5"
+                stroke="#C9A24A"
+                strokeWidth="2.4"
+              />
+              <path
+                d="M48 62 L120 118 L192 62"
+                fill="none"
+                stroke="#14382A"
+                strokeOpacity="0.28"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+              <path
+                d="M120 118 L120 188"
+                fill="none"
+                stroke="#14382A"
+                strokeOpacity="0.28"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+              <text
+                x="120"
+                y="124"
+                textAnchor="middle"
+                fill="#C9A24A"
+                fontFamily="Georgia, serif"
+                fontSize="22"
+              >
+                Y
+              </text>
+              <text
+                x="62"
+                y="52"
+                textAnchor="middle"
+                fill="#14382A"
+                fontFamily="Georgia, serif"
+                fontSize="13"
+              >
+                Looks like
+              </text>
+              <text
+                x="178"
+                y="52"
+                textAnchor="middle"
+                fill="#14382A"
+                fontFamily="Georgia, serif"
+                fontSize="13"
+              >
+                Sounds like
+              </text>
+              <text
+                x="120"
+                y="158"
+                textAnchor="middle"
+                fill="#14382A"
+                fontFamily="Georgia, serif"
+                fontSize="13"
+              >
+                Feels like
+              </text>
+            </svg>
           </div>
+          <ArmPanel
+            arm={ARMS[2]}
+            formId={formId}
+            notes={notes.feels}
+            draft={drafts.feels}
+            className="mt-3"
+            onDraft={(value) =>
+              setDrafts((current) => ({ ...current, feels: value }))
+            }
+            onAdd={() => addNote("feels")}
+          />
         </div>
+
+        <ArmPanel
+          arm={ARMS[1]}
+          formId={formId}
+          notes={notes.sounds}
+          draft={drafts.sounds}
+          className="md:order-3"
+          onDraft={(value) =>
+            setDrafts((current) => ({ ...current, sounds: value }))
+          }
+          onAdd={() => addNote("sounds")}
+        />
       </div>
 
-      <div className="border-t border-stone-200 pt-4">
+      <div className="mt-4 border-t border-stone-200 pt-4">
         <h3 className="font-serif text-xl text-stone-900">One small choice</h3>
         <p className="mt-1 text-sm text-stone-700">
           What is one thing you can personally do today to help someone feel
@@ -230,7 +253,7 @@ export function BestSelvesActivity() {
   );
 }
 
-function HeartArm({
+function ArmPanel({
   arm,
   formId,
   notes,
@@ -243,17 +266,17 @@ function HeartArm({
   formId: string;
   notes: string[];
   draft: string;
-  className: string;
+  className?: string;
   onDraft: (value: string) => void;
   onAdd: () => void;
 }) {
   return (
-    <div className={`flex flex-col ${className}`}>
-      <p className="font-serif text-sm leading-tight text-stone-900 sm:text-base">
+    <div className={`rounded-2xl bg-[#F8EEF5]/70 p-3 ${className ?? ""}`}>
+      <p className="font-serif text-base text-stone-900">
         {arm.title} {arm.emoji}
       </p>
       <form
-        className="mt-1 flex gap-1"
+        className="mt-2 flex gap-1"
         onSubmit={(event) => {
           event.preventDefault();
           onAdd();
@@ -268,21 +291,21 @@ function HeartArm({
           maxLength={60}
           placeholder={arm.placeholder}
           onChange={(event) => onDraft(event.target.value)}
-          className="min-h-9 min-w-0 flex-1 rounded-full border border-stone-300/90 bg-white/90 px-2.5 text-sm focus:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+          className="min-h-11 min-w-0 flex-1 rounded-full border border-stone-300 bg-white px-3 text-sm focus:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
         />
         <button
           type="submit"
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-sm font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D6B55B]"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-sm font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D6B55B]"
           aria-label={`Add to ${arm.title}`}
         >
           +
         </button>
       </form>
-      <ul className="mt-1 min-h-0 flex-1 space-y-0.5 overflow-hidden">
+      <ul className="mt-2 max-h-48 space-y-1 overflow-y-auto">
         {notes.map((note, index) => (
           <li
             key={`${note}-${index}`}
-            className="truncate rounded-lg bg-white/80 px-2 py-0.5 text-xs text-stone-800 sm:text-sm"
+            className="break-words rounded-xl bg-white px-2.5 py-1.5 text-sm text-stone-800"
           >
             {note}
           </li>

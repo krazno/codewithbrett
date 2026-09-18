@@ -233,6 +233,10 @@ export default async function ClassPage({ params }: Props) {
           {showOnlineJava ? <JavaDataTypesLab /> : null}
 
           {course.slug.startsWith("calculus") ? (
+            <SeeTheSecantLine />
+          ) : null}
+
+          {course.slug.startsWith("calculus") ? (
             <section
               className="md:col-span-2"
               aria-label="UA Function Garden"
@@ -247,10 +251,6 @@ export default async function ClassPage({ params }: Props) {
                 </Link>
               </p>
             </section>
-          ) : null}
-
-          {course.slug.startsWith("calculus") ? (
-            <SeeTheSecantLine />
           ) : null}
 
           {course.slug === "calculus-h-e" ? (
