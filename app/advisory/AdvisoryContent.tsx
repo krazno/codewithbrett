@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { BestSelvesActivity } from "./BestSelvesActivity";
 
 const LOCKERS = [
@@ -45,13 +45,25 @@ const SESSION_KEY = "advisory-access";
 const MASS_DATE_LABEL = "Friday, September 18th";
 const MASS_DATE_ISO = "2026-09-18";
 
+const NOTICE_KEY = "advisory-notice:tuesday-cash";
+
 export function AdvisoryContent() {
   const [passcode, setPasscode] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
+  const [noticeOpen, setNoticeOpen] = useState(false);
+  const [iceCream, setIceCream] = useState({
+    Chocolate: 0,
+    Vanilla: 0,
+    Oreo: 0,
+  });
 
   useEffect(() => {
-    setUnlocked(sessionStorage.getItem(SESSION_KEY) === "granted");
+    const granted = sessionStorage.getItem(SESSION_KEY) === "granted";
+    setUnlocked(granted);
+    if (granted && sessionStorage.getItem(NOTICE_KEY) !== "1") {
+      setNoticeOpen(true);
+    }
   }, []);
 
   function unlock(event: FormEvent<HTMLFormElement>) {
@@ -61,6 +73,7 @@ export function AdvisoryContent() {
       sessionStorage.setItem(SESSION_KEY, "granted");
       setUnlocked(true);
       setIncorrect(false);
+      if (sessionStorage.getItem(NOTICE_KEY) !== "1") setNoticeOpen(true);
       return;
     }
 
@@ -125,10 +138,40 @@ export function AdvisoryContent() {
 
   return (
     <div className="my-6 flex flex-1 flex-col gap-5 sm:my-8">
+      <AdvisoryNoticeModal
+        open={noticeOpen}
+        counts={iceCream}
+        onCount={(flavor) =>
+          setIceCream((current) => ({
+            ...current,
+            [flavor]: current[flavor] + 1,
+          }))
+        }
+        onClose={() => {
+          sessionStorage.setItem(NOTICE_KEY, "1");
+          setNoticeOpen(false);
+        }}
+      />
+
       <section
         aria-label="Notices"
         className="ua-card ua-shadow-soft divide-y divide-emerald-900/8 overflow-hidden text-sm"
       >
+        <button
+          type="button"
+          onClick={() => setNoticeOpen(true)}
+          className="flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-stone-700 hover:bg-emerald-50/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-inset sm:px-5"
+        >
+          <span aria-hidden className="shrink-0 text-base leading-none">
+            🍦
+          </span>
+          <span className="font-semibold text-stone-900">
+            Tuesday reminders
+          </span>
+          <span className="ml-auto text-xs font-semibold text-[var(--ua-evergreen)]">
+            Show
+          </span>
+        </button>
         <p className="flex items-center gap-2.5 px-4 py-2.5 text-stone-700 sm:px-5">
           <span aria-hidden className="shrink-0 text-base leading-none">🩺</span>
           <span className="font-semibold text-stone-900">Health forms due</span>
@@ -340,6 +383,120 @@ export function AdvisoryContent() {
             </tbody>
           </table>
         </section>
+      </div>
+    </div>
+  );
+}
+
+const FLAVORS = ["Chocolate", "Vanilla", "Oreo"] as const;
+
+function AdvisoryNoticeModal({
+  open,
+  counts,
+  onCount,
+  onClose,
+}: {
+  open: boolean;
+  counts: Record<(typeof FLAVORS)[number], number>;
+  onCount: (flavor: (typeof FLAVORS)[number]) => void;
+  onClose: () => void;
+}) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    closeRef.current?.focus();
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  const total = counts.Chocolate + counts.Vanilla + counts.Oreo;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="advisory-notice-title"
+        className="w-full max-w-lg rounded-none border-2 border-[var(--ua-evergreen)] bg-[#FFFDF7] p-5 shadow-xl sm:p-6"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <p className="text-xs font-semibold tracking-[0.16em] text-emerald-800 uppercase">
+          Advisory
+        </p>
+        <h2
+          id="advisory-notice-title"
+          className="mt-1 font-serif text-2xl text-stone-900"
+        >
+          Tuesday reminders
+        </h2>
+
+        <div className="mt-4 space-y-3">
+          <div className="rounded-none border border-stone-300 bg-white px-4 py-3">
+            <p className="font-semibold text-stone-900">
+              Bring small cash bills Tuesday
+            </p>
+            <p className="mt-2 text-sm text-stone-700">
+              Theater concessions: $2–$8
+            </p>
+            <p className="text-sm text-stone-700">
+              Ron’s ice cream sandwich: $5
+            </p>
+          </div>
+
+          <div className="rounded-none border border-stone-300 bg-white px-4 py-3">
+            <p className="font-semibold text-stone-900">
+              Ice cream count for Lindy
+            </p>
+            <p className="mt-1 text-sm text-stone-600">
+              Tap a flavor as you count. Send the total to Lindy today.
+            </p>
+            <div className="mt-3 grid grid-cols-3 gap-2">
+              {FLAVORS.map((flavor) => (
+                <button
+                  key={flavor}
+                  type="button"
+                  onClick={() => onCount(flavor)}
+                  className="rounded-none border border-stone-300 bg-[#F7F4EC] px-2 py-3 text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
+                >
+                  <span className="block text-sm font-semibold text-stone-900">
+                    {flavor}
+                  </span>
+                  <span className="mt-1 block font-serif text-2xl tabular-nums text-[var(--ua-evergreen)]">
+                    {counts[flavor]}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <p className="mt-3 text-sm font-semibold text-stone-900">
+              Total: {total}
+            </p>
+          </div>
+
+          <div className="rounded-none border border-stone-300 bg-white px-4 py-3">
+            <p className="font-semibold text-stone-900">Permission form</p>
+            <p className="mt-1 text-sm text-stone-700">
+              Parents must complete the permission form in Portals.
+            </p>
+          </div>
+        </div>
+
+        <button
+          ref={closeRef}
+          type="button"
+          onClick={onClose}
+          className="mt-4 inline-flex w-full items-center justify-center rounded-none bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+        >
+          Done
+        </button>
       </div>
     </div>
   );
