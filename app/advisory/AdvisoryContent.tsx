@@ -77,7 +77,8 @@ const DAY_ONE_SCHEDULE: ScheduleItem[] = [
   },
 ];
 
-const SESSION_KEY = "advisory-access";
+const MASS_SEATING_URL =
+  "https://docs.google.com/spreadsheets/d/1uvD2PyJvUQRa7BvlVCOGNvgkafJ2ffy0hg1ooslDMJs/edit?gid=0#gid=0";
 const DAY_ONE_DATE_LABEL = "Friday, September 11th";
 const DAY_ONE_DATE_ISO = "2026-09-11";
 
@@ -316,38 +317,65 @@ export function AdvisoryContent() {
         </section>
       </div>
 
-      <section
-        className="ua-card ua-shadow-soft p-6 sm:p-8"
-        aria-labelledby="locker-heading"
-      >
-        <h2 id="locker-heading" className="font-serif text-3xl text-stone-900">
-          Locker Assignments
-        </h2>
-        <table className="mt-5 w-full max-w-md border-collapse text-left">
-          <thead>
-            <tr className="border-b-2 border-emerald-800 text-xs tracking-wide text-stone-600 uppercase">
-              <th scope="col" className="px-2 py-2 font-semibold">
-                Initials
-              </th>
-              <th scope="col" className="px-2 py-2 text-right font-semibold">
-                Locker
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-stone-200">
-            {LOCKERS.map(([initials, locker]) => (
-              <tr key={locker}>
-                <th scope="row" className="px-2 py-2.5 font-semibold text-stone-900">
-                  {initials}
+      <div className="grid gap-5 md:grid-cols-2">
+        <a
+          href={MASS_SEATING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ua-card ua-shadow-soft flex flex-col overflow-hidden p-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+          aria-label="Open the Mass seating chart in Google Sheets"
+        >
+          <p className="text-xs font-semibold tracking-[0.16em] text-emerald-800 uppercase">
+            Chapel
+          </p>
+          <h2 className="mt-1 font-serif text-2xl text-stone-900 sm:text-3xl">
+            Mass Seating Chart
+          </h2>
+          <Image
+            src="/media/advisory/mass-seating-chart.svg"
+            alt=""
+            width={640}
+            height={220}
+            className="mt-3 w-full rounded-xl ring-1 ring-stone-200"
+          />
+          <span className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33]">
+            Open seating chart ↗
+          </span>
+        </a>
+
+        <section
+          className="ua-card ua-shadow-soft p-6 sm:p-8"
+          aria-labelledby="locker-heading"
+        >
+          <h2 id="locker-heading" className="font-serif text-3xl text-stone-900">
+            Locker Assignments
+          </h2>
+          <table className="mt-5 w-full max-w-md border-collapse text-left">
+            <thead>
+              <tr className="border-b-2 border-emerald-800 text-xs tracking-wide text-stone-600 uppercase">
+                <th scope="col" className="px-2 py-2 font-semibold">
+                  Initials
                 </th>
-                <td className="px-2 py-2.5 text-right tabular-nums text-stone-700">
-                  {locker}
-                </td>
+                <th scope="col" className="px-2 py-2 text-right font-semibold">
+                  Locker
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+            </thead>
+            <tbody className="divide-y divide-stone-200">
+              {LOCKERS.map(([initials, locker]) => (
+                <tr key={locker}>
+                  <th scope="row" className="px-2 py-2.5 font-semibold text-stone-900">
+                    {initials}
+                  </th>
+                  <td className="px-2 py-2.5 text-right tabular-nums text-stone-700">
+                    {locker}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </div>
     </div>
   );
 }

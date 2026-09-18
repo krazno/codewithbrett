@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-hidden="true">
+  <rect width="640" height="220" fill="#f7f4ec"/>
+  <g stroke="#d7ddd8" stroke-width="1">
+    <path d="M20 20h600M20 44h600M20 68h600M20 92h600M20 116h600M20 140h600" fill="none"/>
+  </g>
+  <rect x="28" y="24" width="72" height="108" rx="4" fill="#c5d4e8"/>
+  <rect x="112" y="24" width="168" height="108" rx="4" fill="#d4ead8"/>
+  <rect x="292" y="24" width="168" height="108" rx="4" fill="#e4d4ee"/>
+  <rect x="472" y="24" width="140" height="108" rx="4" fill="#f3e0c8"/>
+  <rect x="28" y="148" width="120" height="36" rx="4" fill="#cfe0f5"/>
+  <rect x="492" y="148" width="120" height="36" rx="4" fill="#f0d5d8"/>
+  <rect x="250" y="176" width="140" height="28" rx="4" fill="#ffffff" stroke="#8aa090"/>
+  <text x="320" y="195" text-anchor="middle" font-size="11" font-family="Georgia, serif" fill="#1F4D3A">ALTAR</text>
+</svg>
