@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
+import { BestSelvesActivity } from "./BestSelvesActivity";
 
 const LOCKERS = [
   ["SC", "474"],
@@ -79,6 +80,7 @@ const DAY_ONE_SCHEDULE: ScheduleItem[] = [
 
 const MASS_SEATING_URL =
   "https://docs.google.com/spreadsheets/d/1uvD2PyJvUQRa7BvlVCOGNvgkafJ2ffy0hg1ooslDMJs/edit?gid=0#gid=0";
+const SESSION_KEY = "advisory-access";
 const DAY_ONE_DATE_LABEL = "Friday, September 11th";
 const DAY_ONE_DATE_ISO = "2026-09-11";
 
@@ -179,6 +181,8 @@ export function AdvisoryContent() {
           <span>Help keep our campus clean.</span>
         </p>
       </section>
+
+      <BestSelvesActivity />
 
       <section
         className="ua-card ua-shadow-soft overflow-hidden"
