@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 
 const CAMPUS = { lat: 42.2418, lon: -71.1662 };
-const THEATER = { lat: 42.24807, lon: -71.17318 };
 const MOVIE_HREF =
   "https://dedhamcommunitytheatre.com/movies/virginia_woolfs_night_day";
 const MOVIE_IMG =
@@ -17,15 +16,15 @@ const DAY = {
 };
 
 const SCHEDULE = [
-  { time: "8:00", title: "Meet in advisory", detail: "Start here as usual." },
-  { time: "8:05–8:10", title: "We walk to the theater", detail: "We leave together once everyone is here." },
-  { time: "8:30–9:00", title: "Arrive at Dedham Community Theatre", detail: "Concessions are cash only. Small bills are easiest." },
-  { time: "9:00–9:30", title: "Q&A", detail: "Rep. Paul McMurtry, who owns the theater." },
-  { time: "9:30–11:10", title: "Night & Day", detail: "Virginia Woolf’s un-romantic comedy. About 1 hour 35 minutes." },
-  { time: "11:10–11:30", title: "Ron’s ice cream sandwiches", detail: "Only if you brought cash." },
-  { time: "11:30–12:00", title: "Walk back to campus", detail: "Stay with the group." },
-  { time: "12:00–12:45", title: "Lunch in advisory", detail: "We’ll talk about the film." },
-  { time: "12:45", title: "Dismissal", detail: "10th and 11th are dismissed." },
+  { time: "8:00", title: "Meet in advisory" },
+  { time: "8:05–8:10", title: "Walk to the theater" },
+  { time: "8:30–9:00", title: "Arrive · concessions cash only" },
+  { time: "9:00–9:30", title: "Q&A with Rep. Paul McMurtry" },
+  { time: "9:30–11:10", title: "Night & Day" },
+  { time: "11:10–11:30", title: "Ice cream if you brought cash" },
+  { time: "11:30–12:00", title: "Walk back to campus" },
+  { time: "12:00–12:45", title: "Lunch + film talk" },
+  { time: "12:45", title: "Dismissal for 10th & 11th" },
 ] as const;
 
 const BRING = [
@@ -35,15 +34,6 @@ const BRING = [
   { emoji: "👟", text: "Clothes for the walk and the weather" },
   { emoji: "💵", text: "Small bills if you want snacks or ice cream" },
 ] as const;
-
-function walkMapSrc() {
-  const west = Math.min(CAMPUS.lon, THEATER.lon) - 0.006;
-  const south = Math.min(CAMPUS.lat, THEATER.lat) - 0.004;
-  const east = Math.max(CAMPUS.lon, THEATER.lon) + 0.006;
-  const north = Math.max(CAMPUS.lat, THEATER.lat) + 0.004;
-  const bbox = [west, south, east, north].join("%2C");
-  return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${THEATER.lat}%2C${THEATER.lon}`;
-}
 
 function weatherCopy(code: number) {
   if (code === 0) return { emoji: "☀️", label: "Sunny" };
@@ -105,74 +95,48 @@ export function AdvisoryWeather() {
   );
 }
 
-function MovieCard() {
+function MovieRow() {
   const [broken, setBroken] = useState(false);
 
   return (
-    <a
-      href={MOVIE_HREF}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex overflow-hidden rounded-2xl border border-stone-200 bg-white text-left hover:bg-emerald-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
-    >
-      {broken ? (
-        <div className="flex h-28 w-20 shrink-0 items-center justify-center bg-[#F8EEF5] text-2xl" aria-hidden>
-          🎬
-        </div>
-      ) : (
-        <img
-          src={MOVIE_IMG}
-          alt=""
-          width={80}
-          height={112}
-          className="h-28 w-20 shrink-0 object-cover"
-          onError={() => setBroken(true)}
-        />
-      )}
-      <span className="min-w-0 p-3">
-        <span className="block text-[0.65rem] font-semibold tracking-[0.14em] text-emerald-800 uppercase">
-          Today’s film
+    <div className="grid gap-2 sm:grid-cols-[1fr_auto]">
+      <a
+        href={MOVIE_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 overflow-hidden rounded-xl border border-stone-200 bg-white text-left hover:bg-emerald-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
+      >
+        {broken ? (
+          <div className="flex h-14 w-10 shrink-0 items-center justify-center bg-[#F8EEF5] text-lg" aria-hidden>
+            🎬
+          </div>
+        ) : (
+          <img
+            src={MOVIE_IMG}
+            alt=""
+            width={40}
+            height={56}
+            className="h-14 w-10 shrink-0 object-cover"
+            onError={() => setBroken(true)}
+          />
+        )}
+        <span className="min-w-0 py-1.5 pr-3">
+          <span className="block font-serif text-base leading-tight text-stone-900">
+            Virginia Woolf’s Night &amp; Day
+          </span>
+          <span className="block text-xs text-stone-600">
+            Dedham Community Theatre · Movie page ↗
+          </span>
         </span>
-        <span className="mt-0.5 block font-serif text-lg leading-tight text-stone-900">
-          Virginia Woolf’s Night &amp; Day
-        </span>
-        <span className="mt-1 block text-sm text-stone-600">
-          Dedham Community Theatre · 580 High Street
-        </span>
-        <span className="mt-1 inline-block text-sm font-semibold text-[var(--ua-evergreen)]">
-          Movie page ↗
-        </span>
-      </span>
-    </a>
-  );
-}
-
-function WalkCard() {
-  return (
-    <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white">
-      <iframe
-        title="Walking map from Ursuline to Dedham Community Theatre"
-        src={walkMapSrc()}
-        className="h-40 w-full border-0"
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
-      <div className="px-3 py-2.5">
-        <p className="font-serif text-base text-stone-900">
-          Walk from 85 Lowder Street
-        </p>
-        <p className="mt-0.5 text-sm text-stone-600">
-          About 0.8 miles · ~20 minutes at a group pace. Pin is the theater.
-        </p>
-        <a
-          href={WALK_HREF}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-1 inline-block text-sm font-semibold text-[var(--ua-evergreen)]"
-        >
-          Open walking directions ↗
-        </a>
-      </div>
+      </a>
+      <a
+        href={WALK_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm text-stone-700 hover:bg-emerald-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
+      >
+        Walk · 0.8 mi · ~20 min ↗
+      </a>
     </div>
   );
 }
@@ -205,80 +169,64 @@ export function TerrificTuesdayModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(13,92,61,0.28)] p-4 backdrop-blur-md"
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-[rgba(13,92,61,0.28)] p-3 backdrop-blur-md sm:p-4"
       onClick={onClose}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="tt-title"
-        className="max-h-[min(92vh,46rem)] w-full max-w-lg overflow-y-auto rounded-2xl border border-[rgba(13,92,61,0.22)] bg-[#FFFDF7] shadow-[0_24px_60px_rgba(11,61,46,0.28)]"
+        className="w-full max-w-3xl overflow-hidden rounded-2xl border border-[rgba(13,92,61,0.22)] bg-[#FFFDF7] shadow-[0_24px_60px_rgba(11,61,46,0.28)]"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="bg-[var(--ua-evergreen)] px-5 py-4 text-white sm:px-6">
-          <p className="text-[0.65rem] font-semibold tracking-[0.16em] text-emerald-100 uppercase">
-            Terrific Tuesday
-          </p>
-          <h2 id="tt-title" className="mt-0.5 font-serif text-2xl leading-tight">
-            Your day at the movies
-          </h2>
-          <p className="mt-1 text-sm text-emerald-50">
+        <div className="flex flex-col gap-1 bg-[var(--ua-evergreen)] px-5 py-3 text-white sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+          <div>
+            <p className="text-[0.65rem] font-semibold tracking-[0.16em] text-emerald-100 uppercase">
+              Terrific Tuesday
+            </p>
+            <h2 id="tt-title" className="font-serif text-2xl leading-tight">
+              Your day at the movies
+            </h2>
+          </div>
+          <p className="pb-0.5 text-sm text-emerald-50">
             <time dateTime={DAY.iso}>{DAY.label}</time>
-            {" · "}Here’s the plan. Stay with the group and have a good time.
           </p>
         </div>
         <div className="h-1 bg-[#D6B55B]" aria-hidden />
 
-        <div className="space-y-4 px-4 py-4 sm:px-5">
-          <MovieCard />
-          <WalkCard />
+        <div className="space-y-3 px-5 py-4">
+          <MovieRow />
 
-          <section>
-            <h3 className="font-serif text-lg text-stone-900">The plan</h3>
-            <ol className="mt-2 space-y-1.5">
-              {SCHEDULE.map((item) => (
-                <li
-                  key={item.time}
-                  className="grid grid-cols-[6.4rem_1fr] gap-2 rounded-2xl bg-white px-3 py-2 ring-1 ring-stone-200"
-                >
-                  <time className="pt-0.5 text-xs font-bold tabular-nums text-[var(--ua-evergreen)]">
-                    {item.time}
-                  </time>
-                  <div>
-                    <p className="text-sm font-semibold text-stone-900">
-                      {item.title}
-                    </p>
-                    <p className="text-xs leading-snug text-stone-600">
-                      {item.detail}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </section>
+          <ol className="grid gap-x-6 gap-y-1 sm:grid-cols-2">
+            {SCHEDULE.map((item) => (
+              <li key={item.time} className="flex items-baseline gap-2">
+                <time className="w-[4.75rem] shrink-0 text-xs font-bold tabular-nums text-[var(--ua-evergreen)]">
+                  {item.time}
+                </time>
+                <span className="min-w-0 text-sm leading-snug text-stone-800">
+                  {item.title}
+                </span>
+              </li>
+            ))}
+          </ol>
 
-          <section>
-            <h3 className="font-serif text-lg text-stone-900">Please bring</h3>
-            <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
-              {BRING.map((item) => (
-                <li
-                  key={item.text}
-                  className="rounded-2xl bg-[#EAF3ED] px-3 py-2 text-sm text-[#14382A]"
-                >
-                  <span aria-hidden>{item.emoji} </span>
-                  {item.text}
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+          <ul className="flex flex-wrap gap-1.5">
+            {BRING.map((item) => (
+              <li
+                key={item.text}
+                className="rounded-full bg-[#EAF3ED] px-3 py-1 text-xs text-[#14382A]"
+              >
+                <span aria-hidden>{item.emoji} </span>
+                {item.text}
+              </li>
+            ))}
+          </ul>
 
-        <div className="px-4 pb-5 sm:px-5">
           <button
             ref={closeRef}
             type="button"
             onClick={onClose}
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+            className="inline-flex min-h-10 w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-2 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
           >
             See you there
           </button>
