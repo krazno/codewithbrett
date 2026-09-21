@@ -5,8 +5,6 @@ import { FormEvent, useEffect, useId, useState } from "react";
 
 const STORAGE_KEY = "ua-community-home";
 const PASSCODE = "67";
-const CAMPUS = { lat: 42.2418, lon: -71.1662 };
-const CAMPUS_MILES = 3.5;
 
 const QUOTES = [
   {
@@ -23,29 +21,6 @@ const QUOTES = [
   },
 ] as const;
 
-function campusMapSrc() {
-  const pad = 0.035;
-  const bbox = [
-    CAMPUS.lon - pad,
-    CAMPUS.lat - pad * 0.7,
-    CAMPUS.lon + pad,
-    CAMPUS.lat + pad * 0.7,
-  ].join("%2C");
-  return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${CAMPUS.lat}%2C${CAMPUS.lon}`;
-}
-
-function milesFromCampus(lat: number, lon: number) {
-  const toRad = (deg: number) => (deg * Math.PI) / 180;
-  const dLat = toRad(lat - CAMPUS.lat);
-  const dLon = toRad(lon - CAMPUS.lon);
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(toRad(CAMPUS.lat)) *
-      Math.cos(toRad(lat)) *
-      Math.sin(dLon / 2) ** 2;
-  return 2 * 3958.8 * Math.asin(Math.sqrt(a));
-}
-
 export function HomeCommunityGate() {
   const quoteId = useId();
   const [ready, setReady] = useState(false);
@@ -53,7 +28,6 @@ export function HomeCommunityGate() {
   const [passcode, setPasscode] = useState("");
   const [incorrect, setIncorrect] = useState(false);
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const [offCampus, setOffCampus] = useState(false);
 
   useEffect(() => {
     setUnlocked(localStorage.getItem(STORAGE_KEY) === "ok");
@@ -79,25 +53,6 @@ export function HomeCommunityGate() {
     return () => window.clearInterval(id);
   }, [unlocked]);
 
-  useEffect(() => {
-    if (!ready || unlocked || !navigator.geolocation) return;
-    let cancelled = false;
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        if (cancelled) return;
-        setOffCampus(
-          milesFromCampus(pos.coords.latitude, pos.coords.longitude) >
-            CAMPUS_MILES,
-        );
-      },
-      () => {},
-      { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
-    );
-    return () => {
-      cancelled = true;
-    };
-  }, [ready, unlocked]);
-
   function unlock(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (passcode.trim() === PASSCODE) {
@@ -119,7 +74,7 @@ export function HomeCommunityGate() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="ua-community-title"
-        className="max-h-[min(90vh,44rem)] w-full max-w-xl overflow-y-auto rounded-md border border-[rgba(13,92,61,0.28)] bg-[#FFFDF7] shadow-[0_24px_60px_rgba(11,61,46,0.28)]"
+        className="w-full max-w-lg overflow-hidden rounded-md border border-[rgba(13,92,61,0.28)] bg-[#FFFDF7] shadow-[0_24px_60px_rgba(11,61,46,0.28)]"
       >
         <div className="flex items-center gap-3 bg-[var(--ua-evergreen)] px-5 py-3.5 text-white sm:px-6">
           <Image
@@ -163,25 +118,6 @@ export function HomeCommunityGate() {
             This space is for the Ursuline community. Enter the community
             passcode to continue.
           </p>
-
-          {offCampus ? (
-            <p className="mt-3 rounded-md border border-[rgba(13,92,61,0.18)] bg-[#EAF3ED] px-3 py-2.5 text-sm text-[#14382A]">
-              We noticed you’re trying to access this website outside of campus.
-            </p>
-          ) : null}
-
-          <div className="mt-4 overflow-hidden rounded-md border border-[rgba(13,92,61,0.18)]">
-            <iframe
-              title="Ursuline Academy Dedham"
-              src={campusMapSrc()}
-              className="h-36 w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <p className="bg-white px-3 py-2 text-xs font-medium text-[#14382A]">
-              Ursuline Academy · 85 Lowder Street, Dedham
-            </p>
-          </div>
 
           <label
             htmlFor="ua-community-passcode"
