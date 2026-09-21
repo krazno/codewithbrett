@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { TodayDate } from "@/app/components/TodayDate";
+import { HomeCommunityGate } from "@/app/components/HomeCommunityGate";
 import { COURSES, type Course } from "@/app/lib/courses";
 import {
   DEFAULT_OG_IMAGE,
@@ -163,6 +164,7 @@ function CourseCard({ course }: { course: Course }) {
 export default function HomePage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-5 py-8 sm:px-6 sm:py-10">
+      <HomeCommunityGate />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
