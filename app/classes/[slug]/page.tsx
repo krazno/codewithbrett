@@ -17,6 +17,7 @@ import { SITE_NAME } from "@/app/lib/site";
 import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
+import { ClosingTheGapLazy } from "@/app/components/rate-of-change/ClosingTheGapLazy";
 import { SeeTheSecantLine } from "@/app/components/rate-of-change/SeeTheSecantLine";
 import { WhereCalculusGoesNextLazy } from "@/app/components/rate-of-change/WhereCalculusGoesNextLazy";
 import { CourseNoticeModal } from "./CourseNoticeModal";
@@ -255,14 +256,23 @@ export default async function ClassPage({ params }: Props) {
             </section>
           ) : null}
 
-          {course.slug === "calculus-h-e" ? (
-            <section
-              id="where-calculus-goes-next"
-              className="mt-8 scroll-mt-24 md:col-span-2 md:mt-10"
-              aria-label="Where Calculus Goes Next"
-            >
-              <WhereCalculusGoesNextLazy />
-            </section>
+          {course.slug.startsWith("calculus") ? (
+            <>
+              <section
+                id="where-calculus-goes-next"
+                className="mt-8 scroll-mt-24 md:col-span-2 md:mt-10"
+                aria-label="Where Calculus Goes Next"
+              >
+                <WhereCalculusGoesNextLazy />
+              </section>
+              <section
+                id="closing-the-gap"
+                className="mt-8 scroll-mt-24 md:col-span-2 md:mt-10"
+                aria-label="Closing the Gap"
+              >
+                <ClosingTheGapLazy />
+              </section>
+            </>
           ) : null}
 
           <section
