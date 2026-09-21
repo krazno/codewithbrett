@@ -17,15 +17,14 @@ const DAY = {
 };
 
 const SCHEDULE = [
-  { time: "7:45", title: "Optional chaperone check-in", detail: "Faculty room at 85 Lowder" },
-  { time: "8:00", title: "Advisory & attendance", detail: "Normal start. Be in your seat." },
-  { time: "8:05–8:10", title: "We walk", detail: "We leave once everyone is accounted for." },
-  { time: "8:30–9:00", title: "Arrive at the theater", detail: "Concessions open. Cash only, small bills." },
-  { time: "9:00–9:30", title: "Q&A", detail: "Rep. Paul McMurtry, theater owner." },
-  { time: "9:30–11:10", title: "Night & Day", detail: "Virginia Woolf’s un-romantic comedy. 1 hr 35 min." },
-  { time: "11:10–11:30", title: "Ron’s ice cream sandwiches", detail: "For students who brought cash." },
+  { time: "8:00", title: "Meet in advisory", detail: "Start here as usual." },
+  { time: "8:05–8:10", title: "We walk to the theater", detail: "We leave together once everyone is here." },
+  { time: "8:30–9:00", title: "Arrive at Dedham Community Theatre", detail: "Concessions are cash only. Small bills are easiest." },
+  { time: "9:00–9:30", title: "Q&A", detail: "Rep. Paul McMurtry, who owns the theater." },
+  { time: "9:30–11:10", title: "Night & Day", detail: "Virginia Woolf’s un-romantic comedy. About 1 hour 35 minutes." },
+  { time: "11:10–11:30", title: "Ron’s ice cream sandwiches", detail: "Only if you brought cash." },
   { time: "11:30–12:00", title: "Walk back to campus", detail: "Stay with the group." },
-  { time: "12:00–12:45", title: "Lunch in advisory", detail: "Film discussion together." },
+  { time: "12:00–12:45", title: "Lunch in advisory", detail: "We’ll talk about the film." },
   { time: "12:45", title: "Dismissal", detail: "10th and 11th are dismissed." },
 ] as const;
 
@@ -218,24 +217,19 @@ export function TerrificTuesdayModal({
       >
         <div className="bg-[var(--ua-evergreen)] px-5 py-4 text-white sm:px-6">
           <p className="text-[0.65rem] font-semibold tracking-[0.16em] text-emerald-100 uppercase">
-            Terrific Tuesday · Day 8
+            Terrific Tuesday
           </p>
           <h2 id="tt-title" className="mt-0.5 font-serif text-2xl leading-tight">
-            Night &amp; Day, here we come
+            Your day at the movies
           </h2>
           <p className="mt-1 text-sm text-emerald-50">
             <time dateTime={DAY.iso}>{DAY.label}</time>
-            {" · "}A cute field-trip day. Stay with the group, be kind, have fun.
+            {" · "}Here’s the plan. Stay with the group and have a good time.
           </p>
         </div>
         <div className="h-1 bg-[#D6B55B]" aria-hidden />
 
         <div className="space-y-4 px-4 py-4 sm:px-5">
-          <p className="rounded-2xl bg-[#F8EEF5] px-3 py-2 text-sm text-[#14382A]">
-            Advisors: attendance at 8:00, then we walk. Please check that
-            required advisory forms were completed and sent to parents.
-          </p>
-
           <MovieCard />
           <WalkCard />
 
@@ -286,7 +280,7 @@ export function TerrificTuesdayModal({
             onClick={onClose}
             className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
           >
-            Got it — let’s have a great day
+            See you there
           </button>
         </div>
       </div>

@@ -49,7 +49,7 @@ const SESSION_KEY = "advisory-access";
 const MASS_DATE_LABEL = "Friday, September 18th";
 const MASS_DATE_ISO = "2026-09-18";
 
-const NOTICE_KEY = "advisory-notice:tt-night-and-day";
+const NOTICE_KEY = "advisory-notice:tt-students";
 
 export function AdvisoryContent() {
   const [passcode, setPasscode] = useState("");
