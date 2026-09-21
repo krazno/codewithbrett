@@ -5,6 +5,8 @@ import { FormEvent, useEffect, useId, useState } from "react";
 
 const STORAGE_KEY = "ua-community-home";
 const PASSCODE = "67";
+const CAMPUS = { lat: 42.2418, lon: -71.1662 };
+const CAMPUS_MILES = 3.5;
 
 const QUOTES = [
   {
@@ -21,40 +23,27 @@ const QUOTES = [
   },
 ] as const;
 
-type Coords = { lat: number; lon: number };
-
-function mapSrc(coords: Coords) {
-  const pad = 0.04;
+function campusMapSrc() {
+  const pad = 0.035;
   const bbox = [
-    coords.lon - pad,
-    coords.lat - pad * 0.7,
-    coords.lon + pad,
-    coords.lat + pad * 0.7,
+    CAMPUS.lon - pad,
+    CAMPUS.lat - pad * 0.7,
+    CAMPUS.lon + pad,
+    CAMPUS.lat + pad * 0.7,
   ].join("%2C");
-  return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${coords.lat}%2C${coords.lon}`;
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${CAMPUS.lat}%2C${CAMPUS.lon}`;
 }
 
-async function placeLabel(coords: Coords) {
-  try {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${coords.lat}&lon=${coords.lon}&zoom=10`;
-    const res = await fetch(url, { headers: { Accept: "application/json" } });
-    if (!res.ok) return null;
-    const data = (await res.json()) as {
-      address?: {
-        city?: string;
-        town?: string;
-        village?: string;
-        county?: string;
-        state?: string;
-      };
-    };
-    const a = data.address;
-    if (!a) return null;
-    const city = a.city || a.town || a.village || a.county;
-    return [city, a.state].filter(Boolean).join(", ") || null;
-  } catch {
-    return null;
-  }
+function milesFromCampus(lat: number, lon: number) {
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const dLat = toRad(lat - CAMPUS.lat);
+  const dLon = toRad(lon - CAMPUS.lon);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(CAMPUS.lat)) *
+      Math.cos(toRad(lat)) *
+      Math.sin(dLon / 2) ** 2;
+  return 2 * 3958.8 * Math.asin(Math.sqrt(a));
 }
 
 export function HomeCommunityGate() {
@@ -64,11 +53,7 @@ export function HomeCommunityGate() {
   const [passcode, setPasscode] = useState("");
   const [incorrect, setIncorrect] = useState(false);
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const [locStatus, setLocStatus] = useState<
-    "idle" | "asking" | "granted" | "denied" | "unsupported"
-  >("idle");
-  const [coords, setCoords] = useState<Coords | null>(null);
-  const [place, setPlace] = useState<string | null>(null);
+  const [offCampus, setOffCampus] = useState(false);
 
   useEffect(() => {
     setUnlocked(localStorage.getItem(STORAGE_KEY) === "ok");
@@ -94,38 +79,34 @@ export function HomeCommunityGate() {
     return () => window.clearInterval(id);
   }, [unlocked]);
 
+  useEffect(() => {
+    if (!ready || unlocked || !navigator.geolocation) return;
+    let cancelled = false;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        if (cancelled) return;
+        setOffCampus(
+          milesFromCampus(pos.coords.latitude, pos.coords.longitude) >
+            CAMPUS_MILES,
+        );
+      },
+      () => {},
+      { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [ready, unlocked]);
+
   function unlock(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (passcode === PASSCODE) {
+    if (passcode.trim() === PASSCODE) {
       localStorage.setItem(STORAGE_KEY, "ok");
       setUnlocked(true);
       setIncorrect(false);
       return;
     }
     setIncorrect(true);
-  }
-
-  function requestLocation() {
-    if (!navigator.geolocation) {
-      setLocStatus("unsupported");
-      return;
-    }
-    setLocStatus("asking");
-    navigator.geolocation.getCurrentPosition(
-      async (pos) => {
-        const next = {
-          lat: pos.coords.latitude,
-          lon: pos.coords.longitude,
-        };
-        setCoords(next);
-        setLocStatus("granted");
-        setPlace(await placeLabel(next));
-      },
-      () => {
-        setLocStatus("denied");
-      },
-      { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 },
-    );
   }
 
   if (!ready || unlocked) return null;
@@ -178,55 +159,29 @@ export function HomeCommunityGate() {
         </figure>
 
         <form onSubmit={unlock} className="px-5 py-5 sm:px-6 sm:py-6">
-          <p className="text-xs font-semibold tracking-[0.14em] text-emerald-800 uppercase">
-            Location check
-          </p>
-          <p className="mt-1 text-sm text-stone-700">
-            This space is for the Ursuline community. Share your location so you
-            can see where this visit is coming from. It is not saved.
+          <p className="text-sm text-stone-700">
+            This space is for the Ursuline community. Enter the community
+            passcode to continue.
           </p>
 
-          {locStatus === "idle" || locStatus === "asking" ? (
-            <button
-              type="button"
-              onClick={requestLocation}
-              disabled={locStatus === "asking"}
-              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-md border border-[var(--ua-evergreen)] bg-white px-4 py-2.5 text-sm font-semibold text-[var(--ua-evergreen)] hover:bg-emerald-50 focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none disabled:opacity-70"
-            >
-              {locStatus === "asking" ? "Waiting for approval…" : "Share my location"}
-            </button>
-          ) : null}
-
-          {locStatus === "granted" && coords ? (
-            <div className="mt-3 overflow-hidden rounded-md border border-[rgba(13,92,61,0.18)]">
-              <iframe
-                title="Your approximate location"
-                src={mapSrc(coords)}
-                className="h-40 w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              <p className="bg-white px-3 py-2 text-xs font-medium text-[#14382A]">
-                {place
-                  ? `Approximate location: ${place}`
-                  : "Your approximate location is shown on the map."}
-              </p>
-            </div>
-          ) : null}
-
-          {locStatus === "denied" ? (
-            <p className="mt-3 text-sm text-stone-600">
-              Location was not shared. You can still continue with the community
-              passcode.
+          {offCampus ? (
+            <p className="mt-3 rounded-md border border-[rgba(13,92,61,0.18)] bg-[#EAF3ED] px-3 py-2.5 text-sm text-[#14382A]">
+              We noticed you’re trying to access this website outside of campus.
             </p>
           ) : null}
 
-          {locStatus === "unsupported" ? (
-            <p className="mt-3 text-sm text-stone-600">
-              This device cannot share a map location. Continue with the
-              community passcode.
+          <div className="mt-4 overflow-hidden rounded-md border border-[rgba(13,92,61,0.18)]">
+            <iframe
+              title="Ursuline Academy Dedham"
+              src={campusMapSrc()}
+              className="h-36 w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <p className="bg-white px-3 py-2 text-xs font-medium text-[#14382A]">
+              Ursuline Academy · 85 Lowder Street, Dedham
             </p>
-          ) : null}
+          </div>
 
           <label
             htmlFor="ua-community-passcode"
