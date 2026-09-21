@@ -45,18 +45,13 @@ const SESSION_KEY = "advisory-access";
 const MASS_DATE_LABEL = "Friday, September 18th";
 const MASS_DATE_ISO = "2026-09-18";
 
-const NOTICE_KEY = "advisory-notice:tuesday-cash";
+const NOTICE_KEY = "advisory-notice:tt-huddle";
 
 export function AdvisoryContent() {
   const [passcode, setPasscode] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
   const [noticeOpen, setNoticeOpen] = useState(false);
-  const [iceCream, setIceCream] = useState({
-    Chocolate: 0,
-    Vanilla: 0,
-    Oreo: 0,
-  });
 
   useEffect(() => {
     const granted = sessionStorage.getItem(SESSION_KEY) === "granted";
@@ -140,13 +135,6 @@ export function AdvisoryContent() {
     <div className="my-6 flex flex-1 flex-col gap-5 sm:my-8">
       <AdvisoryNoticeModal
         open={noticeOpen}
-        counts={iceCream}
-        onCount={(flavor) =>
-          setIceCream((current) => ({
-            ...current,
-            [flavor]: current[flavor] + 1,
-          }))
-        }
         onClose={() => {
           sessionStorage.setItem(NOTICE_KEY, "1");
           setNoticeOpen(false);
@@ -163,10 +151,10 @@ export function AdvisoryContent() {
           className="flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-stone-700 hover:bg-emerald-50/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-inset sm:px-5"
         >
           <span aria-hidden className="shrink-0 text-base leading-none">
-            🍦
+            🎉
           </span>
           <span className="font-semibold text-stone-900">
-            Tuesday reminders
+            Advisory huddle
           </span>
           <span className="ml-auto text-xs font-semibold text-[var(--ua-evergreen)]">
             Show
@@ -185,8 +173,6 @@ export function AdvisoryContent() {
           <span>Help keep our campus clean.</span>
         </p>
       </section>
-
-      <BestSelvesActivity />
 
       <section
         className="ua-card ua-shadow-soft overflow-hidden"
@@ -384,27 +370,58 @@ export function AdvisoryContent() {
           </table>
         </section>
       </div>
+
+      <BestSelvesActivity />
     </div>
   );
 }
 
-const FLAVORS = ["Chocolate", "Vanilla", "Oreo"] as const;
+const HUDDLE_ITEMS = [
+  {
+    emoji: "📝",
+    title: "Take attendance",
+    detail: "Names first. Then we can actually start.",
+  },
+  {
+    emoji: "📬",
+    title: "Advisory forms",
+    detail:
+      "Have the required forms been completed and sent to parents?",
+  },
+  {
+    emoji: "🎉",
+    title: "Terrific Tuesday is tomorrow",
+    detail: "Give the girls a cheerful heads-up. It’s going to be a good day.",
+  },
+  {
+    emoji: "💚",
+    title: "Spirit wear & the walk",
+    detail:
+      "Spirit wear on. Packed lunch. Refillable water bottle. Dress for the walk and the weather.",
+  },
+  {
+    emoji: "🍦",
+    title: "Treats are cash only",
+    detail:
+      "If they’re getting concessions or ice cream, it’s cash only — small bills are kindest.",
+  },
+] as const;
 
 function AdvisoryNoticeModal({
   open,
-  counts,
-  onCount,
   onClose,
 }: {
   open: boolean;
-  counts: Record<(typeof FLAVORS)[number], number>;
-  onCount: (flavor: (typeof FLAVORS)[number]) => void;
   onClose: () => void;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const [checked, setChecked] = useState<boolean[]>(() =>
+    HUDDLE_ITEMS.map(() => false),
+  );
 
   useEffect(() => {
     if (!open) return;
+    setChecked(HUDDLE_ITEMS.map(() => false));
     closeRef.current?.focus();
     function onKey(event: KeyboardEvent) {
       if (event.key === "Escape") onClose();
@@ -415,88 +432,89 @@ function AdvisoryNoticeModal({
 
   if (!open) return null;
 
-  const total = counts.Chocolate + counts.Vanilla + counts.Oreo;
+  const done = checked.filter(Boolean).length;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(13,92,61,0.28)] p-4 backdrop-blur-md"
       onClick={onClose}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="advisory-notice-title"
-        className="w-full max-w-lg rounded-none border-2 border-[var(--ua-evergreen)] bg-[#FFFDF7] p-5 shadow-xl sm:p-6"
+        className="max-h-[min(90vh,40rem)] w-full max-w-md overflow-y-auto rounded-2xl border border-[rgba(13,92,61,0.22)] bg-[#FFFDF7] shadow-[0_24px_60px_rgba(11,61,46,0.28)]"
         onClick={(event) => event.stopPropagation()}
       >
-        <p className="text-xs font-semibold tracking-[0.16em] text-emerald-800 uppercase">
-          Advisory
-        </p>
-        <h2
-          id="advisory-notice-title"
-          className="mt-1 font-serif text-2xl text-stone-900"
-        >
-          Tuesday reminders
-        </h2>
+        <div className="bg-[var(--ua-evergreen)] px-5 py-4 text-white sm:px-6">
+          <p className="text-[0.65rem] font-semibold tracking-[0.16em] text-emerald-100 uppercase">
+            Advisory huddle
+          </p>
+          <h2
+            id="advisory-notice-title"
+            className="mt-0.5 font-serif text-2xl leading-tight"
+          >
+            A few cute things before we begin
+          </h2>
+        </div>
+        <div className="h-1 bg-[#D6B55B]" aria-hidden />
 
-        <div className="mt-4 space-y-3">
-          <div className="rounded-none border border-stone-300 bg-white px-4 py-3">
-            <p className="font-semibold text-stone-900">
-              Bring small cash bills Tuesday
-            </p>
-            <p className="mt-2 text-sm text-stone-700">
-              Theater concessions: $2–$8
-            </p>
-            <p className="text-sm text-stone-700">
-              Ron’s ice cream sandwich: $5
-            </p>
-          </div>
-
-          <div className="rounded-none border border-stone-300 bg-white px-4 py-3">
-            <p className="font-semibold text-stone-900">
-              Ice cream count for Lindy
-            </p>
-            <p className="mt-1 text-sm text-stone-600">
-              Tap a flavor as you count. Send the total to Lindy today.
-            </p>
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              {FLAVORS.map((flavor) => (
-                <button
-                  key={flavor}
-                  type="button"
-                  onClick={() => onCount(flavor)}
-                  className="rounded-none border border-stone-300 bg-[#F7F4EC] px-2 py-3 text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
+        <div className="space-y-2 px-4 py-4 sm:px-5">
+          {HUDDLE_ITEMS.map((item, index) => {
+            const isOn = checked[index];
+            return (
+              <button
+                key={item.title}
+                type="button"
+                onClick={() =>
+                  setChecked((current) =>
+                    current.map((value, i) => (i === index ? !value : value)),
+                  )
+                }
+                className={`flex w-full items-start gap-3 rounded-2xl border px-3 py-3 text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 ${
+                  isOn
+                    ? "border-emerald-200 bg-[#EAF3ED]"
+                    : "border-stone-200 bg-white"
+                }`}
+              >
+                <span
+                  aria-hidden
+                  className={`mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm ${
+                    isOn
+                      ? "bg-[var(--ua-evergreen)] text-white"
+                      : "bg-[#F8EEF5] text-base"
+                  }`}
                 >
-                  <span className="block text-sm font-semibold text-stone-900">
-                    {flavor}
+                  {isOn ? "✓" : item.emoji}
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-serif text-base text-stone-900">
+                    {item.title}
                   </span>
-                  <span className="mt-1 block font-serif text-2xl tabular-nums text-[var(--ua-evergreen)]">
-                    {counts[flavor]}
+                  <span className="mt-0.5 block text-sm leading-snug text-stone-600">
+                    {item.detail}
                   </span>
-                </button>
-              ))}
-            </div>
-            <p className="mt-3 text-sm font-semibold text-stone-900">
-              Total: {total}
-            </p>
-          </div>
-
-          <div className="rounded-none border border-stone-300 bg-white px-4 py-3">
-            <p className="font-semibold text-stone-900">Permission form</p>
-            <p className="mt-1 text-sm text-stone-700">
-              Parents must complete the permission form in Portals.
-            </p>
-          </div>
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          className="mt-4 inline-flex w-full items-center justify-center rounded-none bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
-        >
-          Done
-        </button>
+        <div className="px-4 pb-5 sm:px-5">
+          <p className="mb-3 text-center text-xs font-medium tracking-wide text-emerald-800">
+            {done === HUDDLE_ITEMS.length
+              ? "All set. You’re a delight."
+              : `${done} of ${HUDDLE_ITEMS.length} tucked in`}
+          </p>
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={onClose}
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+          >
+            Let’s go
+          </button>
+        </div>
       </div>
     </div>
   );

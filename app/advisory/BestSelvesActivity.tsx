@@ -100,115 +100,113 @@ export function BestSelvesActivity() {
         </button>
       </div>
 
-      <div className="mt-4 grid items-start gap-3 md:grid-cols-[minmax(0,1fr)_minmax(14rem,20rem)_minmax(0,1fr)]">
+      <div className="mt-4 grid items-start gap-3 md:grid-cols-3">
         <ArmPanel
           arm={ARMS[0]}
           formId={formId}
           notes={notes.looks}
           draft={drafts.looks}
-          className="md:order-1"
           onDraft={(value) =>
             setDrafts((current) => ({ ...current, looks: value }))
           }
           onAdd={() => addNote("looks")}
         />
 
-        <div className="order-first mx-auto w-full max-w-[20rem] md:order-2">
-          <div className="best-selves-heart">
-            <svg
-              viewBox="0 0 240 220"
-              className="h-auto w-full"
-              role="img"
-              aria-label="Y chart heart: Looks like, Sounds like, Feels like"
-            >
-              <path
-                d="M120 204 C 38 148 8 98 8 58 C 8 24 34 6 66 6 C 88 6 108 18 120 42 C 132 18 152 6 174 6 C 206 6 232 24 232 58 C 232 98 202 148 120 204 Z"
-                fill="#F8EEF5"
-                stroke="#C9A24A"
-                strokeWidth="2.4"
-              />
-              <path
-                d="M48 62 L120 118 L192 62"
-                fill="none"
-                stroke="#14382A"
-                strokeOpacity="0.28"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <path
-                d="M120 118 L120 188"
-                fill="none"
-                stroke="#14382A"
-                strokeOpacity="0.28"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <text
-                x="120"
-                y="124"
-                textAnchor="middle"
-                fill="#C9A24A"
-                fontFamily="Georgia, serif"
-                fontSize="22"
-              >
-                Y
-              </text>
-              <text
-                x="62"
-                y="52"
-                textAnchor="middle"
-                fill="#14382A"
-                fontFamily="Georgia, serif"
-                fontSize="13"
-              >
-                Looks like
-              </text>
-              <text
-                x="178"
-                y="52"
-                textAnchor="middle"
-                fill="#14382A"
-                fontFamily="Georgia, serif"
-                fontSize="13"
-              >
-                Sounds like
-              </text>
-              <text
-                x="120"
-                y="158"
-                textAnchor="middle"
-                fill="#14382A"
-                fontFamily="Georgia, serif"
-                fontSize="13"
-              >
-                Feels like
-              </text>
-            </svg>
-          </div>
-          <ArmPanel
-            arm={ARMS[2]}
-            formId={formId}
-            notes={notes.feels}
-            draft={drafts.feels}
-            className="mt-3"
-            onDraft={(value) =>
-              setDrafts((current) => ({ ...current, feels: value }))
-            }
-            onAdd={() => addNote("feels")}
-          />
-        </div>
-
         <ArmPanel
           arm={ARMS[1]}
           formId={formId}
           notes={notes.sounds}
           draft={drafts.sounds}
-          className="md:order-3"
           onDraft={(value) =>
             setDrafts((current) => ({ ...current, sounds: value }))
           }
           onAdd={() => addNote("sounds")}
         />
+
+        <ArmPanel
+          arm={ARMS[2]}
+          formId={formId}
+          notes={notes.feels}
+          draft={drafts.feels}
+          onDraft={(value) =>
+            setDrafts((current) => ({ ...current, feels: value }))
+          }
+          onAdd={() => addNote("feels")}
+        />
+      </div>
+
+      <div className="mx-auto mt-4 w-full max-w-[16rem]">
+        <div className="best-selves-heart">
+          <svg
+            viewBox="0 0 240 220"
+            className="h-auto w-full"
+            role="img"
+            aria-label="Y chart heart: Looks like, Sounds like, Feels like"
+          >
+            <path
+              d="M120 204 C 38 148 8 98 8 58 C 8 24 34 6 66 6 C 88 6 108 18 120 42 C 132 18 152 6 174 6 C 206 6 232 24 232 58 C 232 98 202 148 120 204 Z"
+              fill="#F8EEF5"
+              stroke="#C9A24A"
+              strokeWidth="2.4"
+            />
+            <path
+              d="M48 62 L120 118 L192 62"
+              fill="none"
+              stroke="#14382A"
+              strokeOpacity="0.28"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <path
+              d="M120 118 L120 188"
+              fill="none"
+              stroke="#14382A"
+              strokeOpacity="0.28"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <text
+              x="120"
+              y="124"
+              textAnchor="middle"
+              fill="#C9A24A"
+              fontFamily="Georgia, serif"
+              fontSize="22"
+            >
+              Y
+            </text>
+            <text
+              x="62"
+              y="52"
+              textAnchor="middle"
+              fill="#14382A"
+              fontFamily="Georgia, serif"
+              fontSize="13"
+            >
+              Looks like
+            </text>
+            <text
+              x="178"
+              y="52"
+              textAnchor="middle"
+              fill="#14382A"
+              fontFamily="Georgia, serif"
+              fontSize="13"
+            >
+              Sounds like
+            </text>
+            <text
+              x="120"
+              y="158"
+              textAnchor="middle"
+              fill="#14382A"
+              fontFamily="Georgia, serif"
+              fontSize="13"
+            >
+              Feels like
+            </text>
+          </svg>
+        </div>
       </div>
 
       <div className="mt-4 border-t border-stone-200 pt-4">
