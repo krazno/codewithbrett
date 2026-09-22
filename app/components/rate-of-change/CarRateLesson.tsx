@@ -107,12 +107,8 @@ export function CarRateLesson() {
         style={{ borderColor: flipped ? TANGENT : "#e7e5e4", color: NAVY }}
         onClick={() => setFlipped((open) => !open)}
       >
-        <p className="text-base font-semibold sm:text-lg" style={{ color: NAVY }}>
-          s(t) = t²
-          <span className="ml-1 font-normal text-stone-500">feet after t seconds</span>
-        </p>
         <p
-          className="mt-4 text-xs font-semibold tracking-wide uppercase"
+          className="text-xs font-semibold tracking-wide uppercase"
           style={{ color: flipped ? TANGENT : SECANT }}
         >
           {flipped ? "Answer" : "Tap to flip"}
