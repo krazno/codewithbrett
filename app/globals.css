@@ -286,3 +286,24 @@ textarea,
     font-size: 1rem;
   }
 }
+
+/* Keep KaTeX boxes and fraction bars intact against Tailwind preflight. */
+.katex .frac-line,
+.katex .overline-line,
+.katex .underline-line,
+.katex .hline,
+.katex .hdashline,
+.katex .sqrt-line,
+.katex .hide-tail {
+  border-bottom-width: 0.04em;
+  border-bottom-style: solid;
+}
+.katex .fbox,
+.katex .boxed,
+.katex .fcolorbox {
+  border-width: 0.06em;
+  border-style: solid;
+}
+.katex svg {
+  display: inline;
+}

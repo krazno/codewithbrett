@@ -17,6 +17,7 @@ import { SITE_NAME } from "@/app/lib/site";
 import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
+import { LimitsApproachingLazy } from "@/app/components/limits/LimitsApproachingLazy";
 import { AverageToInstantaneousLazy } from "@/app/components/rate-of-change/AverageToInstantaneousLazy";
 import { ArchivedInteractives } from "@/app/components/rate-of-change/ArchivedInteractives";
 import { CarRateLessonLazy } from "@/app/components/rate-of-change/CarRateLessonLazy";
@@ -240,10 +241,10 @@ export default async function ClassPage({ params }: Props) {
 
           {course.slug === "calculus-h-d" ? (
             <>
-              <CarRateLessonLazy />
+              <LimitsApproachingLazy />
               <p className="text-center text-sm md:col-span-2">
                 <Link
-                  href="/tools/average-and-instantaneous-rates/"
+                  href="/tools/limits-approaching/"
                   className="font-medium text-[var(--ua-evergreen)] hover:underline"
                 >
                   Open this lesson on its own page
@@ -254,6 +255,15 @@ export default async function ClassPage({ params }: Props) {
 
           {course.slug === "calculus-h-d" ? (
             <ArchivedInteractives>
+              <CarRateLessonLazy />
+              <p className="text-center text-sm">
+                <Link
+                  href="/tools/average-and-instantaneous-rates/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open the average-rate lesson on its own page
+                </Link>
+              </p>
               <AverageToInstantaneousLazy />
               <p className="text-center text-sm">
                 <Link
