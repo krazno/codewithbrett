@@ -183,7 +183,7 @@ function isCorrectEstimate(raw: string) {
 }
 
 export function AverageToInstantaneous() {
-  const graphId = useId();
+  const graphId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const playRef = useRef({ cancelled: false, timer: 0 });
   const [part, setPart] = useState<PartId>(1);
   const [graphB, setGraphB] = useState(3);
@@ -430,6 +430,11 @@ export function AverageToInstantaneous() {
               Graph of s of t equals t squared plus 4t minus 2 with a secant
               through A at 2 comma 10 and B.
             </title>
+            <defs>
+              <clipPath id={`${graphId}-plot`}>
+                <rect x={PAD.l} y={PAD.t} width={PLOT_W} height={PLOT_H} />
+              </clipPath>
+            </defs>
             <rect x={PAD.l} y={PAD.t} width={PLOT_W} height={PLOT_H} fill="#FFFDF8" />
             {[1.5, 2, 2.5, 3].map((t) => (
               <g key={`t-${t}`}>
@@ -510,28 +515,28 @@ export function AverageToInstantaneous() {
             >
               Position, s(t) (meters)
             </text>
-            <path d={CURVE} fill="none" stroke={BURGUNDY} strokeWidth="2.8" />
-            {showTangent ? (
-              <line
-                x1={tPx(tangent[0].t)}
-                y1={sPx(tangent[0].s)}
-                x2={tPx(tangent[1].t)}
-                y2={sPx(tangent[1].s)}
-                stroke={TANGENT}
-                strokeWidth="3"
-              />
-            ) : (
-              <line
-                x1={tPx(secant[0].t)}
-                y1={sPx(secant[0].s)}
-                x2={tPx(secant[1].t)}
-                y2={sPx(secant[1].s)}
-                stroke={SECANT}
-                strokeWidth="2.6"
-              />
-            )}
-            {!hideTriangle && dt > 0.15 ? (
-              <g>
+            <g clipPath={`url(#${graphId}-plot)`}>
+              <path d={CURVE} fill="none" stroke={BURGUNDY} strokeWidth="2.8" />
+              {showTangent ? (
+                <line
+                  x1={tPx(tangent[0].t)}
+                  y1={sPx(tangent[0].s)}
+                  x2={tPx(tangent[1].t)}
+                  y2={sPx(tangent[1].s)}
+                  stroke={TANGENT}
+                  strokeWidth="3"
+                />
+              ) : (
+                <line
+                  x1={tPx(secant[0].t)}
+                  y1={sPx(secant[0].s)}
+                  x2={tPx(secant[1].t)}
+                  y2={sPx(secant[1].s)}
+                  stroke={SECANT}
+                  strokeWidth="2.6"
+                />
+              )}
+              {!hideTriangle && !showInset ? (
                 <polyline
                   points={`${tPx(A_T)},${sPx(A_S)} ${tPx(b)},${sPx(A_S)} ${tPx(b)},${sPx(sB)}`}
                   fill="none"
@@ -539,6 +544,10 @@ export function AverageToInstantaneous() {
                   strokeWidth="1.8"
                   strokeDasharray="5 4"
                 />
+              ) : null}
+            </g>
+            {!hideTriangle && !showInset ? (
+              <g>
                 <text
                   x={(tPx(A_T) + tPx(b)) / 2}
                   y={Math.min(sPx(A_S) + 18, PAD.t + PLOT_H - 6)}
@@ -571,16 +580,16 @@ export function AverageToInstantaneous() {
               cx={tPx(A_T)}
               cy={sPx(A_S)}
               r="6"
-              fill={NAVY}
+              fill={showTangent ? TANGENT : NAVY}
               stroke="#fff"
               strokeWidth="2"
             />
-            {b > 2.08 ? (
+            {!showInset ? (
               <circle
                 cx={tPx(b)}
                 cy={sPx(sB)}
                 r="6"
-                fill={showTangent ? TANGENT : SECANT}
+                fill={SECANT}
                 stroke="#fff"
                 strokeWidth="2"
               />
@@ -589,7 +598,7 @@ export function AverageToInstantaneous() {
               <>
                 <text
                   x={tPx(A_T) - 8}
-                  y={sPx(A_S) - 10}
+                  y={sPx(A_S) - 12}
                   textAnchor="end"
                   fontSize="14"
                   fontWeight="700"
@@ -600,7 +609,7 @@ export function AverageToInstantaneous() {
                 >
                   A(2, 10)
                 </text>
-                {b > 2.08 ? (
+                {!showInset ? (
                   <text
                     x={b > 2.7 ? tPx(b) - 8 : tPx(b) + 8}
                     y={Math.max(sPx(sB) - 10, PAD.t + 14)}
@@ -627,30 +636,22 @@ export function AverageToInstantaneous() {
                 textAnchor="middle"
                 fontSize="14"
                 fontWeight="700"
-                fill={showTangent ? TANGENT : SECANT}
+                fill={SECANT}
                 stroke="#fff"
                 strokeWidth="3"
                 paintOrder="stroke"
               >
-                {showTangent ? "8 m/s" : `${fmt(aroc)} m/s`}
-              </text>
-            ) : null}
-            {showTangent && estimateState === "correct" ? (
-              <text
-                x={tPx(2.45)}
-                y={Math.max(sPx(sOf(2.45)) - 16, PAD.t + 14)}
-                fontSize="13"
-                fontWeight="700"
-                fill={TANGENT}
-                stroke="#fff"
-                strokeWidth="3"
-                paintOrder="stroke"
-              >
-                Estimated instantaneous rate = 8 m/s
+                {fmt(aroc)} m/s
               </text>
             ) : null}
             {showInset ? (
-              <Inset b={b} hideCoords={hideCoords} tangent={showTangent} />
+              <Inset
+                b={b}
+                hideCoords={hideCoords}
+                tangent={showTangent}
+                aroc={aroc}
+                clipId={`${graphId}-inset`}
+              />
             ) : null}
           </svg>
           <div
@@ -939,30 +940,47 @@ function Inset({
   b,
   hideCoords,
   tangent,
+  aroc,
+  clipId,
 }: {
   b: number;
   hideCoords: boolean;
   tangent: boolean;
+  aroc: number;
+  clipId: string;
 }) {
-  const pad = 8;
-  const x0 = 478;
-  const y0 = 18;
-  const w = 186;
-  const h = 118;
-  const t0 = Math.min(1.985, b - 0.02);
-  const t1 = Math.max(2.03, b + 0.02);
-  const s0 = sOf(t0) - 0.08;
-  const s1 = sOf(t1) + 0.08;
-  const toT = (t: number) => x0 + pad + ((t - t0) / (t1 - t0)) * (w - pad * 2);
-  const toS = (s: number) => y0 + pad + ((s1 - s) / (s1 - s0)) * (h - pad * 2);
-  const clipId = "aroc-inset-clip";
+  const x0 = 392;
+  const y0 = 12;
+  const w = 252;
+  const h = 172;
+  const inner = { l: 16, r: 16, t: 28, b: 50 };
+  const dt = Math.max(b - A_T, 0.001);
+  const span = Math.max(dt * 3.6, 0.004);
+  const t0 = A_T - span * 0.22;
+  const t1 = A_T + span * 0.78;
+  const sLeft = sOf(t0);
+  const sRight = sOf(t1);
+  const sPad = Math.max((sRight - sLeft) * 0.28, 0.05);
+  const s0 = sLeft - sPad;
+  const s1 = sRight + sPad;
+  const plotW = w - inner.l - inner.r;
+  const plotH = h - inner.t - inner.b;
+  const toT = (t: number) => x0 + inner.l + ((t - t0) / (t1 - t0)) * plotW;
+  const toS = (s: number) => y0 + inner.t + ((s1 - s) / (s1 - s0)) * plotH;
   const sB = sOf(b);
+  const m = tangent ? 8 : aroc;
+  const lineColor = tangent ? TANGENT : SECANT;
 
   return (
     <g>
       <defs>
         <clipPath id={clipId}>
-          <rect x={x0} y={y0} width={w} height={h} rx="6" />
+          <rect
+            x={x0 + inner.l}
+            y={y0 + inner.t}
+            width={plotW}
+            height={plotH}
+          />
         </clipPath>
       </defs>
       <rect
@@ -972,10 +990,11 @@ function Inset({
         height={h}
         fill="#fff"
         stroke={NAVY}
-        strokeWidth="1.4"
+        strokeWidth="1.6"
         rx="6"
       />
-      <text x={x0 + 10} y={y0 + 14} fontSize="10" fontWeight="700" fill={NAVY}>
+      <rect x={x0} y={y0} width={w} height={inner.t} fill="#fff" />
+      <text x={x0 + 12} y={y0 + 18} fontSize="11" fontWeight="700" fill={NAVY}>
         Magnified near t = 2
       </text>
       <g clipPath={`url(#${clipId})`}>
@@ -983,24 +1002,52 @@ function Inset({
           d={curvePath(t0, t1, toT, toS)}
           fill="none"
           stroke={BURGUNDY}
-          strokeWidth="2"
+          strokeWidth="2.4"
         />
         <line
-          x1={toT(A_T)}
-          y1={toS(A_S)}
-          x2={toT(b)}
-          y2={toS(sB)}
-          stroke={tangent ? TANGENT : SECANT}
-          strokeWidth="2"
+          x1={toT(t0)}
+          y1={toS(A_S + m * (t0 - A_T))}
+          x2={toT(t1)}
+          y2={toS(A_S + m * (t1 - A_T))}
+          stroke={lineColor}
+          strokeWidth="2.4"
         />
-        <circle cx={toT(A_T)} cy={toS(A_S)} r="4" fill={NAVY} />
-        <circle cx={toT(b)} cy={toS(sB)} r="4" fill={tangent ? TANGENT : SECANT} />
+        <circle
+          cx={toT(A_T)}
+          cy={toS(A_S)}
+          r="5"
+          fill={tangent ? TANGENT : NAVY}
+          stroke="#fff"
+          strokeWidth="1.6"
+        />
+        <circle
+          cx={toT(b)}
+          cy={toS(sB)}
+          r="5"
+          fill={lineColor}
+          stroke="#fff"
+          strokeWidth="1.6"
+        />
       </g>
-      {!hideCoords ? (
-        <text x={x0 + 10} y={y0 + h - 8} fontSize="10" fill={NAVY}>
-          B({fmt(b)}, {fmt(sB)})
-        </text>
-      ) : null}
+      <rect
+        x={x0 + 1}
+        y={y0 + h - inner.b}
+        width={w - 2}
+        height={inner.b - 1}
+        fill="#fff"
+      />
+      <text x={x0 + 12} y={y0 + h - 28} fontSize="12" fontWeight="700" fill={NAVY}>
+        A(2, 10){!hideCoords ? `  ·  B(${fmt(b)}, ${fmt(sB)})` : ""}
+      </text>
+      <text
+        x={x0 + 12}
+        y={y0 + h - 12}
+        fontSize="12"
+        fontWeight="700"
+        fill={lineColor}
+      >
+        {tangent ? "tangent = 8 m/s" : `secant = ${fmt(aroc)} m/s`}
+      </text>
     </g>
   );
 }
