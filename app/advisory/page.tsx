@@ -6,7 +6,7 @@ import { AdvisoryContent } from "./AdvisoryContent";
 export const metadata: Metadata = {
   title: "Advisory",
   description:
-    "Day 6 Holy Spirit Mass schedule, Ursuline Prayer, Pledge of Allegiance, and Advisory materials.",
+    "Day 1 schedule, Ursuline Prayer, Pledge of Allegiance, and Advisory materials.",
   alternates: { canonical: "/advisory/" },
   robots: { index: false, follow: false },
 };
