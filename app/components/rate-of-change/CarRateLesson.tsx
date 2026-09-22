@@ -25,7 +25,7 @@ const CARDS: { q: string; a: string }[] = [
     a: "Secant → two points → average rate.\nTangent → one moment → instantaneous rate.",
   },
   {
-    q: "A car’s position is s(t) = t² feet. What is s(2)?",
+    q: "What is s(2)?",
     a: "s(2) = 4 ft",
   },
   {
@@ -103,17 +103,21 @@ export function CarRateLesson() {
       <button
         type="button"
         aria-pressed={flipped}
-        className="mt-4 flex min-h-[14rem] w-full flex-col items-center justify-center rounded-2xl border-2 bg-white px-5 py-8 text-center"
+        className="mt-4 flex min-h-[14rem] w-full flex-col items-center justify-center rounded-2xl border-2 bg-white px-5 py-6 text-center sm:py-8"
         style={{ borderColor: flipped ? TANGENT : "#e7e5e4", color: NAVY }}
         onClick={() => setFlipped((open) => !open)}
       >
+        <p className="text-base font-semibold sm:text-lg" style={{ color: NAVY }}>
+          s(t) = t²
+          <span className="ml-1 font-normal text-stone-500">feet after t seconds</span>
+        </p>
         <p
-          className="text-xs font-semibold tracking-wide uppercase"
+          className="mt-4 text-xs font-semibold tracking-wide uppercase"
           style={{ color: flipped ? TANGENT : SECANT }}
         >
           {flipped ? "Answer" : "Tap to flip"}
         </p>
-        <p className="mt-3 font-serif text-2xl leading-snug whitespace-pre-line sm:text-3xl">
+        <p className="mt-2 font-serif text-2xl leading-snug whitespace-pre-line sm:text-3xl">
           {flipped ? card.a : card.q}
         </p>
       </button>
