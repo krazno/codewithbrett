@@ -241,13 +241,22 @@ export default async function ClassPage({ params }: Props) {
 
           {course.slug === "calculus-h-d" ? (
             <>
-              <LimitsApproachingLazy />
+              <AverageToInstantaneousLazy />
               <p className="text-center text-sm md:col-span-2">
                 <Link
-                  href="/tools/limits-approaching/"
+                  href="/tools/average-to-instantaneous/"
                   className="font-medium text-[var(--ua-evergreen)] hover:underline"
                 >
-                  Open this lesson on its own page
+                  Open this activity on its own page
+                </Link>
+              </p>
+              <CarRateLessonLazy />
+              <p className="text-center text-sm md:col-span-2">
+                <Link
+                  href="/tools/average-and-instantaneous-rates/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open the notes cards on their own page
                 </Link>
               </p>
             </>
@@ -255,22 +264,13 @@ export default async function ClassPage({ params }: Props) {
 
           {course.slug === "calculus-h-d" ? (
             <ArchivedInteractives>
-              <CarRateLessonLazy />
+              <LimitsApproachingLazy />
               <p className="text-center text-sm">
                 <Link
-                  href="/tools/average-and-instantaneous-rates/"
+                  href="/tools/limits-approaching/"
                   className="font-medium text-[var(--ua-evergreen)] hover:underline"
                 >
-                  Open the average-rate lesson on its own page
-                </Link>
-              </p>
-              <AverageToInstantaneousLazy />
-              <p className="text-center text-sm">
-                <Link
-                  href="/tools/average-to-instantaneous/"
-                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
-                >
-                  Open the runner activity on its own page
+                  Open the limits lesson on its own page
                 </Link>
               </p>
               <SeeTheSecantLine />

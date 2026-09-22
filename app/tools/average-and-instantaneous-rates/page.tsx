@@ -6,7 +6,7 @@ import { SITE_NAME } from "@/app/lib/site";
 export const metadata: Metadata = {
   title: "Average Rate and Instantaneous Rate",
   description:
-    "Teacher-led Calculus Honors lesson on average and instantaneous rates of change using s(t) = t².",
+    "Short Calculus Honors flash cards for average and instantaneous rates using s(t) = t².",
   alternates: { canonical: "/tools/average-and-instantaneous-rates/" },
   openGraph: {
     siteName: SITE_NAME,
