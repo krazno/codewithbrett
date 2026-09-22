@@ -6,9 +6,9 @@ const T_MIN = 1.4;
 const T_MAX = 3.45;
 const S_MIN = 4;
 const S_MAX = 24;
-const VW = 640;
-const VH = 420;
-const PAD = { l: 56, r: 18, t: 22, b: 48 };
+const VW = 680;
+const VH = 292;
+const PAD = { l: 64, r: 40, t: 26, b: 44 };
 const PLOT_W = VW - PAD.l - PAD.r;
 const PLOT_H = VH - PAD.t - PAD.b;
 const A_T = 2;
@@ -314,108 +314,115 @@ export function AverageToInstantaneous() {
 
   return (
     <section
-      className="ua-card ua-shadow-soft p-5 md:col-span-2"
+      className="ua-card ua-shadow-soft p-3 sm:p-4 md:col-span-2"
       aria-labelledby="aroc-heading"
       style={{ background: "#FFFDF8" }}
     >
-      <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+      <p className="text-[0.7rem] font-semibold tracking-wide text-emerald-800 uppercase">
         Calculus Honors · Block D
       </p>
       <h2
         id="aroc-heading"
-        className="mt-1 font-serif text-2xl sm:text-3xl"
+        className="mt-0.5 font-serif text-xl sm:text-2xl"
         style={{ color: NAVY }}
       >
         From Average Rate to Instantaneous Rate
       </h2>
       <p
-        className="mt-3 rounded-xl px-3 py-2 text-sm font-semibold sm:text-base"
+        className="mt-2 rounded-lg px-2.5 py-1.5 text-sm font-semibold"
         style={{ background: "#E8EEF7", color: NAVY }}
       >
         I can calculate average rates of change over smaller intervals and use
         the pattern to estimate an instantaneous rate of change.
       </p>
-      <p className="mt-3 text-sm" style={{ color: NAVY }}>
-        A runner’s position:{" "}
+      <p className="mt-2 text-sm leading-snug" style={{ color: NAVY }}>
         <span className="font-semibold">
           s(t) = t<sup>2</sup> + 4t − 2
         </span>
-        . Estimate the instantaneous rate at t = 2 seconds.
-      </p>
-      <p className="mt-1 font-serif text-lg" style={{ color: NAVY }}>
-        AROC = [s(b) − s(a)] / (b − a)
+        {" · "}
+        <span className="whitespace-nowrap font-serif text-base font-semibold">
+          AROC = [s(b) − s(a)] / (b − a)
+        </span>
+        {" · estimate at t = 2 s"}
       </p>
 
-      <div
-        role="tablist"
-        aria-label="Activity parts"
-        className="mt-4 grid grid-cols-5 gap-1.5"
-      >
-        {([1, 2, 3, 4, 5] as const).map((id) => (
+      <div className="mt-3 flex flex-col gap-2">
+        <div
+          role="tablist"
+          aria-label="Activity parts"
+          className="grid grid-cols-5 gap-1"
+        >
+          {([1, 2, 3, 4, 5] as const).map((id) => (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              aria-selected={part === id}
+              className={`${hit} min-h-10 px-1 text-xs sm:text-sm ${
+                part === id ? "text-white" : "bg-white"
+              }`}
+              style={{
+                background: part === id ? NAVY : "#F4F0E6",
+                color: part === id ? "#fff" : NAVY,
+              }}
+              onClick={() => goTo(id)}
+            >
+              {id === 5 ? "Estimate" : `Part ${id}`}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-1">
           <button
-            key={id}
             type="button"
-            role="tab"
-            aria-selected={part === id}
-            className={`${hit} px-1 text-xs sm:text-sm ${
-              part === id ? "text-white" : "bg-white"
-            }`}
-            style={{
-              background: part === id ? NAVY : "#F4F0E6",
-              color: part === id ? "#fff" : NAVY,
-            }}
-            onClick={() => goTo(id)}
+            className={`${hit} min-h-10 bg-white`}
+            style={{ color: NAVY }}
+            disabled={part === 1}
+            onClick={() => goTo((part - 1) as PartId)}
           >
-            {id === 5 ? "Estimate" : `Part ${id}`}
+            Previous
           </button>
-        ))}
+          <button
+            type="button"
+            className={`${hit} min-h-10 bg-white`}
+            style={{ color: NAVY }}
+            disabled={part === 5}
+            onClick={() => goTo((part + 1) as PartId)}
+          >
+            Next
+          </button>
+          <button
+            type="button"
+            className={`${hit} min-h-10 bg-white`}
+            style={{ color: NAVY }}
+            onClick={reset}
+          >
+            Reset
+          </button>
+          <button
+            type="button"
+            className={`${hit} min-h-10 text-white`}
+            style={{ background: playing ? BURGUNDY : NAVY }}
+            onClick={() => {
+              if (playing) {
+                playRef.current.cancelled = true;
+                window.clearTimeout(playRef.current.timer);
+                setPlaying(false);
+                return;
+              }
+              void playAll();
+            }}
+          >
+            {playing ? "Pause" : "Play All"}
+          </button>
+        </div>
       </div>
 
-      <div className="mt-2 flex flex-wrap gap-1.5">
-        <button
-          type="button"
-          className={`${hit} bg-white`}
-          style={{ color: NAVY }}
-          disabled={part === 1}
-          onClick={() => goTo((part - 1) as PartId)}
-        >
-          Previous
-        </button>
-        <button
-          type="button"
-          className={`${hit} bg-white`}
-          style={{ color: NAVY }}
-          disabled={part === 5}
-          onClick={() => goTo((part + 1) as PartId)}
-        >
-          Next
-        </button>
-        <button type="button" className={`${hit} bg-white`} style={{ color: NAVY }} onClick={reset}>
-          Reset
-        </button>
-        <button
-          type="button"
-          className={`${hit} text-white`}
-          style={{ background: playing ? BURGUNDY : NAVY }}
-          onClick={() => {
-            if (playing) {
-              playRef.current.cancelled = true;
-              window.clearTimeout(playRef.current.timer);
-              setPlaying(false);
-              return;
-            }
-            void playAll();
-          }}
-        >
-          {playing ? "Pause" : "Play All"}
-        </button>
-      </div>
-
-      <div className="mt-4 grid items-start gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(16rem,20rem)]">
-        <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white">
+      <div className="mt-3 grid items-stretch gap-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,24rem)]">
+        <div className="rounded-2xl border border-stone-200 bg-white">
           <svg
             viewBox={`0 0 ${VW} ${VH}`}
-            className="h-auto w-full"
+            className="mx-auto h-[min(32dvh,15rem)] w-full max-h-[15rem] sm:h-[min(34dvh,16.5rem)] sm:max-h-[16.5rem]"
+            preserveAspectRatio="xMidYMid meet"
             role="img"
             aria-labelledby={graphId}
           >
@@ -435,9 +442,10 @@ export function AverageToInstantaneous() {
                 />
                 <text
                   x={tPx(t)}
-                  y={PAD.t + PLOT_H + 16}
+                  y={PAD.t + PLOT_H + 18}
                   textAnchor="middle"
-                  fontSize="11"
+                  fontSize="13"
+                  fontWeight="700"
                   fill={NAVY}
                 >
                   {t}
@@ -454,10 +462,11 @@ export function AverageToInstantaneous() {
                   stroke="rgba(27,42,74,0.1)"
                 />
                 <text
-                  x={PAD.l - 6}
+                  x={PAD.l - 8}
                   y={sPx(s) + 4}
                   textAnchor="end"
-                  fontSize="11"
+                  fontSize="13"
+                  fontWeight="700"
                   fill={NAVY}
                 >
                   {s}
@@ -482,22 +491,22 @@ export function AverageToInstantaneous() {
             />
             <text
               x={PAD.l + PLOT_W / 2}
-              y={VH - 8}
+              y={VH - 6}
               textAnchor="middle"
-              fontSize="12"
+              fontSize="13"
               fontWeight="700"
               fill={NAVY}
             >
               Time, t (seconds)
             </text>
             <text
-              x={16}
+              x={14}
               y={PAD.t + PLOT_H / 2}
               textAnchor="middle"
-              fontSize="12"
+              fontSize="13"
               fontWeight="700"
               fill={NAVY}
-              transform={`rotate(-90 16 ${PAD.t + PLOT_H / 2})`}
+              transform={`rotate(-90 14 ${PAD.t + PLOT_H / 2})`}
             >
               Position, s(t) (meters)
             </text>
@@ -521,7 +530,7 @@ export function AverageToInstantaneous() {
                 strokeWidth="2.6"
               />
             )}
-            {!hideTriangle && dt > 0.02 ? (
+            {!hideTriangle && dt > 0.15 ? (
               <g>
                 <polyline
                   points={`${tPx(A_T)},${sPx(A_S)} ${tPx(b)},${sPx(A_S)} ${tPx(b)},${sPx(sB)}`}
@@ -532,20 +541,27 @@ export function AverageToInstantaneous() {
                 />
                 <text
                   x={(tPx(A_T) + tPx(b)) / 2}
-                  y={sPx(A_S) + 16}
+                  y={Math.min(sPx(A_S) + 18, PAD.t + PLOT_H - 6)}
                   textAnchor="middle"
-                  fontSize="11"
+                  fontSize="13"
                   fontWeight="700"
                   fill="#9B3A52"
+                  stroke="#fff"
+                  strokeWidth="3"
+                  paintOrder="stroke"
                 >
                   Δt = {fmt(dt)}
                 </text>
                 <text
-                  x={tPx(b) + 8}
+                  x={tPx(b) > PAD.l + PLOT_W - 70 ? tPx(b) - 10 : tPx(b) + 10}
                   y={(sPx(A_S) + sPx(sB)) / 2}
-                  fontSize="11"
+                  textAnchor={tPx(b) > PAD.l + PLOT_W - 70 ? "end" : "start"}
+                  fontSize="13"
                   fontWeight="700"
                   fill="#9B3A52"
+                  stroke="#fff"
+                  strokeWidth="3"
+                  paintOrder="stroke"
                 >
                   Δs = {fmt(ds)}
                 </text>
@@ -575,42 +591,60 @@ export function AverageToInstantaneous() {
                   x={tPx(A_T) - 8}
                   y={sPx(A_S) - 10}
                   textAnchor="end"
-                  fontSize="12"
+                  fontSize="14"
                   fontWeight="700"
                   fill={NAVY}
+                  stroke="#fff"
+                  strokeWidth="3"
+                  paintOrder="stroke"
                 >
                   A(2, 10)
                 </text>
                 {b > 2.08 ? (
                   <text
-                    x={b > 2.85 ? tPx(b) - 8 : tPx(b) + 8}
-                    y={sPx(sB) - 10}
-                    textAnchor={b > 2.85 ? "end" : "start"}
-                    fontSize="12"
+                    x={b > 2.7 ? tPx(b) - 8 : tPx(b) + 8}
+                    y={Math.max(sPx(sB) - 10, PAD.t + 14)}
+                    textAnchor={b > 2.7 ? "end" : "start"}
+                    fontSize="14"
                     fontWeight="700"
                     fill={NAVY}
+                    stroke="#fff"
+                    strokeWidth="3"
+                    paintOrder="stroke"
                   >
                     B({fmt(b)}, {fmt(sB)})
                   </text>
                 ) : null}
               </>
             ) : null}
-            <text
-              x={(tPx(A_T) + tPx(Math.min(b, 2.8))) / 2 + 12}
-              y={(sPx(A_S) + sPx(sB)) / 2 - 8}
-              fontSize="12"
-              fontWeight="700"
-              fill={showTangent ? TANGENT : SECANT}
-            >
-              {showTangent ? "8 m/s" : `${fmt(aroc)} m/s`}
-            </text>
+            {!showInset ? (
+              <text
+                x={Math.min(
+                  (tPx(A_T) + tPx(Math.min(b, 2.8))) / 2 + 12,
+                  PAD.l + PLOT_W - 8,
+                )}
+                y={Math.max((sPx(A_S) + sPx(sB)) / 2 - 8, PAD.t + 16)}
+                textAnchor="middle"
+                fontSize="14"
+                fontWeight="700"
+                fill={showTangent ? TANGENT : SECANT}
+                stroke="#fff"
+                strokeWidth="3"
+                paintOrder="stroke"
+              >
+                {showTangent ? "8 m/s" : `${fmt(aroc)} m/s`}
+              </text>
+            ) : null}
             {showTangent && estimateState === "correct" ? (
               <text
-                x={tPx(2.55)}
-                y={sPx(sOf(2.55)) - 18}
-                fontSize="12"
+                x={tPx(2.45)}
+                y={Math.max(sPx(sOf(2.45)) - 16, PAD.t + 14)}
+                fontSize="13"
                 fontWeight="700"
                 fill={TANGENT}
+                stroke="#fff"
+                strokeWidth="3"
+                paintOrder="stroke"
               >
                 Estimated instantaneous rate = 8 m/s
               </text>
@@ -619,9 +653,23 @@ export function AverageToInstantaneous() {
               <Inset b={b} hideCoords={hideCoords} tangent={showTangent} />
             ) : null}
           </svg>
+          <div
+            className="grid grid-cols-2 gap-x-3 gap-y-1 border-t border-stone-200 px-3 py-2 text-sm font-semibold sm:grid-cols-5"
+            style={{ color: NAVY }}
+          >
+            <p className="whitespace-nowrap">A(2, 10)</p>
+            <p className="whitespace-nowrap">
+              B({fmt(b)}, {fmt(sB)})
+            </p>
+            <p className="whitespace-nowrap">Δt = {fmt(dt)} s</p>
+            <p className="whitespace-nowrap">Δs = {fmt(ds)} m</p>
+            <p className="whitespace-nowrap sm:col-auto col-span-2">
+              slope = {fmt(aroc)} m/s
+            </p>
+          </div>
         </div>
 
-        <div className="flex min-h-[18rem] flex-col rounded-2xl border border-stone-200 bg-white p-4">
+        <div className="flex min-h-0 flex-col overflow-auto rounded-2xl border border-stone-200 bg-white p-3">
           {part === 5 ? (
             <div>
               <p className="font-serif text-xl" style={{ color: NAVY }}>
@@ -683,15 +731,18 @@ export function AverageToInstantaneous() {
             </div>
           ) : guided && !hideCalcs ? (
             <div>
-              <p className="font-serif text-xl" style={{ color: NAVY }}>
+              <p className="font-serif text-lg" style={{ color: NAVY }}>
                 Interval {guided.interval}
               </p>
-              <p className="mt-1 text-sm" style={{ color: NAVY }}>
+              <p className="mt-1 text-sm font-semibold" style={{ color: NAVY }}>
                 A = (2, 10) · B = ({fmt(guided.b)}, {guided.sBLabel})
               </p>
-              <ul className="mt-3 space-y-1.5 text-sm" style={{ color: NAVY }}>
+              <ul className="mt-2 space-y-1 text-sm" style={{ color: NAVY }}>
                 {guided.lines.map((line, index) => (
-                  <li key={line} className="font-mono text-[0.92rem] leading-relaxed">
+                  <li
+                    key={line}
+                    className="font-mono text-[0.82rem] leading-snug sm:text-sm"
+                  >
                     {index < shownLines ? line : "?"}
                   </li>
                 ))}
@@ -720,8 +771,8 @@ export function AverageToInstantaneous() {
         </div>
       </div>
 
-      <div className="mt-4 rounded-2xl border border-stone-200 bg-white p-4">
-        <label className="flex flex-col gap-2 text-sm font-semibold" style={{ color: NAVY }} htmlFor={`${graphId}-b`}>
+      <div className="mt-3 rounded-2xl border border-stone-200 bg-white px-3 py-2">
+        <label className="flex flex-col gap-1 text-sm font-semibold" style={{ color: NAVY }} htmlFor={`${graphId}-b`}>
           Move b closer to 2
           <input
             id={`${graphId}-b`}
@@ -738,7 +789,7 @@ export function AverageToInstantaneous() {
             aria-valuetext={`b equals ${fmt(b)}`}
           />
         </label>
-        <p className="mt-1 text-sm" style={{ color: NAVY }}>
+        <p className="mt-1 text-sm font-semibold" style={{ color: NAVY }}>
           Interval [2, {fmt(b)}] · B({fmt(b)}, {fmt(sB)}) · Δt = {fmt(dt)} · Δs ={" "}
           {fmt(ds)} · AROC = {fmt(aroc)} m/s
         </p>
@@ -894,10 +945,10 @@ function Inset({
   tangent: boolean;
 }) {
   const pad = 8;
-  const x0 = 430;
-  const y0 = 28;
-  const w = 190;
-  const h = 150;
+  const x0 = 478;
+  const y0 = 18;
+  const w = 186;
+  const h = 118;
   const t0 = Math.min(1.985, b - 0.02);
   const t1 = Math.max(2.03, b + 0.02);
   const s0 = sOf(t0) - 0.08;
