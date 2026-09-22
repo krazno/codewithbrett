@@ -17,6 +17,8 @@ import { SITE_NAME } from "@/app/lib/site";
 import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
+import { AverageToInstantaneousLazy } from "@/app/components/rate-of-change/AverageToInstantaneousLazy";
+import { ArchivedInteractives } from "@/app/components/rate-of-change/ArchivedInteractives";
 import { ClosingTheGapLazy } from "@/app/components/rate-of-change/ClosingTheGapLazy";
 import { SeeTheSecantLine } from "@/app/components/rate-of-change/SeeTheSecantLine";
 import { WhereCalculusGoesNextLazy } from "@/app/components/rate-of-change/WhereCalculusGoesNextLazy";
@@ -235,11 +237,59 @@ export default async function ClassPage({ params }: Props) {
 
           {showOnlineJava ? <JavaDataTypesLab /> : null}
 
-          {course.slug.startsWith("calculus") ? (
+          {course.slug === "calculus-h-d" ? (
+            <>
+              <AverageToInstantaneousLazy />
+              <p className="text-center text-sm md:col-span-2">
+                <Link
+                  href="/tools/average-to-instantaneous/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open this activity on its own page
+                </Link>
+              </p>
+            </>
+          ) : null}
+
+          {course.slug === "calculus-h-d" ? (
+            <ArchivedInteractives>
+              <SeeTheSecantLine />
+              <section
+                className="md:col-span-2"
+                aria-label="UA Function Garden"
+              >
+                <FunctionGardenLazy embedded />
+                <p className="mt-2 text-center text-sm">
+                  <Link
+                    href="/tools/function-garden/"
+                    className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                  >
+                    Open UA Function Garden on its own page
+                  </Link>
+                </p>
+              </section>
+              <section
+                id="where-calculus-goes-next"
+                className="mt-8 scroll-mt-24 md:col-span-2 md:mt-10"
+                aria-label="Where Calculus Goes Next"
+              >
+                <WhereCalculusGoesNextLazy />
+              </section>
+              <section
+                id="closing-the-gap"
+                className="mt-8 scroll-mt-24 md:col-span-2 md:mt-10"
+                aria-label="Closing the Gap"
+              >
+                <ClosingTheGapLazy />
+              </section>
+            </ArchivedInteractives>
+          ) : null}
+
+          {course.slug.startsWith("calculus") && course.slug !== "calculus-h-d" ? (
             <SeeTheSecantLine />
           ) : null}
 
-          {course.slug.startsWith("calculus") ? (
+          {course.slug.startsWith("calculus") && course.slug !== "calculus-h-d" ? (
             <section
               className="md:col-span-2"
               aria-label="UA Function Garden"
@@ -256,7 +306,7 @@ export default async function ClassPage({ params }: Props) {
             </section>
           ) : null}
 
-          {course.slug.startsWith("calculus") ? (
+          {course.slug.startsWith("calculus") && course.slug !== "calculus-h-d" ? (
             <>
               <section
                 id="where-calculus-goes-next"
