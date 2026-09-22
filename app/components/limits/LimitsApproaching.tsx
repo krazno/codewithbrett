@@ -14,11 +14,11 @@ type SectionId = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 const SECTIONS: { id: SectionId; tab: string; title: string }[] = [
   { id: 0, tab: "1. Approach", title: "Approaching" },
   { id: 1, tab: "2. Notation", title: "What Is a Limit?" },
-  { id: 2, tab: "3. Near vs At", title: "Near Is Not Always At" },
-  { id: 3, tab: "4. See it", title: "See the Idea" },
-  { id: 4, tab: "5. We do", title: "Example 1 | We Do" },
-  { id: 5, tab: "6. Three ways", title: "One Limit, Three Ways" },
-  { id: 6, tab: "7. You do", title: "Example 2 | You Do" },
+  { id: 2, tab: "3. Near vs At", title: "Near vs At" },
+  { id: 3, tab: "4. See it", title: "See it" },
+  { id: 4, tab: "5. We do", title: "We Do" },
+  { id: 5, tab: "6. Three ways", title: "Three ways" },
+  { id: 6, tab: "7. You do", title: "You Do" },
   { id: 7, tab: "8. Check", title: "Quick Check" },
   { id: 8, tab: "9. From class", title: "From Class" },
 ];
@@ -105,7 +105,7 @@ export function LimitsApproaching() {
   return (
     <section
       ref={rootRef}
-      className="ua-card ua-shadow-soft relative p-4 sm:p-6 md:col-span-2"
+      className="ua-card ua-shadow-soft relative overflow-x-hidden p-4 sm:p-6 md:col-span-2"
       style={{ background: "#FFFEFB" }}
       aria-labelledby={`${uid}-heading`}
     >
@@ -290,18 +290,15 @@ export function LimitsApproaching() {
 
 function ApproachSlide() {
   return (
-    <div className="mx-auto max-w-3xl text-center">
+    <div className="mx-auto max-w-2xl px-2 text-center">
       <h3 className="font-serif text-3xl" style={{ color: NAVY }}>
         Approaching
       </h3>
-      <p className="mt-6 text-xl leading-relaxed sm:text-2xl" style={{ color: NAVY }}>
-        Average rates can get closer and closer to one number.
+      <p className="mt-8 text-2xl leading-snug" style={{ color: NAVY }}>
+        Values can get closer and closer to one number.
       </p>
-      <p className="mt-4 text-xl leading-relaxed sm:text-2xl" style={{ color: NAVY }}>
+      <p className="mt-6 text-2xl leading-snug" style={{ color: NAVY }}>
         That number is what we are approaching.
-      </p>
-      <p className="mt-8 text-lg text-stone-600">
-        Calculus has a name and a notation for this idea.
       </p>
     </div>
   );
@@ -316,24 +313,20 @@ function NotationSlide({
 }) {
   const note =
     part === "xa"
-      ? "The input x gets closer and closer to a."
+      ? "x gets closer and closer to a."
       : part === "fx"
-        ? "The function produces output values."
+        ? "The function’s outputs."
         : part === "L"
-          ? "The outputs approach L."
+          ? "Those outputs approach L."
           : "Tap a piece of the notation.";
 
   return (
-    <div className="mx-auto max-w-3xl text-center">
+    <div className="mx-auto max-w-2xl px-2 text-center">
       <h3 className="font-serif text-3xl" style={{ color: NAVY }}>
         What Is a Limit?
       </h3>
-      <p className="mx-auto mt-5 max-w-2xl text-xl leading-relaxed" style={{ color: NAVY }}>
-        A limit describes what the output of a function approaches as the input
-        gets closer and closer to a value.
-      </p>
       <div
-        className="mx-auto mt-6 inline-block rounded-2xl border-2 px-10 py-5"
+        className="mx-auto mt-6 inline-block rounded-2xl border-2 px-8 py-5"
         style={{ borderColor: NAVY, color: NAVY }}
       >
         <Tex
@@ -342,7 +335,7 @@ function NotationSlide({
           math={String.raw`\lim_{x \to a} f(x) = L`}
         />
       </div>
-      <p className="mt-4 text-lg font-semibold sm:text-xl" style={{ color: NAVY }}>
+      <p className="mt-5 text-xl font-semibold leading-snug" style={{ color: NAVY }}>
         As <Tex math="x" /> approaches <Tex math="a" />, <Tex math="f(x)" />{" "}
         approaches <Tex math="L" />.
       </p>
@@ -370,7 +363,7 @@ function NotationSlide({
           </button>
         ))}
       </div>
-      <p className="mt-4 min-h-12 text-lg" style={{ color: NAVY }}>
+      <p className="mt-4 min-h-10 text-lg" style={{ color: NAVY }}>
         {note}
       </p>
     </div>
@@ -379,22 +372,22 @@ function NotationSlide({
 
 function NearAtSlide() {
   return (
-    <div className="mx-auto max-w-3xl text-center">
+    <div className="mx-auto max-w-xl px-4 text-center">
       <h3 className="font-serif text-3xl" style={{ color: NAVY }}>
-        Near is not always the same as At
+        Near vs At
       </h3>
       <p
-        className="mx-auto mt-8 max-w-xl rounded-2xl px-6 py-5 text-2xl font-semibold"
+        className="mt-8 rounded-2xl px-5 py-6 text-2xl font-semibold leading-snug"
         style={{ background: "#E8EEF7", color: NAVY }}
       >
-        NEAR is not always the same as AT.
+        Near is not the same as at.
       </p>
-      <p className="mt-8 text-xl leading-relaxed" style={{ color: NAVY }}>
-        A limit asks what happens <span className="font-semibold">near</span> an
+      <p className="mt-8 text-xl leading-snug" style={{ color: NAVY }}>
+        A limit is about what happens <span className="font-semibold">near</span> an
         input.
       </p>
-      <p className="mt-3 text-xl leading-relaxed" style={{ color: NAVY }}>
-        It does not automatically tell us what happens exactly{" "}
+      <p className="mt-4 text-xl leading-snug" style={{ color: NAVY }}>
+        It does not tell us what happens{" "}
         <span className="font-semibold">at</span> that input.
       </p>
     </div>
@@ -429,7 +422,7 @@ function SeeSlide({
   return (
     <div>
       <h3 className="text-center font-serif text-3xl" style={{ color: NAVY }}>
-        See the idea before calculating
+        See it
       </h3>
       <div className="mt-2 text-center text-lg" style={{ color: NAVY }}>
         <Tex display math={String.raw`f(x)=\dfrac{x^2-4}{x-2}`} />
@@ -506,9 +499,9 @@ function SeeSlide({
                 className="text-xl"
                 math={String.raw`\lim_{x\to 2}\dfrac{x^2-4}{x-2}=4`}
               />
-              <p className="mt-2 text-sm">
-                Even though the original function is not defined at x = 2, the
-                outputs can still approach 4.
+              <p className="mt-2 text-sm leading-snug">
+                The function is not defined at x = 2, but the outputs still
+                approach 4.
               </p>
             </div>
           ) : (
@@ -525,7 +518,7 @@ function SeeSlide({
             className="mt-4 rounded-xl px-3 py-3 text-sm font-semibold"
             style={{ background: "#E8EEF7" }}
           >
-            Key idea: the limit is about what happens near x = 2.
+            Key idea: this is about near x = 2, not at x = 2.
           </p>
         </div>
       </div>
@@ -545,7 +538,7 @@ function WeDoSlide({
   return (
     <div className="mx-auto max-w-3xl">
       <h3 className="text-center font-serif text-3xl" style={{ color: NAVY }}>
-        Example 1 | We Do
+        We Do
       </h3>
       <div className="mt-4 text-center">
         <Tex
@@ -557,10 +550,10 @@ function WeDoSlide({
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
         {(
           [
-            [1, "1. Try substitution"],
-            [2, "2. Factor"],
-            [3, "3. Simplify"],
-            [4, "4. Interpret"],
+            [1, "Try"],
+            [2, "Factor"],
+            [3, "Simplify"],
+            [4, "Interpret"],
           ] as const
         ).map(([n, label]) => (
           <button
@@ -584,13 +577,12 @@ function WeDoSlide({
           <div>
             <Tex display math={String.raw`\dfrac{2^2-4}{2-2}=\dfrac{0}{0}`} />
             <p className="mt-2">
-              <Tex math={String.raw`\tfrac{0}{0}`} /> does <span className="font-semibold">not</span> mean the answer is 0.
+              <Tex math={String.raw`\tfrac{0}{0}`} /> is not the answer. Try
+              factoring next.
             </p>
-            <p className="mt-1">Direct substitution did not answer the question.</p>
-            <p className="mt-3 font-semibold">What should we try next?</p>
           </div>
         ) : (
-          <p>Predict first. Then try substitution.</p>
+          <p>Try substitution first.</p>
         )}
         {shown(2) ? (
           <div className="mt-4 border-t border-stone-100 pt-3">
@@ -624,7 +616,7 @@ function WeDoSlide({
               math={String.raw`\boxed{\lim_{x\to 2}\dfrac{x^2-4}{x-2}=4}`}
             />
             <p className="mt-2">
-              The function does not need a value at x = 2 for the limit to exist.
+              The function does not need a value at x = 2.
             </p>
           </div>
         ) : null}
@@ -637,13 +629,13 @@ function ThreeWaysSlide() {
   return (
     <div>
       <h3 className="text-center font-serif text-3xl" style={{ color: NAVY }}>
-        One limit, three ways to see it
+        Three ways
       </h3>
       <div className="mt-5 grid gap-3 md:grid-cols-3">
         <article className="rounded-2xl border border-stone-200 bg-white p-4" style={{ color: NAVY }}>
           <p className="text-xs font-semibold tracking-wide uppercase">Algebra</p>
           <Tex display math={String.raw`\dfrac{x^2-4}{x-2}`} />
-          <p className="text-sm">factors and simplifies to</p>
+          <p className="text-sm">simplifies to</p>
           <Tex display math={String.raw`x+2,\quad x\neq 2`} />
         </article>
         <article className="rounded-2xl border border-stone-200 bg-white p-4" style={{ color: NAVY }}>
@@ -670,7 +662,7 @@ function ThreeWaysSlide() {
             </tbody>
           </table>
           <p className="mt-2 text-sm font-semibold" style={{ color: TANGENT }}>
-            Outputs move toward 4.
+            Toward 4.
           </p>
         </article>
         <article className="rounded-2xl border border-stone-200 bg-white p-4" style={{ color: NAVY }}>
@@ -680,7 +672,7 @@ function ThreeWaysSlide() {
         </article>
       </div>
       <div className="mt-5 text-center" style={{ color: NAVY }}>
-        <p className="text-lg">All three tell the same story:</p>
+        <p className="text-lg">Same story:</p>
         <p className="mt-2 text-xl">
           <Tex math={String.raw`x \to 2`} /> while <Tex math={String.raw`f(x) \to 4`} />
         </p>
@@ -736,7 +728,7 @@ function YouDoSlide({
   return (
     <div className="mx-auto max-w-3xl">
       <h3 className="text-center font-serif text-3xl" style={{ color: NAVY }}>
-        Example 2 | You Do
+        You Do
       </h3>
       <div className="mt-4 text-center">
         <Tex
@@ -746,13 +738,13 @@ function YouDoSlide({
         />
       </div>
       <p className="mt-4 text-center text-lg" style={{ color: NAVY }}>
-        Work this in your notebook first.
+        Do this in your notebook first.
       </p>
-      <ol className="mx-auto mt-3 max-w-md list-decimal text-lg" style={{ color: NAVY }}>
+      <ol className="mx-auto mt-3 max-w-md list-decimal pl-6 text-lg" style={{ color: NAVY }}>
         <li>Try substitution.</li>
         <li>Factor.</li>
         <li>Simplify.</li>
-        <li>Determine what the outputs approach.</li>
+        <li>What do the outputs approach?</li>
       </ol>
       {!ready ? (
         <button
@@ -925,17 +917,17 @@ function CheckSlide({
         {!hideAnswers && q1 ? (
           <p className="mt-2 font-semibold" style={{ color: q1ok ? TANGENT : "#9B3A52" }}>
             {q1ok
-              ? "Yes. The limit is about approaching 8."
+              ? "Yes. It is about approaching 8."
               : answersOn
                 ? "Best: B. As x gets close to 5, f(x) gets close to 8."
-                : "Not quite. The limit is about what happens near x = 5."}
+                : "Not quite. Think about near, not at."}
           </p>
         ) : null}
       </div>
       <div>
         <p className="font-semibold">2. True or False</p>
         <p className="mt-1">
-          A limit can exist even if the function is not defined at the exact input.
+          A limit can exist even if the function is not defined there.
         </p>
         <div className="mt-2 flex gap-2">
           {["true", "false"].map((id) => (
@@ -955,7 +947,7 @@ function CheckSlide({
         </div>
         {!hideAnswers && q2 ? (
           <p className="mt-2 font-semibold" style={{ color: q2ok ? TANGENT : "#9B3A52" }}>
-            {q2ok ? "True. Near is not the same as at." : "Look back at the hole in the graph."}
+            {q2ok ? "True. Near is not the same as at." : "Think about the hole in the graph."}
           </p>
         ) : null}
       </div>
@@ -1010,27 +1002,27 @@ function slot(value: string | null) {
 
 function FromClassSlide() {
   return (
-    <div className="mx-auto max-w-2xl text-center" style={{ color: NAVY }}>
+    <div className="mx-auto max-w-xl px-4 text-center" style={{ color: NAVY }}>
       <h3 className="font-serif text-3xl">From class</h3>
-      <p className="mt-6 text-xl">A limit describes what a function approaches.</p>
+      <p className="mt-6 text-xl leading-snug">A limit is what a function approaches.</p>
       <div
-        className="mx-auto mt-5 inline-block rounded-2xl border-2 px-10 py-5"
+        className="mx-auto mt-5 inline-block rounded-2xl border-2 px-8 py-5"
         style={{ borderColor: NAVY }}
       >
         <Tex display className="text-3xl" math={String.raw`\lim_{x\to a}f(x)=L`} />
       </div>
-      <p className="mt-4 text-xl font-semibold">
+      <p className="mt-4 text-xl font-semibold leading-snug">
         As <Tex math="x" /> approaches <Tex math="a" />, <Tex math="f(x)" /> approaches{" "}
         <Tex math="L" />.
       </p>
       <p
-        className="mx-auto mt-6 max-w-lg rounded-2xl px-5 py-4 text-xl font-semibold"
+        className="mt-6 rounded-2xl px-5 py-5 text-xl font-semibold leading-snug"
         style={{ background: "#E8EEF7" }}
       >
-        NEAR is not always the same as AT.
+        Near is not the same as at.
       </p>
-      <p className="mt-5 text-xl">
-        A limit can exist even when the function is not defined at the exact input.
+      <p className="mt-5 text-xl leading-snug">
+        A limit can exist even if the function has no value there.
       </p>
       <p className="mt-10 text-sm tracking-wide text-stone-500 uppercase">Next</p>
       <p className="mt-1 text-lg">Limits from the left and from the right.</p>
