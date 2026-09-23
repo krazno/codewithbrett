@@ -86,6 +86,7 @@ export default async function ClassPage({ params }: Props) {
       : course.image;
   const showMakeCode = course.slug.startsWith("ap-csp");
   const showOnlineJava = course.slug.startsWith("ap-csa");
+  const isCalcHonors = course.slug.startsWith("calculus-h");
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f4ec_0%,#eef5ef_55%,#f7f4ec_100%)]">
@@ -239,7 +240,7 @@ export default async function ClassPage({ params }: Props) {
 
           {showOnlineJava ? <JavaDataTypesLab /> : null}
 
-          {course.slug === "calculus-h-d" ? (
+          {isCalcHonors ? (
             <>
               <AverageToInstantaneousLazy />
               <p className="text-center text-sm md:col-span-2">
@@ -262,7 +263,7 @@ export default async function ClassPage({ params }: Props) {
             </>
           ) : null}
 
-          {course.slug === "calculus-h-d" ? (
+          {isCalcHonors ? (
             <ArchivedInteractives>
               <LimitsApproachingLazy />
               <p className="text-center text-sm">
@@ -303,46 +304,6 @@ export default async function ClassPage({ params }: Props) {
                 <ClosingTheGapLazy />
               </section>
             </ArchivedInteractives>
-          ) : null}
-
-          {course.slug.startsWith("calculus") && course.slug !== "calculus-h-d" ? (
-            <SeeTheSecantLine />
-          ) : null}
-
-          {course.slug.startsWith("calculus") && course.slug !== "calculus-h-d" ? (
-            <section
-              className="md:col-span-2"
-              aria-label="UA Function Garden"
-            >
-              <FunctionGardenLazy embedded />
-              <p className="mt-2 text-center text-sm">
-                <Link
-                  href="/tools/function-garden/"
-                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
-                >
-                  Open UA Function Garden on its own page
-                </Link>
-              </p>
-            </section>
-          ) : null}
-
-          {course.slug.startsWith("calculus") && course.slug !== "calculus-h-d" ? (
-            <>
-              <section
-                id="where-calculus-goes-next"
-                className="mt-8 scroll-mt-24 md:col-span-2 md:mt-10"
-                aria-label="Where Calculus Goes Next"
-              >
-                <WhereCalculusGoesNextLazy />
-              </section>
-              <section
-                id="closing-the-gap"
-                className="mt-8 scroll-mt-24 md:col-span-2 md:mt-10"
-                aria-label="Closing the Gap"
-              >
-                <ClosingTheGapLazy />
-              </section>
-            </>
           ) : null}
 
           <section

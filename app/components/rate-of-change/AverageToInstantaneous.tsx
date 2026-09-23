@@ -319,7 +319,7 @@ export function AverageToInstantaneous() {
       style={{ background: "#FFFDF8" }}
     >
       <p className="text-[0.7rem] font-semibold tracking-wide text-emerald-800 uppercase">
-        Calculus Honors · Block D
+        Calculus Honors
       </p>
       <h2
         id="aroc-heading"
