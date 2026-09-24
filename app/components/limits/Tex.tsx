@@ -21,7 +21,7 @@ export function Tex({
   const Tag = display ? "div" : "span";
   return (
     <Tag
-      className={className}
+      className={`${display ? "leading-none " : ""}${className}`.trim()}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

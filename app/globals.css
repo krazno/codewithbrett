@@ -307,3 +307,18 @@ textarea,
 .katex svg {
   display: inline;
 }
+
+@keyframes el-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.el-fade {
+  animation: el-fade 0.45s ease both;
+}

@@ -17,6 +17,7 @@ import { SITE_NAME } from "@/app/lib/site";
 import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
+import { ExploringLimitsLazy } from "@/app/components/limits/ExploringLimitsLazy";
 import { LimitsApproachingLazy } from "@/app/components/limits/LimitsApproachingLazy";
 import { AverageToInstantaneousLazy } from "@/app/components/rate-of-change/AverageToInstantaneousLazy";
 import { ArchivedInteractives } from "@/app/components/rate-of-change/ArchivedInteractives";
@@ -242,6 +243,15 @@ export default async function ClassPage({ params }: Props) {
 
           {isCalcHonors ? (
             <>
+              <ExploringLimitsLazy />
+              <p className="text-center text-sm md:col-span-2">
+                <Link
+                  href="/tools/exploring-limits/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open Exploring Limits on its own page
+                </Link>
+              </p>
               <AverageToInstantaneousLazy />
               <p className="text-center text-sm md:col-span-2">
                 <Link

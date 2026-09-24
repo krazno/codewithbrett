@@ -16,6 +16,7 @@ import {
   SITE_URL,
 } from "./lib/site";
 import "./globals.css";
+import "katex/dist/katex.min.css";
 
 const sans = Source_Sans_3({
   subsets: ["latin"],
