@@ -37,6 +37,17 @@ export const metadata: Metadata = {
 
 const PLACEHOLDER = "#"; // swap for Google Form / Meet / Calendar later
 
+const PARENT_PRESENTATION_URL =
+  "https://gamma.app/docs/A-Year-of-Curiosity-Courage-and-Serviam-hmbcvtfg4488y93";
+
+const PARENT_COURSE: Course = {
+  slug: "parents",
+  title: "Parents",
+  room: "Ursuline Academy",
+  description: "A year of curiosity, courage, and Serviam.",
+  image: "/media/branded/ua-seal.png",
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -128,35 +139,59 @@ function SoftLink({
   );
 }
 
-function CourseCard({ course }: { course: Course }) {
+function CourseCard({
+  course,
+  externalHref,
+}: {
+  course: Course;
+  externalHref?: string;
+}) {
+  const content = (
+    <>
+      <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full">
+        <Image
+          src={course.image}
+          alt={`${course.title} class`}
+          width={80}
+          height={80}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="min-w-0 flex-1 text-left">
+        {course.comingSoon ? (
+          <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+            Coming soon
+          </p>
+        ) : null}
+        <h3 className="font-serif text-xl text-stone-900">{course.title}</h3>
+        <p className="text-xs text-stone-600">
+          {course.room}
+          {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
+        </p>
+        <p className="mt-1 text-xs leading-relaxed text-stone-700">
+          {course.description}
+        </p>
+      </div>
+    </>
+  );
+
   return (
     <article className="ua-card p-4 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
-      <Link href={`/classes/${course.slug}/`} className="flex gap-4">
-        <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full">
-          <Image
-            src={course.image}
-            alt={`${course.title} class`}
-            width={80}
-            height={80}
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div className="min-w-0 flex-1 text-left">
-          {course.comingSoon ? (
-            <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
-              Coming soon
-            </p>
-          ) : null}
-          <h3 className="font-serif text-xl text-stone-900">{course.title}</h3>
-          <p className="text-xs text-stone-600">
-            {course.room}
-            {course.scheduleNote ? ` · ${course.scheduleNote}` : ""}
-          </p>
-          <p className="mt-1 text-xs leading-relaxed text-stone-700">
-            {course.description}
-          </p>
-        </div>
-      </Link>
+      {externalHref ? (
+        <a
+          href={externalHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex gap-4"
+          aria-label={`Open ${course.title} presentation in a new tab`}
+        >
+          {content}
+        </a>
+      ) : (
+        <Link href={`/classes/${course.slug}/`} className="flex gap-4">
+          {content}
+        </Link>
+      )}
     </article>
   );
 }
@@ -260,6 +295,10 @@ export default function HomePage() {
 
       <section className="mt-8" aria-label="Classes">
         <div className="grid gap-4 sm:grid-cols-2">
+          <CourseCard
+            course={PARENT_COURSE}
+            externalHref={PARENT_PRESENTATION_URL}
+          />
           {COURSES.map((c) => (
             <CourseCard key={c.slug} course={c} />
           ))}

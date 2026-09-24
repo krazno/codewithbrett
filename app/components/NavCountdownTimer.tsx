@@ -9,7 +9,7 @@ const THREE_MS = 3 * 60 * 1000;
 const ONE_MS = 1 * 60 * 1000;
 const FIVE_ANNOUNCE_WINDOW_MS = 2500;
 const WARNING_REPEAT_MS = 45_000;
-const PRESETS_MIN = [5, 10, 15, 20, 25, 30, 40, 45] as const;
+const PRESETS_MIN = [5, 6, 10, 15, 20, 25, 30, 40, 45] as const;
 
 type TimerStage = "normal" | "yellow" | "red-outline" | "red-flash" | "done";
 
