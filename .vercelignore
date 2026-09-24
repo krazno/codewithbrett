@@ -1,0 +1,8 @@
+# Not needed to build or serve the static site
+.cursor
+.claude
+agent-transcripts
+*.DS_Store
+data/*.md
+public/artifacts/team/*.md
+public/media/classes/README.md

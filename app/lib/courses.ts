@@ -313,7 +313,7 @@ export const COURSES: Course[] = [
     scheduleNote: "Day 4",
     description:
       "A quiet block to get work done. Bring homework from any class and ask if you get stuck.",
-    image: "/media/classes/study-hall/thumb.png",
+    image: "/media/branded/campus-students.png",
   },
   {
     slug: "coding-club",
