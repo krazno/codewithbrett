@@ -18,6 +18,7 @@ import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
 import { Code03BearCalc } from "@/app/components/Code03BearCalc";
+import { CheckYourLimitsLazy } from "@/app/components/limits/CheckYourLimitsLazy";
 import { ExploringLimitsLazy } from "@/app/components/limits/ExploringLimitsLazy";
 import { LimitsApproachingLazy } from "@/app/components/limits/LimitsApproachingLazy";
 import { AverageToInstantaneousLazy } from "@/app/components/rate-of-change/AverageToInstantaneousLazy";
@@ -206,8 +207,9 @@ export default async function ClassPage({ params }: Props) {
                 </div>
               </div>
               <p className="mt-3 text-sm text-stone-700">
-                Write, compile, and run Java right here — or open the full editor
-                in a new tab.
+                {course.ideEmbedUrl
+                  ? "Write, compile, and run Java right here — or open the full editor in a new tab."
+                  : "Write, compile, and run Java in a new tab."}
               </p>
               {course.ideEmbedUrl ? (
                 <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200 bg-white">
@@ -249,6 +251,15 @@ export default async function ClassPage({ params }: Props) {
 
           {isCalcHonors ? (
             <>
+              <CheckYourLimitsLazy />
+              <p className="text-center text-sm md:col-span-2">
+                <Link
+                  href="/tools/check-your-limits/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open Check Your Limits on its own page
+                </Link>
+              </p>
               <ExploringLimitsLazy />
               <p className="text-center text-sm md:col-span-2">
                 <Link
