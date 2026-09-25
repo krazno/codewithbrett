@@ -17,6 +17,7 @@ import { SITE_NAME } from "@/app/lib/site";
 import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
+import { Code03BearCalc } from "@/app/components/Code03BearCalc";
 import { ExploringLimitsLazy } from "@/app/components/limits/ExploringLimitsLazy";
 import { LimitsApproachingLazy } from "@/app/components/limits/LimitsApproachingLazy";
 import { AverageToInstantaneousLazy } from "@/app/components/rate-of-change/AverageToInstantaneousLazy";
@@ -239,7 +240,12 @@ export default async function ClassPage({ params }: Props) {
             </section>
           ) : null}
 
-          {showOnlineJava ? <JavaDataTypesLab /> : null}
+          {showOnlineJava ? (
+            <>
+              <Code03BearCalc />
+              <JavaDataTypesLab />
+            </>
+          ) : null}
 
           {isCalcHonors ? (
             <>
