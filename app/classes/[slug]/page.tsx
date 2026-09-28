@@ -18,6 +18,7 @@ import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
 import { Code03BearCalc } from "@/app/components/Code03BearCalc";
+import { UnderstandingLimitPropertiesLazy } from "@/app/components/limit-properties/UnderstandingLimitPropertiesLazy";
 import { CheckYourLimitsLazy } from "@/app/components/limits/CheckYourLimitsLazy";
 import { ExploringLimitsLazy } from "@/app/components/limits/ExploringLimitsLazy";
 import { LimitsApproachingLazy } from "@/app/components/limits/LimitsApproachingLazy";
@@ -258,6 +259,15 @@ export default async function ClassPage({ params }: Props) {
                   className="font-medium text-[var(--ua-evergreen)] hover:underline"
                 >
                   Open Check Your Limits on its own page
+                </Link>
+              </p>
+              <UnderstandingLimitPropertiesLazy />
+              <p className="text-center text-sm md:col-span-2">
+                <Link
+                  href="/tools/limit-properties/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open Understanding Limit Properties on its own page
                 </Link>
               </p>
               <AverageToInstantaneousLazy />
