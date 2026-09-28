@@ -192,6 +192,7 @@ export function CheckYourLimits() {
       className="ua-card ua-shadow-soft relative w-full min-w-0 overflow-x-hidden p-4 sm:p-6 md:col-span-2"
       style={{ background: CREAM }}
       aria-labelledby={`${uid}-heading`}
+      id="check-your-limits"
     >
       <p className="text-[0.7rem] font-semibold tracking-[0.14em] text-emerald-800 uppercase">
         Today&apos;s problem · QOD Follow-Up

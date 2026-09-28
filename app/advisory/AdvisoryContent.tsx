@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
+import { getAdvisoryDay } from "@/app/lib/uaSchedule";
 import { BestSelvesActivity } from "./BestSelvesActivity";
 
 const LOCKERS = [
@@ -17,58 +18,19 @@ const LOCKERS = [
   ["AH", "483"],
 ] as const;
 
-type ScheduleItem = {
-  time: string;
-  title: string;
-  detail?: string;
-  nested?: { label: string; time: string; detail?: string }[];
-};
-
-const DAY_SCHEDULE: ScheduleItem[] = [
-  {
-    time: "8:00–8:07",
-    title: "Advisory — Prayer and Pledge",
-  },
-  { time: "8:10–8:55", title: "A Block" },
-  { time: "8:58–9:43", title: "B Block" },
-  { time: "9:46–10:16", title: "Activity" },
-  { time: "10:19–11:04", title: "C Block" },
-  { time: "11:07–11:52", title: "D Block" },
-  {
-    time: "11:55–1:10",
-    title: "Lunch / E Block",
-    nested: [
-      {
-        label: "First Lunch",
-        time: "11:55–12:25",
-        detail:
-          "Science, Directed Research, History, World Language, 9th grade colloquium, Study Hall",
-      },
-      {
-        label: "Second Lunch",
-        time: "12:40–1:10",
-        detail:
-          "Theology, English, Math, CS, Fine Arts, counseling classes, 7/8 Specials",
-      },
-    ],
-  },
-  { time: "1:13–1:58", title: "F Block" },
-  { time: "2:01–2:46", title: "G Block" },
-];
-
 const MASS_SEATING_URL =
   "https://docs.google.com/spreadsheets/d/1uvD2PyJvUQRa7BvlVCOGNvgkafJ2ffy0hg1ooslDMJs/edit?gid=0#gid=0";
 const SESSION_KEY = "advisory-access";
-const DAY_DATE_LABEL = "Wednesday, September 23rd";
-const DAY_DATE_ISO = "2026-09-23";
 
 export function AdvisoryContent() {
   const [passcode, setPasscode] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
+  const [day, setDay] = useState(() => getAdvisoryDay());
 
   useEffect(() => {
     setUnlocked(sessionStorage.getItem(SESSION_KEY) === "granted");
+    setDay(getAdvisoryDay());
   }, []);
 
   function unlock(event: FormEvent<HTMLFormElement>) {
@@ -95,9 +57,13 @@ export function AdvisoryContent() {
             Enter passcode
           </h2>
           <p className="mt-2 text-sm font-semibold text-[var(--ua-evergreen)]">
-            <time dateTime={DAY_DATE_ISO}>{DAY_DATE_LABEL}</time>
-            <span className="font-normal text-stone-500"> · </span>
-            Day 1
+            <time dateTime={day.dateKey}>{day.dateLabel}</time>
+            {day.cycleLabel ? (
+              <>
+                <span className="font-normal text-stone-500"> · </span>
+                {day.cycleLabel}
+              </>
+            ) : null}
           </p>
           <p className="mt-3 text-sm leading-relaxed text-stone-600">
             This is a casual client-side gate for Advisory materials, not
@@ -173,63 +139,68 @@ export function AdvisoryContent() {
               id="day-schedule-heading"
               className="font-serif text-2xl leading-tight text-stone-900 sm:text-3xl"
             >
-              Day 1
+              {day.cycleLabel ?? "Schedule"}
             </h2>
             <time
-              dateTime={DAY_DATE_ISO}
+              dateTime={day.dateKey}
               className="shrink-0 text-sm font-semibold text-stone-700 sm:text-base"
             >
-              {DAY_DATE_LABEL}
+              {day.dateLabel}
             </time>
           </div>
         </div>
 
-        <ol className="divide-y divide-emerald-900/8 px-3 py-2 sm:px-4">
-          {DAY_SCHEDULE.map((item) => (
-            <li
-              key={`${item.time}-${item.title}`}
-              className="grid grid-cols-[6.5rem_1fr] gap-3 px-2 py-2.5 sm:grid-cols-[7.5rem_1fr] sm:gap-4 sm:px-3 sm:py-3"
-            >
-              <time className="pt-0.5 text-sm font-bold tabular-nums text-[var(--ua-evergreen)] sm:text-base">
-                {item.time}
-              </time>
-              <div className="min-w-0">
-                <p className="text-sm font-semibold leading-snug text-stone-900 sm:text-base">
-                  {item.title}
-                </p>
-                {item.detail ? (
-                  <p className="mt-0.5 text-xs leading-snug text-stone-600 sm:text-sm">
-                    {item.detail}
+        {day.rows ? (
+          <ol className="divide-y divide-emerald-900/8 px-3 py-2 sm:px-4">
+            {day.rows.map((item) => (
+              <li
+                key={`${item.time}-${item.title}`}
+                className="grid grid-cols-[6.5rem_1fr] gap-3 px-2 py-2.5 sm:grid-cols-[7.5rem_1fr] sm:gap-4 sm:px-3 sm:py-3"
+              >
+                <time className="pt-0.5 text-sm font-bold tabular-nums text-[var(--ua-evergreen)] sm:text-base">
+                  {item.time}
+                </time>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold leading-snug text-stone-900 sm:text-base">
+                    {item.title}
                   </p>
-                ) : null}
-                {item.nested ? (
-                  <ul className="mt-2 space-y-1.5">
-                    {item.nested.map((row) => (
-                      <li
-                        key={row.label}
-                        className="rounded-lg bg-emerald-50/80 px-2.5 py-1.5 text-xs text-stone-700 ring-1 ring-emerald-800/10 sm:text-sm"
-                      >
-                        <span className="font-semibold text-stone-900">
-                          {row.label}
-                        </span>
-                        <span className="mt-0.5 block tabular-nums text-emerald-900/80">
-                          {row.time}
-                        </span>
-                        {row.detail ? (
-                          <span className="mt-0.5 block text-stone-600">
-                            {row.detail}
+                  {item.nested ? (
+                    <ul className="mt-2 space-y-1.5">
+                      {item.nested.map((row) => (
+                        <li
+                          key={row.label}
+                          className="rounded-lg bg-emerald-50/80 px-2.5 py-1.5 text-xs text-stone-700 ring-1 ring-emerald-800/10 sm:text-sm"
+                        >
+                          <span className="font-semibold text-stone-900">
+                            {row.label}
                           </span>
-                        ) : null}
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </div>
-            </li>
-          ))}
-        </ol>
+                          <span className="mt-0.5 block tabular-nums text-emerald-900/80">
+                            {row.time}
+                          </span>
+                          {row.detail ? (
+                            <span className="mt-0.5 block text-stone-600">
+                              {row.detail}
+                            </span>
+                          ) : null}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className="px-5 py-4 text-sm text-stone-600 sm:px-7">
+            {day.notes ?? "No numbered cycle day today."}
+          </p>
+        )}
         <p className="border-t border-emerald-900/8 px-5 py-3 text-xs text-stone-500 sm:px-7">
-          Regular bell schedule. H Block does not meet.
+          {day.dropped
+            ? `Regular bell schedule. ${day.dropped} Block does not meet.`
+            : day.notes
+              ? day.notes
+              : "Regular bell schedule."}
         </p>
       </section>
 

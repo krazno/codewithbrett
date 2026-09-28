@@ -260,15 +260,6 @@ export default async function ClassPage({ params }: Props) {
                   Open Check Your Limits on its own page
                 </Link>
               </p>
-              <ExploringLimitsLazy />
-              <p className="text-center text-sm md:col-span-2">
-                <Link
-                  href="/tools/exploring-limits/"
-                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
-                >
-                  Open Exploring Limits on its own page
-                </Link>
-              </p>
               <AverageToInstantaneousLazy />
               <p className="text-center text-sm md:col-span-2">
                 <Link
@@ -292,6 +283,15 @@ export default async function ClassPage({ params }: Props) {
 
           {isCalcHonors ? (
             <ArchivedInteractives>
+              <ExploringLimitsLazy />
+              <p className="text-center text-sm">
+                <Link
+                  href="/tools/exploring-limits/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open Exploring Limits on its own page
+                </Link>
+              </p>
               <LimitsApproachingLazy />
               <p className="text-center text-sm">
                 <Link
