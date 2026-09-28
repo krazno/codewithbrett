@@ -341,7 +341,7 @@ function AlgebraProblem({
             yMax={9}
             targetX={3}
             lineY={(x) => x + 3}
-            hole={{ x: 3, y: 6 }}
+            hole={{ x: 3, y: 6, dx: -12, dy: -18, anchor: "end" }}
             t={dots.t}
             showDots={draft.checked}
             ariaLabel="Line y equals x plus 3 with an outlined hole at 3 comma 6."
@@ -354,7 +354,7 @@ function AlgebraProblem({
             yMax={3}
             targetX={2}
             lineY={(x) => x - 3}
-            hole={{ x: 2, y: -1 }}
+            hole={{ x: 2, y: -1, dx: -12, dy: -18, anchor: "end" }}
             t={dots.t}
             showDots={draft.checked}
             ariaLabel="Line y equals x minus 3 with an outlined hole at 2 comma negative 1."
@@ -605,10 +605,10 @@ function SidesProblem({
             leftY={(x) => x + 1}
             rightY={(x) => x - 2}
             opens={[
-              { x: 1, y: 2 },
-              { x: 1, y: -1 },
+              { x: 1, y: 2, dx: 16, dy: -12 },
+              { x: 1, y: -1, dx: 16, dy: 22 },
             ]}
-            filled={{ x: 1, y: 0 }}
+            filled={{ x: 1, y: 0, dx: 16, dy: 5 }}
             t={dots.t}
             showDots={draft.checked}
             ariaLabel="Piecewise graph of g with open points at 1 comma 2 and 1 comma negative 1, and a filled point at 1 comma 0."
@@ -622,8 +622,8 @@ function SidesProblem({
             yMax={6}
             targetX={-2}
             lineY={(x) => 1 - x}
-            hole={{ x: -2, y: 3 }}
-            filled={{ x: -2, y: -1 }}
+            hole={{ x: -2, y: 3, dx: 16, dy: -16 }}
+            filled={{ x: -2, y: -1, dx: 16, dy: 20 }}
             t={dots.t}
             showDots={draft.checked}
             ariaLabel="Line y equals 1 minus x with an open point at negative 2 comma 3 and a filled point at negative 2 comma negative 1."
@@ -639,7 +639,7 @@ function SidesProblem({
             leftY={(x) => 2 - x}
             rightY={(x) => x}
             joinAtTarget
-            filled={{ x: 1, y: 1 }}
+            filled={{ x: 1, y: 1, dx: 0, dy: -20, anchor: "middle" }}
             t={dots.t}
             showDots={draft.checked}
             ariaLabel="V-shaped graph of absolute value of x minus 1, plus 1, with a filled vertex at 1 comma 1."
@@ -951,7 +951,15 @@ function MotionBar({
 
 const VW = 640;
 const VH = 300;
-const PAD = { l: 52, r: 22, t: 22, b: 42 };
+const PAD = { l: 52, r: 72, t: 36, b: 42 };
+
+type GraphPoint = {
+  x: number;
+  y: number;
+  dx?: number;
+  dy?: number;
+  anchor?: "start" | "middle" | "end";
+};
 
 function toX(x: number, xMin: number, xMax: number) {
   return PAD.l + ((x - xMin) / (xMax - xMin)) * (VW - PAD.l - PAD.r);
@@ -1061,6 +1069,36 @@ function Axes({
   );
 }
 
+function CoordLabel({
+  x,
+  y,
+  xMin,
+  xMax,
+  yMin,
+  yMax,
+  dx = 16,
+  dy = -14,
+  anchor = "start",
+}: GraphPoint & {
+  xMin: number;
+  xMax: number;
+  yMin: number;
+  yMax: number;
+}) {
+  return (
+    <text
+      x={toX(x, xMin, xMax) + dx}
+      y={toY(y, yMin, yMax) + dy}
+      textAnchor={anchor}
+      fontSize="15"
+      fontWeight="700"
+      fill={NAVY}
+    >
+      ({x}, {y})
+    </text>
+  );
+}
+
 function OpenDot({
   x,
   y,
@@ -1068,23 +1106,37 @@ function OpenDot({
   xMax,
   yMin,
   yMax,
-}: {
-  x: number;
-  y: number;
+  dx,
+  dy,
+  anchor,
+}: GraphPoint & {
   xMin: number;
   xMax: number;
   yMin: number;
   yMax: number;
 }) {
   return (
-    <circle
-      cx={toX(x, xMin, xMax)}
-      cy={toY(y, yMin, yMax)}
-      r="9"
-      fill={CREAM}
-      stroke={NAVY}
-      strokeWidth="2.8"
-    />
+    <>
+      <circle
+        cx={toX(x, xMin, xMax)}
+        cy={toY(y, yMin, yMax)}
+        r="9"
+        fill={CREAM}
+        stroke={NAVY}
+        strokeWidth="2.8"
+      />
+      <CoordLabel
+        x={x}
+        y={y}
+        xMin={xMin}
+        xMax={xMax}
+        yMin={yMin}
+        yMax={yMax}
+        dx={dx}
+        dy={dy}
+        anchor={anchor}
+      />
+    </>
   );
 }
 
@@ -1095,23 +1147,37 @@ function FilledDot({
   xMax,
   yMin,
   yMax,
-}: {
-  x: number;
-  y: number;
+  dx,
+  dy,
+  anchor,
+}: GraphPoint & {
   xMin: number;
   xMax: number;
   yMin: number;
   yMax: number;
 }) {
   return (
-    <circle
-      cx={toX(x, xMin, xMax)}
-      cy={toY(y, yMin, yMax)}
-      r="8"
-      fill={NAVY}
-      stroke="#fff"
-      strokeWidth="2"
-    />
+    <>
+      <circle
+        cx={toX(x, xMin, xMax)}
+        cy={toY(y, yMin, yMax)}
+        r="8"
+        fill={NAVY}
+        stroke="#fff"
+        strokeWidth="2"
+      />
+      <CoordLabel
+        x={x}
+        y={y}
+        xMin={xMin}
+        xMax={xMax}
+        yMin={yMin}
+        yMax={yMax}
+        dx={dx}
+        dy={dy}
+        anchor={anchor}
+      />
+    </>
   );
 }
 
@@ -1179,8 +1245,8 @@ function HoleLineGraph({
   yMax: number;
   targetX: number;
   lineY: (x: number) => number;
-  hole: { x: number; y: number };
-  filled?: { x: number; y: number };
+  hole: GraphPoint;
+  filled?: GraphPoint;
   t: number;
   showDots: boolean;
   ariaLabel: string;
@@ -1212,11 +1278,24 @@ function HoleLineGraph({
         strokeWidth="2.6"
         strokeLinecap="round"
       />
-      <OpenDot x={hole.x} y={hole.y} xMin={xMin} xMax={xMax} yMin={yMin} yMax={yMax} />
+      <OpenDot
+        x={hole.x}
+        y={hole.y}
+        dx={hole.dx}
+        dy={hole.dy}
+        anchor={hole.anchor}
+        xMin={xMin}
+        xMax={xMax}
+        yMin={yMin}
+        yMax={yMax}
+      />
       {filled ? (
         <FilledDot
           x={filled.x}
           y={filled.y}
+          dx={filled.dx}
+          dy={filled.dy}
+          anchor={filled.anchor}
           xMin={xMin}
           xMax={xMax}
           yMin={yMin}
@@ -1261,8 +1340,8 @@ function PieceGraph({
   targetX: number;
   leftY: (x: number) => number;
   rightY: (x: number) => number;
-  opens?: { x: number; y: number }[];
-  filled?: { x: number; y: number };
+  opens?: GraphPoint[];
+  filled?: GraphPoint;
   joinAtTarget?: boolean;
   t: number;
   showDots: boolean;
@@ -1302,6 +1381,9 @@ function PieceGraph({
           key={`${point.x},${point.y}`}
           x={point.x}
           y={point.y}
+          dx={point.dx}
+          dy={point.dy}
+          anchor={point.anchor}
           xMin={xMin}
           xMax={xMax}
           yMin={yMin}
@@ -1312,6 +1394,9 @@ function PieceGraph({
         <FilledDot
           x={filled.x}
           y={filled.y}
+          dx={filled.dx}
+          dy={filled.dy}
+          anchor={filled.anchor}
           xMin={xMin}
           xMax={xMax}
           yMin={yMin}
