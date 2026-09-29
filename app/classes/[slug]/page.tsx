@@ -16,6 +16,8 @@ import {
 import { COURSES, getCourse } from "@/app/lib/courses";
 import { SITE_NAME } from "@/app/lib/site";
 import { BinaryFlipLab } from "@/app/components/BinaryFlipLab";
+import { DataCompressionLab } from "@/app/components/DataCompressionLab";
+import { MetricsForMemoryLab } from "@/app/components/MetricsForMemoryLab";
 import { FunctionGardenLazy } from "@/app/components/function-garden/FunctionGardenLazy";
 import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
 import { Code03BearCalc } from "@/app/components/Code03BearCalc";
@@ -180,9 +182,17 @@ export default async function ClassPage({ params }: Props) {
         ) : (
         <div className="mt-5 grid items-start gap-3 md:grid-cols-2">
           {showMakeCode ? (
-            <div className="md:col-span-2">
-              <BinaryFlipLab />
-            </div>
+            <>
+              <div className="md:col-span-2">
+                <BinaryFlipLab />
+              </div>
+              <div className="md:col-span-2">
+                <MetricsForMemoryLab />
+              </div>
+              <div className="md:col-span-2">
+                <DataCompressionLab />
+              </div>
+            </>
           ) : null}
 
           {course.ideEmbedUrl || course.ideUrl ? (
