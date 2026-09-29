@@ -10,6 +10,7 @@ import {
   Film,
   Gamepad2,
   KeyRound,
+  LayoutGrid,
   Presentation,
 } from "lucide-react";
 import { COURSES, getCourse } from "@/app/lib/courses";
@@ -514,6 +515,45 @@ export default async function ClassPage({ params }: Props) {
                 className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open slideshow ↗
+              </a>
+            </section>
+          ) : null}
+
+          {course.appLabUrl ? (
+            <section
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
+              aria-labelledby="applab-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <LayoutGrid size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Today&apos;s activity
+                  </p>
+                  <h2
+                    id="applab-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    App Lab
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-3 text-sm text-stone-700">
+                Open the App Lab project in a new window.
+              </p>
+              <a
+                href={course.appLabUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open App Lab for ${course.title} in a new window`}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Open App Lab ↗
               </a>
             </section>
           ) : null}

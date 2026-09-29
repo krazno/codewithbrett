@@ -52,6 +52,8 @@ export type Course = {
   slidesUrl?: string;
   /** Optional heading for the slides card (defaults to “Slideshow”). */
   slidesLabel?: string;
+  /** Code.org App Lab project that opens in a new tab. */
+  appLabUrl?: string;
   textbook?: {
     title: string;
     url: string;
@@ -98,6 +100,7 @@ export const COURSES: Course[] = [
     slidesUrl:
       "https://docs.google.com/presentation/d/1ccxlBnconEF4KdNTkB-RhzJje5xMviicrhHqTp_QSio/edit?slide=id.g3f5c71fff48_1_9223#slide=id.g3f5c71fff48_1_9223",
     slidesLabel: "Slideshow",
+    appLabUrl: "https://studio.code.org/projects/applab/hxXJIEGg2yza_Q7t9W04xg",
     gammaEmbedSrc: "https://gamma.app/embed/yf84iuczscacr6s",
     gammaUrl: "https://gamma.app/docs/Welcome-to-yf84iuczscacr6s",
     gammaEmbedTitle: "Welcome to AP CSP",
@@ -146,6 +149,7 @@ export const COURSES: Course[] = [
     slidesUrl:
       "https://docs.google.com/presentation/d/1ccxlBnconEF4KdNTkB-RhzJje5xMviicrhHqTp_QSio/edit?slide=id.g3f5c71fff48_1_9223#slide=id.g3f5c71fff48_1_9223",
     slidesLabel: "Slideshow",
+    appLabUrl: "https://studio.code.org/projects/applab/hxXJIEGg2yza_Q7t9W04xg",
     gammaEmbedSrc: "https://gamma.app/embed/yf84iuczscacr6s",
     gammaUrl: "https://gamma.app/docs/Welcome-to-yf84iuczscacr6s",
     gammaEmbedTitle: "Welcome to AP CSP",
