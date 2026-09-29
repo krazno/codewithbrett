@@ -20,6 +20,7 @@ import { JavaDataTypesLab } from "@/app/components/JavaDataTypesLab";
 import { Code03BearCalc } from "@/app/components/Code03BearCalc";
 import { UnderstandingLimitPropertiesLazy } from "@/app/components/limit-properties/UnderstandingLimitPropertiesLazy";
 import { CheckYourLimitsLazy } from "@/app/components/limits/CheckYourLimitsLazy";
+import { Qod10LimitsRetrievalLazy } from "@/app/components/limits/Qod10LimitsRetrievalLazy";
 import { ExploringLimitsLazy } from "@/app/components/limits/ExploringLimitsLazy";
 import { LimitsApproachingLazy } from "@/app/components/limits/LimitsApproachingLazy";
 import { AverageToInstantaneousLazy } from "@/app/components/rate-of-change/AverageToInstantaneousLazy";
@@ -252,13 +253,13 @@ export default async function ClassPage({ params }: Props) {
 
           {isCalcHonors ? (
             <>
-              <CheckYourLimitsLazy />
+              <Qod10LimitsRetrievalLazy />
               <p className="text-center text-sm md:col-span-2">
                 <Link
-                  href="/tools/check-your-limits/"
+                  href="/tools/qod10-limits-retrieval/"
                   className="font-medium text-[var(--ua-evergreen)] hover:underline"
                 >
-                  Open Check Your Limits on its own page
+                  Open QOD10 | Limits Retrieval on its own page
                 </Link>
               </p>
               <UnderstandingLimitPropertiesLazy />
@@ -293,6 +294,15 @@ export default async function ClassPage({ params }: Props) {
 
           {isCalcHonors ? (
             <ArchivedInteractives>
+              <CheckYourLimitsLazy />
+              <p className="text-center text-sm">
+                <Link
+                  href="/tools/check-your-limits/"
+                  className="font-medium text-[var(--ua-evergreen)] hover:underline"
+                >
+                  Open Check Your Limits on its own page
+                </Link>
+              </p>
               <ExploringLimitsLazy />
               <p className="text-center text-sm">
                 <Link
@@ -465,6 +475,45 @@ export default async function ClassPage({ params }: Props) {
                 className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
               >
                 Open Summer work ↗
+              </a>
+            </section>
+          ) : null}
+
+          {course.slidesUrl ? (
+            <section
+              className="ua-card ua-shadow-soft flex h-full flex-col p-5"
+              aria-labelledby="slides-heading"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ua-evergreen)] text-white"
+                  aria-hidden="true"
+                >
+                  <Presentation size={24} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+                    Today&apos;s lesson
+                  </p>
+                  <h2
+                    id="slides-heading"
+                    className="font-serif text-2xl text-stone-900"
+                  >
+                    {course.slidesLabel ?? "Slideshow"}
+                  </h2>
+                </div>
+              </div>
+              <p className="mt-3 text-sm text-stone-700">
+                Open the class slides in a new window.
+              </p>
+              <a
+                href={course.slidesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${course.slidesLabel ?? "slideshow"} for ${course.title} in a new window`}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--ua-evergreen)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0b4a33] focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:outline-none"
+              >
+                Open slideshow ↗
               </a>
             </section>
           ) : null}

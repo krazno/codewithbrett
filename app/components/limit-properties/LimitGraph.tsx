@@ -138,6 +138,17 @@ export function LimitGraph({
           {y}
         </text>
       ))}
+      {spec.vAsymptote != null ? (
+        <line
+          x1={toX(spec.vAsymptote, xMin, xMax)}
+          x2={toX(spec.vAsymptote, xMin, xMax)}
+          y1={PAD.t}
+          y2={VH - PAD.b}
+          stroke="#b45309"
+          strokeWidth="1.6"
+          strokeDasharray="6 5"
+        />
+      ) : null}
       <line
         x1={toX(c, xMin, xMax)}
         x2={toX(c, xMin, xMax)}
@@ -167,9 +178,9 @@ export function LimitGraph({
               cx={toX(mark.x, xMin, xMax)}
               cy={toY(mark.y, yMin, yMax)}
               r="8"
-              fill={color}
-              stroke="#fff"
-              strokeWidth="2"
+              fill={mark.open ? "#FFFEFB" : color}
+              stroke={mark.open ? color : "#fff"}
+              strokeWidth="2.4"
             />
             {showCoords ? (
               <text

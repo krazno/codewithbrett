@@ -24,7 +24,17 @@ export type GraphSpec = {
   yMin: number;
   yMax: number;
   c: number;
-  marks: { x: number; y: number; label: string; color?: string; dx?: number; dy?: number; anchor?: "start" | "middle" | "end" }[];
+  vAsymptote?: number;
+  marks: {
+    x: number;
+    y: number;
+    label: string;
+    color?: string;
+    dx?: number;
+    dy?: number;
+    anchor?: "start" | "middle" | "end";
+    open?: boolean;
+  }[];
   skip?: (x: number) => boolean;
 };
 
